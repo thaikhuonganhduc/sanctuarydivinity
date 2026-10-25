@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | Contact</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <script type="module">
+    import { requireAccess } from "../js/guard.js";
+    requireAccess(); // chưa nhập mật khẩu thì quay về cổng
+  </script>
+</head>
+<body>
+  <header class="site-header site-header--solid">
+    <nav class="site-nav site-nav--left" aria-label="Main left">
+      <a href="shop.html">Shop</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
+      <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
+    </a>
+    <nav class="site-nav site-nav--right" aria-label="Main right">
+      <a href="about.html">About</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">Contact</h1>
+
+    <div class="contact-layout">
+      <!-- Thông tin liên hệ (dữ liệu giả lập cho đồ án) -->
+      <section class="contact-info" aria-label="Contact details">
+        <h2 class="glass__title">Reach the sanctuary</h2>
+        <dl class="spec-list">
+          <div class="spec-row"><dt>Email</dt><dd>support@sanctuary.example</dd></div>
+          <div class="spec-row"><dt>Instagram</dt><dd>@sanctuary.divinity</dd></div>
+          <div class="spec-row"><dt>Hours</dt><dd>Mon to Fri · 9:00 to 18:00</dd></div>
+          <div class="spec-row"><dt>Studio</dt><dd>Ho Chi Minh City, Vietnam</dd></div>
+          <div class="spec-row"><dt>Reply time</dt><dd>Within 48 hours</dd></div>
+        </dl>
+        <p class="cart-note">These details are sample data for a student project.</p>
+      </section>
+
+      <!-- Form liên hệ: kiểm tra bằng JavaScript, lưu giả lập vào localStorage -->
+      <section aria-label="Send a message">
+        <h2 class="glass__title">Send a message</h2>
+        <form id="contact-form" class="form" novalidate>
+          <div class="field"><label for="ct-name">Name</label>
+            <input id="ct-name" class="input" type="text" autocomplete="name">
+            <p class="form-error" id="error-ct-name"></p></div>
+          <div class="field"><label for="ct-email">Email</label>
+            <input id="ct-email" class="input" type="email" autocomplete="email">
+            <p class="form-error" id="error-ct-email"></p></div>
+          <div class="field"><label for="ct-topic">Topic</label>
+            <select id="ct-topic" class="input">
+              <option>Order and shipping</option>
+              <option>Sizing help</option>
+              <option>Returns and exchanges</option>
+              <option>Collaboration</option>
+              <option>Something else</option>
+            </select></div>
+          <div class="field"><label for="ct-message">Message</label>
+            <textarea id="ct-message" class="input" rows="6"></textarea>
+            <p class="form-error" id="error-ct-message"></p></div>
+          <button type="submit" class="btn">Send</button>
+          <p id="contact-success" class="contact-success" role="status" hidden>Message sent. We will reply within 48 hours.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/header.js"></script>
+  <script type="module" src="../js/contact.js"></script>
+</body>
+</html>

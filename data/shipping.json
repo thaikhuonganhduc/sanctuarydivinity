@@ -1,0 +1,38 @@
+{
+  "note": "Estimated values for a student project (origin: Ho Chi Minh City, Vietnam). Real carrier quotes, VAT/GST and duties change often. See docs for sources.",
+  "packagingKg": 0.15,
+  "categoryKg": {
+    "hoodies": 0.85,
+    "oversize": 0.4,
+    "compression": 0.25,
+    "bodysuits": 0.3,
+    "bikinis": 0.12,
+    "bottoms": 0.45,
+    "accessories": 0.4
+  },
+  "zones": {
+    "domestic": { "base": 3, "perKg": 1.5 },
+    "asia": { "base": 12, "perKg": 5 },
+    "oceania": { "base": 18, "perKg": 7 },
+    "europe": { "base": 22, "perKg": 9 },
+    "northAmerica": { "base": 24, "perKg": 10 },
+    "southAmerica": { "base": 28, "perKg": 12 }
+  },
+  "countries": {
+    "United States": { "zone": "northAmerica", "taxLabel": "Sales tax", "tax": 0, "dutyPct": 15, "dutyPerItemUsd": 0 },
+    "European Union": { "zone": "europe", "taxLabel": "VAT", "tax": 21, "dutyPct": 0, "dutyPerItemUsd": 3.3 },
+    "United Kingdom": { "zone": "europe", "taxLabel": "VAT", "tax": 20, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "Vietnam": { "zone": "domestic", "taxLabel": "VAT", "tax": 8, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "Japan": { "zone": "asia", "taxLabel": "Consumption tax", "tax": 10, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "South Korea": { "zone": "asia", "taxLabel": "VAT", "tax": 10, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "China": { "zone": "asia", "taxLabel": "VAT", "tax": 13, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "Australia": { "zone": "oceania", "taxLabel": "GST", "tax": 10, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "Canada": { "zone": "northAmerica", "taxLabel": "GST", "tax": 5, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "Singapore": { "zone": "asia", "taxLabel": "GST", "tax": 9, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "Thailand": { "zone": "asia", "taxLabel": "VAT", "tax": 7, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "India": { "zone": "asia", "taxLabel": "GST", "tax": 18, "dutyPct": 20, "dutyPerItemUsd": 0 },
+    "Switzerland": { "zone": "europe", "taxLabel": "VAT", "tax": 8.1, "dutyPct": 0, "dutyPerItemUsd": 0 },
+    "Brazil": { "zone": "southAmerica", "taxLabel": "ICMS", "tax": 17, "dutyPct": 20, "dutyPerItemUsd": 0 },
+    "Mexico": { "zone": "northAmerica", "taxLabel": "IVA", "tax": 16, "dutyPct": 0, "dutyPerItemUsd": 0 }
+  }
+}

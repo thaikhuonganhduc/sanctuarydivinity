@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | Cart</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <script type="module">
+    import { requireAccess } from "../js/guard.js";
+    requireAccess(); // chưa nhập mật khẩu thì quay về cổng
+  </script>
+</head>
+<body>
+  <header class="site-header site-header--solid">
+    <nav class="site-nav site-nav--left" aria-label="Main left">
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
+      <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
+    </a>
+    <nav class="site-nav site-nav--right" aria-label="Main right">
+      <a href="about.html">About</a>
+      <a href="cart.html" aria-current="page">Cart</a>
+    </nav>
+    <select id="filter-currency" class="region-select" aria-label="Region"></select>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">Cart</h1>
+
+    <!-- Giỏ trống -->
+    <section id="cart-empty" class="cart-empty" hidden>
+      <p>Your cart is empty.</p>
+      <a href="shop.html" class="btn btn--small">Continue shopping</a>
+    </section>
+
+    <!-- Có hàng: danh sách bên trái, tóm tắt + thanh toán bên phải -->
+    <div id="cart-content" class="cart-layout" hidden>
+      <section aria-label="Items in your cart">
+        <ul id="cart-list" class="cart-list"></ul>
+      </section>
+
+      <aside class="cart-summary" aria-label="Order summary">
+        <h2 class="glass__title">Order summary</h2>
+
+        <!-- Mã giảm giá 10% do các athlete chia sẻ -->
+        <form id="discount-form" class="discount" novalidate>
+          <label for="discount-code" class="visually-hidden">Athlete discount code</label>
+          <input id="discount-code" class="input" type="text" placeholder="Athlete code" autocomplete="off">
+          <button id="discount-btn" type="submit" class="btn btn--small">Apply</button>
+        </form>
+        <p id="discount-msg" class="discount__msg" role="status"></p>
+
+        <dl class="spec-list">
+          <div class="spec-row"><dt>Subtotal</dt><dd id="sum-subtotal"></dd></div>
+          <div class="spec-row" id="row-discount" hidden><dt id="sum-discount-label">Discount</dt><dd id="sum-discount"></dd></div>
+          <div class="spec-row"><dt id="sum-shipping-label">Shipping</dt><dd id="sum-shipping"></dd></div>
+          <div class="spec-row" id="row-duty" hidden><dt>Import duty (est.)</dt><dd id="sum-duty"></dd></div>
+          <div class="spec-row" id="row-tax"><dt id="sum-tax-label">Tax</dt><dd id="sum-tax"></dd></div>
+          <div class="spec-row spec-row--total"><dt>Total</dt><dd id="sum-total"></dd></div>
+        </dl>
+        <p id="shipping-note" class="cart-note"></p>
+        <p class="cart-note">Shipping, tax and duty are estimates based on the destination country chosen in Checkout.</p>
+
+        <h2 class="glass__title cart-summary__sub">Checkout</h2>
+        <form id="checkout-form" class="form" novalidate>
+          <div class="field"><label for="co-name">Full name</label>
+            <input id="co-name" class="input" type="text" autocomplete="name">
+            <p class="form-error" id="error-co-name"></p></div>
+          <div class="field"><label for="co-email">Email</label>
+            <input id="co-email" class="input" type="email" autocomplete="email">
+            <p class="form-error" id="error-co-email"></p></div>
+          <div class="field"><label for="co-phone">Phone</label>
+            <input id="co-phone" class="input" type="tel" autocomplete="tel">
+            <p class="form-error" id="error-co-phone"></p></div>
+          <div class="field"><label for="co-address">Address</label>
+            <input id="co-address" class="input" type="text" autocomplete="street-address">
+            <p class="form-error" id="error-co-address"></p></div>
+          <div class="field"><label for="co-city">City</label>
+            <input id="co-city" class="input" type="text" autocomplete="address-level2">
+            <p class="form-error" id="error-co-city"></p></div>
+          <div class="field"><label for="co-country">Country</label>
+            <select id="co-country" class="input"></select></div>
+
+          <fieldset class="pay">
+            <legend>Payment</legend>
+            <label><input type="radio" name="pay" value="card" checked> Card</label>
+            <label><input type="radio" name="pay" value="paypal"> PayPal</label>
+            <label><input type="radio" name="pay" value="applepay"> Apple Pay</label>
+            <label><input type="radio" name="pay" value="googlepay"> Google Pay</label>
+          </fieldset>
+          <p class="pay-brands" aria-label="Accepted cards">
+            <span data-brand="visa">Visa</span><span data-brand="mastercard">Mastercard</span><span data-brand="amex">Amex</span><span data-brand="jcb">JCB</span>
+          </p>
+
+          <div id="card-fields" class="form">
+            <div class="field"><label for="co-card">Card number</label>
+              <input id="co-card" class="input" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="4242 4242 4242 4242">
+              <p class="form-error" id="error-co-card"></p></div>
+            <div class="form-row">
+              <div class="field"><label for="co-expiry">Expiry (MM/YY)</label>
+                <input id="co-expiry" class="input" type="text" autocomplete="cc-exp" placeholder="08/29">
+                <p class="form-error" id="error-co-expiry"></p></div>
+              <div class="field"><label for="co-cvc">CVC</label>
+                <input id="co-cvc" class="input" type="text" inputmode="numeric" autocomplete="cc-csc">
+                <p class="form-error" id="error-co-cvc"></p></div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Place order</button>
+          <p class="cart-note">Demo checkout: no real payment is taken.</p>
+        </form>
+      </aside>
+    </div>
+
+    <!-- Đặt hàng xong -->
+    <section id="order-done" class="cart-empty" hidden>
+      <h2 class="glass__title">Order placed</h2>
+      <p>Thank you. Your order number is <strong id="order-number" class="stock-number"></strong>.</p>
+      <p class="cart-note">A confirmation would be sent to <span id="order-email"></span>.</p>
+      <a href="shop.html" class="btn btn--small">Back to shop</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/cart-page.js"></script>
+</body>
+</html>

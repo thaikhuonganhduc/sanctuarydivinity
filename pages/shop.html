@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | Shop</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <script type="module">
+    import { requireAccess } from "../js/guard.js";
+    requireAccess(); // chưa nhập mật khẩu thì quay về cổng
+  </script>
+</head>
+<body>
+  <header class="site-header site-header--solid">
+    <nav class="site-nav site-nav--left" aria-label="Main left">
+      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
+      <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
+      <!-- Logo đỏ nằm chồng lên, hiện dần khi chọn For Her -->
+      <img src="../assets/logo/logo-red.png" alt="" class="site-header__logo site-header__logo--red">
+    </a>
+    <nav class="site-nav site-nav--right" aria-label="Main right">
+      <a href="about.html">About</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+    <!-- Chọn vùng lãnh thổ để đổi tiền, nằm góc trên bên phải -->
+    <select id="filter-currency" class="region-select" aria-label="Region"></select>
+  </header>
+
+  <main class="shop container">
+    <h1 class="shop__title">
+      <span class="hero__word">Collection</span>
+      <span class="hero__x" aria-label="X">X</span>
+    </h1>
+
+    <!-- Chọn mục: mặc định For Him -->
+    <div id="shop-audience" class="shop-audience" role="group" aria-label="Shop by">
+      <button type="button" data-audience="him" aria-pressed="true">For Him</button>
+      <button type="button" data-audience="her" aria-pressed="false">For Her</button>
+    </div>
+
+    <!-- Thanh lọc: loại và sắp xếp -->
+    <div class="shop-toolbar">
+      <div class="field">
+        <label for="filter-category">Category</label>
+        <select id="filter-category" class="input"><option value="all">All</option></select>
+      </div>
+      <div class="field">
+        <label for="filter-sort">Sort by</label>
+        <select id="filter-sort" class="input">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+        </select>
+      </div>
+    </div>
+    <p class="shop-meta"><span id="shop-count"></span></p>
+
+    <div id="product-grid" class="product-grid"></div>
+    <p id="shop-empty" class="review-empty" hidden>No pieces match these filters.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
+    </div>
+  </footer>
+
+  <!-- Popup chi tiết sản phẩm (nội dung do shop.js đổ vào) -->
+  <dialog id="product-dialog" class="review-dialog" aria-label="Product details">
+    <div id="product-detail" class="review-detail glass"></div>
+  </dialog>
+
+  <script type="module" src="../js/shop.js"></script>
+  <script type="module" src="../js/header.js"></script>
+</body>
+</html>

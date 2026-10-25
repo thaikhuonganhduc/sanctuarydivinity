@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | Coming Soon</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="gate-page">
+  <h1 class="visually-hidden">SANCTUARY</h1>
+
+  <!-- Hộp nhập mật khẩu nhỏ ở góc trên bên phải -->
+  <div class="gate-corner">
+    <button id="gate-toggle" class="gate-corner__toggle" type="button" aria-expanded="false" aria-controls="gate-dialog">
+      Enter using password
+    </button>
+
+    <div id="gate-dialog" class="gate-corner__dialog" hidden>
+      <form id="gate-form" novalidate>
+        <label for="gate-password" class="gate-corner__label">Enter store using password:</label>
+        <input id="gate-password" class="input" type="password" autocomplete="off">
+        <p id="gate-error" class="form-error" role="alert"></p>
+        <button type="submit" class="btn btn--small">Enter</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Đồng hồ đếm ngược ở giữa trang -->
+  <main class="gate-main">
+    <div id="countdown" class="countdown" aria-label="Time until the drop">
+      <div class="countdown__item"><span data-unit="days">00</span><small>Days</small></div>
+      <div class="countdown__item"><span data-unit="hours">00</span><small>Hours</small></div>
+      <div class="countdown__item"><span data-unit="mins">00</span><small>Mins</small></div>
+      <div class="countdown__item countdown__item--secs"><span data-unit="secs">00</span><small>Secs</small></div>
+    </div>
+
+    <section class="drop-intro">
+      <p class="drop-intro__line">DOOMTECH™</p>
+      <h2 class="drop-intro__title">SPIDER-CORPSE</h2>
+      <p class="drop-intro__meta">COLLECTION X <span aria-hidden="true">·</span> <span id="launch-date">00/00/00</span></p>
+    </section>
+
+    <!-- Dải ảnh lookbook: xếp dọc theo số thứ tự home-01 -> home-11 (không có 06) -->
+    <section class="lookbook" aria-label="Lookbook">
+      <img src="assets/images/home-01.jpg" alt="Lookbook 01" loading="lazy">
+      <img src="assets/images/home-02.png" alt="Lookbook 02" loading="lazy">
+      <img src="assets/images/home-03.png" alt="Lookbook 03" loading="lazy">
+      <img src="assets/images/home-04.png" alt="Lookbook 04" loading="lazy">
+      <img src="assets/images/home-05.png" alt="Lookbook 05" loading="lazy">
+      <img src="assets/images/home-07.png" alt="Lookbook 07" loading="lazy">
+      <img src="assets/images/home-08.png" alt="Lookbook 08" loading="lazy">
+      <img src="assets/images/home-09.png" alt="Lookbook 09" loading="lazy">
+      <img src="assets/images/home-10.png" alt="Lookbook 10" loading="lazy">
+      <img src="assets/images/home-11.png" alt="Lookbook 11" loading="lazy">
+    </section>
+  </main>
+
+  <script type="module" src="js/gate.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+/* Components: nút, ô nhập, thông báo dùng lại nhiều trang */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border: 3px solid #333;          /* viền xám đậm, nền đen như nút "Enter using password" */
+  background: #000;
+  color: var(--color-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-wide);
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn:hover { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
+.btn--ghost { background: transparent; }
+.btn--small { padding: 0.5rem 1rem; font-size: 0.8rem; letter-spacing: 0.2em; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+.input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+.input:focus { outline: none; border-color: var(--color-accent); }
+
+.form-error { color: var(--color-error); font-size: 0.85rem; min-height: 1.25rem; }
+
+/* Mọi ô chọn (select) trên web: danh sách xổ xuống nền đen, chữ trắng để luôn đọc được */
+select { color-scheme: dark; }
+select option, select optgroup { background: #000; color: #fff; }

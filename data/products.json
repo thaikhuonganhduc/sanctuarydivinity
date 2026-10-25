@@ -1,0 +1,885 @@
+{
+  "products": [
+    {
+      "id": "p01",
+      "name": "Requiem Heavyweight Hoodie",
+      "category": "hoodies",
+      "gender": "unisex",
+      "price": 120,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p01-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "inStock": true,
+      "stock": 48,
+      "tag": "",
+      "specs": {
+        "material": "100% combed cotton fleece",
+        "weight": "480 GSM",
+        "fit": "Oversized, boxy cut",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "A heavyweight hoodie for the last rites of your session."
+    },
+    {
+      "id": "p02",
+      "name": "Martyr Cut-and-Sew Tank",
+      "category": "compression",
+      "gender": "him",
+      "price": 58,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p02-black.jpg"
+          ]
+        },
+        {
+          "name": "Bone",
+          "hex": "#e8e4d8",
+          "images": [
+            "assets/images/p02-bone.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "inStock": true,
+      "stock": 32,
+      "tag": "",
+      "specs": {
+        "material": "Cotton-modal jersey",
+        "weight": "240 GSM",
+        "fit": "Athletic, deep armholes",
+        "care": "Cold wash, hang dry"
+      },
+      "description": "Cut deep to show every rep. Built to be worn to destruction."
+    },
+    {
+      "id": "p03",
+      "name": "Seraph Oversized Tee",
+      "category": "oversize",
+      "gender": "unisex",
+      "price": 65,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p03-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "inStock": true,
+      "stock": 120,
+      "tag": "",
+      "specs": {
+        "material": "100% heavyweight cotton",
+        "weight": "300 GSM",
+        "fit": "Oversized, dropped shoulder",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "Wings of print across a heavyweight cotton body."
+    },
+    {
+      "id": "p04",
+      "name": "Ossuary Gym Shorts",
+      "category": "bottoms",
+      "gender": "him",
+      "price": 62,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p04-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "inStock": true,
+      "stock": 64,
+      "tag": "",
+      "specs": {
+        "material": "Nylon-spandex performance knit",
+        "weight": "210 GSM",
+        "fit": "Relaxed, 7\" inseam",
+        "care": "Cold wash, do not tumble dry"
+      },
+      "description": "Light, durable shorts for leg day beneath the bones."
+    },
+    {
+      "id": "p05",
+      "name": "Chalice Seamless Leggings",
+      "category": "bottoms",
+      "gender": "her",
+      "price": 78,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p05-black.jpg"
+          ]
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#333333",
+          "images": [
+            "assets/images/p05-charcoal.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 27,
+      "tag": "",
+      "specs": {
+        "material": "Seamless nylon-elastane blend",
+        "weight": "260 GSM",
+        "fit": "High-rise, sculpting",
+        "care": "Cold wash, hang dry"
+      },
+      "description": "Seamless, squat-proof and made to hold everything you pour into it."
+    },
+    {
+      "id": "p06",
+      "name": "Vesper Sports Bra",
+      "category": "compression",
+      "gender": "her",
+      "price": 52,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p06-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 41,
+      "tag": "",
+      "specs": {
+        "material": "Compressive nylon-elastane",
+        "weight": "230 GSM",
+        "fit": "Medium-to-high support",
+        "care": "Cold wash, hang dry"
+      },
+      "description": "Evening-prayer support with a sigil carved across the chest."
+    },
+    {
+      "id": "p07",
+      "name": "Cathedral Zip Jacket",
+      "category": "hoodies",
+      "gender": "unisex",
+      "price": 148,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p07-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 18,
+      "tag": "",
+      "specs": {
+        "material": "Cotton-poly heavy fleece",
+        "weight": "420 GSM",
+        "fit": "Boxy, full zip",
+        "care": "Cold wash, hang dry"
+      },
+      "description": "Stained-glass graphics on a jacket as heavy as stone."
+    },
+    {
+      "id": "p08",
+      "name": "Penance Jogger",
+      "category": "bottoms",
+      "gender": "him",
+      "price": 98,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p08-black.jpg"
+          ]
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#333333",
+          "images": [
+            "assets/images/p08-charcoal.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 55,
+      "tag": "",
+      "specs": {
+        "material": "Cotton-poly brushed fleece",
+        "weight": "400 GSM",
+        "fit": "Relaxed, tapered cuff",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "Baggy where it counts. Earned one set at a time."
+    },
+    {
+      "id": "p09",
+      "name": "Stigmata Long Sleeve",
+      "category": "oversize",
+      "gender": "unisex",
+      "price": 72,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p09-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 73,
+      "tag": "",
+      "specs": {
+        "material": "Compression jersey, 4-way stretch",
+        "weight": "220 GSM",
+        "fit": "Slim, second-skin fit",
+        "care": "Cold wash, hang dry"
+      },
+      "description": "Marked sleeves for those who bleed for the work."
+    },
+    {
+      "id": "p10",
+      "name": "Absolution Crop Hoodie",
+      "category": "hoodies",
+      "gender": "her",
+      "price": 105,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p10-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": false,
+      "stock": 0,
+      "tag": "Sold out",
+      "specs": {
+        "material": "Cotton fleece",
+        "weight": "440 GSM",
+        "fit": "Cropped, boxy",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "Cropped, heavy and forgiven of nothing."
+    },
+    {
+      "id": "p11",
+      "name": "Vigil Gym Cap",
+      "category": "accessories",
+      "gender": "unisex",
+      "price": 38,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p11-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "One size"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 90,
+      "tag": "",
+      "specs": {
+        "material": "Washed cotton twill",
+        "weight": "Mid-weight",
+        "fit": "Adjustable, 6-panel",
+        "care": "Spot clean"
+      },
+      "description": "Keep watch in embroidered black."
+    },
+    {
+      "id": "p12",
+      "name": "Sepulchre Gym Bag",
+      "category": "accessories",
+      "gender": "unisex",
+      "price": 88,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p12-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "One size"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 36,
+      "tag": "",
+      "specs": {
+        "material": "Water-resistant ripstop nylon",
+        "weight": "Approx. 1.1 kg",
+        "fit": "40 L, duffel",
+        "care": "Wipe clean"
+      },
+      "description": "Holds everything you need to survive the session."
+    },
+    {
+      "id": "p13",
+      "name": "Revenant Compression Longsleeve",
+      "category": "compression",
+      "gender": "him",
+      "price": 68,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p13-black.jpg"
+          ]
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#2b2b2b",
+          "images": [
+            "assets/images/p13-charcoal.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "inStock": true,
+      "stock": 44,
+      "tag": "",
+      "specs": {
+        "material": "82% nylon, 18% elastane",
+        "weight": "240 GSM",
+        "fit": "Second-skin compression",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "Seamless long sleeve that rises again after every set."
+    },
+    {
+      "id": "p14",
+      "name": "Wraith Compression Tee",
+      "category": "compression",
+      "gender": "him",
+      "price": 54,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p14-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 60,
+      "tag": "",
+      "specs": {
+        "material": "82% nylon, 18% elastane",
+        "weight": "200 GSM",
+        "fit": "Second-skin compression",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "A quiet, close-fitting layer for the heaviest days."
+    },
+    {
+      "id": "p15",
+      "name": "Thorn Bodysuit",
+      "category": "bodysuits",
+      "gender": "her",
+      "price": 92,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p15-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "inStock": true,
+      "stock": 23,
+      "tag": "",
+      "specs": {
+        "material": "76% nylon, 24% elastane",
+        "weight": "260 GSM",
+        "fit": "Sculpting, high-cut leg",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "A one-piece bodysuit with thorned cut-and-sew seams."
+    },
+    {
+      "id": "p16",
+      "name": "Oracle Long-Sleeve Bodysuit",
+      "category": "bodysuits",
+      "gender": "her",
+      "price": 104,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p16-black.jpg"
+          ]
+        },
+        {
+          "name": "Blood",
+          "hex": "#8b0000",
+          "images": [
+            "assets/images/p16-blood.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 15,
+      "tag": "",
+      "specs": {
+        "material": "76% nylon, 24% elastane",
+        "weight": "260 GSM",
+        "fit": "Sculpting, mock neck",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "Covered, sculpting and ready for the altar of iron."
+    },
+    {
+      "id": "p17",
+      "name": "Rapture Bikini Set",
+      "category": "bikinis",
+      "gender": "her",
+      "price": 64,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p17-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 52,
+      "tag": "",
+      "specs": {
+        "material": "80% recycled nylon, 20% elastane",
+        "weight": "180 GSM",
+        "fit": "Low-rise bottom, bandeau top",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "A two-piece set for the summer of ruin."
+    },
+    {
+      "id": "p18",
+      "name": "Lilith Halter Bikini",
+      "category": "bikinis",
+      "gender": "her",
+      "price": 68,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p18-black.jpg"
+          ]
+        },
+        {
+          "name": "Bone",
+          "hex": "#e8e2d5",
+          "images": [
+            "assets/images/p18-bone.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 38,
+      "tag": "",
+      "specs": {
+        "material": "80% recycled nylon, 20% elastane",
+        "weight": "180 GSM",
+        "fit": "Halter top, high-cut bottom",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "Halter ties and a high-cut bottom, made for the dark side of the pool."
+    },
+    {
+      "id": "p19",
+      "name": "Pallbearer Oversized Shirt",
+      "category": "oversize",
+      "gender": "him",
+      "price": 72,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p19-black.jpg"
+          ]
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#2b2b2b",
+          "images": [
+            "assets/images/p19-charcoal.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": true,
+      "inStock": true,
+      "stock": 67,
+      "tag": "",
+      "specs": {
+        "material": "100% combed cotton",
+        "weight": "320 GSM",
+        "fit": "Oversized, dropped shoulder",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "A heavy tee that carries its own weight."
+    },
+    {
+      "id": "p20",
+      "name": "Reliquary Cropped Oversize Shirt",
+      "category": "oversize",
+      "gender": "her",
+      "price": 66,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p20-black.jpg"
+          ]
+        },
+        {
+          "name": "Bone",
+          "hex": "#e8e2d5",
+          "images": [
+            "assets/images/p20-bone.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 29,
+      "tag": "",
+      "specs": {
+        "material": "100% combed cotton",
+        "weight": "300 GSM",
+        "fit": "Oversized, cropped hem",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "Boxy and cropped, with a washed-out gothic print."
+    },
+    {
+      "id": "p21",
+      "name": "Gethsemane Zip Hoodie",
+      "category": "hoodies",
+      "gender": "him",
+      "price": 138,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p21-black.jpg"
+          ]
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#2b2b2b",
+          "images": [
+            "assets/images/p21-charcoal.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 19,
+      "tag": "",
+      "specs": {
+        "material": "100% cotton fleece",
+        "weight": "500 GSM",
+        "fit": "Oversized, full zip",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "A full-zip hoodie for the long night before the lift."
+    },
+    {
+      "id": "p22",
+      "name": "Anathema Compression Leggings",
+      "category": "compression",
+      "gender": "her",
+      "price": 84,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p22-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 34,
+      "tag": "",
+      "specs": {
+        "material": "78% nylon, 22% elastane",
+        "weight": "250 GSM",
+        "fit": "High-waist, squat-proof",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "High-waist compression that does not move when you do."
+    },
+    {
+      "id": "p23",
+      "name": "Flagellant Compression Singlet",
+      "category": "compression",
+      "gender": "him",
+      "price": 96,
+      "currency": "USD",
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000",
+          "images": [
+            "assets/images/p23-black.jpg"
+          ]
+        }
+      ],
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "featured": false,
+      "inStock": true,
+      "stock": 12,
+      "tag": "",
+      "specs": {
+        "material": "78% nylon, 22% elastane",
+        "weight": "250 GSM",
+        "fit": "Compression singlet",
+        "care": "Cold wash inside out, hang dry"
+      },
+      "description": "A full-length compression singlet for the penitent."
+    }
+  ]
+}

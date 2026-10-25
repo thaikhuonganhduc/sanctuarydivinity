@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | Shop</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <script type="module">
+    import { requireAccess } from "../js/guard.js";
+    requireAccess(); // chưa nhập mật khẩu thì quay về cổng
+  </script>
+</head>
+<body>
+  <!-- Header: logo to ở giữa, menu hai bên -->
+  <header class="site-header">
+    <nav class="site-nav site-nav--left" aria-label="Main left">
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="home.html" id="brand-link" class="site-header__brand site-header__brand--hover" aria-label="SANCTUARY home">
+      <img id="site-logo" src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
+      <!-- Logo đỏ chồng lên, chỉ lộ ra quanh con trỏ chuột (gradient đỏ) -->
+      <span class="site-header__logo logo-hover-red" aria-hidden="true"></span>
+    </a>
+    <nav class="site-nav site-nav--right" aria-label="Main right">
+      <a href="about.html">About</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Ảnh nền ngay dưới header, câu thông điệp màu đỏ nằm đè lên giữa ảnh -->
+    <section class="hero-visual">
+      <img src="../assets/images/bg.png" alt="SANCTUARY athletes in black compression wear" class="hero-visual__img">
+      <h1 class="hero__title">
+        <a href="shop.html" class="hero__link" aria-label="Collection X is out now, go to shop">
+          <span class="hero__word">Collection</span>
+          <span class="hero__x" aria-hidden="true">X</span>
+          <span class="hero__word">Is Out Now</span>
+        </a>
+      </h1>
+      <p class="hero__note">Every drop is limited. Once it's gone, it never returns.</p>
+    </section>
+
+    <!-- Đánh giá của khách (dữ liệu mẫu trong data/reviews.json) -->
+    <section class="section reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <h2 id="reviews-title" class="section__title">Reviews</h2>
+        <p id="review-summary" class="reviews__summary"></p>
+        <!-- Lọc theo số sao: 4.7 sao tính vào nhóm 4 sao (làm tròn xuống) -->
+        <div id="review-filter" class="review-filter" role="group" aria-label="Filter reviews by stars">
+          <button type="button" data-stars="all" aria-pressed="true">All</button>
+          <button type="button" data-stars="5" aria-pressed="false">5 ★</button>
+          <button type="button" data-stars="4" aria-pressed="false">4 ★</button>
+          <button type="button" data-stars="3" aria-pressed="false">3 ★</button>
+          <button type="button" data-stars="2" aria-pressed="false">2 ★</button>
+          <button type="button" data-stars="1" aria-pressed="false">1 ★</button>
+        </div>
+        <div id="review-list" class="review-grid"></div>
+        <div class="reviews__more">
+          <button id="review-more" type="button" class="btn btn--small">Show more</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
+    </div>
+  </footer>
+
+  <!-- Popup chi tiết đánh giá (nội dung do reviews.js đổ vào) -->
+  <dialog id="review-dialog" class="review-dialog" aria-label="Review details">
+    <div id="review-detail" class="review-detail glass"></div>
+  </dialog>
+
+  <script type="module" src="../js/reviews.js"></script>
+  <script type="module" src="../js/logo-hover.js"></script>
+  <script type="module" src="../js/header.js"></script>
+</body>
+</html>

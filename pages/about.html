@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | About</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <script type="module">
+    import { requireAccess } from "../js/guard.js";
+    requireAccess(); // chưa nhập mật khẩu thì quay về cổng
+  </script>
+</head>
+<body>
+  <header class="site-header site-header--solid">
+    <nav class="site-nav site-nav--left" aria-label="Main left">
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
+      <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
+    </a>
+    <nav class="site-nav site-nav--right" aria-label="Main right">
+      <a href="about.html" aria-current="page">About</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main class="page container about">
+    <h1 class="page-title">About</h1>
+
+    <!-- Câu chuyện thương hiệu: chữ đè lên ảnh, ảnh xen kẽ phải - trái -->
+    <div class="about__row about__row--right">
+      <figure class="about__figure">
+        <img src="../assets/images/2pp.jpg" alt="Two athletes in SANCTUARY compression tees" loading="lazy">
+      </figure>
+      <div class="about__text">
+        <section class="about__intro" aria-labelledby="about-story">
+          <h2 id="about-story" class="visually-hidden">Our story</h2>
+          <p class="about__lead">A sanctuary is where you go to be unbroken. Divinity is what you find when you stop asking permission.</p>
+          <p>SANCTUARY is built for the hours nobody watches. The early lift. The last set. The silence after the bar goes down. We make clothes for those hours, and for the people who keep showing up to them.</p>
+          <p>Most gym wear is loud about the wrong things. Slogans. Logos. Noise. We went the other way: black on black, cut close, printed with the iconography of cathedrals and iron. Quiet from a distance. Unforgettable up close.</p>
+        </section>
+        <section class="about__chapter" aria-labelledby="about-name">
+          <h2 id="about-name" class="glass__title">The name</h2>
+          <p>Sanctuary is a place of refuge. Divinity is the thing you reach for when you are tired of being ordinary. Put together, they describe the gym the way we see it: not a chore, not a trend, but a ritual you keep for yourself.</p>
+          <p>The lettering on our logo is thorned and gothic on purpose. It looks like it was carved into a cathedral door, because that is how it feels to walk into a room full of iron and decide you belong there.</p>
+        </section>
+      </div>
+    </div>
+
+    <div class="about__row about__row--left">
+      <figure class="about__figure">
+        <img src="../assets/images/2pp2.jpg" alt="Two athletes in SANCTUARY bodysuits" loading="lazy">
+      </figure>
+      <div class="about__text">
+        <section class="about__chapter" aria-labelledby="about-craft">
+          <h2 id="about-craft" class="glass__title">The craft</h2>
+          <p>Every piece starts as a drawing, then a pattern, then a prototype that has to survive real training before it earns a place in a drop. Heavyweight cotton fleece for hoodies and oversized shirts, so they hang with weight. High-stretch nylon blends for compression and bodysuits, so they move with you and stay put.</p>
+          <p>We use cut-and-sew construction and flat seams where the body moves most. The prints are thorned, ornate and detailed, because we believe a garment should reward a second look.</p>
+        </section>
+        <section class="about__chapter" aria-labelledby="about-drops">
+          <h2 id="about-drops" class="glass__title">The drops</h2>
+          <p>We do not run a catalogue. We release collections, one at a time, in limited quantities. Collection X is the current one. When the last piece of a collection sells, it is retired for good.</p>
+          <p>That is not a marketing line. It is how we keep every piece meaningful: no restocks, no sales, no second chances. If you are wearing it, you were early.</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Hỏi đáp ngắn dùng thẻ details (không cần JS) -->
+    <section class="about__faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="glass__title">Questions</h2>
+      <details>
+        <summary>How do your sizes run?</summary>
+        <p>Sizes go from XXS to XL. Hoodies and oversized shirts have a boxy, relaxed cut. Compression pieces are second-skin, so size up if you are between sizes.</p>
+      </details>
+      <details>
+        <summary>Will sold-out drops come back?</summary>
+        <p>No. Every drop is limited. Once it is gone, it never returns.</p>
+      </details>
+      <details>
+        <summary>How much is shipping?</summary>
+        <p>Shipping depends on weight and destination, and local tax or duty may apply. Prices can be viewed in your own currency using the region menu.</p>
+      </details>
+      <details>
+        <summary>How should I care for the garments?</summary>
+        <p>Cold wash inside out and hang dry. This keeps prints sharp and the fabric heavy.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/header.js"></script>
+</body>
+</html>

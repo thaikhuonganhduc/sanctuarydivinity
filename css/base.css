@@ -1,0 +1,55 @@
+/* Base CSS: biến màu, font, kiểu chữ cơ bản (mobile-first) */
+:root {
+  --color-bg: #000000;        /* nền đen thuần, trùng nền ảnh */
+  --color-surface: #141414;   /* nền thẻ/khối */
+  --color-border: #2a2a2a;
+  --color-text: #f2f2f2;      /* chữ trắng */
+  --color-muted: #8a8a8a;
+  --color-accent: #ffffff;
+  --color-error: #ff5a5a;
+  --color-red: #cc0000;       /* đỏ thương hiệu (trùng logo đỏ) */
+
+  /* Font thương hiệu: Times New Roman đậm, in hoa, giãn chữ rộng (giống phong cách luxury).
+     Là font hệ thống nên không cần tải file; Times/serif là phương án dự phòng. */
+  --font-body: "Times New Roman", Times, serif;
+  --font-heading: "Times New Roman", Times, serif;
+  --letter-wide: 0.3em;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+
+  --container: 1200px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: var(--letter-wide);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.4rem; }
+
+.container { width: min(100% - 2rem, var(--container)); margin-inline: auto; }
+
+/* Ẩn nội dung nhưng vẫn đọc được bằng screen reader */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+}

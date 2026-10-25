@@ -1,0 +1,385 @@
+/* Pages: style riêng từng trang */
+
+/* ---- Cổng (index.html): đồng hồ giữa trang, hộp mật khẩu góc phải ---- */
+.gate-page { min-height: 100vh; }
+.gate-main { display: flex; flex-direction: column; align-items: center; text-align: center; padding: var(--space-2) var(--space-2) var(--space-4); }
+
+/* Đồng hồ nhỏ: "01 : 15 : 14 : 27", nhãn nhỏ bên dưới, số giây gạch ngang */
+.countdown { display: flex; gap: 1.4rem; text-align: center; }
+.countdown__item { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 2.2rem; }
+.countdown__item span { font-size: 1.6rem; line-height: 1.1; }
+.countdown__item small { font-size: 0.8rem; letter-spacing: 0; }
+.countdown__item:not(:last-child)::after { content: ":"; position: absolute; right: -0.95rem; top: 0; font-size: 1.6rem; line-height: 1.1; }
+.countdown__item--secs span, .countdown__item--secs small { text-decoration: line-through; }
+
+/* Phần giới thiệu drop: dòng nhỏ giãn chữ, tiêu đề serif lớn, dòng phụ xám */
+.drop-intro { margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+.drop-intro__line { font-family: var(--font-body); font-weight: 700; font-size: 1rem; letter-spacing: 0.9em; margin-right: -0.9em; }
+.drop-intro__title { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 2.2rem; letter-spacing: 0.02em; }
+.drop-intro__meta { font-family: var(--font-body); font-weight: 400; color: var(--color-muted); font-size: 1rem; letter-spacing: 0.15em; }
+.drop-hero { width: min(100%, 720px); margin-top: var(--space-4); }
+.drop-hero[hidden] { display: none; }
+
+.gate-corner { position: fixed; top: var(--space-2); right: var(--space-2); z-index: 10; text-align: right; }
+.gate-corner__toggle {
+  padding: 0.6rem 1rem;
+  border: 2px solid #333;
+  background: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.gate-corner__toggle:hover { border-color: var(--color-accent); }
+.gate-corner__dialog {
+  margin-top: var(--space-1);
+  width: min(86vw, 280px);
+  padding: var(--space-2);
+  background: #000;
+  border: 2px solid #333;
+  text-align: left;
+}
+.gate-corner__dialog[hidden] { display: none; }
+.gate-corner__dialog form { display: flex; flex-direction: column; gap: var(--space-1); }
+.gate-corner__label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+
+@media (min-width: 768px) {
+  .drop-intro__line { font-size: 1.4rem; }
+  .drop-intro__title { font-size: 4.5rem; }
+  .drop-intro__meta { font-size: 1.6rem; }
+  .countdown__item span, .countdown__item:not(:last-child)::after { font-size: 2rem; }
+}
+
+/* ---- Trang chủ (pages/home.html) ---- */
+/* Header: 3 cột - menu trái | logo to ở giữa | menu phải. Mobile: logo trên, 2 menu dưới */
+.site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 5; display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "logo logo" "left right"; align-items: center; gap: var(--space-1) var(--space-2); padding: var(--space-2); }
+.site-header__brand { grid-area: logo; justify-self: center; }
+.site-header__logo { width: 168px; height: 96px; object-fit: fill; } /* logo kéo giãn ngang */
+.site-nav { display: flex; gap: var(--space-3); text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.8rem; }
+.site-nav--left { grid-area: left; justify-content: flex-end; }   /* dồn sát logo, tỏa sang trái */
+.site-nav--right { grid-area: right; justify-content: flex-start; } /* dồn sát logo, tỏa sang phải */
+.site-nav a:hover { color: var(--color-muted); }
+
+.hero-visual { position: relative; height: 100vh; height: 100svh; overflow: hidden; } /* vừa đúng 1 màn hình đầu tiên; header nằm đè lên vùng đen phía trên ảnh */
+.hero-visual__img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+/* Lớp mờ dần xuống nền đen ở đáy ảnh để chuyển mượt sang phần Reviews */
+.hero-visual::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 28%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--color-bg)); pointer-events: none; }
+/* Font Angel wish (file đặt ở assets/fonts/). Chưa có file thì tự dùng Times dự phòng */
+@font-face {
+  font-family: "Angel Wish";
+  src: url("../assets/fonts/Angel wish.ttf") format("truetype");
+  font-display: swap;
+}
+.hero__title {
+  position: absolute; z-index: 2; left: 50%; top: 24%; transform: translateX(-50%); width: 94%;
+  display: flex; align-items: center; justify-content: center; gap: 0.5em; flex-wrap: wrap;
+  text-align: center; font-family: "Angel Wish", var(--font-heading);
+  font-size: 1.1rem; font-weight: 400; letter-spacing: 0.3em;
+  text-transform: none; /* bỏ in hoa mặc định của h1, giữ nguyên "Collection X Is Out Now" */
+}
+/* Chữ X: to hơn, màu đỏ thương hiệu, có ánh sáng đỏ phía sau và nhịp thở nhẹ để thu hút mắt */
+.hero__x {
+  font-size: 2.6em; line-height: 1; color: var(--color-red); letter-spacing: 0;
+  text-shadow: 0 0 12px rgba(204, 0, 0, 0.9), 0 0 36px rgba(204, 0, 0, 0.5);
+  animation: x-glow 3s ease-in-out infinite;
+}
+@keyframes x-glow {
+  50% { text-shadow: 0 0 18px rgba(204, 0, 0, 1), 0 0 56px rgba(204, 0, 0, 0.75); }
+}
+@media (prefers-reduced-motion: reduce) { .hero__x { animation: none; } }
+.hero__note { position: absolute; z-index: 2; left: 50%; bottom: 4%; transform: translateX(-50%); width: min(90%, 640px); text-align: center; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.7rem; color: var(--color-red); }
+
+/* Popup kính mờ kiểu Apple: nền trong suốt + blur, KHÔNG bo góc */
+.glass {
+  z-index: 3;
+  width: min(86vw, 320px); padding: var(--space-3);
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 24px 60px rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+}
+.glass[hidden] { display: none; }
+.glass__title { font-size: 0.85rem; letter-spacing: 0.25em; padding-bottom: var(--space-2); margin-bottom: var(--space-1); border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+.glass__row { display: flex; justify-content: space-between; gap: var(--space-2); padding: 0.55rem 0; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.glass__row:hover { color: var(--color-muted); }
+.glass__price { color: var(--color-muted); white-space: nowrap; }
+.glass__empty { color: var(--color-muted); font-size: 0.85rem; }
+
+@media (min-width: 768px) {
+  .hero__title { font-size: 2.2rem; gap: 0.7em; top: 21%; }
+  .site-header { grid-template-columns: 1fr auto 1fr; grid-template-areas: "left logo right"; column-gap: var(--space-4); padding-inline: var(--space-4); }
+  .site-header__logo { width: 240px; height: 136px; }
+  .site-nav { gap: var(--space-4); font-size: 0.9rem; }
+}
+
+/* Lookbook: ảnh xếp dọc, rộng tối đa 900px, canh giữa */
+.lookbook { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-2) 0; }
+.lookbook img { width: min(100%, 900px); height: auto; }
+
+.section { padding: var(--space-4) 0; }
+.section__title { text-align: center; margin-bottom: var(--space-4); }
+
+/* Lưới sản phẩm: 2 cột mobile, 3 cột tablet, 4 cột desktop */
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2); }
+.product-card { display: flex; flex-direction: column; gap: var(--space-1); }
+.product-card__media {
+  aspect-ratio: 3 / 4;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+.product-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.product-card__placeholder { color: var(--color-muted); letter-spacing: var(--letter-wide); font-size: 0.7rem; text-transform: uppercase; }
+.product-card__name { font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.product-card__price { color: var(--color-muted); }
+.product-card__tag { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-error); }
+
+.site-footer { border-top: 1px solid var(--color-border); padding: var(--space-3) 0; text-align: center; color: var(--color-muted); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+@media (min-width: 768px) { .product-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-3); } }
+@media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* ---- Đánh giá của khách: lưới thẻ kính mờ không bo góc ---- */
+.reviews__summary { text-align: center; margin: calc(var(--space-3) * -1) 0 var(--space-3); color: var(--color-muted); letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.8rem; }
+.review-filter, .shop-audience { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-1); margin-bottom: var(--space-3); }
+.review-filter button, .shop-audience button { padding: 0.5rem 1rem; border: 1px solid rgba(255, 255, 255, 0.25); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75rem; transition: background 0.25s, color 0.25s, border-color 0.25s; }
+.review-filter button:hover, .shop-audience button:hover { border-color: var(--color-accent); }
+.review-filter button[aria-pressed="true"], .shop-audience button[aria-pressed="true"] { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
+.review-empty { grid-column: 1 / -1; text-align: center; color: var(--color-muted); letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.8rem; padding: var(--space-3) 0; }
+.review-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-2); }
+.review-card.glass { width: auto; padding: 0; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease; }
+.review-card.glass:hover, .review-card.glass:focus-visible { transform: scale(1.03); border-color: rgba(255, 255, 255, 0.5); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 30px 70px rgba(0, 0, 0, 0.8); outline: none; position: relative; z-index: 2; }
+.review-card > :not(.review-card__photo) { margin-inline: var(--space-2); }
+.review-card__photo { aspect-ratio: 4 / 5; background: rgba(255, 255, 255, 0.04); display: grid; place-items: center; overflow: hidden; color: var(--color-muted); letter-spacing: var(--letter-wide); font-size: 0.7rem; text-transform: uppercase; }
+.review-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+.review-card__rating { display: flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); font-weight: 700; }
+.stars { position: relative; display: inline-block; color: #444; letter-spacing: 0.1em; line-height: 1; }
+.stars__fill { position: absolute; left: 0; top: 0; overflow: hidden; white-space: nowrap; color: var(--color-accent); }
+.review-card__text { margin-block: var(--space-1); line-height: 1.5; }
+.review-card__meta { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75rem; }
+.review-card__item { color: var(--color-muted); font-size: 0.8rem; margin-bottom: var(--space-2); }
+.reviews__more { text-align: center; margin-top: var(--space-3); }
+.reviews__more [hidden] { display: none; }
+
+@media (min-width: 640px) { .review-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .review-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---- Popup chi tiết đánh giá: ảnh trái, thông tin phải (kính mờ, không bo góc) ---- */
+.review-dialog { border: 0; padding: 0; background: transparent; color: var(--color-text); max-width: none; max-height: none; width: min(94vw, 960px); margin: auto; overflow: visible; }
+.review-dialog::backdrop { background: rgba(0, 0, 0, 0.78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.review-dialog[open] { animation: dialog-in 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+.review-detail.glass { position: relative; width: 100%; padding: 0; display: grid; grid-template-columns: 1fr; max-height: 92vh; overflow: auto; background: rgba(20, 20, 20, 0.72); }
+.review-detail__photo { aspect-ratio: 4 / 5; }
+.review-detail__info { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); }
+.review-detail__text { font-size: 1.15rem; line-height: 1.5; margin-block: var(--space-1); }
+.review-detail__close { position: absolute; top: var(--space-1); right: var(--space-1); width: 2.2rem; height: 2.2rem; font-size: 1.5rem; line-height: 1; background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.3); }
+.review-detail__close:hover { background: var(--color-accent); color: #000; }
+.review-detail .glass__title { margin-top: var(--space-2); }
+.spec-list { display: flex; flex-direction: column; }
+.spec-row { display: flex; justify-content: space-between; gap: var(--space-2); padding: 0.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; }
+.spec-row dt { color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75rem; }
+.spec-row dd { text-align: right; }
+
+@media (min-width: 768px) {
+  .review-detail.glass { grid-template-columns: 1fr 1fr; }
+  .review-detail__photo { aspect-ratio: auto; min-height: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-card.glass, .review-dialog[open] { transition: none; animation: none; }
+}
+
+/* ---- Trang cửa hàng (pages/shop.html) ---- */
+.site-header--solid { position: relative; }            /* trang shop: header nằm trong dòng chảy, không đè lên ảnh */
+.site-nav a[aria-current="page"] { border-bottom: 1px solid var(--color-accent); }
+.shop { padding-bottom: var(--space-4); }
+.shop__title { display: flex; align-items: center; justify-content: center; gap: 0.5em; margin: var(--space-3) 0; font-family: "Angel Wish", var(--font-heading); font-size: 1.6rem; font-weight: 400; letter-spacing: 0.3em; text-transform: none; }
+.region-select { position: absolute; top: var(--space-2); right: var(--space-2); z-index: 6; background: transparent; color: var(--color-text); border: 0; color-scheme: dark; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; }
+.shop-audience { margin-bottom: var(--space-3); }
+.shop-toolbar { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2); margin-bottom: var(--space-2); }
+.shop-toolbar .input { color-scheme: dark; background: #000; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; }
+.shop-meta { color: var(--color-muted); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-3); }
+.product-grid { margin-bottom: var(--space-3); }
+.product-card__media { transition: border-color 0.25s; }
+.product-card:hover .product-card__media { border-color: var(--color-accent); }
+.product-card__placeholder { font-size: 1rem; letter-spacing: 0.3em; text-align: center; padding: var(--space-2); background: radial-gradient(circle, #1c1c1c, #0a0a0a); width: 100%; height: 100%; display: grid; place-items: center; }
+.product-card__swatches { display: flex; gap: 0.4rem; }
+.product-card__swatches span { width: 12px; height: 12px; border: 1px solid rgba(255, 255, 255, 0.4); }
+@media (min-width: 768px) { .shop__title { font-size: 2.6rem; } .region-select { right: var(--space-4); } }
+
+/* Danh sách xổ xuống: nền đen, chữ trắng (trình duyệt mặc định để nền trắng nên chữ trắng bị chìm) */
+.region-select option, .shop-toolbar .input option { background: #000; color: #fff; }
+.region-select { background: #000; }
+
+/* Đổi logo trắng -> đỏ bằng hiệu ứng mờ chéo (crossfade) khi chọn For Her */
+.site-header--solid .site-header__brand { position: relative; display: block; }
+.site-header__logo { transition: opacity 0.6s ease; }
+.site-header__logo--red { position: absolute; inset: 0; opacity: 0; }
+.site-header.is-her .site-header__logo:not(.site-header__logo--red) { opacity: 0; }
+.site-header.is-her .site-header__logo--red { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .site-header__logo { transition: none; } }
+
+/* Logo trang chủ: logo đỏ lộ dần quanh con trỏ chuột */
+.site-header__brand--hover { position: relative; display: block; --mx: 50%; --my: 50%; }
+/* Tô đúng màu #A81D23: dùng hình logo-red.png làm khuôn (mask), cắt tiếp bằng gradient quanh con trỏ */
+.logo-hover-red {
+  position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+  background: #A81D23;
+  -webkit-mask-image: url("../assets/logo/logo-red.png"), radial-gradient(circle 110px at var(--mx) var(--my), #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%);
+  mask-image: url("../assets/logo/logo-red.png"), radial-gradient(circle 110px at var(--mx) var(--my), #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%);
+  -webkit-mask-size: 100% 100%, 100% 100%; mask-size: 100% 100%, 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+.site-header__brand--hover:hover .logo-hover-red { opacity: 1; }
+
+/* Thẻ sản phẩm: rê chuột thì to ra một chút */
+.product-card { cursor: pointer; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.product-card:hover, .product-card:focus-visible { transform: scale(1.04); z-index: 1; }
+.product-card:focus-visible { outline: none; }
+@media (prefers-reduced-motion: reduce) { .product-card { transition: none; } }
+
+/* Popup sản phẩm (dùng lại khung review-detail) */
+.product-detail__media { border: 0; }
+.product-detail__price { font-size: 1.3rem; letter-spacing: 0.1em; }
+.product-detail__label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-top: var(--space-1); }
+.product-detail__options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.size-btn { min-width: 3rem; padding: 0.5rem 0.75rem; border: 1px solid rgba(255, 255, 255, 0.25); font-size: 0.8rem; letter-spacing: 0.1em; transition: background 0.2s, color 0.2s; }
+.size-btn:hover { border-color: var(--color-accent); }
+.size-btn[aria-pressed="true"] { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
+.swatch-btn { width: 1.8rem; height: 1.8rem; border: 1px solid rgba(255, 255, 255, 0.4); }
+.swatch-btn[aria-pressed="true"] { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.product-detail__actions { display: flex; flex-wrap: wrap; gap: var(--space-1); margin: var(--space-1) 0; }
+.product-detail__actions .btn { flex: 1 1 8rem; text-align: center; padding-inline: 1rem; font-size: 0.85rem; }
+.review-detail .spec-list { margin-top: var(--space-1); }
+.stock-number { color: #A81D23; font-size: 1.1rem; }   /* số hàng còn lại: đỏ thương hiệu */
+.product-detail__stock { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.qty { display: inline-flex; align-items: center; border: 1px solid rgba(255, 255, 255, 0.25); align-self: flex-start; }
+.qty__btn { width: 2.4rem; height: 2.4rem; font-size: 1.1rem; }
+.qty__btn:hover:not(:disabled) { background: var(--color-accent); color: #000; }
+.qty__btn:disabled { color: var(--color-muted); cursor: not-allowed; }
+.qty__value { min-width: 2.5rem; text-align: center; }
+
+/* ---- Trang con: Cart, Contact, About ---- */
+.page { padding-bottom: var(--space-4); }
+.page-title { font-family: "Angel Wish", var(--font-heading); font-size: 2rem; font-weight: 400; text-align: center; text-transform: none; letter-spacing: 0.3em; margin: var(--space-3) 0 var(--space-4); }
+.form { display: flex; flex-direction: column; gap: var(--space-1); }
+.form[hidden], .cart-empty[hidden], .cart-layout[hidden] { display: none; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+textarea.input { resize: vertical; }
+.input[aria-invalid="true"] { border-color: var(--color-error); }
+.pay { border: 0; display: flex; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-1) 0; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.pay legend { color: var(--color-muted); font-size: 0.75rem; margin-bottom: 0.4rem; }
+.pay label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+.pay input { accent-color: #A81D23; }
+
+/* Giỏ hàng */
+.cart-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-4); align-items: start; }
+.cart-list { display: flex; flex-direction: column; gap: var(--space-2); }
+.cart-item { display: grid; grid-template-columns: 90px 1fr auto; gap: var(--space-2); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border); }
+.cart-item__media { width: 90px; }
+.cart-item__info { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+.cart-item__price { letter-spacing: 0.1em; }
+.cart-item__remove { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); text-decoration: underline; }
+.cart-item__remove:hover { color: var(--color-error); }
+.cart-summary { padding: var(--space-3); border: 1px solid var(--color-border); background: rgba(255, 255, 255, 0.03); }
+.cart-summary__sub { margin-top: var(--space-3); }
+.cart-summary .spec-row dd { font-size: 0.95rem; }
+.spec-row--total { font-weight: 700; }
+.cart-note { color: var(--color-muted); font-size: 0.75rem; letter-spacing: 0.1em; margin-top: var(--space-1); }
+.cart-empty { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-4) 0; letter-spacing: 0.1em; }
+.cart-empty .glass__title { border: 0; }
+
+/* Liên hệ */
+.contact-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.contact-success { color: #8fd18f; letter-spacing: 0.1em; font-size: 0.85rem; }
+.contact-success[hidden] { display: none; }
+
+/* Giới thiệu */
+.about { max-width: 880px; }
+.about__intro { display: flex; flex-direction: column; gap: var(--space-2); line-height: 1.7; }
+.about__lead { font-size: 1.4rem; line-height: 1.5; letter-spacing: 0.05em; margin-bottom: var(--space-1); }
+.about__figure { margin: var(--space-4) 0; }
+.about__figure img { width: 100%; height: auto; }
+.about__faq details { border-bottom: 1px solid var(--color-border); padding: var(--space-2) 0; }
+.about__faq summary { cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem; }
+.about__faq details p { margin-top: var(--space-1); color: var(--color-muted); line-height: 1.6; }
+.about__credit { margin-top: var(--space-4); color: var(--color-muted); font-size: 0.75rem; letter-spacing: 0.1em; text-align: center; }
+
+@media (min-width: 768px) {
+  .page-title { font-size: 2.8rem; }
+  .cart-layout { grid-template-columns: 1.4fr 1fr; }
+  .contact-layout { grid-template-columns: 1fr 1.2fr; }
+  }
+.pay-brands { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--space-1); }
+.pay-brands span { padding: 0.2rem 0.6rem; border: 1px solid var(--color-border); color: var(--color-muted); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s, border-color 0.2s; }
+.pay-brands span.is-active { color: #fff; border-color: #A81D23; }
+.spec-row[hidden] { display: none; }
+
+/* Giỏ hàng: bố cục thẻ rõ ràng hơn */
+.cart-layout { max-width: 1100px; margin-inline: auto; }
+.cart-item { grid-template-columns: 110px 1fr auto; padding: var(--space-2); border: 1px solid var(--color-border); background: rgba(255, 255, 255, 0.02); }
+.cart-item__media { width: 110px; }
+.cart-item__info { gap: 0.4rem; }
+.cart-item__actions { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; margin-top: auto; }
+.cart-item__stock { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+.cart-item__price { text-align: right; letter-spacing: 0.1em; }
+.cart-item__each { color: var(--color-muted); font-size: 0.7rem; margin-top: 0.3rem; }
+.cart-list { gap: var(--space-1); }
+@media (min-width: 768px) { .cart-summary { position: sticky; top: var(--space-2); } }
+
+/* Mã giảm giá */
+.discount { display: flex; gap: var(--space-1); margin-bottom: 0.5rem; }
+.discount .input { flex: 1; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; }
+.discount__msg { min-height: 1.25rem; margin-bottom: var(--space-1); font-size: 0.8rem; letter-spacing: 0.05em; }
+.discount__msg.is-error { color: var(--color-error); }
+.discount__msg.is-ok { color: #8fd18f; }
+
+/* About: đáy ảnh mờ dần vào nền đen cho mượt */
+.about__figure img {
+  -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 65%, transparent 100%);
+}
+
+/* About: các chương câu chuyện + tuyên ngôn */
+.about__chapter { margin: var(--space-4) 0; display: flex; flex-direction: column; gap: var(--space-2); line-height: 1.7; }
+.about__chapter .glass__title { margin-bottom: 0; }
+
+/* About: mỗi khối gồm 1 ảnh + chữ đè lên ảnh; khối trên ảnh bên phải, khối dưới ảnh bên trái */
+.about { max-width: 1100px; }
+.about__row { display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; margin: var(--space-4) 0; }
+.about__row .about__figure { margin: 0; grid-row: 1; }
+.about__row .about__text { grid-row: 1; position: relative; z-index: 2; display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-3); text-shadow: 0 0 14px #000, 0 0 4px #000; }
+.about__text .about__intro, .about__text .about__chapter { margin: 0; max-width: none; }
+/* Điện thoại: ảnh full chiều ngang, chữ nằm đè lên phần dưới ảnh */
+.about__row .about__figure, .about__row .about__text { grid-column: 1 / -1; }
+.about__row .about__text { align-self: end; background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.85) 25%); padding-top: 30vh; }
+@media (min-width: 900px) {
+  .about__row .about__text { align-self: center; background: none; padding: var(--space-3); }
+  .about__row--right .about__figure { grid-column: 6 / 13; }
+  .about__row--right .about__text { grid-column: 1 / 8; }
+  .about__row--left .about__figure { grid-column: 1 / 8; }
+  .about__row--left .about__text { grid-column: 6 / 13; }
+  .about__row .about__text { background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55), transparent 75%); }
+}
+.about__faq { max-width: 880px; margin-inline: auto; }
+
+/* About: khoảng cách logo -> chữ About bằng khoảng cách chữ About -> đoạn văn đầu (≈55px) */
+.about .page-title { margin-bottom: 5rem; }
+.about__row:first-of-type { margin-top: 0; }
+@media (min-width: 900px) {
+  .about__row:first-of-type .about__text { align-self: start; padding-top: 0; }
+}
+
+/* Chân trang luôn nằm đáy màn hình, kể cả khi trang ít nội dung (ví dụ giỏ hàng trống) */
+body:has(.site-footer) { display: flex; flex-direction: column; min-height: 100vh; }
+body:has(.site-footer) > main { flex: 1 0 auto; }
+body:has(.site-footer) > .site-footer { margin-top: auto; }
+
+/* Tiêu đề trang chủ bấm được -> sang Shop */
+.hero__link { display: flex; align-items: center; justify-content: center; gap: inherit; flex-wrap: wrap; transition: opacity 0.3s, transform 0.3s; }
+.hero__link:hover { opacity: 0.85; transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .hero__link { transition: none; } .hero__link:hover { transform: none; } }
