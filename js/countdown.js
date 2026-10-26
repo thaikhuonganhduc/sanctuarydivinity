@@ -1,16 +1,13 @@
 // Đồng hồ đếm ngược đến ngày mở bán (drop).
-// Ngày mở bán lưu trong localStorage để sau này admin có thể chỉnh.
-// Lần đầu chưa có -> giả lập mở bán sau 10 ngày.
-const LAUNCH_KEY = "sanctuary_launch_date";
-const DEFAULT_DAYS = 10;
+// Ngày mặc định cố định cho MỌI người xem: 00:00 ngày 01/12/2026 giờ Việt Nam (UTC+7).
+// Sau này admin có thể đổi bằng setLaunchDate(): giá trị đó lưu trong localStorage và được ưu tiên hơn mặc định.
+const LAUNCH_KEY = "sanctuary_launch_override";
+const DEFAULT_LAUNCH = new Date("2026-12-01T00:00:00+07:00").getTime();
+const TIME_ZONE = "Asia/Ho_Chi_Minh";
 
 export function getLaunchDate() {
-  let saved = localStorage.getItem(LAUNCH_KEY);
-  if (!saved) {
-    saved = String(Date.now() + DEFAULT_DAYS * 24 * 60 * 60 * 1000);
-    localStorage.setItem(LAUNCH_KEY, saved);
-  }
-  return Number(saved);
+  const saved = localStorage.getItem(LAUNCH_KEY);
+  return saved ? Number(saved) : DEFAULT_LAUNCH;
 }
 
 // Admin dùng hàm này để đổi ngày mở bán (làm ở bước admin)
@@ -18,12 +15,12 @@ export function setLaunchDate(timestamp) {
   localStorage.setItem(LAUNCH_KEY, String(timestamp));
 }
 
-// Hiển thị ngày mở bán dạng dd/mm/yy, ví dụ "04/11/26"
+// Hiển thị ngày mở bán dạng dd/mm/yy theo giờ Việt Nam, ví dụ "01/12/26"
 export function showLaunchDate(element) {
-  const d = new Date(getLaunchDate());
-  element.textContent = [d.getDate(), d.getMonth() + 1, d.getFullYear() % 100]
-    .map((n) => String(n).padStart(2, "0"))
-    .join("/");
+  const parts = new Intl.DateTimeFormat("en-GB", { timeZone: TIME_ZONE, day: "2-digit", month: "2-digit", year: "2-digit" })
+    .formatToParts(new Date(getLaunchDate()));
+  const get = (type) => parts.find((p) => p.type === type).value;
+  element.textContent = get("day") + "/" + get("month") + "/" + get("year");
 }
 
 const pad = (n) => String(n).padStart(2, "0");
