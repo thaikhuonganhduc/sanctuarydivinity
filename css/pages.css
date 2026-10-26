@@ -382,3 +382,13 @@ body:has(.site-footer) > .site-footer { margin-top: auto; }
 /* Tiêu đề trang chủ bấm được -> sang Shop */
 .hero__link { display: flex; align-items: center; justify-content: center; gap: inherit; flex-wrap: wrap; transition: opacity 0.3s; }
 .hero__link:hover { opacity: 0.85; }
+
+/* Nút Exit ở góc trái trên của trang chủ (cùng kiểu với nút nhập mật khẩu ở trang cổng) */
+.exit-btn {
+  position: absolute; top: var(--space-2); left: var(--space-2); z-index: 6;
+  padding: 0.6rem 1rem; border: 2px solid #333; background: #000;
+  text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; font-weight: 700;
+  transition: border-color 0.2s;
+}
+.exit-btn:hover { border-color: var(--color-accent); }
+@media (min-width: 768px) { .exit-btn { left: var(--space-4); } }
