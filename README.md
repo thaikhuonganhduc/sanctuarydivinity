@@ -33,7 +33,8 @@ Yêu cầu: **Visual Studio Code** + extension **Live Server**.
 
 1. Clone hoặc pull code về, mở thư mục dự án bằng VS Code (thư mục gốc là nơi có `index.html`).
 2. Chuột phải vào `index.html` → **Open with Live Server** (địa chỉ dạng `http://127.0.0.1:5500`).
-3. Ở trang cổng, bấm "Enter using password" (góc phải trên) và nhập mã athlete: **`SANCTUARY-DEMO`**.
+3. Trên Vercel, trang cổng có địa chỉ `/password` (cấu hình trong `vercel.json`); chạy local bằng Live Server vẫn là `index.html`.
+4. Ở trang cổng, bấm "Enter using password" (góc phải trên) và nhập mã athlete: **`SANCTUARY-DEMO`**.
 
 Lưu ý quan trọng:
 

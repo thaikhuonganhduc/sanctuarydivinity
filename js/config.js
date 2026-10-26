@@ -8,7 +8,7 @@ export const ADMIN_CODE_HASH = "fc7e67d62ceb2b7133d3126a7bde80565ac7ed7b807e5caa
 
 export const ROLE_KEY = "sanctuary_role";   // lưu vai trò trong sessionStorage: "customer" | "admin"
 export const PAGES = {
-  gate: "/index.html",
+  gate: "/",   // trang cổng: trên Vercel "/" tự chuyển sang /password (xem vercel.json)
   home: "/pages/home.html",
   admin: "/pages/admin.html",
 };

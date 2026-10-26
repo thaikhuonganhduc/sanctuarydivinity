@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/password", "permanent": false },
+    { "source": "/index.html", "destination": "/password", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/password", "destination": "/index.html" }
+  ]
+}
