@@ -380,6 +380,5 @@ body:has(.site-footer) > main { flex: 1 0 auto; }
 body:has(.site-footer) > .site-footer { margin-top: auto; }
 
 /* Tiêu đề trang chủ bấm được -> sang Shop */
-.hero__link { display: flex; align-items: center; justify-content: center; gap: inherit; flex-wrap: wrap; transition: opacity 0.3s, transform 0.3s; }
-.hero__link:hover { opacity: 0.85; transform: scale(1.03); }
-@media (prefers-reduced-motion: reduce) { .hero__link { transition: none; } .hero__link:hover { transform: none; } }
+.hero__link { display: flex; align-items: center; justify-content: center; gap: inherit; flex-wrap: wrap; transition: opacity 0.3s; }
+.hero__link:hover { opacity: 0.85; }
