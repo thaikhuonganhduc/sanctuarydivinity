@@ -440,12 +440,17 @@ body:has(.site-footer) > .site-footer { margin-top: auto; }
   position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 20;
   writing-mode: vertical-rl;                      /* chữ xoay dọc, đọc từ trên xuống */
   padding: 1.4rem 0.7rem 1.4rem 0.9rem;
-  background: #000; color: var(--color-text);
-  border: 1px solid rgba(255, 255, 255, 0.35); border-right: 0; border-radius: 12px 0 0 12px;
+  /* Hiệu ứng kính: nền trong suốt + làm mờ phần phía sau + viền sáng ở mép */
+  color: var(--color-text);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+  -webkit-backdrop-filter: blur(14px) saturate(180%); backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3); border-right: 0; border-radius: 12px 0 0 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), -8px 0 30px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   font-weight: 700; font-size: 0.95rem; letter-spacing: 0.2em; cursor: pointer;
-  transition: padding 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s, color 0.2s;
+  transition: padding 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s, border-color 0.25s;
 }
-.reviews-tab:hover, .reviews-tab:focus-visible { padding-left: 1.3rem; background: var(--color-accent); color: #000; outline: none; }
+.reviews-tab:hover, .reviews-tab:focus-visible { padding-left: 1.3rem; background: linear-gradient(135deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.12)); border-color: rgba(255, 255, 255, 0.55); outline: none; }
 
 .reviews-panel {
   border: 1px solid rgba(255, 255, 255, 0.15); padding: 0; color: var(--color-text);
