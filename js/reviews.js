@@ -1,7 +1,7 @@
-// Phần đánh giá của khách: đọc reviews.json + products.json bằng fetch,
+// Phần đánh giá của khách: đọc reviews.json bằng fetch,
 // hiện từng đợt (nút "Show more"), bấm vào thẻ thì mở popup chi tiết.
 const PAGE_SIZE = 6;                       // mỗi lần hiện 6 đánh giá
-const IMAGE_EXTENSIONS = [".jpg", ".png"]; // thử .jpg trước, không có thì thử .png
+const IMAGE_EXTENSIONS = [".webp", ".jpg"]; // thử .webp (nhẹ) trước, không có thì thử .jpg
 
 const list = document.getElementById("review-list");
 const summary = document.getElementById("review-summary");
@@ -12,7 +12,6 @@ const filterButtons = document.querySelectorAll("#review-filter button");
 
 let reviews = [];    // tất cả đánh giá
 let filtered = [];   // các đánh giá đang hiển thị theo bộ lọc sao
-let products = {};   // tra sản phẩm theo id: products["p03"]
 let shown = 0;
 
 // ---------- Hàm dùng chung ----------
@@ -31,7 +30,7 @@ function createStars(rating) {
   return wrap;
 }
 
-// Ảnh feedback của khách: thử .jpg -> .png -> khung chờ
+// Ảnh feedback của khách: thử .webp -> .jpg -> khung chờ
 function createPhoto(review) {
   const box = document.createElement("div");
   box.className = "review-card__photo";
@@ -54,12 +53,6 @@ function createPhoto(review) {
   return box;
 }
 
-// dd/mm/yy từ chuỗi "2026-08-03"
-function formatDate(iso) {
-  const [y, m, d] = iso.split("-");
-  return d + "/" + m + "/" + y.slice(2);
-}
-
 // Tạo 1 phần tử với class và nội dung chữ (cho gọn code)
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -70,7 +63,6 @@ function el(tag, className, text) {
 
 // ---------- Thẻ đánh giá ----------
 function createCard(review) {
-  const product = products[review.productId];
   const card = el("article", "review-card glass");
   card.tabIndex = 0;                         // cho phép bấm bằng bàn phím
   card.setAttribute("role", "button");
@@ -86,8 +78,8 @@ function createCard(review) {
     createPhoto(review),
     head,
     text,
-    el("p", "review-card__meta", review.name + " · " + review.country),
-    el("p", "review-card__item", product.name + " · " + formatDate(review.date))
+    el("p", "review-card__meta", review.name),
+    el("p", "review-card__item", review.product)
   );
 
   card.addEventListener("click", () => openDetail(review));
@@ -105,7 +97,6 @@ function addRow(table, label, value) {
 }
 
 function openDetail(review) {
-  const product = products[review.productId];
   detail.replaceChildren();
 
   const photo = createPhoto(review);
@@ -119,26 +110,20 @@ function openDetail(review) {
   const text = el("blockquote", "review-detail__text", "“" + review.text + "”");
   text.lang = review.lang;
 
-  const who = el("p", "review-card__meta", review.name + " · " + review.country);
-  const when = el("p", "review-card__item", "Reviewed on " + formatDate(review.date));
+  const who = el("p", "review-card__meta", review.name);
 
-  // Thông tin sản phẩm đã mua
-  const productTitle = el("h3", "glass__title", product.name);
+  // Sản phẩm đã mua (dữ liệu thật chỉ có tên sản phẩm) và nhãn người mua đã xác minh
+  const productTitle = el("h3", "glass__title", review.product);
   const specs = el("dl", "spec-list");
-  addRow(specs, "Price", "$" + product.price.toFixed(2));
-  addRow(specs, "Size bought", review.size);
-  addRow(specs, "Color", review.color);
-  addRow(specs, "Material", product.specs.material);
-  addRow(specs, "Weight", product.specs.weight);
-  addRow(specs, "Fit", product.specs.fit);
-  addRow(specs, "Care", product.specs.care);
+  addRow(specs, "Rating", review.rating.toFixed(1) + " / 5");
+  if (review.verified) addRow(specs, "Purchase", "Verified buyer");
 
   const close = el("button", "review-detail__close", "×");
   close.type = "button";
   close.setAttribute("aria-label", "Close");
   close.addEventListener("click", () => dialog.close());
 
-  info.append(rating, text, who, when, productTitle, specs);
+  info.append(rating, text, who, productTitle, specs);
   detail.append(photo, info, close);
   dialog.showModal();                         // <dialog> tự xử lý phím Esc và khóa nền
 }
@@ -184,10 +169,16 @@ async function fetchJson(url) {
   return res.json();
 }
 
-Promise.all([fetchJson("../data/reviews.json"), fetchJson("../data/products.json")])
-  .then(([reviewData, productData]) => {
-    productData.products.forEach((p) => { products[p.id] = p; });
+fetchJson("../data/reviews.json")
+  .then((reviewData) => {
     reviews = reviewData.reviews;
+    // Chưa có đánh giá nào: chỉ báo "No reviews yet", ẩn bộ lọc và nút Show more
+    if (reviews.length === 0) {
+      summary.textContent = "No reviews yet.";
+      document.getElementById("review-filter").style.display = "none";
+      moreBtn.hidden = true;
+      return;
+    }
     const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
     summary.textContent = avg.toFixed(1) + " / 5 · " + reviews.length + " reviews";
     labelFilterButtons();
