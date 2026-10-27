@@ -1,18 +1,34 @@
 // Đọc data/products.json bằng fetch (AJAX) và vẽ sản phẩm bằng DOM.
 // File này là module: shop.js import các hàm bên dưới để dùng.
 
-export async function loadProducts() {
+// Thay đổi của admin (giá, tồn kho, nổi bật, ẩn) lưu trong localStorage, đè lên dữ liệu gốc của products.json.
+// Web tĩnh không ghi được vào file JSON, nên đây là cách mô phỏng "cập nhật sản phẩm" phía trình duyệt.
+export const OVERRIDES_KEY = "sanctuary_product_overrides";
+
+export function getProductOverrides() {
+  try { return JSON.parse(localStorage.getItem(OVERRIDES_KEY)) || {}; } catch (e) { return {}; }
+}
+
+// includeHidden: trang admin và lịch sử đơn cần cả sản phẩm đã ẩn; cửa hàng thì không
+export async function loadProducts({ includeHidden = false } = {}) {
   const res = await fetch("../data/products.json");
   if (!res.ok) throw new Error("Cannot load products");
   const data = await res.json();
-  return data.products;
+  const overrides = getProductOverrides();
+  return data.products
+    .map((p) => {
+      const merged = { ...p, ...(overrides[p.id] || {}) };
+      merged.inStock = merged.stock > 0;          // tồn kho đổi thì trạng thái còn hàng đổi theo
+      return merged;
+    })
+    .filter((p) => includeHidden || !p.hidden);
 }
 
 // Ảnh sản phẩm theo màu; chưa có ảnh thật thì hiện khung chờ ghi tên mẫu thay vì ảnh lỗi
-export function createProductImage(product, color) {
+export function createProductImage(product, color, index = 0) {
   const img = document.createElement("img");
-  img.src = "../" + color.images[0];
-  img.alt = product.name + " - " + color.name;
+  img.src = "../" + color.images[index];
+  img.alt = product.name + " - " + color.name + (color.images.length > 1 ? " (" + (index + 1) + "/" + color.images.length + ")" : "");
   img.loading = "lazy";
   img.addEventListener("error", () => {
     const ph = document.createElement("span");
@@ -41,6 +57,18 @@ export function createCard(product, formatPrice = (usd) => "$" + usd.toFixed(2),
   const media = document.createElement("div");
   media.className = "product-card__media";
   media.appendChild(createProductImage(product, product.colors[0]));
+
+  // Có ảnh thứ 2 của sản phẩm thì xếp chồng lên, hiện ra khi rê chuột (CSS) và ẩn lại khi rời chuột
+  const firstColor = product.colors[0];
+  if (firstColor.images.length > 1) {
+    const hover = document.createElement("img");
+    hover.className = "product-card__hover";
+    hover.src = "../" + firstColor.images[1];
+    hover.alt = "";
+    hover.loading = "lazy";
+    hover.addEventListener("error", () => hover.remove());   // ảnh lỗi thì bỏ, không ảnh hưởng ảnh chính
+    media.appendChild(hover);
+  }
 
   const name = document.createElement("h3");
   name.className = "product-card__name";

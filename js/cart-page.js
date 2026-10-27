@@ -1,17 +1,19 @@
 // Trang giỏ hàng: đọc giỏ từ localStorage + products.json (fetch), vẽ danh sách bằng DOM,
 // sửa số lượng/xoá món, tính tiền, kiểm tra form thanh toán rồi lưu đơn hàng giả lập.
 import { loadShipping, calcCosts } from "./shipping.js";
-import { loadProducts, createProductImage } from "./products.js";
+import { loadProducts, createProductImage, renderGrid } from "./products.js";
 import { getCart, saveCart } from "./cart.js";
 import { REGIONS, loadRates, formatPrice, getSavedCurrency, saveCurrency } from "./currency.js";
 import { rules, validateForm, liveValidate } from "./form-validate.js";
 import { updateCartCount } from "./header.js";
+import { initProductPopup } from "./product-popup.js";
+import { getCurrentUser, updateProfile } from "./auth.js";
+import { openAuth } from "./auth-ui.js";
 
 const ORDERS_KEY = "sanctuary_orders";
 
 const $ = (id) => document.getElementById(id);
 const list = $("cart-list");
-const currencySelect = $("filter-currency");
 const form = $("checkout-form");
 
 let products = {};
@@ -20,6 +22,7 @@ let athletes = [];          // danh sách athlete + mã lấy từ data/access.j
 let shippingData = null;   // dữ liệu phí ship/thuế từ data/shipping.json
 let rates = { USD: 1 };
 let currency = getSavedCurrency();
+let lastTotalUsd = 0;        // tổng tiền (USD) lần tính gần nhất, lưu vào đơn hàng để trang Account hiện lại
 
 const fmt = (usd) => formatPrice(usd, currency, rates);
 
@@ -37,6 +40,7 @@ function render() {
   $("cart-empty").hidden = hasItems || !$("order-done").hidden;
   $("cart-content").hidden = !hasItems;
   updateCartCount();
+  renderSuggest(cart);
   if (!hasItems) return;
 
   list.replaceChildren();
@@ -107,7 +111,8 @@ function render() {
   $("sum-duty").textContent = fmt(costs.duty);
   $("sum-tax-label").textContent = costs.taxLabel + " (" + costs.taxRate + "%)";
   $("sum-tax").textContent = costs.taxRate === 0 ? "None" : fmt(costs.tax);
-  $("sum-total").textContent = fmt(subtotal - discountUsd + costs.shipping + costs.duty + costs.tax);
+  lastTotalUsd = subtotal - discountUsd + costs.shipping + costs.duty + costs.tax;
+  $("sum-total").textContent = fmt(lastTotalUsd);
   $("shipping-note").textContent = "";
 }
 
@@ -167,6 +172,7 @@ form.addEventListener("submit", (e) => {
   const useCard = form.pay.value === "card";
   if (!validateForm(form, useCard ? { ...baseRules, ...cardRules } : baseRules)) return;
 
+  const user = getCurrentUser();
   // Lưu đơn hàng giả lập vào localStorage (sau này admin có thể xem)
   const number = "SD-" + Date.now().toString(36).toUpperCase();
   const order = {
@@ -175,13 +181,24 @@ form.addEventListener("submit", (e) => {
       phone: $("co-phone").value.trim(), address: $("co-address").value.trim(),
       city: $("co-city").value.trim(), country: $("co-country").value },
     payment: form.pay.value,
-    discountCode: discount ? discount.code : null
+    discountCode: discount ? discount.code : null,
+    totalUsd: lastTotalUsd,
+    userEmail: user ? user.email : null           // đang đăng nhập thì gắn đơn vào tài khoản (trang Account đọc lại)
   };
   try {
     const orders = JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];
     orders.push(order);
     localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
   } catch (err) { console.warn("Cannot save order", err); }
+
+  // Tài khoản chưa có địa chỉ thì lưu luôn địa chỉ vừa nhập, lần sau khỏi gõ lại
+  if (user) {
+    const c = order.customer;
+    updateProfile({
+      phone: user.phone || c.phone, address: user.address || c.address,
+      city: user.city || c.city, country: user.country || c.country
+    });
+  }
 
   saveCart([]);                                  // xoá giỏ sau khi đặt
   $("order-number").textContent = number;
@@ -191,6 +208,48 @@ form.addEventListener("submit", (e) => {
   updateCartCount();
   window.scrollTo({ top: 0 });
 });
+
+// ---------- Gợi ý "You may also like": mọi sản phẩm chưa có trong giỏ, xếp ngẫu nhiên, lướt ngang bằng 2 nút ----------
+let suggestOrder = null;                               // thứ tự ngẫu nhiên, xáo 1 lần mỗi lần mở trang (đổi số lượng không làm đảo lại)
+let suggestKey = "";                                   // nhớ bộ gợi ý đang hiện để khỏi vẽ lại ảnh mỗi lần đổi số lượng
+const suggestTrack = $("suggest-grid");
+// Popup sản phẩm dùng chung với trang chủ. Thêm món vào giỏ thì vẽ lại giỏ; "Buy now" chỉ cần đóng popup vì đang ở trang giỏ hàng
+const productDialog = $("product-dialog");
+const openProduct = initProductPopup({
+  dialog: productDialog, detail: $("product-detail"),
+  getCurrency: () => currency, getRates: () => rates,
+  onAddToCart: () => render(),
+  onBuyNow: () => productDialog.close()
+});
+function shuffle(arr) {                                // Fisher-Yates: xáo trộn đều
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function updateSuggestButtons() {                      // hết đường lướt thì làm mờ nút
+  $("suggest-prev").disabled = suggestTrack.scrollLeft <= 2;
+  $("suggest-next").disabled = suggestTrack.scrollLeft + suggestTrack.clientWidth >= suggestTrack.scrollWidth - 2;
+}
+function renderSuggest(cart) {
+  if (!suggestOrder) suggestOrder = shuffle(Object.values(products).filter((p) => p.inStock));
+  const inCart = new Set(cart.map((i) => i.id));
+  const picks = suggestOrder.filter((p) => !inCart.has(p.id));
+  $("cart-suggest").hidden = picks.length === 0;
+  const key = picks.map((p) => p.id).join(",") + "|" + currency;
+  if (key === suggestKey) return;
+  suggestKey = key;
+  // Bấm thẻ -> mở popup sản phẩm ngay trên trang giỏ hàng (đóng popup là về lại đúng chỗ đang xem)
+  renderGrid(suggestTrack, picks, fmt, (p) => openProduct(p));
+  suggestTrack.scrollLeft = 0;
+  updateSuggestButtons();
+}
+// Mỗi lần bấm lướt gần hết 1 trang (còn chừa 1 phần để người dùng thấy nối tiếp)
+$("suggest-prev").addEventListener("click", () => suggestTrack.scrollBy({ left: -suggestTrack.clientWidth * 0.9, behavior: "smooth" }));
+$("suggest-next").addEventListener("click", () => suggestTrack.scrollBy({ left: suggestTrack.clientWidth * 0.9, behavior: "smooth" }));
+suggestTrack.addEventListener("scroll", updateSuggestButtons, { passive: true });
+window.addEventListener("resize", updateSuggestButtons);
 
 // ---------- Mã giảm giá của athlete (giảm 10%) ----------
 const DISCOUNT_PCT = 10;
@@ -224,28 +283,34 @@ discountForm.addEventListener("submit", (e) => {
 
 // ---------- Khởi động ----------
 REGIONS.forEach((r) => {
-  currencySelect.add(new Option(r.name + " (" + r.code + ")", r.code));
   $("co-country").add(new Option(r.name, r.name));
 });
-currencySelect.value = currency;
 $("co-country").value = (REGIONS.find((r) => r.code === currency) || REGIONS[0]).name;
-// Liên kết 2 chiều: đổi Country trong form thì tiền tệ ở góc trên đổi theo, và ngược lại
+// Đổi Country trong form thì tiền tệ đổi theo (và được lưu cho các trang khác)
 $("co-country").addEventListener("change", () => {
   const region = REGIONS.find((r) => r.name === $("co-country").value);
   if (region) {
     currency = region.code;
-    currencySelect.value = currency;
     saveCurrency(currency);
   }
   render();
 });
-currencySelect.addEventListener("change", () => {
-  currency = currencySelect.value;
-  const region = REGIONS.find((r) => r.code === currency);
-  if (region) $("co-country").value = region.name;
-  saveCurrency(currency);
-  render();
-});
+// ---------- Tài khoản: tự điền form Checkout ----------
+// Chỉ điền vào ô còn trống, không ghi đè thứ người dùng đã gõ
+function fillFromAccount() {
+  const user = getCurrentUser();
+  $("checkout-signin").hidden = Boolean(user);
+  if (!user) return;
+  const map = { "co-name": user.name, "co-email": user.email, "co-phone": user.phone, "co-address": user.address, "co-city": user.city };
+  Object.keys(map).forEach((id) => { if (!$(id).value && map[id]) $(id).value = map[id]; });
+  // Nước trong tài khoản: chọn sẵn và đổi tiền tệ/phí ship theo (dùng lại sự kiện change của ô Country)
+  if (user.country && REGIONS.some((r) => r.name === user.country) && $("co-country").value !== user.country) {
+    $("co-country").value = user.country;
+    $("co-country").dispatchEvent(new Event("change"));
+  }
+}
+$("checkout-signin-btn").addEventListener("click", () => openAuth("signin"));
+window.addEventListener("auth-change", fillFromAccount);
 
 Promise.all([loadProducts(), loadRates(), loadShipping(), fetch("../data/access.json").then((r) => r.json())])
   .then(([items, rateInfo, shipping, access]) => {
@@ -254,5 +319,6 @@ Promise.all([loadProducts(), loadRates(), loadShipping(), fetch("../data/access.
     items.forEach((p) => { products[p.id] = p; });
     rates = rateInfo.rates;
     render();
+    fillFromAccount();
   })
   .catch((err) => { $("cart-empty").hidden = false; console.error(err); });

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | Account</title>
+  <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <script type="module">
+    import { requireAccess } from "../js/guard.js";
+    requireAccess(); // chưa nhập mật khẩu thì quay về cổng
+  </script>
+</head>
+<body>
+  <header class="site-header site-header--solid">
+    <nav class="site-nav site-nav--left" aria-label="Main left">
+      <a href="contact.html">Info</a>
+    </nav>
+    <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
+      <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
+    </a>
+    <nav class="site-nav site-nav--right" aria-label="Main right">
+      <a href="about.html">About</a>
+    </nav>
+    <!-- Góc phải trên: icon tài khoản (thêm bằng js/auth-ui.js) + icon giỏ hàng -->
+    <div class="header-tools">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" aria-hidden="true">
+          <path d="M3 4h2.4l2.2 11h10.2l2-8H6.2"/>
+          <circle cx="9.5" cy="19.5" r="1.3"/>
+          <circle cx="17" cy="19.5" r="1.3"/>
+        </svg>
+        <span class="cart-badge" hidden></span>
+      </a>
+    </div>
+  </header>
+
+  <main class="page container">
+    <h1 class="page-title">Account</h1>
+
+    <!-- Chưa đăng nhập -->
+    <section id="account-guest" class="cart-empty" hidden>
+      <p>Sign in to see your details and your orders.</p>
+      <div class="account-guest__actions">
+        <button type="button" id="guest-signin" class="btn btn--small">Sign in</button>
+        <button type="button" id="guest-register" class="btn btn--small btn--ghost">Create account</button>
+      </div>
+    </section>
+
+    <!-- Đã đăng nhập: thông tin bên trái, lịch sử đơn hàng bên phải -->
+    <div id="account-content" class="account-layout" hidden>
+      <section class="cart-summary" aria-labelledby="account-hello">
+        <h2 id="account-hello" class="glass__title">Hello, <span id="account-name"></span></h2>
+        <p class="cart-note">Signed in as <span id="account-email"></span> · Member since <span id="account-since"></span></p>
+
+        <!-- Thông tin cá nhân + địa chỉ giao hàng (dùng để tự điền Checkout) -->
+        <form id="profile-form" class="form account-form" novalidate>
+          <h3 class="account-form__title">Details and address</h3>
+          <div class="field"><label for="pf-name">Full name</label>
+            <input id="pf-name" class="input" type="text" autocomplete="name">
+            <p class="form-error" id="error-pf-name"></p></div>
+          <div class="field"><label for="pf-phone">Phone</label>
+            <input id="pf-phone" class="input" type="tel" autocomplete="tel">
+            <p class="form-error" id="error-pf-phone"></p></div>
+          <div class="field"><label for="pf-address">Address</label>
+            <input id="pf-address" class="input" type="text" autocomplete="street-address">
+            <p class="form-error" id="error-pf-address"></p></div>
+          <div class="form-row">
+            <div class="field"><label for="pf-city">City</label>
+              <input id="pf-city" class="input" type="text" autocomplete="address-level2">
+              <p class="form-error" id="error-pf-city"></p></div>
+            <div class="field"><label for="pf-country">Country</label>
+              <select id="pf-country" class="input"></select></div>
+          </div>
+          <button type="submit" class="btn btn--small">Save details</button>
+          <p id="profile-saved" class="contact-success" role="status" hidden>Details saved.</p>
+        </form>
+
+        <!-- Đổi mật khẩu: bấm để mở -->
+        <details class="size-finder account-password">
+          <summary>Change password</summary>
+          <form id="password-form" class="form" novalidate>
+            <div class="field"><label for="pw-old">Current password</label>
+              <input id="pw-old" class="input" type="password" autocomplete="current-password">
+              <p class="form-error" id="error-pw-old"></p></div>
+            <div class="field"><label for="pw-new">New password</label>
+              <input id="pw-new" class="input" type="password" autocomplete="new-password">
+              <p class="form-error" id="error-pw-new"></p></div>
+            <p id="password-msg" class="form-error" role="alert"></p>
+            <button type="submit" class="btn btn--small">Update password</button>
+          </form>
+        </details>
+
+        <button type="button" id="sign-out" class="btn btn--small btn--ghost account-signout">Sign out</button>
+      </section>
+
+      <!-- Lịch sử đơn hàng: đọc từ localStorage (các đơn đặt khi đang đăng nhập) -->
+      <section aria-labelledby="orders-title">
+        <h2 id="orders-title" class="glass__title">Order history</h2>
+        <p id="orders-empty" class="cart-note" hidden>No orders yet. <a href="home.html#shop" class="link-btn">Start shopping</a></p>
+        <ul id="order-list" class="order-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/header.js"></script>
+  <script type="module" src="../js/account-page.js"></script>
+</body>
+</html>

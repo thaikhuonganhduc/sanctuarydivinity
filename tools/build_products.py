@@ -44,7 +44,7 @@ CATEGORY = {
 
 # Màu hiển thị (chấm màu) cho từng tên màu của shop gốc
 HEX = {
-    "VOID BLACK": "#0a0a0a", "NIGHTMARE": "#2a1e3a", "DIVINE WHITE": "#f2f2f2", "GLOW IN THE DARK": "#39d353",
+    "VOID BLACK": "#0a0a0a", "NIGHTMARE": "#8b0a1a", "DIVINE WHITE": "#f2f2f2", "GLOW IN THE DARK": "#39d353",
     "DARKNESS": "#1b1b1b", "BLOSSOM PINK": "#e8a0b8", "VINTAGE": "#6b6b6b", "DUSK": "#4a4458", "BONESAW": "#c9c0ac",
     "GHOST": "#cfd2d6", "HEAVENLY PINK": "#f0b6c8", "HEAVENLY RED": "#a81d23", "VINTAGE WASH": "#58595b",
     "ANGEL WASHED": "#b9bcc2", "ALLOY WASHED": "#7d8187", "2-PACK": "#2b2b2b", "NOCTURNE": "#1d2a4a",

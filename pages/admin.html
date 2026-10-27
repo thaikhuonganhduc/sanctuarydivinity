@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANCTUARY | Admin</title>
+  <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script type="module">
+    import { requireAccess } from "../js/guard.js";
+    requireAccess("admin"); // chỉ vai trò admin (nhập mã admin ở cổng) mới vào được
+  </script>
+</head>
+<body class="admin-page">
+  <!-- Thanh trên cùng: logo + nút xem cửa hàng + thoát -->
+  <header class="admin-bar">
+    <a href="home.html" class="admin-bar__brand" aria-label="View store">
+      <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="admin-bar__logo">
+      <span class="admin-bar__tag">Admin</span>
+    </a>
+    <div class="admin-bar__actions">
+      <a href="home.html" class="btn btn--small btn--ghost">View store</a>
+      <button type="button" id="admin-exit" class="btn btn--small">Exit</button>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <!-- Menu các mục quản trị (số nhỏ bên cạnh do js/admin.js điền) -->
+    <nav class="admin-nav" aria-label="Admin sections">
+      <a href="#overview" data-panel="overview">Overview</a>
+      <a href="#orders" data-panel="orders">Orders <span class="admin-nav__count" id="count-orders"></span></a>
+      <a href="#products" data-panel="products">Products <span class="admin-nav__count" id="count-products"></span></a>
+      <a href="#customers" data-panel="customers">Customers <span class="admin-nav__count" id="count-customers"></span></a>
+      <a href="#messages" data-panel="messages">Messages <span class="admin-nav__count admin-nav__count--alert" id="count-messages"></span></a>
+      <a href="#codes" data-panel="codes">Athlete codes</a>
+      <a href="#backup" data-panel="backup">Backup</a>
+    </nav>
+
+    <main class="admin-main">
+      <!-- Tổng quan -->
+      <section id="panel-overview" class="admin-panel" aria-labelledby="h-overview">
+        <h1 id="h-overview" class="admin-title">Overview</h1>
+        <div id="kpis" class="kpi-grid"></div>
+        <div class="admin-grid-2">
+          <div class="admin-card">
+            <h2 class="admin-card__title">Recent orders</h2>
+            <div id="recent-orders"></div>
+          </div>
+          <div class="admin-card">
+            <h2 class="admin-card__title">Low stock (10 or fewer)</h2>
+            <div id="low-stock"></div>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h2 class="admin-card__title">Best sellers (units sold)</h2>
+          <div id="best-sellers"></div>
+        </div>
+      </section>
+
+      <!-- Đơn hàng -->
+      <section id="panel-orders" class="admin-panel" aria-labelledby="h-orders" hidden>
+        <h1 id="h-orders" class="admin-title">Orders</h1>
+        <div class="admin-toolbar">
+          <input id="order-search" class="input" type="search" placeholder="Search order, name or email" aria-label="Search orders">
+          <select id="order-filter" class="input" aria-label="Filter by status"></select>
+        </div>
+        <div id="orders-table"></div>
+      </section>
+
+      <!-- Sản phẩm -->
+      <section id="panel-products" class="admin-panel" aria-labelledby="h-products" hidden>
+        <h1 id="h-products" class="admin-title">Products</h1>
+        <p class="admin-hint">Changes save automatically and show in the store right away (saved in this browser).</p>
+        <div class="admin-toolbar">
+          <input id="product-search" class="input" type="search" placeholder="Search product" aria-label="Search products">
+          <select id="product-category" class="input" aria-label="Filter by category"></select>
+          <button type="button" id="products-reset" class="btn btn--small btn--ghost">Reset all changes</button>
+        </div>
+        <div id="products-table"></div>
+      </section>
+
+      <!-- Khách hàng -->
+      <section id="panel-customers" class="admin-panel" aria-labelledby="h-customers" hidden>
+        <h1 id="h-customers" class="admin-title">Customers</h1>
+        <div class="admin-toolbar">
+          <input id="customer-search" class="input" type="search" placeholder="Search name or email" aria-label="Search customers">
+        </div>
+        <div id="customers-table"></div>
+      </section>
+
+      <!-- Tin nhắn từ form liên hệ -->
+      <section id="panel-messages" class="admin-panel" aria-labelledby="h-messages" hidden>
+        <h1 id="h-messages" class="admin-title">Messages</h1>
+        <div id="messages-list" class="message-list"></div>
+      </section>
+
+      <!-- Mã athlete -->
+      <section id="panel-codes" class="admin-panel" aria-labelledby="h-codes" hidden>
+        <h1 id="h-codes" class="admin-title">Athlete codes</h1>
+        <p class="admin-hint">Codes give 10% off and are read from data/access.json. Edit that file to add or turn off a code.</p>
+        <div id="codes-table"></div>
+      </section>
+
+      <!-- Sao lưu / khôi phục -->
+      <section id="panel-backup" class="admin-panel" aria-labelledby="h-backup" hidden>
+        <h1 id="h-backup" class="admin-title">Backup</h1>
+        <div class="admin-grid-2">
+          <div class="admin-card">
+            <h2 class="admin-card__title">Export</h2>
+            <p class="admin-hint">Download every order, customer, message and product change as one JSON file.</p>
+            <button type="button" id="backup-export" class="btn btn--small">Download backup</button>
+          </div>
+          <div class="admin-card">
+            <h2 class="admin-card__title">Restore</h2>
+            <p class="admin-hint">Load a backup file. This replaces the current store data in this browser.</p>
+            <label class="btn btn--small btn--ghost admin-file">
+              Choose backup file
+              <input type="file" id="backup-import" accept="application/json,.json">
+            </label>
+          </div>
+          <div class="admin-card">
+            <h2 class="admin-card__title">Sample data</h2>
+            <p class="admin-hint">Add demo customers, orders and messages for a presentation. Sample customers sign in with the password <strong>Sanctuary1</strong>.</p>
+            <button type="button" id="backup-sample" class="btn btn--small btn--ghost">Add sample data</button>
+          </div>
+          <div class="admin-card admin-card--danger">
+            <h2 class="admin-card__title">Clear store data</h2>
+            <p class="admin-hint">Delete all orders, customers, messages and product changes in this browser. Download a backup first.</p>
+            <button type="button" id="backup-clear" class="btn btn--small btn--danger">Clear data</button>
+          </div>
+        </div>
+        <p id="backup-status" class="admin-hint" role="status"></p>
+      </section>
+    </main>
+  </div>
+
+  <!-- Thông báo nhỏ góc dưới (vd: "Saved") -->
+  <p id="admin-toast" class="admin-toast" role="status" hidden></p>
+
+  <script type="module" src="../js/admin.js"></script>
+</body>
+</html>

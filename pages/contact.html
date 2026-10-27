@@ -18,61 +18,265 @@
 <body>
   <header class="site-header site-header--solid">
     <nav class="site-nav site-nav--left" aria-label="Main left">
-      <a href="shop.html">Shop</a>
-      <a href="contact.html" aria-current="page">Contact</a>
+      <a href="contact.html" aria-current="page">Info</a>
     </nav>
     <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
       <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
     </a>
     <nav class="site-nav site-nav--right" aria-label="Main right">
       <a href="about.html">About</a>
-      <a href="cart.html">Cart</a>
     </nav>
+    <!-- Góc phải trên: icon giỏ hàng (số món hiện ở huy hiệu nhỏ), giống header trang chủ -->
+    <div class="header-tools">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" aria-hidden="true">
+          <path d="M3 4h2.4l2.2 11h10.2l2-8H6.2"/>
+          <circle cx="9.5" cy="19.5" r="1.3"/>
+          <circle cx="17" cy="19.5" r="1.3"/>
+        </svg>
+        <span class="cart-badge" hidden></span>
+      </a>
+    </div>
   </header>
 
-  <main class="page container">
-    <h1 class="page-title">Contact</h1>
+  <main class="page container info">
+    <h1 class="page-title">Info</h1>
 
-    <div class="contact-layout">
-      <!-- Thông tin liên hệ (dữ liệu giả lập cho đồ án) -->
-      <section class="contact-info" aria-label="Contact details">
-        <h2 class="glass__title">Reach the sanctuary</h2>
-        <dl class="spec-list">
-          <div class="spec-row"><dt>Email</dt><dd>support@sanctuary.example</dd></div>
-          <div class="spec-row"><dt>Instagram</dt><dd>@sanctuary.divinity</dd></div>
-          <div class="spec-row"><dt>Hours</dt><dd>Mon to Fri · 9:00 to 18:00</dd></div>
-          <div class="spec-row"><dt>Studio</dt><dd>Ho Chi Minh City, Vietnam</dd></div>
-          <div class="spec-row"><dt>Reply time</dt><dd>Within 48 hours</dd></div>
-        </dl>
-        <p class="cart-note">These details are sample data for a student project.</p>
-      </section>
+    <!-- Các mục thông tin: bấm để đổi nội dung bên dưới (js/info.js), địa chỉ đổi theo #mục để chia sẻ link được -->
+    <nav class="info-tabs" aria-label="Info sections">
+      <a href="#contact" data-panel="contact">Contact</a>
+      <a href="#shipping" data-panel="shipping">Shipping/Returns</a>
+      <a href="#terms" data-panel="terms">Terms and Conditions</a>
+      <a href="#tos" data-panel="tos">Terms of Service</a>
+      <a href="#privacy" data-panel="privacy">Privacy Policy</a>
+      <a href="#accessibility" data-panel="accessibility">Accessibility</a>
+    </nav>
 
-      <!-- Form liên hệ: kiểm tra bằng JavaScript, lưu giả lập vào localStorage -->
-      <section aria-label="Send a message">
-        <h2 class="glass__title">Send a message</h2>
-        <form id="contact-form" class="form" novalidate>
-          <div class="field"><label for="ct-name">Name</label>
-            <input id="ct-name" class="input" type="text" autocomplete="name">
-            <p class="form-error" id="error-ct-name"></p></div>
-          <div class="field"><label for="ct-email">Email</label>
-            <input id="ct-email" class="input" type="email" autocomplete="email">
-            <p class="form-error" id="error-ct-email"></p></div>
-          <div class="field"><label for="ct-topic">Topic</label>
-            <select id="ct-topic" class="input">
-              <option>Order and shipping</option>
-              <option>Sizing help</option>
-              <option>Returns and exchanges</option>
-              <option>Collaboration</option>
-              <option>Something else</option>
-            </select></div>
-          <div class="field"><label for="ct-message">Message</label>
-            <textarea id="ct-message" class="input" rows="6"></textarea>
-            <p class="form-error" id="error-ct-message"></p></div>
-          <button type="submit" class="btn">Send</button>
-          <p id="contact-success" class="contact-success" role="status" hidden>Message sent. We will reply within 48 hours.</p>
-        </form>
-      </section>
-    </div>
+    <!-- Contact -->
+    <section id="info-contact" class="info-panel" aria-label="Contact">
+      <div class="contact-layout">
+        <!-- Thông tin liên hệ (dữ liệu giả lập cho đồ án) -->
+        <section class="contact-info" aria-label="Contact details">
+          <h2 class="glass__title">Reach the sanctuary</h2>
+          <dl class="spec-list">
+            <div class="spec-row"><dt>Email</dt><dd>support@sanctuary.example</dd></div>
+            <div class="spec-row"><dt>Instagram</dt><dd>@sanctuary.divinity</dd></div>
+            <div class="spec-row"><dt>Hours</dt><dd>Mon to Fri · 9:00 to 18:00</dd></div>
+            <div class="spec-row"><dt>Studio</dt><dd>Ho Chi Minh City, Vietnam</dd></div>
+            <div class="spec-row"><dt>Reply time</dt><dd>Within 48 hours</dd></div>
+          </dl>
+          <p class="cart-note">These details are sample data for a student project.</p>
+        </section>
+
+        <!-- Form liên hệ: kiểm tra bằng JavaScript, lưu giả lập vào localStorage -->
+        <section aria-label="Send a message">
+          <h2 class="glass__title">Send a message</h2>
+          <form id="contact-form" class="form" novalidate>
+            <div class="field"><label for="ct-name">Name</label>
+              <input id="ct-name" class="input" type="text" autocomplete="name">
+              <p class="form-error" id="error-ct-name"></p></div>
+            <div class="field"><label for="ct-email">Email</label>
+              <input id="ct-email" class="input" type="email" autocomplete="email">
+              <p class="form-error" id="error-ct-email"></p></div>
+            <div class="field"><label for="ct-topic">Topic</label>
+              <select id="ct-topic" class="input">
+                <option>Order and shipping</option>
+                <option>Sizing help</option>
+                <option>Returns and exchanges</option>
+                <option>Collaboration</option>
+                <option>Something else</option>
+              </select></div>
+            <div class="field"><label for="ct-message">Message</label>
+              <textarea id="ct-message" class="input" rows="6"></textarea>
+              <p class="form-error" id="error-ct-message"></p></div>
+            <button type="submit" class="btn">Send</button>
+            <p id="contact-success" class="contact-success" role="status" hidden>Message sent. We will reply within 48 hours.</p>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <!-- Shipping/Returns (nội dung mẫu cho đồ án, tham khảo cấu trúc trang chính sách của breathedivinity.com) -->
+    <section id="info-shipping" class="info-panel" aria-label="Shipping/Returns" hidden>
+      <article class="info-doc">
+        <h2 class="glass__title">Shipping/Returns</h2>
+        <p class="info-doc__date">Last updated October 27, 2026</p>
+        <h3>Processing</h3>
+        <p>Every SANCTUARY drop is cut and sewn in limited batches. Orders ship from our studio in Ho Chi Minh City, Vietnam, and take 1 to 3 business days to process after payment is approved. Orders placed on weekends or holidays start processing the next business day.</p>
+        <h3>Delivery estimates</h3>
+        <p>Estimates start when your order leaves the studio and do not include processing time. They are not guaranteed, and customs can add delays.</p>
+        <ul>
+          <li>Vietnam: 2 to 4 business days</li>
+          <li>Asia: 4 to 8 business days</li>
+          <li>Australia and New Zealand: 6 to 12 business days</li>
+          <li>Europe and the United Kingdom: 7 to 14 business days</li>
+          <li>United States and Canada: 7 to 14 business days</li>
+          <li>South America: 10 to 20 business days</li>
+        </ul>
+        <h3>Shipping cost</h3>
+        <p>The shipping fee is calculated in your cart from the weight of your pieces and your destination country. Choose your country in Checkout to see the estimate before you pay.</p>
+        <h3>Duties and taxes</h3>
+        <p>Orders shipped outside Vietnam may be charged import duty, VAT or sales tax when they arrive. The cart shows an estimate, but the final amount is set by your local customs and is paid by the recipient. If a parcel is refused or abandoned over unpaid duties, the order is not refunded.</p>
+        <h3>Tracking</h3>
+        <p>You will receive a tracking number by email once your label is created. Tracking can take 24 to 48 hours to update after the carrier first scans your parcel.</p>
+        <h3>Addresses</h3>
+        <p>Please double-check your address before you place the order. We cannot change an address once an order has been processed, and we are not responsible for parcels sent to an incorrect address entered at checkout.</p>
+        <h3>Lost or stolen parcels</h3>
+        <p>Once the carrier marks a parcel as delivered, it is out of our hands. If something looks wrong, contact the carrier first and then write to us with your order number so we can help with the claim.</p>
+        <h3>Returns and exchanges</h3>
+        <p>All sales are final. We do not accept returns or refunds for change of mind, color preference, or fit. Use the Find your size tool on each product page before you buy.</p>
+        <p>The exception is a piece that arrives damaged, defective, or is not what you ordered. In that case:</p>
+        <ul>
+          <li>Email us within 48 hours of delivery at support@sanctuary.example.</li>
+          <li>Include your order number, clear photos of the piece, and a photo of the shipping label and packaging.</li>
+          <li>Claims sent late or without photos cannot be approved.</li>
+          <li>Approved claims are solved with an exchange for the same piece if it is in stock. If it is sold out, we issue store credit.</li>
+        </ul>
+        <h3>Cancellations</h3>
+        <p>Orders cannot be cancelled once they are processed. If you made a mistake, write to us as soon as possible and we will try to catch it before the order is packed.</p>
+        <h3>Pre-orders</h3>
+        <p>Sometimes a drop opens for a short time before the pieces are produced. Pre-orders take 3 to 5 weeks to ship, are final sale, and are only replaced if they arrive damaged.</p>
+        <h3>Sold out</h3>
+        <p>Our drops are limited and most pieces never return. Sold out means sold out.</p>
+      </article>
+    </section>
+
+    <!-- Terms and Conditions (nội dung mẫu cho đồ án, tham khảo cấu trúc trang chính sách của breathedivinity.com) -->
+    <section id="info-terms" class="info-panel" aria-label="Terms and Conditions" hidden>
+      <article class="info-doc">
+        <h2 class="glass__title">Terms and Conditions</h2>
+        <p class="info-doc__date">Last updated October 27, 2026</p>
+        <h3>Agreement</h3>
+        <p>By browsing the SANCTUARY store, placing an order, or using an athlete code, you agree to these Terms and Conditions together with our Shipping/Returns, Privacy Policy and Terms of Service.</p>
+        <h3>Drops and availability</h3>
+        <p>Collections are released in limited quantities. A piece in your cart is not reserved until the order is paid, and the number shown as in stock can change at any moment during a drop. We may limit quantities per customer.</p>
+        <h3>Prices and errors</h3>
+        <p>Prices are listed in US dollars. Other currencies shown on the site are estimates based on exchange rates that change, so the final amount is the one confirmed in your cart. If a price or description is wrong, we may correct it and cancel affected orders with a full refund.</p>
+        <h3>Orders</h3>
+        <p>Placing an order is an offer to buy. We accept it when the order ships, and we may refuse or cancel an order, for example for suspected fraud, stock errors, or misuse of drop rules.</p>
+        <h3>Payment and taxes</h3>
+        <p>You authorize us to charge your chosen payment method for the items, shipping, and any taxes that apply. Duties for international orders are explained in Shipping/Returns.</p>
+        <h3>Athlete codes and promotions</h3>
+        <ul>
+          <li>An athlete code gives 10% off the price of your order.</li>
+          <li>Only one code can be used per order, and codes cannot be stacked with each other.</li>
+          <li>Codes have no cash value, and we can void a code that is misused or shared outside the audience it was made for.</li>
+        </ul>
+        <h3>Sizing and fit</h3>
+        <p>Size and fit are your responsibility. Our size finder uses body measurements from the public ANSUR II dataset to suggest a size. It is a guide, not a guarantee, because fit varies between styles. Compression pieces are designed to fit close to the body.</p>
+        <h3>Colors and care</h3>
+        <p>Dark and near-black colorways can look different on different screens, and may fade or bleed if not washed with care. Wash cold, inside out, with similar colors, and hang dry. Our pieces are pre-shrunk for minimal shrinkage, but we cannot cover damage caused by washing or wear.</p>
+        <h3>Not medical products</h3>
+        <p>Compression garments are sportswear. They are not medical devices and are not made to diagnose, treat, or prevent any condition.</p>
+        <h3>Anti-bot and resale</h3>
+        <p>Bots, multiple accounts used to bypass limits, and bulk purchases for commercial resale are not allowed and can lead to cancelled orders.</p>
+        <h3>Excessive claims</h3>
+        <p>We keep an eye on exchange and damage claims. Accounts with a pattern of excessive or unfounded claims may lose exchange privileges, and we reserve the right to refuse service.</p>
+      </article>
+    </section>
+
+    <!-- Terms of Service (nội dung mẫu cho đồ án, tham khảo cấu trúc trang chính sách của breathedivinity.com) -->
+    <section id="info-tos" class="info-panel" aria-label="Terms of Service" hidden>
+      <article class="info-doc">
+        <h2 class="glass__title">Terms of Service</h2>
+        <p class="info-doc__date">Last updated October 27, 2026</p>
+        <h3>Using the site</h3>
+        <p>You must be 18 or older, or have a parent or guardian involved, to place an order. By using the site you agree to these Terms of Service.</p>
+        <h3>Access and accounts</h3>
+        <p>Entry to the store requires an access code. Keep it and any account details to yourself, and give us accurate information. You are responsible for what happens under your access.</p>
+        <h3>Prohibited conduct</h3>
+        <p>You agree not to:</p>
+        <ul>
+          <li>use bots, scrapers, or automated tools on the site,</li>
+          <li>copy our content to train artificial intelligence models,</li>
+          <li>bypass drop limits or queue rules,</li>
+          <li>commit fraud or abuse payment disputes,</li>
+          <li>harass our team, our athletes, or other customers,</li>
+          <li>try to break, probe, or overload the site.</li>
+        </ul>
+        <h3>Intellectual property</h3>
+        <p>The SANCTUARY name, logo, artwork, photos, product designs, and text belong to SANCTUARY and may not be copied or sold without written permission. You may view and print pages for your own personal shopping. If you see a counterfeit SANCTUARY piece, please tell us.</p>
+        <h3>Your content and reviews</h3>
+        <p>You keep ownership of the photos and reviews you send us, but you allow us to display and share them on our channels. We welcome honest reviews, and we may remove content that is abusive or unlawful.</p>
+        <h3>Athletes and affiliates</h3>
+        <p>Our athletes and affiliates are independent. What they say on their own channels is their own opinion, not a statement made on behalf of SANCTUARY.</p>
+        <h3>Third-party services</h3>
+        <p>Payments, shipping, and hosting are handled by outside providers. Their own terms apply, and we are not responsible for their services or for websites we link to.</p>
+        <h3>Disclaimers</h3>
+        <p>The site and products are provided as they are. We cannot promise uninterrupted access, especially during busy drops.</p>
+        <h3>Limitation of liability</h3>
+        <p>To the extent the law allows, SANCTUARY is not liable for indirect or consequential losses. Our total liability for any claim is limited to the amount you paid for the order concerned.</p>
+        <h3>Governing law and disputes</h3>
+        <p>These terms are governed by the laws of Vietnam. If you have a problem, please contact us first so we can try to solve it informally before any formal step.</p>
+        <h3>Suspension and changes</h3>
+        <p>We may suspend or end access if these terms are broken. We may update the terms at any time, and updates apply from the date they are posted.</p>
+        <h3>Force majeure</h3>
+        <p>We are not responsible for delays caused by events outside our reasonable control, such as supply problems, customs holds, carrier disruption, or outages.</p>
+        <h3>About this website</h3>
+        <p>SANCTUARY is a student project made for a university course. It is not a real store, no real payment is taken, and nothing ordered here will be shipped. Sample product data and layout ideas are adapted from breathedivinity.com for coursework only; the SANCTUARY brand, logo and name are our own.</p>
+      </article>
+    </section>
+
+    <!-- Privacy Policy (nội dung mẫu cho đồ án, tham khảo cấu trúc trang chính sách của breathedivinity.com) -->
+    <section id="info-privacy" class="info-panel" aria-label="Privacy Policy" hidden>
+      <article class="info-doc">
+        <h2 class="glass__title">Privacy Policy</h2>
+        <p class="info-doc__date">Last updated October 27, 2026</p>
+        <h3>What we collect</h3>
+        <ul>
+          <li>Contact details: name, email, phone, and shipping address.</li>
+          <li>Order details: the pieces you buy, sizes, and your order history.</li>
+          <li>Messages you send through the contact form.</li>
+          <li>Basic device information such as browser type, to keep the site working.</li>
+        </ul>
+        <p>We do not store full payment card details on this site. Payments are handled by a payment provider.</p>
+        <h3>How we use it</h3>
+        <p>We use your information to process and deliver orders, answer your messages, prevent fraud, keep our records, and, only if you opt in, tell you about new drops.</p>
+        <h3>Cookies and browser storage</h3>
+        <p>The site saves your cart, your chosen currency, and your access status in your own browser (local and session storage) so that they are still there when you move between pages. We do not use advertising trackers. You can clear this data at any time in your browser settings.</p>
+        <h3>Who we share it with</h3>
+        <p>Only with the providers we need to run the store: payment processors, shipping carriers, and hosting and email services. We do not sell your personal information.</p>
+        <h3>Emails and text messages</h3>
+        <p>If you subscribe to drop alerts, we will send marketing emails or text messages. You can opt out at any time with the unsubscribe link or by replying STOP. Consent is never required to buy.</p>
+        <h3>How long we keep it</h3>
+        <p>We keep order records for as long as needed for accounting, disputes, and legal duties. Marketing contacts are kept until you opt out.</p>
+        <h3>Security</h3>
+        <p>We use reasonable safeguards to protect your data. No method of storing or sending information online is completely secure, so we cannot promise absolute protection.</p>
+        <h3>Your rights</h3>
+        <p>You can ask to see, correct, or delete the personal information we hold about you, or to stop marketing messages. Email support@sanctuary.example and we will reply within 30 days.</p>
+        <h3>Children</h3>
+        <p>Our store is not meant for children under 13, and we do not knowingly collect their information. If you think a child has sent us data, please contact us and we will delete it.</p>
+        <h3>International customers</h3>
+        <p>We run from Vietnam, so your information may be processed there and in other countries where our providers operate.</p>
+        <h3>Changes to this policy</h3>
+        <p>When we update this policy, we post the new version here with a new date.</p>
+        <h3>Contact</h3>
+        <p>Questions about privacy: support@sanctuary.example · SANCTUARY Studio, Ho Chi Minh City, Vietnam.</p>
+      </article>
+    </section>
+
+    <!-- Accessibility (nội dung mẫu cho đồ án, tham khảo cấu trúc trang chính sách của breathedivinity.com) -->
+    <section id="info-accessibility" class="info-panel" aria-label="Accessibility" hidden>
+      <article class="info-doc">
+        <h2 class="glass__title">Accessibility</h2>
+        <p class="info-doc__date">Last updated October 27, 2026</p>
+        <h3>Our commitment</h3>
+        <p>SANCTUARY should be usable by as many people as possible. We aim to follow the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA, and we keep improving the site as we find gaps.</p>
+        <h3>What we do</h3>
+        <ul>
+          <li>Pages use semantic HTML, with headings, landmarks, and labelled form fields.</li>
+          <li>The site can be used with a keyboard: product cards, size and color buttons, menus, and popups can all be reached and activated, and Esc closes popups.</li>
+          <li>Product images have descriptive text for screen readers.</li>
+          <li>Form errors are written in plain words next to the field.</li>
+          <li>If your device is set to reduce motion, videos stay still and animations are switched off.</li>
+          <li>The layout adapts to phones, tablets, and desktop screens, and text can be zoomed.</li>
+        </ul>
+        <h3>Known limits</h3>
+        <p>Our dark design uses light text on a black background, but some small decorative text, such as the red notes on the home page, has lower contrast. Background videos have no sound and carry no information that is not also in the text. We are working on these points.</p>
+        <h3>Need help?</h3>
+        <p>If something on the site is hard to use, or you would like information in another format, email support@sanctuary.example with the page address and a description of the problem. We reply within 2 business days, and we can also take your order by email if the store is not working for you.</p>
+      </article>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -83,5 +287,6 @@
 
   <script type="module" src="../js/header.js"></script>
   <script type="module" src="../js/contact.js"></script>
+  <script type="module" src="../js/info.js"></script>
 </body>
 </html>

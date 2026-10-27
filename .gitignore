@@ -12,3 +12,6 @@ assets/products/**/*.jpeg
 
 __pycache__/
 *.pyc
+
+# Video gốc nặng (chỉ giữ trên máy); web dùng các bản đã cắt (hero.mp4 10:16, break-*.mp4) trong assets/videos/
+assets/videos/video*.mp4

@@ -13,8 +13,8 @@ Luồng người dùng:
 
 1. **Trang cổng** (`index.html`): đồng hồ đếm ngược tới ngày ra mắt bộ sưu tập, lookbook, và một ô nhỏ ở góc phải trên để nhập mật khẩu.
 2. Nhập mã của athlete/influencer (ví dụ `SANCTUARY-DEMO`) thì vào **trang chủ** (`pages/home.html`).
-3. Từ trang chủ: xem ảnh bộ sưu tập, đánh giá của khách (có lọc theo sao, bấm vào để xem chi tiết), bấm "Collection X Is Out Now" để sang **Shop**.
-4. **Shop**: lọc theo For Him / For Her, loại sản phẩm, sắp xếp theo giá, đổi tiền tệ theo vùng, bấm sản phẩm để xem popup chi tiết (chọn màu, size, số lượng, thêm vào giỏ).
+3. **Trang chủ**: ảnh bộ sưu tập, nút **Reviews** bên phải (popup đánh giá thật, lọc theo sao, slideshow ảnh), bấm "Collection X Is Out Now" hoặc **Shop** để cuộn xuống cửa hàng.
+4. **Cửa hàng** (dưới ảnh trang chủ): 3 khu Sanctuary (nam), Sanctuary Selene (nữ), Accessories, mỗi khu chia nhóm sản phẩm. Menu **Collections** bên trái và hai thẻ Men's/Women's Line để cuộn tới từng khu; đổi tiền theo vùng; bấm sản phẩm để xem popup (slideshow ảnh, chọn màu, size, gợi ý size, thêm vào giỏ).
 5. **Cart**: sửa số lượng, mã giảm giá 10% của athlete, phí ship + thuế ước tính theo nước, form thanh toán có kiểm tra bằng JavaScript.
 6. **Contact** (form liên hệ có kiểm tra) và **About** (câu chuyện thương hiệu).
 
@@ -50,8 +50,7 @@ Lưu ý quan trọng:
 ├── README.md
 ├── claude.md             # Yêu cầu môn học + hướng dẫn cho Claude (đọc nếu dùng Claude Code)
 ├── pages/
-│   ├── home.html         # Trang chủ: ảnh hero, đánh giá của khách
-│   ├── shop.html         # Cửa hàng + popup chi tiết sản phẩm
+│   ├── home.html         # Trang chủ: ảnh hero, cửa hàng (3 khu + popup sản phẩm), nút Reviews
 │   ├── cart.html         # Giỏ hàng + thanh toán
 │   ├── contact.html      # Liên hệ
 │   └── about.html        # Câu chuyện thương hiệu
@@ -67,7 +66,7 @@ Lưu ý quan trọng:
 │   ├── countdown.js      # Đồng hồ đếm ngược + ngày ra mắt
 │   ├── reviews.js        # Đánh giá: lọc sao, hiện thêm, popup chi tiết
 │   ├── products.js       # Đọc products.json, vẽ thẻ sản phẩm
-│   ├── shop.js           # Lọc/sắp xếp sản phẩm, popup chi tiết
+│   ├── shop.js           # Cửa hàng trên trang chủ: chia khu/nhóm, menu Collections, popup chi tiết
 │   ├── currency.js       # Tỷ giá + định dạng tiền theo vùng
 │   ├── cart.js           # Giỏ hàng trong localStorage
 │   ├── cart-page.js      # Trang giỏ hàng: tính tiền, mã giảm giá, đặt hàng
@@ -75,8 +74,7 @@ Lưu ý quan trọng:
 │   ├── size-finder.js    # Gợi ý size từ chiều cao + cân nặng (dùng data/size-chart.json)
 │   ├── form-validate.js  # Các luật kiểm tra form dùng chung
 │   ├── contact.js        # Form liên hệ
-│   ├── header.js         # Số món trong giỏ trên menu "Cart (n)"
-│   └── logo-hover.js     # Hiệu ứng logo đỏ khi rê chuột ở trang chủ
+│   └── header.js         # Số món trong giỏ "Cart (n)", header ghim cố định trên trang chủ
 ├── data/
 │   ├── products.json     # 32 sản phẩm thật (crawl, tạo bằng `tools/build_products.py`): giá USD, màu, size, tồn kho `stock` giả lập
 │   ├── reviews.json      # 157 đánh giá thật (crawl, gộp theo người, tạo bằng `tools/build_reviews.py`): có nhiều ảnh thì hiện slideshow
@@ -112,7 +110,7 @@ Lưu ý quan trọng:
 
 ## 7. Trạng thái hiện tại
 
-**Đã có:** trang cổng, trang chủ, đánh giá (lọc sao, popup), Shop (lọc, đổi tiền thật theo tỷ giá, popup chi tiết), Cart (mã giảm giá, ship/thuế ước tính, thanh toán có kiểm tra), Contact, About.
+**Đã có:** trang cổng, trang chủ, đánh giá (lọc sao, popup), Cửa hàng trên trang chủ (khu/nhóm sản phẩm, đổi tiền thật theo tỷ giá, popup chi tiết, gợi ý size), Cart (mã giảm giá, ship/thuế ước tính, thanh toán có kiểm tra), Contact, About.
 
 **Chưa có / còn lại:**
 

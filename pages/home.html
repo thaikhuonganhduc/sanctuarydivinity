@@ -17,45 +17,128 @@
 </head>
 <body>
   <!-- Header: logo to ở giữa, menu hai bên -->
-  <header class="site-header">
+  <header class="site-header site-header--pinned">
     <!-- Nút thoát: quay lại trang cổng (chỗ nhập mật khẩu) -->
     <button type="button" id="exit-btn" class="exit-btn">Exit</button>
     <nav class="site-nav site-nav--left" aria-label="Main left">
-      <a href="shop.html">Shop</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html">Info</a>
     </nav>
-    <a href="home.html" id="brand-link" class="site-header__brand site-header__brand--hover" aria-label="SANCTUARY home">
+    <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
       <img id="site-logo" src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
-      <!-- Logo đỏ chồng lên, chỉ lộ ra quanh con trỏ chuột (gradient đỏ) -->
-      <span class="site-header__logo logo-hover-red" aria-hidden="true"></span>
+      <!-- Logo đỏ chồng lên logo trắng, hiện dần (mờ chéo) khi người dùng ở khu đồ nữ -->
+      <img src="../assets/logo/logo-red.png" alt="" class="site-header__logo site-header__logo--red">
     </a>
     <nav class="site-nav site-nav--right" aria-label="Main right">
       <a href="about.html">About</a>
-      <a href="cart.html">Cart</a>
     </nav>
+    <!-- Góc phải trên: icon giỏ hàng (số món hiện ở huy hiệu nhỏ). Ô đổi tiền tệ nằm ở footer -->
+    <div class="header-tools">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" aria-hidden="true">
+          <path d="M3 4h2.4l2.2 11h10.2l2-8H6.2"/>
+          <circle cx="9.5" cy="19.5" r="1.3"/>
+          <circle cx="17" cy="19.5" r="1.3"/>
+        </svg>
+        <span class="cart-badge" hidden></span>
+      </a>
+    </div>
   </header>
 
   <main>
     <!-- Ảnh nền ngay dưới header, câu thông điệp màu đỏ nằm đè lên giữa ảnh -->
     <section class="hero-visual">
-      <img src="../assets/images/bg.png" alt="SANCTUARY athletes in black compression wear" class="hero-visual__img">
-      <h1 class="hero__title">
-        <a href="shop.html" class="hero__link" aria-label="Collection X is out now, go to shop">
-          <span class="hero__word">Collection</span>
-          <span class="hero__x" aria-hidden="true">X</span>
-          <span class="hero__word">Is Out Now</span>
-        </a>
-      </h1>
-      <p class="hero__note">Every drop is limited. Once it's gone, it never returns.</p>
+      <!-- Lớp chữ ghim: đứng yên ở giữa màn hình khi cuộn qua video, mờ dần khi gần hết video (js/home-ui.js) -->
+      <div class="hero-overlay">
+        <h1 class="hero__title">
+          <a href="#shop" class="hero__link" aria-label="Collection X is out now, go to shop">
+            <span class="hero__word">Collection</span>
+            <span class="hero__x" aria-hidden="true">X</span>
+            <span class="hero__word">Is Out Now</span>
+          </a>
+        </h1>
+        <p class="hero__note">Every drop is limited. Once it's gone, it never returns.</p>
+      </div>
+      <!-- Video cắt 10:16 (cắt xén, không kéo dãn), tự chạy, tắt tiếng, lặp lại. Ảnh poster hiện trước khi video tải xong -->
+      <div class="hero-stage">
+        <video class="hero-stage__video" src="../assets/videos/hero.mp4" poster="../assets/videos/hero-poster.jpg"
+               autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      </div>
     </section>
 
+
+    <!-- Cửa hàng: nằm dưới ảnh hero. Điểm neo #shop (nút Shop, dòng "Collection X Is Out Now" cuộn tới đây) -->
+    <div id="shop" class="shop container">
+
+    <!-- Bấm thẻ để cuộn xuống khu tương ứng (đồng bộ với menu Collections bên trái) -->
+    <div id="shop-audience" class="shop-audience" role="group" aria-label="Shop by">
+      <button type="button" class="audience-card audience-card--him" data-line="sanctuary" aria-pressed="true">
+        <img src="../assets/logo/logo-white.png" alt="" class="audience-card__logo">
+        <span class="audience-card__label">Men's Line</span>
+      </button>
+      <button type="button" class="audience-card audience-card--her" data-line="selene" aria-pressed="false">
+        <img src="../assets/logo/logo-red.png" alt="" class="audience-card__logo">
+        <span class="audience-card__label">Women's Line</span>
+      </button>
+    </div>
+
+    <!-- 3 khu hiển thị cùng lúc; mỗi khu là 1 điểm neo (id) để menu/thẻ cuộn tới. js/shop.js đổ các nhóm sản phẩm vào #groups-... -->
+    <section id="sanctuary" class="shop-section" data-line="sanctuary" aria-labelledby="title-sanctuary">
+      <h2 id="title-sanctuary" class="visually-hidden">Sanctuary</h2>
+      <div id="groups-sanctuary"></div>
+    </section>
+
+    <section id="selene" class="shop-section" data-line="selene" aria-labelledby="title-selene">
+      <header class="selene-head">
+        <img src="../assets/logo/logo-red.png" alt="" class="selene-head__logo">
+        <h2 id="title-selene" class="visually-hidden">Sanctuary Selene</h2>
+        <p class="selene-head__sub">Women's Signature Line</p>
+      </header>
+      <div id="groups-selene"></div>
+    </section>
+
+    <section id="accessories" class="shop-section" data-line="accessories" aria-labelledby="title-accessories">
+      <h2 id="title-accessories" class="visually-hidden">Accessories</h2>
+      <div id="groups-accessories"></div>
+    </section>
+
+    <p id="shop-empty" class="review-empty" hidden>No pieces available yet.</p>
+    </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
+      <!-- Chọn vùng lãnh thổ (đổi tiền tệ), căn giữa phía trên dòng bản quyền -->
+      <select id="filter-currency" class="region-select region-select--footer" aria-label="Region"></select>
       <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
     </div>
   </footer>
+
+  <!-- Nút dọc bên trái: bấm để trượt ra khung nhỏ gồm 3 mục Sanctuary / Sanctuary Selene / Accessories -->
+  <button type="button" id="lines-tab" class="lines-tab" aria-controls="lines-menu" aria-expanded="false">Collections</button>
+
+  <div id="lines-menu" class="lines-menu" hidden>
+    <nav class="lines-list" aria-label="Collections">
+      <div class="line-group" data-line="sanctuary">
+        <button type="button" class="line-item" data-line="sanctuary" aria-expanded="false" style="--n: 0">
+          <span class="line-item__name">Sanctuary</span>
+        </button>
+        <div class="line-sub"><div class="line-sub__inner"></div></div>
+      </div>
+      <div class="line-group" data-line="selene">
+        <button type="button" class="line-item" data-line="selene" aria-expanded="false" style="--n: 1">
+          <span class="line-item__name">Sanctuary Selene</span>
+          <span class="line-item__sub">Women's Signature Line</span>
+        </button>
+        <div class="line-sub"><div class="line-sub__inner"></div></div>
+      </div>
+      <div class="line-group" data-line="accessories">
+        <button type="button" class="line-item" data-line="accessories" aria-expanded="false" style="--n: 2">
+          <span class="line-item__name">Accessories</span>
+        </button>
+        <div class="line-sub"><div class="line-sub__inner"></div></div>
+      </div>
+    </nav>
+  </div>
 
   <!-- Nút dọc bên phải: bấm để mở popup Reviews -->
   <button type="button" id="reviews-tab" class="reviews-tab" aria-haspopup="dialog">Reviews</button>
@@ -86,6 +169,11 @@
         </section>
   </dialog>
 
+  <!-- Popup chi tiết sản phẩm (nội dung do shop.js đổ vào) -->
+  <dialog id="product-dialog" class="review-dialog" aria-label="Product details">
+    <div id="product-detail" class="review-detail glass product-detail-box"></div>
+  </dialog>
+
   <!-- Popup chi tiết đánh giá (nội dung do reviews.js đổ vào) -->
   <dialog id="review-dialog" class="review-dialog" aria-label="Review details">
     <div id="review-detail" class="review-detail glass"></div>
@@ -93,7 +181,8 @@
 
   <script type="module" src="../js/reviews.js"></script>
   <script type="module" src="../js/reviews-panel.js"></script>
-  <script type="module" src="../js/logo-hover.js"></script>
+  <script type="module" src="../js/shop.js"></script>
+  <script type="module" src="../js/home-ui.js"></script>
   <script type="module" src="../js/header.js"></script>
 </body>
 </html>

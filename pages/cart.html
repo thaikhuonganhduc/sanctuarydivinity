@@ -18,17 +18,14 @@
 <body>
   <header class="site-header site-header--solid">
     <nav class="site-nav site-nav--left" aria-label="Main left">
-      <a href="shop.html">Shop</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html">Info</a>
     </nav>
     <a href="home.html" class="site-header__brand" aria-label="SANCTUARY home">
       <img src="../assets/logo/logo-white.png" alt="SANCTUARY" class="site-header__logo">
     </a>
     <nav class="site-nav site-nav--right" aria-label="Main right">
       <a href="about.html">About</a>
-      <a href="cart.html" aria-current="page">Cart</a>
     </nav>
-    <select id="filter-currency" class="region-select" aria-label="Region"></select>
   </header>
 
   <main class="page container">
@@ -37,13 +34,23 @@
     <!-- Giỏ trống -->
     <section id="cart-empty" class="cart-empty" hidden>
       <p>Your cart is empty.</p>
-      <a href="shop.html" class="btn btn--small">Continue shopping</a>
+      <a href="home.html#shop" class="btn btn--small">Continue shopping</a>
     </section>
 
     <!-- Có hàng: danh sách bên trái, tóm tắt + thanh toán bên phải -->
     <div id="cart-content" class="cart-layout" hidden>
       <section aria-label="Items in your cart">
         <ul id="cart-list" class="cart-list"></ul>
+
+        <!-- Gợi ý ngẫu nhiên (mọi sản phẩm chưa có trong giỏ): lướt ngang bằng 2 nút mũi tên, vẽ bằng js/cart-page.js -->
+        <section id="cart-suggest" class="suggest" aria-labelledby="suggest-title" hidden>
+          <h2 id="suggest-title" class="shop-group__title">You may also like these products</h2>
+          <div class="suggest__viewport">
+            <button type="button" id="suggest-prev" class="suggest__btn suggest__btn--prev" aria-label="Previous products">&lsaquo;</button>
+            <div id="suggest-grid" class="suggest__track"></div>
+            <button type="button" id="suggest-next" class="suggest__btn suggest__btn--next" aria-label="More products">&rsaquo;</button>
+          </div>
+        </section>
       </section>
 
       <aside class="cart-summary" aria-label="Order summary">
@@ -55,6 +62,8 @@
           <input id="discount-code" class="input" type="text" placeholder="Athlete code" autocomplete="off">
           <button id="discount-btn" type="submit" class="btn btn--small">Apply</button>
         </form>
+        <!-- Chú thích nhỏ về quy tắc dùng mã -->
+        <p class="discount__hint">Enter an athlete code to take 10% off your order. One code per order: codes can't be stacked.</p>
         <p id="discount-msg" class="discount__msg" role="status"></p>
 
         <dl class="spec-list">
@@ -69,6 +78,8 @@
         <p class="cart-note">Shipping, tax and duty are estimates based on the destination country chosen in Checkout.</p>
 
         <h2 class="glass__title cart-summary__sub">Checkout</h2>
+        <!-- Chưa đăng nhập: gợi ý đăng nhập để tự điền thông tin (ẩn khi đã đăng nhập) -->
+        <p id="checkout-signin" class="cart-note">Have an account? <button type="button" id="checkout-signin-btn" class="link-btn">Sign in</button> to fill in your details.</p>
         <form id="checkout-form" class="form" novalidate>
           <div class="field"><label for="co-name">Full name</label>
             <input id="co-name" class="input" type="text" autocomplete="name">
@@ -124,7 +135,7 @@
       <h2 class="glass__title">Order placed</h2>
       <p>Thank you. Your order number is <strong id="order-number" class="stock-number"></strong>.</p>
       <p class="cart-note">A confirmation would be sent to <span id="order-email"></span>.</p>
-      <a href="shop.html" class="btn btn--small">Back to shop</a>
+      <a href="home.html#shop" class="btn btn--small">Back to shop</a>
     </section>
   </main>
 
@@ -133,6 +144,11 @@
       <p>&copy; 2026 Sanctuary. Student project, not a real store.</p>
     </div>
   </footer>
+
+  <!-- Popup chi tiết sản phẩm (nội dung do js/product-popup.js đổ vào) -->
+  <dialog id="product-dialog" class="review-dialog" aria-label="Product details">
+    <div id="product-detail" class="review-detail glass product-detail-box"></div>
+  </dialog>
 
   <script type="module" src="../js/cart-page.js"></script>
 </body>
