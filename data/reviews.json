@@ -5,1960 +5,3095 @@
       "name": "Patience W.",
       "lang": "en",
       "rating": 5.0,
-      "text": "amazing design and quality! fits comfortably and pairs well with just about anything too.",
-      "product": "Tarnished Destroyed Oversized T-shirt [GHOST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx__lCN-UVgU"
+      "images": [
+        "assets/reviews/crawled/lx__lCN-UVgU",
+        "assets/reviews/crawled/lx_1jDT1qyD0"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "amazing design and quality! fits comfortably and pairs well with just about anything too.",
+          "lang": "en",
+          "product": "Tarnished Destroyed Oversized T-shirt [GHOST]"
+        },
+        {
+          "rating": 5.0,
+          "text": "super sick colorway and design. snatches good asf.",
+          "lang": "en",
+          "product": "Void Tech™ BloodBorne shortsleeve Compression [BLOOD BORNE]"
+        }
+      ]
     },
     {
       "id": "r002",
-      "name": "Patience W.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "super sick colorway and design. snatches good asf.",
-      "product": "Void Tech™ BloodBorne shortsleeve Compression [BLOOD BORNE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_1jDT1qyD0"
-    },
-    {
-      "id": "r003",
       "name": "Manuel A.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Excellent!",
-      "product": "Grim Reaper Embroidered Oversized Zip-up Hoodie [DECAY]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_BWFtAvBaV"
+      "images": [
+        "assets/reviews/crawled/lx_BWFtAvBaV"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Excellent!",
+          "lang": "en",
+          "product": "Grim Reaper Embroidered Oversized Zip-up Hoodie [DECAY]"
+        }
+      ]
     },
     {
-      "id": "r004",
+      "id": "r003",
       "name": "Christian A.",
       "lang": "en",
       "rating": 5.0,
-      "text": "It was amazing",
-      "product": "Shadow Monarch Oversized T-shirt [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_h_C-F__yC"
+      "images": [
+        "assets/reviews/crawled/lx_h_C-F__yC"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "It was amazing",
+          "lang": "en",
+          "product": "Shadow Monarch Oversized T-shirt [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r005",
+      "id": "r004",
       "name": "Bruno R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Fits me well, very nice quality too, and it shows off lots of definition.",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_l7ogINfS_"
+      "images": [
+        "assets/reviews/crawled/lx_l7ogINfS_"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Fits me well, very nice quality too, and it shows off lots of definition.",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r006",
+      "id": "r005",
       "name": "Alan E.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Se siente super comodo queda perfecto el corte de la camiseta",
-      "product": "Arc Knight Oversized T-shirt [REVENANT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_SIxum6X1B"
+      "images": [
+        "assets/reviews/crawled/lx_SIxum6X1B"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Se siente super comodo queda perfecto el corte de la camiseta",
+          "lang": "en",
+          "product": "Arc Knight Oversized T-shirt [REVENANT]"
+        }
+      ]
     },
     {
-      "id": "r007",
+      "id": "r006",
       "name": "N L.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Nice",
-      "product": "Void Tech™ Fallen Knight Short Sleeve Compression [DUSK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_necyXobGQz"
+      "images": [
+        "assets/reviews/crawled/lx_necyXobGQz"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Nice",
+          "lang": "en",
+          "product": "Void Tech™ Fallen Knight Short Sleeve Compression [DUSK]"
+        }
+      ]
     },
     {
-      "id": "r008",
+      "id": "r007",
       "name": "Litzi R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "My significant other loves this brand and he is in love with the new designs !",
-      "product": "Blood Reaper Oversized T-shirt [ARCANE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_BTunJA95T"
+      "images": [
+        "assets/reviews/crawled/lx_BTunJA95T"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "My significant other loves this brand and he is in love with the new designs !",
+          "lang": "en",
+          "product": "Blood Reaper Oversized T-shirt [ARCANE]"
+        }
+      ]
     },
     {
-      "id": "r009",
+      "id": "r008",
       "name": "Aram R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Order came quickly, shirt and zip design and quality is amazing",
-      "product": "Death Slayer Oversized Zip-up Hoodie [REVENANT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_op_y66LtM6"
+      "images": [
+        "assets/reviews/crawled/lx_op_y66LtM6"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Order came quickly, shirt and zip design and quality is amazing",
+          "lang": "en",
+          "product": "Death Slayer Oversized Zip-up Hoodie [REVENANT]"
+        }
+      ]
     },
     {
-      "id": "r010",
+      "id": "r009",
       "name": "Nyomi G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I absolutely loved the pieces they were all super comfy and true to size can’t wait to wear them to the gym!",
-      "product": "Void Tech™ Cursed Relic Long sleeve compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_zhjYlH9uGq"
+      "images": [
+        "assets/reviews/crawled/lx_zhjYlH9uGq"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I absolutely loved the pieces they were all super comfy and true to size can’t wait to wear them to the gym!",
+          "lang": "en",
+          "product": "Void Tech™ Cursed Relic Long sleeve compression [VOID BLACK]"
+        }
+      ]
+    },
+    {
+      "id": "r010",
+      "name": "Mercedes S.",
+      "lang": "en",
+      "rating": 4.9,
+      "verified": true,
+      "images": [
+        "assets/reviews/crawled/lx_m3NsjMfPa",
+        "assets/reviews/crawled/lx_k-hw2rKdB",
+        "assets/reviews/crawled/lx_mT1qic3Vy",
+        "assets/reviews/crawled/lx_uajY4_kfh",
+        "assets/reviews/crawled/lx_YbV6VWRW9"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Cuteee",
+          "lang": "en",
+          "product": "Royal Blood-Laced Capri’s [FROST]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Cute",
+          "lang": "en",
+          "product": "Void Tech™ Fallen Knight longsleeve Compression [FROST]"
+        },
+        {
+          "rating": 5.0,
+          "text": "So cute",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Enchantress Long sleeve compression [DUSK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Cute",
+          "lang": "en",
+          "product": "Women’s Enchantress Void Tech™ Seamless Shorts [DUSK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "So cute",
+          "lang": "en",
+          "product": "Women’s Faerie Banana Shaped Uncuffed Sweatpants [EVERMORE BLUE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "So cute and amazing quality",
+          "lang": "en",
+          "product": "Women’s Faerie Zip-up Hoodie [EVERMORE BLUE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "So cute",
+          "lang": "en",
+          "product": "Womens Void Tech™ Revenant Open Back Bodysuit [FROST]"
+        },
+        {
+          "rating": 4.0,
+          "text": "So cute I purchase from every drop these are my absolute favorite these so run a little small I’m a small in all there items but these did run a little small but overall great quality and super cute .",
+          "lang": "en",
+          "product": "Royal Blood-Laced Capri’s [FROST]"
+        }
+      ]
     },
     {
       "id": "r011",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Cuteee",
-      "product": "Royal Blood-Laced Capri’s [FROST]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_m3NsjMfPa"
-    },
-    {
-      "id": "r012",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Cute",
-      "product": "Void Tech™ Fallen Knight longsleeve Compression [FROST]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_mCjpYodTw"
-    },
-    {
-      "id": "r013",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "So cute",
-      "product": "Women’s Void Tech™ Enchantress Long sleeve compression [DUSK]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_k-hw2rKdB"
-    },
-    {
-      "id": "r014",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Cute",
-      "product": "Women’s Enchantress Void Tech™ Seamless Shorts [DUSK]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_mT1qic3Vy"
-    },
-    {
-      "id": "r015",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "So cute",
-      "product": "Women’s Faerie Banana Shaped Uncuffed Sweatpants [EVERMORE BLUE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_uajY4_kfh"
-    },
-    {
-      "id": "r016",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "So cute and amazing quality",
-      "product": "Women’s Faerie Zip-up Hoodie [EVERMORE BLUE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_pBk2bjbEN"
-    },
-    {
-      "id": "r017",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "So cute",
-      "product": "Womens Void Tech™ Revenant Open Back Bodysuit [FROST]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_YbV6VWRW9"
-    },
-    {
-      "id": "r018",
-      "name": "Mercedes S.",
-      "lang": "en",
-      "rating": 4.0,
-      "text": "So cute I purchase from every drop these are my absolute favorite these so run a little small I’m a small in all there items but these did run a little small but overall great quality and super cute .",
-      "product": "Royal Blood-Laced Capri’s [FROST]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_3Fu7G0qA3"
-    },
-    {
-      "id": "r019",
       "name": "Chloe T.",
       "lang": "en",
       "rating": 5.0,
-      "text": "🔥",
-      "product": "937 Embroidered Tactical Oversized Full-Zip Jacket [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_CEq6kJhqC"
+      "images": [
+        "assets/reviews/crawled/lx_CEq6kJhqC"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "🔥",
+          "lang": "en",
+          "product": "937 Embroidered Tactical Oversized Full-Zip Jacket [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r020",
+      "id": "r012",
       "name": "Kaleb K.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Insane quality",
-      "product": "Void Tech™ Armored Short Sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_qBh230T9A"
+      "images": [
+        "assets/reviews/crawled/lx_qBh230T9A"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Insane quality",
+          "lang": "en",
+          "product": "Void Tech™ Armored Short Sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r021",
+      "id": "r013",
       "name": "Chris C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "A bit long but fit perfectly",
-      "product": "Mens Essential Embroidered Uncuffed Sweatpants [BONE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_NBFcnaDRG"
+      "images": [
+        "assets/reviews/crawled/lx_NBFcnaDRG",
+        "assets/reviews/crawled/lx_BVMEpD-0d"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "A bit long but fit perfectly",
+          "lang": "en",
+          "product": "Mens Essential Embroidered Uncuffed Sweatpants [BONE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Best sweats so far",
+          "lang": "en",
+          "product": "Webbed Venom Texture Uncuffed Sweatpants [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r022",
-      "name": "Chris C.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Best sweats so far",
-      "product": "Webbed Venom Texture Uncuffed Sweatpants [VINTAGE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_BVMEpD-0d"
-    },
-    {
-      "id": "r023",
+      "id": "r014",
       "name": "Dayron G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I like",
-      "product": "937 Embroidered Tactical Oversized Uncuffed Cargos [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_7rjpApFBh"
+      "images": [
+        "assets/reviews/crawled/lx_7rjpApFBh",
+        "assets/reviews/crawled/lx_Y5VIi_VwQ",
+        "assets/reviews/crawled/lx_sCCfj9RDt"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I like",
+          "lang": "en",
+          "product": "937 Embroidered Tactical Oversized Uncuffed Cargos [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Very good pants for cold weather; comfortable, with a spectacular design.",
+          "lang": "en",
+          "product": "Oversized Distressed Denim Cargo jeans [VINTAGE WASH]"
+        },
+        {
+          "rating": 5.0,
+          "text": "A really good jacket for the cold.",
+          "lang": "en",
+          "product": "937 Embroidered Tactical Oversized Full-Zip Jacket [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r024",
+      "id": "r015",
       "name": "Emilio H.",
       "lang": "en",
-      "rating": 5.0,
-      "text": "Fs needed an Xl, but so so sick",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VOID BLACK]",
+      "rating": 4.8,
       "verified": true,
-      "image": "assets/reviews/crawled/lx_xmZudXrKl"
+      "images": [
+        "assets/reviews/crawled/lx_xmZudXrKl",
+        "assets/reviews/crawled/lx_1GpHSMq6N",
+        "assets/reviews/crawled/lx_jbonVtj4m",
+        "assets/reviews/crawled/lx_0wS0N9sIdO"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Fs needed an Xl, but so so sick",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "For sure should have got a medium, very tight on my upset chest but besides that, even with a small it feels very well and looks so sick",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        },
+        {
+          "rating": 4.0,
+          "text": "Love the feeling, the pixel design just looks a lil off but I think it’s bc it was crazy sick design lol",
+          "lang": "en",
+          "product": "Void Tech™ Venom Texture shortsleeve Compression [DIVINE WHITE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Feels great and looks great",
+          "lang": "en",
+          "product": "Doom Tech™ Armored shortsleeve Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r025",
-      "name": "Emilio H.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "For sure should have got a medium, very tight on my upset chest but besides that, even with a small it feels very well and looks so sick",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_1GpHSMq6N"
-    },
-    {
-      "id": "r026",
-      "name": "Emilio H.",
-      "lang": "en",
-      "rating": 4.0,
-      "text": "Love the feeling, the pixel design just looks a lil off but I think it’s bc it was crazy sick design lol",
-      "product": "Void Tech™ Venom Texture shortsleeve Compression [DIVINE WHITE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_jbonVtj4m"
-    },
-    {
-      "id": "r027",
-      "name": "Emilio H.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Feels great and looks great",
-      "product": "Doom Tech™ Armored shortsleeve Compression [DIVINE WHITE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_0wS0N9sIdO"
-    },
-    {
-      "id": "r028",
+      "id": "r016",
       "name": "Alondra V.",
       "lang": "en",
       "rating": 5.0,
-      "text": "i really love the material of this !",
-      "product": "Women’s Astoria Void Tech™ Open Back Bodysuit [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_6ppgPzHuF"
+      "images": [
+        "assets/reviews/crawled/lx_6ppgPzHuF"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "i really love the material of this !",
+          "lang": "en",
+          "product": "Women’s Astoria Void Tech™ Open Back Bodysuit [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r029",
+      "id": "r017",
       "name": "Jo J.",
       "lang": "ko",
       "rating": 5.0,
-      "text": "직구 망설이시는 분들 최고입니다 사세요! 바지는 기존 사이즈보다 한사이즈 다운하시면 됩니당",
-      "product": "Draconian Metallic Uncuffed Cargos [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_KvxWmWfpy"
+      "images": [
+        "assets/reviews/crawled/lx_KvxWmWfpy"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "직구 망설이시는 분들 최고입니다 사세요! 바지는 기존 사이즈보다 한사이즈 다운하시면 됩니당",
+          "lang": "ko",
+          "product": "Draconian Metallic Uncuffed Cargos [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r030",
+      "id": "r018",
       "name": "Liam R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "very comfy shirt that made me look like a chad fr fr",
-      "product": "Void Tech™ Armored Short Sleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_azOidoJCK"
+      "images": [
+        "assets/reviews/crawled/lx_azOidoJCK"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "very comfy shirt that made me look like a chad fr fr",
+          "lang": "en",
+          "product": "Void Tech™ Armored Short Sleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r031",
+      "id": "r019",
       "name": "Miguel G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I love how it fits into you and is so easy to put on and comfortable! Though I got large and I didn't really get my hands on xl, but if you do order it to be a bit too small, the armpits might be a bit tighter if you try to sleep with it with your arms up and under your pillow (speaking from experience)",
-      "product": "Women’s Soulbane Void Tech™ Short Sleeve Bodysuit [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_lZF3U2_oH"
+      "images": [
+        "assets/reviews/crawled/lx_lZF3U2_oH"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I love how it fits into you and is so easy to put on and comfortable! Though I got large and I didn't really get my hands on xl, but if you do order it to be a bit too small, the armpits might be a bit tighter if you try to sleep with it with your arms up and under your pillow (speaking from experience)",
+          "lang": "en",
+          "product": "Women’s Soulbane Void Tech™ Short Sleeve Bodysuit [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r032",
+      "id": "r020",
       "name": "Achille M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Peak",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [WITHER]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_jdSSLcLLdO"
+      "images": [
+        "assets/reviews/crawled/lx_jdSSLcLLdO"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Peak",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [WITHER]"
+        }
+      ]
     },
     {
-      "id": "r033",
+      "id": "r021",
       "name": "Roberto C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "10/10! Fast shipping and great quality!!",
-      "product": "Void Tech™ Venom Texture shortsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_Rv2XG2PJK"
+      "images": [
+        "assets/reviews/crawled/lx_Rv2XG2PJK"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "10/10! Fast shipping and great quality!!",
+          "lang": "en",
+          "product": "Void Tech™ Venom Texture shortsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r034",
-      "name": "Dayron G.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Very good pants for cold weather; comfortable, with a spectacular design.",
-      "product": "Oversized Distressed Denim Cargo jeans [VINTAGE WASH]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_Y5VIi_VwQ"
-    },
-    {
-      "id": "r035",
+      "id": "r022",
       "name": "Cvv' P.",
       "lang": "en",
       "rating": 4.0,
-      "text": "Was a little smaller then expected so I would size up but other then that amazing product, would buy again.",
-      "product": "Eclipse Advanced Maiden Beater [2-Pack]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_vx3RlZytG"
+      "images": [
+        "assets/reviews/crawled/lx_vx3RlZytG"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Was a little smaller then expected so I would size up but other then that amazing product, would buy again.",
+          "lang": "en",
+          "product": "Eclipse Advanced Maiden Beater [2-Pack]"
+        }
+      ]
     },
     {
-      "id": "r036",
+      "id": "r023",
       "name": "Phurinat B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Comfortable and fits my figure perfectly I love it!",
-      "product": "Doom Tech™ Armored Cut-off Compression [CRIMSON]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_c_tyKdeiY"
+      "images": [
+        "assets/reviews/crawled/lx_c_tyKdeiY",
+        "assets/reviews/crawled/lx_n0jwwtyKN",
+        "assets/reviews/crawled/lx_Ew7JPJ_bc"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Comfortable and fits my figure perfectly I love it!",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Cut-off Compression [CRIMSON]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Very comfortable and fits the body perfectly.",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Cut-off Compression [MIDNIGHT]"
+        },
+        {
+          "rating": 5.0,
+          "text": "So cool!!",
+          "lang": "en",
+          "product": "Deathwish Luxury Tarnished Uncuffed Cargos [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r037",
-      "name": "Phurinat B.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Very comfortable and fits the body perfectly.",
-      "product": "Doom Tech™ Armored Cut-off Compression [MIDNIGHT]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_n0jwwtyKN"
-    },
-    {
-      "id": "r038",
+      "id": "r024",
       "name": "Jesus Z.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I fucking love with this brand seriously I'm manifesting one day I’ll work with y’all keep dropping straight heat 😭🙏",
-      "product": "Blood Reaper Oversized T-shirt [BLOODLUST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_45w23HS2K"
+      "images": [
+        "assets/reviews/crawled/lx_45w23HS2K"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I fucking love with this brand seriously I'm manifesting one day I’ll work with y’all keep dropping straight heat 😭🙏",
+          "lang": "en",
+          "product": "Blood Reaper Oversized T-shirt [BLOODLUST]"
+        }
+      ]
     },
     {
-      "id": "r039",
+      "id": "r025",
       "name": "Brejido S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "10/10",
-      "product": "Void Tech™ Fallen Knight Short Sleeve Compression [TWILIGHT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_K0kxmrAgN"
+      "images": [
+        "assets/reviews/crawled/lx_K0kxmrAgN"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "10/10",
+          "lang": "en",
+          "product": "Void Tech™ Fallen Knight Short Sleeve Compression [TWILIGHT]"
+        }
+      ]
     },
     {
-      "id": "r040",
+      "id": "r026",
       "name": "Michael M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "It was fire",
-      "product": "Deathwish Luxury Tarnished Uncuffed Cargos [REVENANT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_wESOLfDiJ"
+      "images": [
+        "assets/reviews/crawled/lx_wESOLfDiJ"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "It was fire",
+          "lang": "en",
+          "product": "Deathwish Luxury Tarnished Uncuffed Cargos [REVENANT]"
+        }
+      ]
     },
     {
-      "id": "r041",
+      "id": "r027",
       "name": "Sophia B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "super soft and fits great",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_mfepDGEnB"
+      "images": [
+        "assets/reviews/crawled/lx_mfepDGEnB"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "super soft and fits great",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r042",
+      "id": "r028",
       "name": "Jaymes E.",
       "lang": "en",
       "rating": 5.0,
-      "text": "better hold and feel than other brands",
-      "product": "Void Tech™ Venom Texture shortsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_-u0J24B7O"
+      "images": [
+        "assets/reviews/crawled/lx_-u0J24B7O"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "better hold and feel than other brands",
+          "lang": "en",
+          "product": "Void Tech™ Venom Texture shortsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r043",
+      "id": "r029",
       "name": "Luis V.",
       "lang": "en",
       "rating": 5.0,
-      "text": "The best quality! It exceeded my expectations.",
-      "product": "Death Slayer Oversized Zip-up Hoodie [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_JZ1aTdnAL"
+      "images": [
+        "assets/reviews/crawled/lx_JZ1aTdnAL"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "The best quality! It exceeded my expectations.",
+          "lang": "en",
+          "product": "Death Slayer Oversized Zip-up Hoodie [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r044",
+      "id": "r030",
       "name": "Santiago H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I enjoy that compression it gives, as it allows the gym pump I gain to not only be seen, but even felt too. The design is nice and pockets are convenient too.",
-      "product": "Void Tech™ Blood Wyvern Full-Zip Longsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_bfIFzOT5q"
+      "images": [
+        "assets/reviews/crawled/lx_bfIFzOT5q",
+        "assets/reviews/crawled/lx_noQIqYhOU"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I enjoy that compression it gives, as it allows the gym pump I gain to not only be seen, but even felt too. The design is nice and pockets are convenient too.",
+          "lang": "en",
+          "product": "Void Tech™ Blood Wyvern Full-Zip Longsleeve Compression [NIGHTMARE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "The fabric of this is really comfortable, and easy to move in. Makes workouts feel good too, plus for a tank top, it allows me to focus on the muscles being stretched more easily. Love stuff like this, and can’t wait to see more.",
+          "lang": "en",
+          "product": "Metallic Henley Cut-off [PURGATORY GREY]"
+        }
+      ]
     },
     {
-      "id": "r045",
-      "name": "Santiago H.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "The fabric of this is really comfortable, and easy to move in. Makes workouts feel good too, plus for a tank top, it allows me to focus on the muscles being stretched more easily. Love stuff like this, and can’t wait to see more.",
-      "product": "Metallic Henley Cut-off [PURGATORY GREY]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_noQIqYhOU"
-    },
-    {
-      "id": "r046",
+      "id": "r031",
       "name": "Miriam M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love it !",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_XmY5WHPKB"
+      "images": [
+        "assets/reviews/crawled/lx_XmY5WHPKB"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love it !",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r047",
+      "id": "r032",
       "name": "Nadya V.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Great shirt, heavy and comfortable. Good as a pump cover",
-      "product": "Atonement Oversized T-shirt [VINTAGE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_eQnN0Aha2"
+      "images": [
+        "assets/reviews/crawled/lx_eQnN0Aha2"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Great shirt, heavy and comfortable. Good as a pump cover",
+          "lang": "en",
+          "product": "Atonement Oversized T-shirt [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r048",
+      "id": "r033",
       "name": "Christian M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Works casually or at the gym",
-      "product": "Metallic Henley Cut-off [PURGATORY GREY]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_QKSrEQKuk"
+      "images": [
+        "assets/reviews/crawled/lx_QKSrEQKuk"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Works casually or at the gym",
+          "lang": "en",
+          "product": "Metallic Henley Cut-off [PURGATORY GREY]"
+        }
+      ]
     },
     {
-      "id": "r049",
+      "id": "r034",
       "name": "Lorenzo C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing only thing is usually i am a medium but i would be a small in this",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_C1gDdsZmW"
+      "images": [
+        "assets/reviews/crawled/lx_C1gDdsZmW"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing only thing is usually i am a medium but i would be a small in this",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r050",
+      "id": "r035",
       "name": "Brian C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Excellent quality love the design new standard for my gym wear.",
-      "product": "Nightfall Bodybuilding Stringer [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_0mqjVgeY4"
+      "images": [
+        "assets/reviews/crawled/lx_0mqjVgeY4"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Excellent quality love the design new standard for my gym wear.",
+          "lang": "en",
+          "product": "Nightfall Bodybuilding Stringer [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r051",
+      "id": "r036",
       "name": "Andrea P.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Very cute, love the color! It’s breathable and comfortable",
-      "product": "Void Tech™ Cursed Relic Long sleeve compression [CRIMSON RED]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_dnCjUfByt"
+      "images": [
+        "assets/reviews/crawled/lx_dnCjUfByt",
+        "assets/reviews/crawled/lx_Wc3k4S1wP"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Very cute, love the color! It’s breathable and comfortable",
+          "lang": "en",
+          "product": "Void Tech™ Cursed Relic Long sleeve compression [CRIMSON RED]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Comfortable, super cute! Love that the material is breathable. Thumb holes are a plus! 🤍",
+          "lang": "en",
+          "product": "Void Tech™ Cursed Relic Long sleeve compression [FROST]"
+        }
+      ]
     },
     {
-      "id": "r052",
+      "id": "r037",
       "name": "Nicholas P.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Very comfortable and look sick when I work out!",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_xvEGZuFMs"
+      "images": [
+        "assets/reviews/crawled/lx_xvEGZuFMs"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Very comfortable and look sick when I work out!",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r053",
+      "id": "r038",
       "name": "Isacc S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I love the hat, it’s cozy and comfy to my head",
-      "product": "Webbed Cuffed Beanie [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_8vBfdKHfT9"
+      "images": [
+        "assets/reviews/crawled/lx_8vBfdKHfT9"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I love the hat, it’s cozy and comfy to my head",
+          "lang": "en",
+          "product": "Webbed Cuffed Beanie [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r054",
+      "id": "r039",
       "name": "Diego De Leon Gua-176439 D.",
       "lang": "en",
       "rating": 5.0,
-      "text": "The greatest style and comfort you can wear on clothes, never been more satisfied than this keep up the amazing styles you have",
-      "product": "Death Slayer Oversized Zip-up Hoodie [REVENANT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_3mkQasNm_"
+      "images": [
+        "assets/reviews/crawled/lx_3mkQasNm_"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "The greatest style and comfort you can wear on clothes, never been more satisfied than this keep up the amazing styles you have",
+          "lang": "en",
+          "product": "Death Slayer Oversized Zip-up Hoodie [REVENANT]"
+        }
+      ]
     },
     {
-      "id": "r055",
+      "id": "r040",
       "name": "Peter D.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Better than I could’ve imagined!",
-      "product": "Camo Oversized Zip-up Hoodie [OVERGROWTH CAMO]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_kjMZwngcl"
+      "images": [
+        "assets/reviews/crawled/lx_kjMZwngcl"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Better than I could’ve imagined!",
+          "lang": "en",
+          "product": "Camo Oversized Zip-up Hoodie [OVERGROWTH CAMO]"
+        }
+      ]
     },
     {
-      "id": "r056",
+      "id": "r041",
       "name": "Hailey S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Very comfortable and love the design, has deep front pockets and back pockets aswell, and they’re good thick quality.",
-      "product": "Women’s Requiem Banana Shaped Uncuffed Sweatpants [FROST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_E1FTVe9w6"
+      "images": [
+        "assets/reviews/crawled/lx_E1FTVe9w6",
+        "assets/reviews/crawled/lx_WPJS3HCNC",
+        "assets/reviews/crawled/lx_hfM1cLQQC"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Very comfortable and love the design, has deep front pockets and back pockets aswell, and they’re good thick quality.",
+          "lang": "en",
+          "product": "Women’s Requiem Banana Shaped Uncuffed Sweatpants [FROST]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Very good quality and comfortable, has padding inside but its removable if you don’t want it",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Death Crawler Sports Bra [FROST]"
+        },
+        {
+          "rating": 5.0,
+          "text": "They’re good quality shorts they have a silky feel kind of and very comfortable",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Death Crawler Seamless Shorts [FROST]"
+        }
+      ]
     },
     {
-      "id": "r057",
+      "id": "r042",
       "name": "Malena R.",
       "lang": "en",
       "rating": 4.0,
-      "text": "Unfortunately when I first tried on my compression shirt, it felt quite tight around the arm pit area. Might be because I bought size S. Also I‘ve found a loose thread on the right side of the sleeves. Worried it might pull out more fabric and not sure if I should cut it carefully. Besides all that, I love the feeling of the fabric and how stretchy but also compressed it feels on my skin. Lovely design that can‘t be topped by anyone. One of my most favorite clothing pieces of all time! Highly r...",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_FKPZwN5ek"
+      "images": [
+        "assets/reviews/crawled/lx_FKPZwN5ek"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Unfortunately when I first tried on my compression shirt, it felt quite tight around the arm pit area. Might be because I bought size S. Also I‘ve found a loose thread on the right side of the sleeves. Worried it might pull out more fabric and not sure if I should cut it carefully. Besides all that, I love the feeling of the fabric and how stretchy but also compressed it feels on my skin. Lovely design that can‘t be topped by anyone. One of my most favorite clothing pieces of all time! Highly r...",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r058",
+      "id": "r043",
       "name": "Sofiia O.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Shiny and comfy love itttttttt🖤🖤🖤",
-      "product": "DeathWing Banana Shaped Uncuffed Sweatpants [DUSK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_gNeWR61Ta"
+      "images": [
+        "assets/reviews/crawled/lx_gNeWR61Ta",
+        "assets/reviews/crawled/lx_QdphkPQNp"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Shiny and comfy love itttttttt🖤🖤🖤",
+          "lang": "en",
+          "product": "DeathWing Banana Shaped Uncuffed Sweatpants [DUSK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Hell yeah!",
+          "lang": "en",
+          "product": "Death Slayer Oversized Zip-up Hoodie [REVENANT]"
+        }
+      ]
     },
     {
-      "id": "r059",
-      "name": "Sofiia O.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Hell yeah!",
-      "product": "Death Slayer Oversized Zip-up Hoodie [REVENANT]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_QdphkPQNp"
-    },
-    {
-      "id": "r060",
+      "id": "r044",
       "name": "Anime D.",
       "lang": "en",
       "rating": 5.0,
-      "text": "This clothing brand made me want to do more. I want to get in better and better shape and these shirts motivate me to do so.",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_ugaIkdZIFi"
+      "images": [
+        "assets/reviews/crawled/lx_ugaIkdZIFi"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "This clothing brand made me want to do more. I want to get in better and better shape and these shirts motivate me to do so.",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r061",
+      "id": "r045",
       "name": "Liam S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Great designs and great quality 👌",
-      "product": "Berserker Oversized Zip-up Hoodie [DUSK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_uuZjCXeDO"
+      "images": [
+        "assets/reviews/crawled/lx_uuZjCXeDO"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Great designs and great quality 👌",
+          "lang": "en",
+          "product": "Berserker Oversized Zip-up Hoodie [DUSK]"
+        }
+      ]
     },
     {
-      "id": "r062",
+      "id": "r046",
       "name": "Keshav K.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love this piece",
-      "product": "Grim Reaper Embroidered Oversized Zip-up Hoodie [BLOOD MIST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_qFEm5CIvi3"
+      "images": [
+        "assets/reviews/crawled/lx_qFEm5CIvi3",
+        "assets/reviews/crawled/lx_7EuqGLNEZ",
+        "assets/reviews/crawled/lx_4qseGI44a"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love this piece",
+          "lang": "en",
+          "product": "Grim Reaper Embroidered Oversized Zip-up Hoodie [BLOOD MIST]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Love this piece",
+          "lang": "en",
+          "product": "Deathwish Luxury Tarnished Uncuffed Cargos [NIGHTMARE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Love this piece",
+          "lang": "en",
+          "product": "Void Tech™ Armored Short Sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r063",
-      "name": "Keshav K.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Love this piece",
-      "product": "Deathwish Luxury Tarnished Uncuffed Cargos [NIGHTMARE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_7EuqGLNEZ"
-    },
-    {
-      "id": "r064",
-      "name": "Keshav K.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Love this piece",
-      "product": "Void Tech™ Armored Short Sleeve Compression [NIGHTMARE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_4qseGI44a"
-    },
-    {
-      "id": "r065",
+      "id": "r047",
       "name": "Jeltje J.",
       "lang": "en",
       "rating": 4.0,
-      "text": "Beautiful print and nice hood, the fur can detach with buttons which is very nice. There are little skulls around the wrists which are also very cool. Only downside is that it is a bit too wide in the arms for me, I have to train them more to fit it better. The pockets also stay open, because of the tightness around the boobs. And the waist area is a bit more lose than the boob area too. It still looks very good tho! And I’m very happy I ordered an xs.",
-      "product": "Women’s Parasite Fitted Faux-Fur Zip-up Jacket [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_gALnrNQcZ"
+      "images": [
+        "assets/reviews/crawled/lx_gALnrNQcZ"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Beautiful print and nice hood, the fur can detach with buttons which is very nice. There are little skulls around the wrists which are also very cool. Only downside is that it is a bit too wide in the arms for me, I have to train them more to fit it better. The pockets also stay open, because of the tightness around the boobs. And the waist area is a bit more lose than the boob area too. It still looks very good tho! And I’m very happy I ordered an xs.",
+          "lang": "en",
+          "product": "Women’s Parasite Fitted Faux-Fur Zip-up Jacket [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r066",
+      "id": "r048",
       "name": "Mikail O.",
       "lang": "en",
       "rating": 5.0,
-      "text": "⛓️🕷️🥰",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_w9kongI5S"
+      "images": [
+        "assets/reviews/crawled/lx_w9kongI5S",
+        "assets/reviews/crawled/lx_Rx9SMHoUMv"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "⛓️🕷️🥰",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Increduble",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r067",
+      "id": "r049",
       "name": "Susana E.",
       "lang": "en",
       "rating": 5.0,
-      "text": "EXCELLENTE",
-      "product": "Women’s Faerie Banana Shaped Uncuffed Sweatpants [ANGEL VEIN]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_Pog8ZASzFg"
+      "images": [
+        "assets/reviews/crawled/lx_Pog8ZASzFg"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "EXCELLENTE",
+          "lang": "en",
+          "product": "Women’s Faerie Banana Shaped Uncuffed Sweatpants [ANGEL VEIN]"
+        }
+      ]
     },
     {
-      "id": "r068",
+      "id": "r050",
       "name": "Jaruto U.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Feels great and reminder you don’t wear the doom tech short sleeve compression. It wears you like venom . S/Darkness .",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_igk2o71Kv"
+      "images": [
+        "assets/reviews/crawled/lx_igk2o71Kv"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Feels great and reminder you don’t wear the doom tech short sleeve compression. It wears you like venom . S/Darkness .",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r069",
+      "id": "r051",
       "name": "Victor F.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Best compression that I have for now",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_yjpMsVbSV"
+      "images": [
+        "assets/reviews/crawled/lx_yjpMsVbSV"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Best compression that I have for now",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r070",
+      "id": "r052",
       "name": "Dadrian H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Honestly a great jacket. Worth the money",
-      "product": "Death Slayer Oversized Zip-up Hoodie [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_tfJotoxB7"
+      "images": [
+        "assets/reviews/crawled/lx_tfJotoxB7",
+        "assets/reviews/crawled/lx_ND1X_WPgE"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Honestly a great jacket. Worth the money",
+          "lang": "en",
+          "product": "Death Slayer Oversized Zip-up Hoodie [NIGHTMARE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Amazing long sleeve compression very comfortable once u wear it for a little truly a amazing compression DOOM TECH FOR LIFE",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Longsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r071",
+      "id": "r053",
       "name": "Eric A.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Form fitting, the material is high-quality, I am 6’3” 210 and the XL is perfect.",
-      "product": "Doom Tech™ Armored shortsleeve Compression [CARNAGE/CLARK SIGNATURE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_Ek-W43JPj"
+      "images": [
+        "assets/reviews/crawled/lx_Ek-W43JPj"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Form fitting, the material is high-quality, I am 6’3” 210 and the XL is perfect.",
+          "lang": "en",
+          "product": "Doom Tech™ Armored shortsleeve Compression [CARNAGE/CLARK SIGNATURE]"
+        }
+      ]
     },
     {
-      "id": "r072",
+      "id": "r054",
       "name": "Brody G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love the tightness around the arms and back and still a little loose near the bottom. 10/10 and looks beautiful",
-      "product": "Void Tech™ Venom Texture shortsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_Y81wkbeWO"
+      "images": [
+        "assets/reviews/crawled/lx_Y81wkbeWO"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love the tightness around the arms and back and still a little loose near the bottom. 10/10 and looks beautiful",
+          "lang": "en",
+          "product": "Void Tech™ Venom Texture shortsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r073",
+      "id": "r055",
       "name": "Sonia E.",
       "lang": "en",
       "rating": 5.0,
-      "text": "It’s so cute, I love it so much 🥹",
-      "product": "Women’s Parasite Fitted Faux-Fur Zip-up Jacket [BLOSSOM PINK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_Qt0_NT_RA"
+      "images": [
+        "assets/reviews/crawled/lx_Qt0_NT_RA"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "It’s so cute, I love it so much 🥹",
+          "lang": "en",
+          "product": "Women’s Parasite Fitted Faux-Fur Zip-up Jacket [BLOSSOM PINK]"
+        }
+      ]
     },
     {
-      "id": "r074",
+      "id": "r056",
       "name": "Kevin B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing pump cover",
-      "product": "Shadow Monarch Oversized T-shirt [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_eJQbYnhmM"
+      "images": [
+        "assets/reviews/crawled/lx_eJQbYnhmM"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing pump cover",
+          "lang": "en",
+          "product": "Shadow Monarch Oversized T-shirt [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r075",
+      "id": "r057",
       "name": "Deidra K.",
       "lang": "en",
       "rating": 4.0,
-      "text": "Love the design and feeling of the body suit, great mobility in it. The reason I give it 4 stars and not 5 is because I have decent sized glutes and thighs and it was a bit difficult to get the body suit on because I didn’t want to tear or stretch the stitching of the upper part of the suit, but other than that 10/10 love it and get so many compliments from it <3",
-      "product": "Void Tech™ Blood Borne Bodysuit [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_vI3m4rpLU"
+      "images": [
+        "assets/reviews/crawled/lx_vI3m4rpLU"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Love the design and feeling of the body suit, great mobility in it. The reason I give it 4 stars and not 5 is because I have decent sized glutes and thighs and it was a bit difficult to get the body suit on because I didn’t want to tear or stretch the stitching of the upper part of the suit, but other than that 10/10 love it and get so many compliments from it <3",
+          "lang": "en",
+          "product": "Void Tech™ Blood Borne Bodysuit [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r076",
+      "id": "r058",
       "name": "Anthony R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Shorter wait time, and honestly these are fire. No lie. I’m definitely buying from the next drop",
-      "product": "Camo Oversized Luxury Cargos [NIGHTSHADE CAMO]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_muV4SkO7E"
+      "images": [
+        "assets/reviews/crawled/lx_muV4SkO7E"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Shorter wait time, and honestly these are fire. No lie. I’m definitely buying from the next drop",
+          "lang": "en",
+          "product": "Camo Oversized Luxury Cargos [NIGHTSHADE CAMO]"
+        }
+      ]
     },
     {
-      "id": "r077",
+      "id": "r059",
       "name": "Gabriel D.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Absolutely amazing looking shirt",
-      "product": "Void Tech™ BloodBorne shortsleeve Compression [BLOOD BORNE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_p1JMe3-op"
+      "images": [
+        "assets/reviews/crawled/lx_p1JMe3-op"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Absolutely amazing looking shirt",
+          "lang": "en",
+          "product": "Void Tech™ BloodBorne shortsleeve Compression [BLOOD BORNE]"
+        }
+      ]
     },
     {
-      "id": "r078",
+      "id": "r060",
       "name": "Sofia O.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Honestly, as well as the style, the texture and qualities are amazing.",
-      "product": "Women’s Chaos Ribbed Tank Top [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_mbGGsFi8V"
+      "images": [
+        "assets/reviews/crawled/lx_mbGGsFi8V"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Honestly, as well as the style, the texture and qualities are amazing.",
+          "lang": "en",
+          "product": "Women’s Chaos Ribbed Tank Top [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r079",
+      "id": "r061",
       "name": "Kostas B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Just insane!!!",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_0ajqLUdqg"
+      "images": [
+        "assets/reviews/crawled/lx_0ajqLUdqg"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Just insane!!!",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r080",
+      "id": "r062",
       "name": "Raffi T.",
       "lang": "en",
       "rating": 5.0,
-      "text": "feels way more snug than youd expect, follow the size chart and you should be fine absolute banger ❤️❤️",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_lrJ6KaCdR"
+      "images": [
+        "assets/reviews/crawled/lx_lrJ6KaCdR"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "feels way more snug than youd expect, follow the size chart and you should be fine absolute banger ❤️❤️",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r081",
+      "id": "r063",
       "name": "Pedro M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Feels great perfect size and the looks are amazing",
-      "product": "Soul Sanctum Cut-off Tee [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_lRHzFChvD"
+      "images": [
+        "assets/reviews/crawled/lx_lRHzFChvD",
+        "assets/reviews/crawled/lx_9xanuT-eDl"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Feels great perfect size and the looks are amazing",
+          "lang": "en",
+          "product": "Soul Sanctum Cut-off Tee [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Feels very comfy",
+          "lang": "en",
+          "product": "French Terry Shorts [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r082",
-      "name": "Pedro M.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Feels very comfy",
-      "product": "French Terry Shorts [VINTAGE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_9xanuT-eDl"
-    },
-    {
-      "id": "r083",
+      "id": "r064",
       "name": "Steven E.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I loved it",
-      "product": "Atonement Oversized T-shirt [BLOSSOM PINK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_6nh6egbaU"
+      "images": [
+        "assets/reviews/crawled/lx_6nh6egbaU",
+        "assets/reviews/crawled/lx_yDwrmVhgP"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I loved it",
+          "lang": "en",
+          "product": "Atonement Oversized T-shirt [BLOSSOM PINK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "I loved it",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [WITHER]"
+        }
+      ]
     },
     {
-      "id": "r084",
-      "name": "Steven E.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "I loved it",
-      "product": "Draconian Metallic Uncuffed Cargos [WITHER]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_yDwrmVhgP"
-    },
-    {
-      "id": "r085",
+      "id": "r065",
       "name": "Wilder B.",
       "lang": "en",
       "rating": 4.0,
-      "text": "Shirt fits perfect but the plastic on the logo didn’t came off",
-      "product": "Doom Tech™ Armored shortsleeve Compression [MIDNIGHT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_4N_T_hzpiy"
+      "images": [
+        "assets/reviews/crawled/lx_4N_T_hzpiy"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Shirt fits perfect but the plastic on the logo didn’t came off",
+          "lang": "en",
+          "product": "Doom Tech™ Armored shortsleeve Compression [MIDNIGHT]"
+        }
+      ]
     },
     {
-      "id": "r086",
+      "id": "r066",
       "name": "Ralph Rankin R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Very tight and the material is thick",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_OqsNvXYh-"
+      "images": [
+        "assets/reviews/crawled/lx_OqsNvXYh-"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Very tight and the material is thick",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r087",
+      "id": "r067",
       "name": "Carlos P.",
       "lang": "en",
       "rating": 5.0,
-      "text": "makes you look like a sick cu*t.",
-      "product": "Hellspawn Ruined Oversized T-shirt [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_5FvABdbHb"
+      "images": [
+        "assets/reviews/crawled/lx_5FvABdbHb",
+        "assets/reviews/crawled/lx_yAmDA6vdA"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "makes you look like a sick cu*t.",
+          "lang": "en",
+          "product": "Hellspawn Ruined Oversized T-shirt [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Great quality and worth the price.",
+          "lang": "en",
+          "product": "Void Tech™ Venom Texture shortsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r088",
-      "name": "Carlos P.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Great quality and worth the price.",
-      "product": "Void Tech™ Venom Texture shortsleeve Compression [VOID BLACK]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_yAmDA6vdA"
-    },
-    {
-      "id": "r089",
+      "id": "r068",
       "name": "Joshua W.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Actually amazing and the tightness is really strong but perfect! Can’t wait for the next drop.",
-      "product": "Void Tech™ Venom Texture shortsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_9DZpAsDdja"
+      "images": [
+        "assets/reviews/crawled/lx_9DZpAsDdja"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Actually amazing and the tightness is really strong but perfect! Can’t wait for the next drop.",
+          "lang": "en",
+          "product": "Void Tech™ Venom Texture shortsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r090",
+      "id": "r069",
       "name": "Annie B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I love it. It fits so comfortably it’s really good to work out in.",
-      "product": "Void Tech™ Excalibur Shrug [FROST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_eKVbdAkBR"
+      "images": [
+        "assets/reviews/crawled/lx_eKVbdAkBR"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I love it. It fits so comfortably it’s really good to work out in.",
+          "lang": "en",
+          "product": "Void Tech™ Excalibur Shrug [FROST]"
+        }
+      ]
     },
     {
-      "id": "r091",
+      "id": "r070",
       "name": "Renata V.",
       "lang": "en",
       "rating": 5.0,
-      "text": "W ahh pants",
-      "product": "Webbed Venom Texture Uncuffed Sweatpants [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_xBqVTN_VA"
+      "images": [
+        "assets/reviews/crawled/lx_xBqVTN_VA"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "W ahh pants",
+          "lang": "en",
+          "product": "Webbed Venom Texture Uncuffed Sweatpants [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r092",
+      "id": "r071",
       "name": "Rory K.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Great material, durable design",
-      "product": "Draconian Metallic Uncuffed Cargos [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_NW5FMaCGV"
+      "images": [
+        "assets/reviews/crawled/lx_NW5FMaCGV"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Great material, durable design",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r093",
+      "id": "r072",
       "name": "Jakub Ś.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Everything is really good except taking the shirt off is little problematic becouse of how tight it is",
-      "product": "Venom Texture Advanced Maiden Beater [2-Pack]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_jFCqAWbnb"
+      "images": [
+        "assets/reviews/crawled/lx_jFCqAWbnb"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Everything is really good except taking the shirt off is little problematic becouse of how tight it is",
+          "lang": "en",
+          "product": "Venom Texture Advanced Maiden Beater [2-Pack]"
+        }
+      ]
     },
     {
-      "id": "r094",
+      "id": "r073",
       "name": "Garrett M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Beautiful and keeps it nice and compressed and cool.",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_n1sx7rgMn"
+      "images": [
+        "assets/reviews/crawled/lx_n1sx7rgMn"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Beautiful and keeps it nice and compressed and cool.",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r095",
+      "id": "r074",
       "name": "Alan G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing fit",
-      "product": "Void Tech™ BloodBorne shortsleeve Compression [ARCANE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_pdz9kjq0c"
+      "images": [
+        "assets/reviews/crawled/lx_pdz9kjq0c",
+        "assets/reviews/crawled/lx_cAs9NdzMWS"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing fit",
+          "lang": "en",
+          "product": "Void Tech™ BloodBorne shortsleeve Compression [ARCANE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Fits perfectly around the arms and chest makes your triceps pop",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r096",
-      "name": "Alan G.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Fits perfectly around the arms and chest makes your triceps pop",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_cAs9NdzMWS"
-    },
-    {
-      "id": "r097",
+      "id": "r075",
       "name": "Oswin G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I loveee",
-      "product": "Heavenly Knight Embroidered Cut-and-Sew Panel Zip-up [VINTAGE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_wuPSisEmT"
+      "images": [
+        "assets/reviews/crawled/lx_wuPSisEmT"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I loveee",
+          "lang": "en",
+          "product": "Heavenly Knight Embroidered Cut-and-Sew Panel Zip-up [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r098",
+      "id": "r076",
       "name": "Steven H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "It's nice and comfortable and lowkey want more",
-      "product": "Void Tech™ Armored Short Sleeve Compression [BLOOD METAL]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_kGlATc4ZI"
+      "images": [
+        "assets/reviews/crawled/lx_kGlATc4ZI",
+        "assets/reviews/crawled/lx__d3yKrLYF",
+        "assets/reviews/crawled/lx_J8_J1KKa_"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "It's nice and comfortable and lowkey want more",
+          "lang": "en",
+          "product": "Void Tech™ Armored Short Sleeve Compression [BLOOD METAL]"
+        },
+        {
+          "rating": 5.0,
+          "text": "It's amazing ngl I can't wait for next week",
+          "lang": "en",
+          "product": "Void Tech™ Fallen Knight Short Sleeve Compression [NOVA]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Iove it",
+          "lang": "en",
+          "product": "Berserker Oversized Zip-up Hoodie [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r099",
-      "name": "Steven H.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "It's amazing ngl I can't wait for next week",
-      "product": "Void Tech™ Fallen Knight Short Sleeve Compression [NOVA]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx__d3yKrLYF"
-    },
-    {
-      "id": "r100",
-      "name": "Steven H.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Iove it",
-      "product": "Berserker Oversized Zip-up Hoodie [NIGHTMARE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_J8_J1KKa_"
-    },
-    {
-      "id": "r101",
+      "id": "r077",
       "name": "Christian F.",
       "lang": "en",
       "rating": 5.0,
-      "text": "The design looks even better in person! The size M fits snugly around my chest, shoulders, and arms while keeping a nice tapered look around the waist. The detailing is incredible, especially on the back, and the Midnight/Silver colorway looks amazing. Definitely happy with this purchase!",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [MIDNIGHT / Silver Print]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_5NOoPEY-C"
+      "images": [
+        "assets/reviews/crawled/lx_5NOoPEY-C"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "The design looks even better in person! The size M fits snugly around my chest, shoulders, and arms while keeping a nice tapered look around the waist. The detailing is incredible, especially on the back, and the Midnight/Silver colorway looks amazing. Definitely happy with this purchase!",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [MIDNIGHT / Silver Print]"
+        }
+      ]
     },
     {
-      "id": "r102",
+      "id": "r078",
       "name": "Junt D.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Fire fit",
-      "product": "937 Embroidered Tactical Oversized Full-Zip Jacket [VINTAGE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_CKA0P7B30"
+      "images": [
+        "assets/reviews/crawled/lx_CKA0P7B30"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Fire fit",
+          "lang": "en",
+          "product": "937 Embroidered Tactical Oversized Full-Zip Jacket [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r103",
+      "id": "r079",
       "name": "Esme A.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love it would totally recommend it runs small from bottom , would recommend to size up 🤭",
-      "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_z_-VB4QQj"
+      "images": [
+        "assets/reviews/crawled/lx_z_-VB4QQj"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love it would totally recommend it runs small from bottom , would recommend to size up 🤭",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r104",
+      "id": "r080",
       "name": "Chloe N.",
       "lang": "en",
       "rating": 5.0,
-      "text": "extremely comfortable compression with a high quality built in bra, easy to move/ lift in and stays in place. also as a huge bloodborne fan, this is probably my favorite design yet :) feels like i walked straight out of old yharnam",
-      "product": "Void Tech™ Blood Borne Bodysuit [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_xw7J5DZ22"
+      "images": [
+        "assets/reviews/crawled/lx_xw7J5DZ22"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "extremely comfortable compression with a high quality built in bra, easy to move/ lift in and stays in place. also as a huge bloodborne fan, this is probably my favorite design yet :) feels like i walked straight out of old yharnam",
+          "lang": "en",
+          "product": "Void Tech™ Blood Borne Bodysuit [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r105",
+      "id": "r081",
       "name": "Khiem C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I LOVE SM DOOMTECH",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_GBXezO9Jh"
+      "images": [
+        "assets/reviews/crawled/lx_GBXezO9Jh"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I LOVE SM DOOMTECH",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r106",
+      "id": "r082",
       "name": "Ali Y.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Peakkk",
-      "product": "Nightfall Bodybuilding Stringer [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_Z4f-0vWMp"
+      "images": [
+        "assets/reviews/crawled/lx_Z4f-0vWMp"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Peakkk",
+          "lang": "en",
+          "product": "Nightfall Bodybuilding Stringer [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r107",
+      "id": "r083",
       "name": "Jacob T.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Material feels great - nice and thick, super smooth. The decals don't feel like they'll come off either. The fit is super tight, but comfortable.",
-      "product": "Void Tech™ Arachnid Venom Texture Cut-off Compression [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_JzNEQFBjw"
+      "images": [
+        "assets/reviews/crawled/lx_JzNEQFBjw"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Material feels great - nice and thick, super smooth. The decals don't feel like they'll come off either. The fit is super tight, but comfortable.",
+          "lang": "en",
+          "product": "Void Tech™ Arachnid Venom Texture Cut-off Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r108",
+      "id": "r084",
       "name": "Chris V.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love how it fits and I’m enjoying the comfortability of the fabric",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_oEHwOgypg"
+      "images": [
+        "assets/reviews/crawled/lx_oEHwOgypg"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love how it fits and I’m enjoying the comfortability of the fabric",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r109",
+      "id": "r085",
       "name": "Nahum C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Absolutely loving this long sleeve and will definitely be purchasing future drops.",
-      "product": "Doom Tech™ Armored Longsleeve Compression [MIDNIGHT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_kRH4_wE4c"
+      "images": [
+        "assets/reviews/crawled/lx_kRH4_wE4c"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Absolutely loving this long sleeve and will definitely be purchasing future drops.",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Longsleeve Compression [MIDNIGHT]"
+        }
+      ]
     },
     {
-      "id": "r110",
+      "id": "r086",
       "name": "Anlen A.",
       "lang": "en",
       "rating": 5.0,
-      "text": "So cool! Good quality it’s worth",
-      "product": "Atonement Oversized T-shirt [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_TosYRIdUV"
+      "images": [
+        "assets/reviews/crawled/lx_TosYRIdUV",
+        "assets/reviews/crawled/lx_YA_B7hGZz"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "So cool! Good quality it’s worth",
+          "lang": "en",
+          "product": "Atonement Oversized T-shirt [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "It’s much better in person than in pictures, I love the quality, I ordered a size XL for extra oversized style :)",
+          "lang": "en",
+          "product": "Recluse Oversized Uncuffed Cargos [RECLUSE]"
+        }
+      ]
     },
     {
-      "id": "r111",
-      "name": "Anlen A.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "It’s much better in person than in pictures, I love the quality, I ordered a size XL for extra oversized style :)",
-      "product": "Recluse Oversized Uncuffed Cargos [RECLUSE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_YA_B7hGZz"
-    },
-    {
-      "id": "r112",
+      "id": "r087",
       "name": "Dominika M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Was a bit tight at first but stretched out enough to be comfortable the second time I wore it. Looks gorgeous, the pattern catches the light beautifully, and great quality.",
-      "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_fUrb8wIQg"
+      "images": [
+        "assets/reviews/crawled/lx_fUrb8wIQg"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Was a bit tight at first but stretched out enough to be comfortable the second time I wore it. Looks gorgeous, the pattern catches the light beautifully, and great quality.",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r113",
+      "id": "r088",
       "name": "Paul H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love them",
-      "product": "Webbed Venom Texture Uncuffed Sweatpants [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_R4Tu9R3PX"
+      "images": [
+        "assets/reviews/crawled/lx_R4Tu9R3PX"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love them",
+          "lang": "en",
+          "product": "Webbed Venom Texture Uncuffed Sweatpants [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r114",
+      "id": "r089",
       "name": "Nicole M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Beautiful, probably one of the best designs of all time. The mix between the printed details and venom texture feels so good and looks excellent.",
-      "product": "Draconian Metallic Uncuffed Cargos [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_kOUUi0KV9"
+      "images": [
+        "assets/reviews/crawled/lx_kOUUi0KV9"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Beautiful, probably one of the best designs of all time. The mix between the printed details and venom texture feels so good and looks excellent.",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r115",
+      "id": "r090",
       "name": "Caleb C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Very great fit, comfy and looks insane",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_v7dVm7B8U"
+      "images": [
+        "assets/reviews/crawled/lx_v7dVm7B8U"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Very great fit, comfy and looks insane",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r116",
+      "id": "r091",
       "name": "Terri S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Fits great and love that no one has it at the gym",
-      "product": "Women’s Rhinestone Flared Leggings [DUSK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_BqG5H1ZMn"
+      "images": [
+        "assets/reviews/crawled/lx_BqG5H1ZMn"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Fits great and love that no one has it at the gym",
+          "lang": "en",
+          "product": "Women’s Rhinestone Flared Leggings [DUSK]"
+        }
+      ]
     },
     {
-      "id": "r117",
+      "id": "r092",
       "name": "Diego H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing fit, clean, too bad the back is kind of empty but still 10/10",
-      "product": "Void Tech™ Arachnid Venom Texture Cut-off Compression [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_z4Mh8kJ-u"
+      "images": [
+        "assets/reviews/crawled/lx_z4Mh8kJ-u"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing fit, clean, too bad the back is kind of empty but still 10/10",
+          "lang": "en",
+          "product": "Void Tech™ Arachnid Venom Texture Cut-off Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r118",
+      "id": "r093",
       "name": "Santiago S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing! It feels heavy and is made of great quality. The shipping took a bit longer (almost 3 weeks), but it arrived with no problems, and the wait was well worth it!",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [DECAY]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_RqAphnXrm"
+      "images": [
+        "assets/reviews/crawled/lx_RqAphnXrm"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing! It feels heavy and is made of great quality. The shipping took a bit longer (almost 3 weeks), but it arrived with no problems, and the wait was well worth it!",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [DECAY]"
+        }
+      ]
     },
     {
-      "id": "r119",
+      "id": "r094",
       "name": "Angel O.",
       "lang": "en",
       "rating": 5.0,
-      "text": "The compression makes me feel like black suit Spider-Man.",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_PsqhkKHbj"
+      "images": [
+        "assets/reviews/crawled/lx_PsqhkKHbj"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "The compression makes me feel like black suit Spider-Man.",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r120",
+      "id": "r095",
       "name": "Cooper T.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Peak. Can you pls check my account. It’s @cooper.tang on TikTok and @cooper.tangg on instagram",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_6DJJhMOB3"
+      "images": [
+        "assets/reviews/crawled/lx_6DJJhMOB3"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Peak. Can you pls check my account. It’s @cooper.tang on TikTok and @cooper.tangg on instagram",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r121",
+      "id": "r096",
       "name": "Miguel L.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Good",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_zTJTYfYBC"
+      "images": [
+        "assets/reviews/crawled/lx_zTJTYfYBC"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Good",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r122",
+      "id": "r097",
       "name": "William B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "The only problem I ran into was the wrapping sticking to the logo but other than that great product yall outdid y’all’s selves",
-      "product": "Doom Tech™ Armored Longsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_B85bbKv_E"
+      "images": [
+        "assets/reviews/crawled/lx_B85bbKv_E"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "The only problem I ran into was the wrapping sticking to the logo but other than that great product yall outdid y’all’s selves",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Longsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r123",
+      "id": "r098",
       "name": "Maya B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I got a medium and it is a little tight on me but feels amazing I’d get a size bigger from what you usually wear. Recommended I’d definitely get another one!",
-      "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_jirlOoVjV"
+      "images": [
+        "assets/reviews/crawled/lx_jirlOoVjV",
+        "assets/reviews/crawled/lx_mk9QUupDU"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I got a medium and it is a little tight on me but feels amazing I’d get a size bigger from what you usually wear. Recommended I’d definitely get another one!",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Love how it looks and feels very nice while working out.",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Death Crawler Sports Bra [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r124",
-      "name": "Maya B.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Love how it looks and feels very nice while working out.",
-      "product": "Women’s Void Tech™ Death Crawler Sports Bra [DARKNESS]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_mk9QUupDU"
-    },
-    {
-      "id": "r125",
+      "id": "r099",
       "name": "David S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "First time ever ordering from the store and I'm pretty sure I'll be. May need to order large next time but I'm in love",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_QU598Z7iZ"
+      "images": [
+        "assets/reviews/crawled/lx_QU598Z7iZ"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "First time ever ordering from the store and I'm pretty sure I'll be. May need to order large next time but I'm in love",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r126",
+      "id": "r100",
       "name": "Key F.",
       "lang": "en",
       "rating": 5.0,
-      "text": "The darkness 😮‍💨😮‍💨🖤🖤🖤🖤🖤",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VINTAGE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_ZLy1ZyYA3"
+      "images": [
+        "assets/reviews/crawled/lx_ZLy1ZyYA3"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "The darkness 😮‍💨😮‍💨🖤🖤🖤🖤🖤",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r127",
+      "id": "r101",
       "name": "Thomas J.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Fire quality",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_JBkcurpN0"
+      "images": [
+        "assets/reviews/crawled/lx_JBkcurpN0",
+        "assets/reviews/crawled/lx_vI2Vduw0P"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Fire quality",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Peak design",
+          "lang": "en",
+          "product": "Venom Texture Advanced Maiden Beater [2-Pack]"
+        }
+      ]
     },
     {
-      "id": "r128",
+      "id": "r102",
       "name": "Rashaud S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Ts tuff brev",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_xVCM_8oOb"
+      "images": [
+        "assets/reviews/crawled/lx_xVCM_8oOb"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Ts tuff brev",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r129",
+      "id": "r103",
       "name": "Air Nova Imp M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love it, these were for men but I ordered XS and fit perfectly.",
-      "product": "Draconian Metallic Uncuffed Cargos [REVENANT]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_ODPHS6K7N"
+      "images": [
+        "assets/reviews/crawled/lx_ODPHS6K7N"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love it, these were for men but I ordered XS and fit perfectly.",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [REVENANT]"
+        }
+      ]
     },
     {
-      "id": "r130",
+      "id": "r104",
       "name": "Alexis S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "It's very look ☠️",
-      "product": "Waffle Knit Cut-off Tee [CREAME BRULEE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_ExLu28mFQ"
+      "images": [
+        "assets/reviews/crawled/lx_ExLu28mFQ"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "It's very look ☠️",
+          "lang": "en",
+          "product": "Waffle Knit Cut-off Tee [CREAME BRULEE]"
+        }
+      ]
     },
     {
-      "id": "r131",
+      "id": "r105",
       "name": "Ayden G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Fire as always, size up",
-      "product": "Death Slayer Oversized Zip-up Hoodie [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_24kYD6B2P"
+      "images": [
+        "assets/reviews/crawled/lx_24kYD6B2P"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Fire as always, size up",
+          "lang": "en",
+          "product": "Death Slayer Oversized Zip-up Hoodie [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r132",
-      "name": "Phurinat B.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "So cool!!",
-      "product": "Deathwish Luxury Tarnished Uncuffed Cargos [VOID BLACK]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_Ew7JPJ_bc"
-    },
-    {
-      "id": "r133",
+      "id": "r106",
       "name": "Nathan R.",
       "lang": "en",
-      "rating": 4.0,
-      "text": "Le sweat est vraiment incroyable mais la capuche est un peu trop petite et je pense que la faire plus large aurais été parfait",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VOID BLACK]",
+      "rating": 4.5,
       "verified": true,
-      "image": "assets/reviews/crawled/lx_AGodZG01O"
+      "images": [
+        "assets/reviews/crawled/lx_AGodZG01O",
+        "assets/reviews/crawled/lx_7DdZG9yuk"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Le sweat est vraiment incroyable mais la capuche est un peu trop petite et je pense que la faire plus large aurais été parfait",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "J’adore ce compression simple sobre et vraiment caractéristique",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r134",
-      "name": "Nathan R.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "J’adore ce compression simple sobre et vraiment caractéristique",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_7DdZG9yuk"
-    },
-    {
-      "id": "r135",
+      "id": "r107",
       "name": "Jaime M.",
       "lang": "en",
       "rating": 4.0,
-      "text": "Feels pretty smooth n also it makes me more stand out more. What I like about too is that I can grow into it",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_8g94A6ool"
+      "images": [
+        "assets/reviews/crawled/lx_8g94A6ool"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Feels pretty smooth n also it makes me more stand out more. What I like about too is that I can grow into it",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r136",
+      "id": "r108",
       "name": "Daniel P.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Love it shows all my muscles plus the white helps a lot more",
-      "product": "Nightfall Bodybuilding Stringer [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_bUf_ygI89"
+      "images": [
+        "assets/reviews/crawled/lx_bUf_ygI89"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Love it shows all my muscles plus the white helps a lot more",
+          "lang": "en",
+          "product": "Nightfall Bodybuilding Stringer [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r137",
+      "id": "r109",
       "name": "Nelvin T.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Long shipping but worth it",
-      "product": "937 Embroidered Tactical Oversized Uncuffed Cargos [VINTAGE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_AedH2rXCZL"
+      "images": [
+        "assets/reviews/crawled/lx_AedH2rXCZL"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Long shipping but worth it",
+          "lang": "en",
+          "product": "937 Embroidered Tactical Oversized Uncuffed Cargos [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r138",
+      "id": "r110",
       "name": "Hanashdy R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I wish the clothes could arrive faster, but I love this brand and I will work hard to be sponsored by this brand.",
-      "product": "Women’s Void Tech™ Nightreign Yoga Jacket [FROST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_Nn70mxjg3"
+      "images": [
+        "assets/reviews/crawled/lx_Nn70mxjg3"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I wish the clothes could arrive faster, but I love this brand and I will work hard to be sponsored by this brand.",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Nightreign Yoga Jacket [FROST]"
+        }
+      ]
     },
     {
-      "id": "r139",
+      "id": "r111",
       "name": "Parker T.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I love this sweater a little pricey but it is worth the price although i dont like thst i paid extra for 1-3 day shiping and it almost took a month",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_gy3O0mm9u"
+      "images": [
+        "assets/reviews/crawled/lx_gy3O0mm9u"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I love this sweater a little pricey but it is worth the price although i dont like thst i paid extra for 1-3 day shiping and it almost took a month",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r140",
+      "id": "r112",
       "name": "Charlotte B.",
       "lang": "en",
       "rating": 4.0,
-      "text": "The torso is pretty tight and has a tendency to ride up and bunch up, the fabric is thinner than i was expecting definitely more of a sporty style. Otherwise design is great, the hood is super fluffy and theres lots of nice details.",
-      "product": "Women’s Parasite Fitted Faux-Fur Zip-up Jacket [DUSK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_-NF-gcE93"
+      "images": [
+        "assets/reviews/crawled/lx_-NF-gcE93"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "The torso is pretty tight and has a tendency to ride up and bunch up, the fabric is thinner than i was expecting definitely more of a sporty style. Otherwise design is great, the hood is super fluffy and theres lots of nice details.",
+          "lang": "en",
+          "product": "Women’s Parasite Fitted Faux-Fur Zip-up Jacket [DUSK]"
+        }
+      ]
     },
     {
-      "id": "r141",
+      "id": "r113",
       "name": "Andy G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Absolutely love the feel and texture of the long sleeve, definitely different compared to their other compression long sleeves but in a good way",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_AgLHPMP-h"
+      "images": [
+        "assets/reviews/crawled/lx_AgLHPMP-h"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Absolutely love the feel and texture of the long sleeve, definitely different compared to their other compression long sleeves but in a good way",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r142",
-      "name": "Thomas J.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Peak design",
-      "product": "Venom Texture Advanced Maiden Beater [2-Pack]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_vI2Vduw0P"
-    },
-    {
-      "id": "r143",
+      "id": "r114",
       "name": "Araz H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Your best drop ever",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_RqnZX6eAw"
+      "images": [
+        "assets/reviews/crawled/lx_RqnZX6eAw"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Your best drop ever",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r144",
+      "id": "r115",
       "name": "Luke H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Its amazing",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_1rOamW05p"
+      "images": [
+        "assets/reviews/crawled/lx_1rOamW05p"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Its amazing",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r145",
+      "id": "r116",
       "name": "Zoe A.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I'm a 5'7 140 lb girl, and it fit so perfectly- not uncomfortable at all, and no riding up. Also, it was surprisingly flexible while lifting. I was worried that doing long motions like lat pulldowns would be weird, but it was fine.",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_eSqy-HSNu"
+      "images": [
+        "assets/reviews/crawled/lx_eSqy-HSNu"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I'm a 5'7 140 lb girl, and it fit so perfectly- not uncomfortable at all, and no riding up. Also, it was surprisingly flexible while lifting. I was worried that doing long motions like lat pulldowns would be weird, but it was fine.",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r146",
+      "id": "r117",
       "name": "Julianna C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Such a flattering one piece!! Love it and am completely obsessed",
-      "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_JExqtdrkt"
+      "images": [
+        "assets/reviews/crawled/lx_JExqtdrkt"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Such a flattering one piece!! Love it and am completely obsessed",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r147",
+      "id": "r118",
       "name": "Fernanda S.",
       "lang": "en",
       "rating": 4.0,
-      "text": "Thought it would be more compressive",
-      "product": "Women’s Death Sigil Baby Tee [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_NNz7QIR2t"
+      "images": [
+        "assets/reviews/crawled/lx_NNz7QIR2t"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "Thought it would be more compressive",
+          "lang": "en",
+          "product": "Women’s Death Sigil Baby Tee [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r148",
+      "id": "r119",
       "name": "Simeon H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Great joggers looks amazing.",
-      "product": "Mens Essential Embroidered Uncuffed Sweatpants [BONE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_ishmzurkV"
+      "images": [
+        "assets/reviews/crawled/lx_ishmzurkV"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Great joggers looks amazing.",
+          "lang": "en",
+          "product": "Mens Essential Embroidered Uncuffed Sweatpants [BONE]"
+        }
+      ]
     },
     {
-      "id": "r149",
-      "name": "Mikail O.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Increduble",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [VOID BLACK]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_Rx9SMHoUMv"
-    },
-    {
-      "id": "r150",
+      "id": "r120",
       "name": "Deyni G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Feeling like a Dragon 🐉",
-      "product": "Void Tech™ Blood Wyvern Full-Zip Longsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_grm4Krze4"
+      "images": [
+        "assets/reviews/crawled/lx_grm4Krze4",
+        "assets/reviews/crawled/lx_F56plJywF"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Feeling like a Dragon 🐉",
+          "lang": "en",
+          "product": "Void Tech™ Blood Wyvern Full-Zip Longsleeve Compression [VOID BLACK]"
+        },
+        {
+          "rating": 5.0,
+          "text": "Making more money for extra orders 👾",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [WHITE GRADIENT]"
+        }
+      ]
     },
     {
-      "id": "r151",
+      "id": "r121",
       "name": "Omack M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Bad ass shirt, never thought a shirt would be more worth it.",
-      "product": "Atonement Oversized T-shirt [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_qfQ4Hcset"
+      "images": [
+        "assets/reviews/crawled/lx_qfQ4Hcset"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Bad ass shirt, never thought a shirt would be more worth it.",
+          "lang": "en",
+          "product": "Atonement Oversized T-shirt [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r152",
-      "name": "Dadrian H.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Amazing long sleeve compression very comfortable once u wear it for a little truly a amazing compression DOOM TECH FOR LIFE",
-      "product": "Doom Tech™ Armored Longsleeve Compression [NIGHTMARE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_ND1X_WPgE"
-    },
-    {
-      "id": "r153",
+      "id": "r122",
       "name": "Luis B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing product. Feels good, comfortable, design is flawless.",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_kj_F0UyPvj"
+      "images": [
+        "assets/reviews/crawled/lx_kj_F0UyPvj"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing product. Feels good, comfortable, design is flawless.",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r154",
+      "id": "r123",
       "name": "Alejandro Erik M.",
       "lang": "en",
       "rating": 4.0,
-      "text": "It’s good",
-      "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_USmSoLCq7"
+      "images": [
+        "assets/reviews/crawled/lx_USmSoLCq7"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "It’s good",
+          "lang": "en",
+          "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r155",
+      "id": "r124",
       "name": "Bill S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Awesome design, color and fit! Quality materials used also",
-      "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_OlE_DvrAGE"
+      "images": [
+        "assets/reviews/crawled/lx_OlE_DvrAGE",
+        "assets/reviews/crawled/lx_9O7qSyeP5"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Awesome design, color and fit! Quality materials used also",
+          "lang": "en",
+          "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [NIGHTMARE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "I had to get a Medium, because it was the only size in stock. I would have preferred a Large due to length but they are still awesome. Great quality and style!",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r156",
+      "id": "r125",
       "name": "Omar K.",
       "lang": "en",
       "rating": 5.0,
-      "text": "God",
-      "product": "Tarnished Destroyed Oversized T-shirt [GHOST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_1FF4n0lPV"
+      "images": [
+        "assets/reviews/crawled/lx_1FF4n0lPV"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "God",
+          "lang": "en",
+          "product": "Tarnished Destroyed Oversized T-shirt [GHOST]"
+        }
+      ]
     },
     {
-      "id": "r157",
-      "name": "Deyni G.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Making more money for extra orders 👾",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [WHITE GRADIENT]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_F56plJywF"
-    },
-    {
-      "id": "r158",
+      "id": "r126",
       "name": "Rebecca S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Absolutely LOVE THIS, not a huge fan of sports bras when I’m climbing, genuinely so afraid I’m gonna flash someone, but it gets really hot, this was an amazing alternative!!! I’ve gotten a lot of compliments and everyone wants to know where it’s from lol",
-      "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_XnsfV-XVD"
+      "images": [
+        "assets/reviews/crawled/lx_XnsfV-XVD"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Absolutely LOVE THIS, not a huge fan of sports bras when I’m climbing, genuinely so afraid I’m gonna flash someone, but it gets really hot, this was an amazing alternative!!! I’ve gotten a lot of compliments and everyone wants to know where it’s from lol",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Regalia Open Back Bodysuit [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r159",
+      "id": "r127",
       "name": "Kenneth Y.",
       "lang": "en",
       "rating": 5.0,
-      "text": "They fit phenomenally and the fabric quality is great. Will definitely be shopping here again.",
-      "product": "Draconian Metallic Uncuffed Cargos [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_LyNxVMQwy"
+      "images": [
+        "assets/reviews/crawled/lx_LyNxVMQwy"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "They fit phenomenally and the fabric quality is great. Will definitely be shopping here again.",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r160",
+      "id": "r128",
       "name": "Gustavo V.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I absolutely loved it; everything is very well made.",
-      "product": "Void Tech™ Blood Wyvern Full-Zip Longsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_SL_Xovhhi"
+      "images": [
+        "assets/reviews/crawled/lx_SL_Xovhhi"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I absolutely loved it; everything is very well made.",
+          "lang": "en",
+          "product": "Void Tech™ Blood Wyvern Full-Zip Longsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r161",
+      "id": "r129",
       "name": "Sayra R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Excelente material y hermoso",
-      "product": "Void Tech™ Excalibur Shrug [FROST]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_aJ0Gd9T4y"
+      "images": [
+        "assets/reviews/crawled/lx_aJ0Gd9T4y"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Excelente material y hermoso",
+          "lang": "en",
+          "product": "Void Tech™ Excalibur Shrug [FROST]"
+        }
+      ]
     },
     {
-      "id": "r162",
+      "id": "r130",
       "name": "Valencio M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Tarnished Fool. Emboldened by the flame of ambition !",
-      "product": "Draconian Metallic Uncuffed Cargos [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_8vCrFE7Sf"
+      "images": [
+        "assets/reviews/crawled/lx_8vCrFE7Sf"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Tarnished Fool. Emboldened by the flame of ambition !",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r163",
+      "id": "r131",
       "name": "Louise L.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Top is Hella tight and nice",
-      "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_FpmoJ-KVf"
+      "images": [
+        "assets/reviews/crawled/lx_FpmoJ-KVf"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Top is Hella tight and nice",
+          "lang": "en",
+          "product": "Doom Tech™ Armored Venom Texture Short sleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r164",
+      "id": "r132",
       "name": "Ida Marie H.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Loved it! Super comfy",
-      "product": "Webbed Venom Texture Uncuffed Sweatpants [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_nOVNBhOBZ"
+      "images": [
+        "assets/reviews/crawled/lx_nOVNBhOBZ",
+        "assets/reviews/crawled/lx_h8R7QjtUJ"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Loved it! Super comfy",
+          "lang": "en",
+          "product": "Webbed Venom Texture Uncuffed Sweatpants [DARKNESS]"
+        },
+        {
+          "rating": 5.0,
+          "text": "I loved it! Perfect fit",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r165",
-      "name": "Ida Marie H.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "I loved it! Perfect fit",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_h8R7QjtUJ"
-    },
-    {
-      "id": "r166",
-      "name": "Andrea P.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Comfortable, super cute! Love that the material is breathable. Thumb holes are a plus! 🤍",
-      "product": "Void Tech™ Cursed Relic Long sleeve compression [FROST]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_Wc3k4S1wP"
-    },
-    {
-      "id": "r167",
+      "id": "r133",
       "name": "Solomon L.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Honestly best jumper I’ve ever worn",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [WITHER]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_aWcjqxA4G"
+      "images": [
+        "assets/reviews/crawled/lx_aWcjqxA4G"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Honestly best jumper I’ve ever worn",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [WITHER]"
+        }
+      ]
     },
     {
-      "id": "r168",
-      "name": "Dayron G.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "A really good jacket for the cold.",
-      "product": "937 Embroidered Tactical Oversized Full-Zip Jacket [VOID BLACK]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_sCCfj9RDt"
-    },
-    {
-      "id": "r169",
+      "id": "r134",
       "name": "Nathaniel C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing fit",
-      "product": "Webbed Venom Texture Uncuffed Sweatpants [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_n0YArXrke"
+      "images": [
+        "assets/reviews/crawled/lx_n0YArXrke"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing fit",
+          "lang": "en",
+          "product": "Webbed Venom Texture Uncuffed Sweatpants [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r170",
+      "id": "r135",
       "name": "Nataly C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "It's very comfortable and the design is too good",
-      "product": "Women’s Void Tech™ Death Crawler Seamless Shorts [DUSK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx__zI4XegCO"
+      "images": [
+        "assets/reviews/crawled/lx__zI4XegCO"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "It's very comfortable and the design is too good",
+          "lang": "en",
+          "product": "Women’s Void Tech™ Death Crawler Seamless Shorts [DUSK]"
+        }
+      ]
     },
     {
-      "id": "r171",
+      "id": "r136",
       "name": "Henry B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Muy buena calidad",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_JIIMKVSwZ"
+      "images": [
+        "assets/reviews/crawled/lx_JIIMKVSwZ"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Muy buena calidad",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r172",
+      "id": "r137",
       "name": "Khang T.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Nice",
-      "product": "Spider-Corpse Oversized T-shirt [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_HUFx1idYt"
+      "images": [
+        "assets/reviews/crawled/lx_HUFx1idYt"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Nice",
+          "lang": "en",
+          "product": "Spider-Corpse Oversized T-shirt [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r173",
-      "name": "Bill S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "I had to get a Medium, because it was the only size in stock. I would have preferred a Large due to length but they are still awesome. Great quality and style!",
-      "product": "Draconian Metallic Uncuffed Cargos [NIGHTMARE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_9O7qSyeP5"
-    },
-    {
-      "id": "r174",
+      "id": "r138",
       "name": "Mug B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Its peak",
-      "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [DECAY]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_3x4lNmbEA"
+      "images": [
+        "assets/reviews/crawled/lx_3x4lNmbEA"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Its peak",
+          "lang": "en",
+          "product": "Vindicator Tarnished Cargo Oversized Zip-up Hoodie [DECAY]"
+        }
+      ]
     },
     {
-      "id": "r175",
+      "id": "r139",
       "name": "Conchy M.",
       "lang": "en",
       "rating": 5.0,
-      "text": "It’s super comfortable and movable. I love it!",
-      "product": "Void Tech™ Excalibur Shrug [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_02-sdsX53"
+      "images": [
+        "assets/reviews/crawled/lx_02-sdsX53"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "It’s super comfortable and movable. I love it!",
+          "lang": "en",
+          "product": "Void Tech™ Excalibur Shrug [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r176",
+      "id": "r140",
       "name": "Michael C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Awsome shirt wouldnt mind getting another if I can find it in different color",
-      "product": "937 Mesh Jersey [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_tgCwFoWrzk"
+      "images": [
+        "assets/reviews/crawled/lx_tgCwFoWrzk"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Awsome shirt wouldnt mind getting another if I can find it in different color",
+          "lang": "en",
+          "product": "937 Mesh Jersey [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r177",
+      "id": "r141",
       "name": "Matthew C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "fits perfectly i rlly feel like spiderman 👀",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_t1Cru09EN"
+      "images": [
+        "assets/reviews/crawled/lx_t1Cru09EN"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "fits perfectly i rlly feel like spiderman 👀",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r178",
+      "id": "r142",
       "name": "Julie S.",
       "lang": "en",
       "rating": 4.0,
-      "text": "i really liked your products though it took very long to get here. but looking forward to buying more from you as its very comfy.",
-      "product": "Women’s Eternal Blade Banana Shaped Uncuffed Sweatpants [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_S5nUmmNCEx"
+      "images": [
+        "assets/reviews/crawled/lx_S5nUmmNCEx"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "i really liked your products though it took very long to get here. but looking forward to buying more from you as its very comfy.",
+          "lang": "en",
+          "product": "Women’s Eternal Blade Banana Shaped Uncuffed Sweatpants [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r179",
+      "id": "r143",
       "name": "Diego E.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Good quality 🙌",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [MIDNIGHT / Silver Print]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_0SGI3iKce"
+      "images": [
+        "assets/reviews/crawled/lx_0SGI3iKce"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Good quality 🙌",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [MIDNIGHT / Silver Print]"
+        }
+      ]
     },
     {
-      "id": "r180",
+      "id": "r144",
       "name": "Tomi I.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Super good quality",
-      "product": "Heavenly Knight Embroidered Uncuffed Sweatpants [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx__kj5N9Oud"
+      "images": [
+        "assets/reviews/crawled/lx__kj5N9Oud"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Super good quality",
+          "lang": "en",
+          "product": "Heavenly Knight Embroidered Uncuffed Sweatpants [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r181",
-      "name": "Hailey S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "Very good quality and comfortable, has padding inside but its removable if you don’t want it",
-      "product": "Women’s Void Tech™ Death Crawler Sports Bra [FROST]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_WPJS3HCNC"
-    },
-    {
-      "id": "r182",
-      "name": "Hailey S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "They’re good quality shorts they have a silky feel kind of and very comfortable",
-      "product": "Women’s Void Tech™ Death Crawler Seamless Shorts [FROST]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_hfM1cLQQC"
-    },
-    {
-      "id": "r183",
+      "id": "r145",
       "name": "Blacky 2.",
       "lang": "en",
       "rating": 4.0,
-      "text": "I really how it feels on me js that I wish it wasn’t as long as it it just cuz am on the shorter size at 5’6 with a short torso but other then that it great😤 PLZ SPONSOR ME ONE DAY",
-      "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_dFvfrfqmf"
+      "images": [
+        "assets/reviews/crawled/lx_dFvfrfqmf"
+      ],
+      "entries": [
+        {
+          "rating": 4.0,
+          "text": "I really how it feels on me js that I wish it wasn’t as long as it it just cuz am on the shorter size at 5’6 with a short torso but other then that it great😤 PLZ SPONSOR ME ONE DAY",
+          "lang": "en",
+          "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r184",
+      "id": "r146",
       "name": "Fernanda V.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Se pega un poco el papel donde viene a la camisa pero e color u el diseño están 10/10",
-      "product": "Atonement Oversized T-shirt [DECAY]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_TFR8MLmTL"
+      "images": [
+        "assets/reviews/crawled/lx_TFR8MLmTL"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Se pega un poco el papel donde viene a la camisa pero e color u el diseño están 10/10",
+          "lang": "en",
+          "product": "Atonement Oversized T-shirt [DECAY]"
+        }
+      ]
     },
     {
-      "id": "r185",
+      "id": "r147",
       "name": "Alejandro A.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing quality",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_AeoBwFRlF"
+      "images": [
+        "assets/reviews/crawled/lx_AeoBwFRlF"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing quality",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [DARKNESS]"
+        }
+      ]
     },
     {
-      "id": "r186",
+      "id": "r148",
       "name": "Joseph S.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Amazing hoodie. Amazing Design.",
-      "product": "Heavenly Knight Embroidered Cut-and-Sew Panel Zip-up [DIVINE WHITE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_GQE0rUVkR"
+      "images": [
+        "assets/reviews/crawled/lx_GQE0rUVkR"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Amazing hoodie. Amazing Design.",
+          "lang": "en",
+          "product": "Heavenly Knight Embroidered Cut-and-Sew Panel Zip-up [DIVINE WHITE]"
+        },
+        {
+          "rating": 5.0,
+          "text": "One of the most comfortable pairs of sweatpants I own, W purchase",
+          "lang": "en",
+          "product": "Heavenly Knight Embroidered Uncuffed Sweatpants [DIVINE WHITE]"
+        }
+      ]
     },
     {
-      "id": "r187",
-      "name": "Joseph S.",
-      "lang": "en",
-      "rating": 5.0,
-      "text": "One of the most comfortable pairs of sweatpants I own, W purchase",
-      "product": "Heavenly Knight Embroidered Uncuffed Sweatpants [DIVINE WHITE]",
-      "verified": true,
-      "image": "assets/reviews/crawled/lx_ctQcjMwGz"
-    },
-    {
-      "id": "r188",
+      "id": "r149",
       "name": "Bella G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Flawless fit snug and comfortable, obsessed as usual!! (120lbs 5’4 size small)",
-      "product": "Void Tech™ Soul Decay Tube Top [BLOSSOM PINK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_YYdaxH_nt"
+      "images": [
+        "assets/reviews/crawled/lx_YYdaxH_nt"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Flawless fit snug and comfortable, obsessed as usual!! (120lbs 5’4 size small)",
+          "lang": "en",
+          "product": "Void Tech™ Soul Decay Tube Top [BLOSSOM PINK]"
+        }
+      ]
     },
     {
-      "id": "r189",
+      "id": "r150",
       "name": "Kasey C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I'm 4'10 at 92lbs so I've never been able to find a good compression shirt that actually fits until now.",
-      "product": "Women’s Death Sigil Baby Tee [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_BdlWy_QpI"
+      "images": [
+        "assets/reviews/crawled/lx_BdlWy_QpI"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I'm 4'10 at 92lbs so I've never been able to find a good compression shirt that actually fits until now.",
+          "lang": "en",
+          "product": "Women’s Death Sigil Baby Tee [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r190",
+      "id": "r151",
       "name": "Anthony W.",
       "lang": "en",
       "rating": 5.0,
-      "text": "I’m 160lbs 6ft. Medium is good if you want it tight.",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NOCTURNE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_aEI7Jk3PO"
+      "images": [
+        "assets/reviews/crawled/lx_aEI7Jk3PO"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "I’m 160lbs 6ft. Medium is good if you want it tight.",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NOCTURNE]"
+        }
+      ]
     },
     {
-      "id": "r191",
+      "id": "r152",
       "name": "Jm B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Shipping took longer than expected, which was understandable as they’ve opened a new warehouse, but the compression shirt was well worth the long wait!",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [MIDNIGHT / Silver Print]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_vb6D2PHfQ"
+      "images": [
+        "assets/reviews/crawled/lx_vb6D2PHfQ"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Shipping took longer than expected, which was understandable as they’ve opened a new warehouse, but the compression shirt was well worth the long wait!",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [MIDNIGHT / Silver Print]"
+        }
+      ]
     },
     {
-      "id": "r192",
+      "id": "r153",
       "name": "Kamal R.",
       "lang": "en",
       "rating": 5.0,
-      "text": "🔥🔥🔥",
-      "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_PxSt7Hfxe"
+      "images": [
+        "assets/reviews/crawled/lx_PxSt7Hfxe"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "🔥🔥🔥",
+          "lang": "en",
+          "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r193",
+      "id": "r154",
       "name": "Tyler C.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Great fit and look. Definitely be getting more.",
-      "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [NIGHTMARE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_CuUzoHx7tO"
+      "images": [
+        "assets/reviews/crawled/lx_CuUzoHx7tO"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Great fit and look. Definitely be getting more.",
+          "lang": "en",
+          "product": "Void Tech™ Arachnid Venom Texture shortsleeve Compression [NIGHTMARE]"
+        }
+      ]
     },
     {
-      "id": "r194",
+      "id": "r155",
       "name": "Lenin G.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Muy buena calidad",
-      "product": "Draconian Metallic Uncuffed Cargos [VOID BLACK]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_2SMMLGgJz"
+      "images": [
+        "assets/reviews/crawled/lx_2SMMLGgJz"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Muy buena calidad",
+          "lang": "en",
+          "product": "Draconian Metallic Uncuffed Cargos [VOID BLACK]"
+        }
+      ]
     },
     {
-      "id": "r195",
+      "id": "r156",
       "name": "Sean P.",
       "lang": "en",
       "rating": 5.0,
-      "text": "My new favorite hat. I WILL BE WEARING THIS EVERYWHERE, i gotta buy another one so i got more to wear :)",
-      "product": "Metallic Logo Cap [VINTAGE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_ApP_XGMlF"
+      "images": [
+        "assets/reviews/crawled/lx_ApP_XGMlF"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "My new favorite hat. I WILL BE WEARING THIS EVERYWHERE, i gotta buy another one so i got more to wear :)",
+          "lang": "en",
+          "product": "Metallic Logo Cap [VINTAGE]"
+        }
+      ]
     },
     {
-      "id": "r196",
+      "id": "r157",
       "name": "Gabriel B.",
       "lang": "en",
       "rating": 5.0,
-      "text": "Peak",
-      "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NOCTURNE]",
       "verified": true,
-      "image": "assets/reviews/crawled/lx_iz7fqVmRD"
+      "images": [
+        "assets/reviews/crawled/lx_iz7fqVmRD"
+      ],
+      "entries": [
+        {
+          "rating": 5.0,
+          "text": "Peak",
+          "lang": "en",
+          "product": "Doom Tech™ Spider-Corpse Longsleeve Compression [NOCTURNE]"
+        }
+      ]
     }
   ]
 }

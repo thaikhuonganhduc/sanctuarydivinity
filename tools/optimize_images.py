@@ -43,7 +43,7 @@ def main():
             targets.extend(color["images"])
 
     reviews = json.loads((ROOT / "data" / "reviews.json").read_text(encoding="utf-8"))["reviews"]
-    targets.extend(r["image"] + ".webp" for r in reviews)
+    targets.extend(base + ".webp" for r in reviews for base in r["images"])
 
     before = after = done = missing = 0
     for rel in dict.fromkeys(targets):            # bỏ trùng, giữ thứ tự

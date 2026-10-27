@@ -79,12 +79,12 @@ Lưu ý quan trọng:
 │   └── logo-hover.js     # Hiệu ứng logo đỏ khi rê chuột ở trang chủ
 ├── data/
 │   ├── products.json     # 32 sản phẩm thật (crawl, tạo bằng `tools/build_products.py`): giá USD, màu, size, tồn kho `stock` giả lập
-│   ├── reviews.json      # đánh giá của khách (hiện đang trống, chờ nối với đánh giá thật)
+│   ├── reviews.json      # 157 đánh giá thật (crawl, gộp theo người, tạo bằng `tools/build_reviews.py`): có nhiều ảnh thì hiện slideshow
 │   ├── access.json       # Mã athlete: vừa để vào web, vừa là mã giảm giá 10%
 │   └── shipping.json     # Phí ship, thuế, thuế nhập khẩu theo nước (ước tính)
 │   ├── size-chart.json   # Hệ số gợi ý size, tính từ ANSUR II bằng tools/build_size_chart.py
 ├── assets/               # logo, fonts, images (lookbook, bg, about), reviews (ảnh feedback)
-├── tools/                # Script Python: crawl dữ liệu, tạo products.json, tạo bảng size, đổi ảnh sang WebP
+├── tools/                # Script Python: crawl dữ liệu, tạo products.json và reviews.json, tạo bảng size, đổi ảnh sang WebP
 └── docs/                 # Kế hoạch, phân công, báo cáo, slides, kịch bản thuyết trình
 ```
 
