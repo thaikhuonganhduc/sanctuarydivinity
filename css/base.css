@@ -53,3 +53,15 @@ h2 { font-size: 1.4rem; }
   h1 { font-size: 2.5rem; }
   h2 { font-size: 1.8rem; }
 }
+
+/* ---- Con trỏ chuột riêng của SANCTUARY (mũi tên gothic) ----
+   Ảnh cursor-sm.png (36x48, đã tăng sáng/tương phản + viền trắng mảnh để nổi trên nền đen) và bản nét cao @2x; "4 2" là điểm bấm = đầu mũi nhọn.
+   Dòng đầu là bản dự phòng cho trình duyệt chưa hỗ trợ image-set. Dùng !important vì nhiều nút/thẻ
+   đã tự đặt cursor: pointer; riêng ô nhập chữ giữ con trỏ I-beam để người dùng thấy chỗ gõ. */
+*, *::before, *::after, ::backdrop {
+  cursor: url("../assets/logo/cursor-sm.png") 4 2, auto !important;
+  cursor: -webkit-image-set(url("../assets/logo/cursor-sm.png") 1x, url("../assets/logo/cursor-sm@2x.png") 2x) 4 2, auto !important;
+}
+input:not([type="checkbox"], [type="radio"], [type="file"], [type="range"], [type="button"], [type="submit"]), textarea {
+  cursor: text !important;
+}
