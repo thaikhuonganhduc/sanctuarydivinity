@@ -3,3 +3,12 @@ Thumbs.db
 desktop.ini
 *.log
 .claude/settings.local.json
+
+# Ảnh JPG gốc của dữ liệu crawl (chỉ giữ trên máy; web dùng bản .webp do tools/optimize_images.py tạo)
+assets/products/**/*.jpg
+assets/reviews/crawled/*.jpg
+assets/products/**/*.png
+assets/products/**/*.jpeg
+
+__pycache__/
+*.pyc
