@@ -114,6 +114,7 @@ function buildSlideshow(box, images, alt) {
     if (reduceMotion) return;
     timer = setInterval(() => {
       if (!box.isConnected) { stopTimer(); return; }       // khung ảnh đã bị gỡ khỏi trang (đóng popup...)
+      if (box.offsetParent === null) return;               // đang ẩn (popup Reviews đóng) thì không đổi ảnh
       go(index + 1);
     }, 4500);
   }

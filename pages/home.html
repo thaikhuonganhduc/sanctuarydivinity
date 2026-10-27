@@ -49,26 +49,6 @@
       <p class="hero__note">Every drop is limited. Once it's gone, it never returns.</p>
     </section>
 
-    <!-- Đánh giá của khách (dữ liệu mẫu trong data/reviews.json) -->
-    <section class="section reviews" aria-labelledby="reviews-title">
-      <div class="container">
-        <h2 id="reviews-title" class="section__title">Reviews</h2>
-        <p id="review-summary" class="reviews__summary"></p>
-        <!-- Lọc theo số sao: 4.7 sao tính vào nhóm 4 sao (làm tròn xuống) -->
-        <div id="review-filter" class="review-filter" role="group" aria-label="Filter reviews by stars">
-          <button type="button" data-stars="all" aria-pressed="true">All</button>
-          <button type="button" data-stars="5" aria-pressed="false">5 ★</button>
-          <button type="button" data-stars="4" aria-pressed="false">4 ★</button>
-          <button type="button" data-stars="3" aria-pressed="false">3 ★</button>
-          <button type="button" data-stars="2" aria-pressed="false">2 ★</button>
-          <button type="button" data-stars="1" aria-pressed="false">1 ★</button>
-        </div>
-        <div id="review-list" class="review-grid"></div>
-        <div class="reviews__more">
-          <button id="review-more" type="button" class="btn btn--small">Show more</button>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -77,12 +57,42 @@
     </div>
   </footer>
 
+  <!-- Nút dọc bên phải: bấm để mở popup Reviews -->
+  <button type="button" id="reviews-tab" class="reviews-tab" aria-haspopup="dialog">Reviews</button>
+
+  <!-- Popup Reviews: giao diện đánh giá giữ nguyên, chỉ được đặt trong cửa sổ popup (dữ liệu trong data/reviews.json) -->
+  <dialog id="reviews-panel" class="reviews-panel" aria-labelledby="reviews-title">
+    <div class="reviews-panel__bar">
+      <button type="button" id="reviews-close" class="review-detail__close reviews-panel__close" aria-label="Close reviews">×</button>
+    </div>
+        <section class="section reviews" aria-labelledby="reviews-title">
+          <div class="container">
+            <h2 id="reviews-title" class="section__title">Reviews</h2>
+            <p id="review-summary" class="reviews__summary"></p>
+            <!-- Lọc theo số sao: 4.7 sao tính vào nhóm 4 sao (làm tròn xuống) -->
+            <div id="review-filter" class="review-filter" role="group" aria-label="Filter reviews by stars">
+              <button type="button" data-stars="all" aria-pressed="true">All</button>
+              <button type="button" data-stars="5" aria-pressed="false">5 ★</button>
+              <button type="button" data-stars="4" aria-pressed="false">4 ★</button>
+              <button type="button" data-stars="3" aria-pressed="false">3 ★</button>
+              <button type="button" data-stars="2" aria-pressed="false">2 ★</button>
+              <button type="button" data-stars="1" aria-pressed="false">1 ★</button>
+            </div>
+            <div id="review-list" class="review-grid"></div>
+            <div class="reviews__more">
+              <button id="review-more" type="button" class="btn btn--small">Show more</button>
+            </div>
+          </div>
+        </section>
+  </dialog>
+
   <!-- Popup chi tiết đánh giá (nội dung do reviews.js đổ vào) -->
   <dialog id="review-dialog" class="review-dialog" aria-label="Review details">
     <div id="review-detail" class="review-detail glass"></div>
   </dialog>
 
   <script type="module" src="../js/reviews.js"></script>
+  <script type="module" src="../js/reviews-panel.js"></script>
   <script type="module" src="../js/logo-hover.js"></script>
   <script type="module" src="../js/header.js"></script>
 </body>
