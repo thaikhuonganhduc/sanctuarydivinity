@@ -72,16 +72,19 @@ Lưu ý quan trọng:
 │   ├── cart.js           # Giỏ hàng trong localStorage
 │   ├── cart-page.js      # Trang giỏ hàng: tính tiền, mã giảm giá, đặt hàng
 │   ├── shipping.js       # Tính phí ship, thuế nhập khẩu, VAT/GST (ước tính)
+│   ├── size-finder.js    # Gợi ý size từ chiều cao + cân nặng (dùng data/size-chart.json)
 │   ├── form-validate.js  # Các luật kiểm tra form dùng chung
 │   ├── contact.js        # Form liên hệ
 │   ├── header.js         # Số món trong giỏ trên menu "Cart (n)"
 │   └── logo-hover.js     # Hiệu ứng logo đỏ khi rê chuột ở trang chủ
 ├── data/
-│   ├── products.json     # 23 sản phẩm (giá USD, màu, size, tồn kho `stock`)
-│   ├── reviews.json      # 21 đánh giá mẫu (4 đến 5 sao)
+│   ├── products.json     # 32 sản phẩm thật (crawl, tạo bằng `tools/build_products.py`): giá USD, màu, size, tồn kho `stock` giả lập
+│   ├── reviews.json      # đánh giá của khách (hiện đang trống, chờ nối với đánh giá thật)
 │   ├── access.json       # Mã athlete: vừa để vào web, vừa là mã giảm giá 10%
 │   └── shipping.json     # Phí ship, thuế, thuế nhập khẩu theo nước (ước tính)
+│   ├── size-chart.json   # Hệ số gợi ý size, tính từ ANSUR II bằng tools/build_size_chart.py
 ├── assets/               # logo, fonts, images (lookbook, bg, about), reviews (ảnh feedback)
+├── tools/                # Script Python: crawl dữ liệu, tạo products.json, tạo bảng size, đổi ảnh sang WebP
 └── docs/                 # Kế hoạch, phân công, báo cáo, slides, kịch bản thuyết trình
 ```
 
@@ -90,7 +93,7 @@ Lưu ý quan trọng:
 | Dữ liệu | Nơi lưu | Ghi chú |
 |---|---|---|
 | Sản phẩm, tồn kho | `data/products.json` | Sửa `stock` để đổi số hàng còn |
-| Đánh giá | `data/reviews.json` | Ảnh ở `assets/reviews/review-NN.jpg` |
+| Đánh giá | `data/reviews.json` | Ảnh feedback đặt trong `assets/reviews/` |
 | Mã athlete / giảm giá | `data/access.json` | Thêm dòng mới là có mã mới |
 | Phí ship, thuế | `data/shipping.json` | **Ước tính**, không phải báo giá thật |
 | Giỏ hàng | `localStorage` khoá `sanctuary_cart` | |

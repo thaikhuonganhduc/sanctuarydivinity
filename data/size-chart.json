@@ -1,0 +1,60 @@
+{
+  "source": "ANSUR II (U.S. Army Anthropometric Survey 2012), public data",
+  "note": "Chest circumference is predicted from height and weight with least-squares regression; size is chosen from published apparel chest ranges.",
+  "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "him": {
+    "sampleSize": 4082,
+    "intercept": 103.6434,
+    "perKg": 0.6235,
+    "perCm": -0.2909,
+    "rmseCm": 3.23,
+    "chestLimitsCm": [
+      84,
+      90,
+      96,
+      104,
+      112
+    ],
+    "exactSizePct": 71.5,
+    "withinOneSizePct": 99.9,
+    "heightRangeCm": [
+      160,
+      193
+    ],
+    "weightRangeKg": [
+      58,
+      124
+    ]
+  },
+  "her": {
+    "sampleSize": 1986,
+    "intercept": 99.0341,
+    "perKg": 0.7269,
+    "perCm": -0.3292,
+    "rmseCm": 4.26,
+    "chestLimitsCm": [
+      78,
+      84,
+      90,
+      97,
+      104
+    ],
+    "exactSizePct": 56.1,
+    "withinOneSizePct": 97.7,
+    "heightRangeCm": [
+      148,
+      178
+    ],
+    "weightRangeKg": [
+      47,
+      97
+    ]
+  }
+}

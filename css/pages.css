@@ -392,3 +392,17 @@ body:has(.site-footer) > .site-footer { margin-top: auto; }
 }
 .exit-btn:hover { border-color: var(--color-accent); }
 @media (min-width: 768px) { .exit-btn { left: var(--space-4); } }
+
+/* Popup sản phẩm: danh sách các ý mô tả */
+.product-detail__features { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem; line-height: 1.5; color: var(--color-muted); list-style: none; }
+.product-detail__features li::before { content: "·  "; color: var(--color-text); }
+
+/* Gợi ý size trong popup sản phẩm */
+.size-finder { border: 1px solid rgba(255, 255, 255, 0.2); padding: 0.6rem 0.9rem; margin: 0.5rem 0; }
+.size-finder summary { cursor: pointer; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.size-finder[open] summary { margin-bottom: var(--space-1); }
+.size-finder__fields { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-1); margin-bottom: var(--space-1); }
+.size-finder__result { text-align: center; margin-top: var(--space-1); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.size-finder__label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); }
+.size-finder__size { font-size: 3.2rem; line-height: 1; color: #A81D23; }
+.size-finder__note, .size-finder__source { font-size: 0.75rem; line-height: 1.5; color: var(--color-muted); }

@@ -1,6 +1,7 @@
 // Trang cửa hàng: đọc products.json (fetch), lọc/sắp xếp bằng JavaScript rồi vẽ lại lưới bằng DOM.
 import { loadProducts, renderGrid, createProductImage } from "./products.js";
 import { addToCart } from "./cart.js";
+import { parseHeight, parseWeight, recommendSize, fitNote, loadSizeChart } from "./size-finder.js";
 import { REGIONS, loadRates, formatPrice, getSavedCurrency, saveCurrency } from "./currency.js";
 
 const grid = document.getElementById("product-grid");
@@ -49,7 +50,7 @@ function fillCategories() {
   categorySelect.replaceChildren(new Option("All", "all"));
   state.category = "all";
   const names = { hoodies: "Hoodies", oversize: "Oversized Shirts", compression: "Compression", bodysuits: "Bodysuits",
-    bikinis: "Bikinis", bottoms: "Bottoms", accessories: "Accessories" };
+    bikinis: "Bikinis", tops: "Tees & Tanks", bottoms: "Bottoms", accessories: "Accessories" };
   [...new Set(products.filter(matchAudience).map((p) => p.category))].forEach((c) => {
     categorySelect.add(new Option(names[c] || c, c));
   });
@@ -105,13 +106,18 @@ function openProduct(product) {
     const btn = el("button", "size-btn", sz);
     btn.type = "button";
     btn.setAttribute("aria-pressed", "false");
-    btn.addEventListener("click", () => {
-      size = sz;
-      message.textContent = "";
-      sizeRow.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-    });
+    btn.addEventListener("click", () => selectSize(sz));
     sizeRow.appendChild(btn);
   });
+  // Chọn 1 size (dùng cho cả bấm nút lẫn nút "Use this size" của bộ gợi ý)
+  function selectSize(sz) {
+    size = sz;
+    message.textContent = "";
+    sizeRow.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.textContent === sz)));
+  }
+
+  // ---- Gợi ý size theo chiều cao + cân nặng ----
+  const finder = buildSizeFinder(product, selectSize);
 
   // Số lượng muốn mua (tối đa bằng số còn trong kho)
   let qty = 1;
@@ -170,11 +176,16 @@ function openProduct(product) {
   // Thông số
   const specs = el("dl", "spec-list");
   [["Material", product.specs.material], ["Weight", product.specs.weight],
-   ["Fit", product.specs.fit], ["Care", product.specs.care]].forEach(([label, value]) => {
+   ["Fit", product.specs.fit], ["Care", product.specs.care]].filter(([, value]) => value).forEach(([label, value]) => {
     const row = el("div", "spec-row");
     row.append(el("dt", "", label), el("dd", "", value));
     specs.appendChild(row);
   });
+
+  // Các ý mô tả sản phẩm (từ products.json) hiện thành danh sách
+  const featureList = el("ul", "product-detail__features");
+  (product.features || []).forEach((f) => featureList.appendChild(el("li", "", f)));
+  if (product.description) featureList.prepend(el("li", "", product.description));
 
   const colorLabel = el("p", "product-detail__label", "Color · ");
   colorLabel.appendChild(colorName);
@@ -185,12 +196,72 @@ function openProduct(product) {
   close.addEventListener("click", () => dialog.close());
 
   info.append(
-    el("h2", "glass__title", product.name), price, el("p", "review-card__item", product.description),
-    colorLabel, colorRow, el("p", "product-detail__label", "Size"), sizeRow,
+    el("h2", "glass__title", product.name), price, featureList,
+    colorLabel, colorRow, el("p", "product-detail__label", "Size"), sizeRow, finder,
     ...(product.stock > 0 ? [el("p", "product-detail__label", "Quantity"), qtyRow] : []), stockLine, message, actions, specs
   );
   detail.append(media, info, close);
   dialog.showModal();
+}
+
+// Khối "Find your size": nhập chiều cao + cân nặng -> hiện size gợi ý (số to, màu đỏ)
+function buildSizeFinder(product, selectSize) {
+  if (product.sizes.length === 1 && product.sizes[0] === "One size") return el("span");   // mũ, nón: không cần
+
+  const box = el("details", "size-finder");
+  box.appendChild(el("summary", "", "Find your size"));
+
+  const heightInput = el("input", "input");
+  heightInput.id = "sf-height";
+  heightInput.placeholder = "5'11\" or 180 cm";
+  const weightInput = el("input", "input");
+  weightInput.id = "sf-weight";
+  weightInput.placeholder = "165 lbs or 75 kg";
+  const fields = el("div", "size-finder__fields");
+  [["Height", heightInput], ["Weight", weightInput]].forEach(([label, input]) => {
+    const wrap = el("div", "field");
+    const lab = el("label", "", label);
+    lab.htmlFor = input.id;
+    wrap.append(lab, input);
+    fields.appendChild(wrap);
+  });
+
+  const result = el("div", "size-finder__result");
+  result.setAttribute("role", "status");
+  const calcBtn = el("button", "btn btn--small", "Calculate");
+  calcBtn.type = "button";
+
+  async function calculate() {
+    result.replaceChildren();
+    const heightCm = parseHeight(heightInput.value);
+    const weightKg = parseWeight(weightInput.value);
+    if (heightCm === null || weightKg === null || heightCm < 120 || heightCm > 230 || weightKg < 30 || weightKg > 200) {
+      result.appendChild(el("p", "form-error", "Enter a height like 5'11\" or 180 cm, and a weight like 165 lbs or 75 kg."));
+      return;
+    }
+    // Sản phẩm unisex: dùng thang nam; còn lại theo him/her của sản phẩm
+    const gender = product.gender === "her" ? "her" : "him";
+    let chart;
+    try { chart = await loadSizeChart(); } catch (err) {
+      result.appendChild(el("p", "form-error", "Size data is unavailable right now."));
+      return;
+    }
+    const rec = recommendSize({ chart, gender, heightCm, weightKg, category: product.category, available: product.sizes });
+    const useBtn = el("button", "btn btn--small btn--ghost", "Use size " + rec.size);
+    useBtn.type = "button";
+    useBtn.addEventListener("click", () => selectSize(rec.size));
+    result.append(el("p", "size-finder__label", "Your size"), el("p", "size-finder__size", rec.size));
+    if (rec.between) result.appendChild(el("p", "size-finder__note", "You are between two sizes, so we picked the larger one."));
+    if (rec.outOfRange) result.appendChild(el("p", "size-finder__note", "Your measurements are outside the range of our data, so treat this as a rough guess."));
+    const note = fitNote(product.category);
+    if (note) result.appendChild(el("p", "size-finder__note", note));
+    result.append(el("p", "size-finder__source", "Based on ANSUR II body measurements (" + chart[gender].sampleSize.toLocaleString("en-US") + " adults). Fit varies by style."), useBtn);
+  }
+  calcBtn.addEventListener("click", calculate);
+  [heightInput, weightInput].forEach((i) => i.addEventListener("keydown", (e) => { if (e.key === "Enter") calculate(); }));
+
+  box.append(fields, calcBtn, result);
+  return box;
 }
 
 // Bấm ra ngoài vùng nội dung thì đóng popup
