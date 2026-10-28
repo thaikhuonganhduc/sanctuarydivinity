@@ -22,6 +22,9 @@ export function isValidUser(u) {
 export function isValidMessage(m) {
   return isObject(m) && isText(m.name) && isText(m.email) && isText(m.message) && isText(m.date);
 }
+export function isValidAthlete(a) {
+  return isObject(a) && isText(a.name) && isText(a.code) && a.code.trim() !== "" && typeof a.active === "boolean";
+}
 // Sản phẩm admin tự thêm: cần đủ các trường mà thẻ sản phẩm, popup và giỏ hàng dùng tới
 export function isValidProduct(p) {
   return isObject(p) && isText(p.id) && isText(p.name) && isText(p.category) && isText(p.gender)

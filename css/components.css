@@ -13,6 +13,7 @@
 }
 .btn:hover { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
 .btn--ghost { background: transparent; }
+.btn[hidden] { display: none; }      /* .btn đặt display riêng nên phải ghi rõ, không thì thuộc tính hidden không có tác dụng */
 .btn--small { padding: 0.5rem 1rem; font-size: 0.8rem; letter-spacing: 0.2em; }
 
 .field { display: flex; flex-direction: column; gap: 0.4rem; }

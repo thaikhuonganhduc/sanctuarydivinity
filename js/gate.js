@@ -1,7 +1,8 @@
 // Xử lý cổng nhập mật khẩu:
 //  - Mã admin (so hash)  -> vai trò admin
-//  - Mật khẩu influencer (đọc từ data/access.json bằng fetch) -> vai trò customer
+//  - Mật khẩu influencer (data/access.json, hoặc danh sách admin đã sửa, xem athletes.js) -> vai trò customer
 import { ADMIN_CODE_HASH, ROLE_KEY, PAGES, SHOW_DEMO_HINTS, DEMO_ADMIN_CODE } from "./config.js";
+import { loadAthletes, findActiveCode } from "./athletes.js";
 
 import { startCountdown, showLaunchDate } from "./countdown.js";
 
@@ -36,12 +37,9 @@ function goTo(role) {
   window.location.replace(role === "admin" ? PAGES.admin : PAGES.home);
 }
 
-// Lấy danh sách mật khẩu influencer từ JSON
+// Lấy danh sách mật khẩu influencer đang bật
 async function loadInfluencerCodes() {
-  const res = await fetch("data/access.json");
-  if (!res.ok) throw new Error("Cannot load access list");
-  const data = await res.json();
-  return data.influencers.filter((i) => i.active);
+  return (await loadAthletes("data/access.json")).filter((i) => i.active);
 }
 
 // ---------- Gợi ý mật khẩu để test nhanh ----------
@@ -92,8 +90,7 @@ form.addEventListener("submit", async (event) => {
     }
 
     // 2. Thử mật khẩu influencer (không phân biệt hoa thường)
-    const influencers = await loadInfluencerCodes();
-    const match = influencers.find((i) => i.code.toLowerCase() === code.toLowerCase());
+    const match = findActiveCode(await loadInfluencerCodes(), code);
     if (match) {
       sessionStorage.setItem(ROLE_KEY, "customer");
       sessionStorage.setItem("sanctuary_source", match.name); // biết khách đến từ influencer nào

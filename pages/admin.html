@@ -172,7 +172,37 @@
       <!-- Mã athlete -->
       <section id="panel-codes" class="admin-panel" aria-labelledby="h-codes" hidden>
         <h1 id="h-codes" class="admin-title">Athlete codes</h1>
-        <p class="admin-hint">Codes give 10% off and are read from data/access.json. Edit that file to add or turn off a code.</p>
+        <p class="admin-hint">Each active code lets a customer into the store and gives 10% off at checkout. Changes save in this browser and replace the list in data/access.json.</p>
+
+        <!-- Thêm mã mới (kiểm tra bằng form-validate.js; lưu bằng athletes.js) -->
+        <form id="code-form" class="admin-card code-form" novalidate>
+          <h2 class="admin-card__title">New code</h2>
+          <div class="code-form__grid">
+            <div class="field">
+              <label for="cf-name">Athlete name</label>
+              <input id="cf-name" class="input" type="text" maxlength="40" placeholder="e.g. Minh Tran" autocomplete="off">
+              <p class="form-error" id="error-cf-name"></p>
+            </div>
+            <div class="field">
+              <label for="cf-code">Code</label>
+              <div class="code-form__code">
+                <input id="cf-code" class="input" type="text" maxlength="30" placeholder="SANCTUARY-MINH" autocomplete="off" spellcheck="false" aria-describedby="cf-code-hint">
+                <button type="button" id="cf-suggest" class="btn btn--small btn--ghost">Suggest</button>
+              </div>
+              <p id="cf-code-hint" class="admin-sub">4 to 30 characters: letters, numbers and dashes.</p>
+              <p class="form-error" id="error-cf-code"></p>
+            </div>
+          </div>
+          <label class="product-form__check"><input id="cf-active" type="checkbox" checked> Active right away</label>
+          <div class="product-form__actions">
+            <button type="submit" class="btn btn--small">Add code</button>
+          </div>
+        </form>
+
+        <div class="admin-toolbar">
+          <input id="code-search" class="input" type="search" placeholder="Search athlete or code" aria-label="Search codes">
+          <button type="button" id="codes-reset" class="btn btn--small btn--ghost">Reset to access.json</button>
+        </div>
         <div id="codes-table"></div>
       </section>
 

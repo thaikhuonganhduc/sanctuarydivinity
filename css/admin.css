@@ -133,6 +133,16 @@
 .product-form__check { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; }
 .product-form__actions { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-2); }
 
+/* Form thêm mã athlete (mục Athlete codes) */
+.code-form { max-width: 820px; }
+.code-form__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-1) var(--space-2); }
+@media (min-width: 700px) { .code-form__grid { grid-template-columns: 1fr 1fr; } }
+.code-form .input { font-family: var(--admin-font); font-size: 0.9rem; padding: 0.55rem 0.75rem; }
+.code-form__code { display: flex; gap: 0.5rem; }
+.code-form__code .input { flex: 1; min-width: 0; text-transform: uppercase; letter-spacing: 0.06em; }
+.code-text { font-family: Consolas, "Courier New", monospace; letter-spacing: 0.04em; }
+.code-actions { display: flex; gap: var(--space-2); }
+
 .admin-file { position: relative; display: inline-block; cursor: pointer; }
 .admin-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .admin-file:focus-within { outline: 2px solid #fff; outline-offset: 2px; }

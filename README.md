@@ -13,12 +13,12 @@ Luồng người dùng:
 
 1. **Trang cổng** (`index.html`): đồng hồ đếm ngược tới ngày ra mắt bộ sưu tập, lookbook, và một ô nhỏ ở góc phải trên để nhập mật khẩu.
 2. Nhập mã của athlete/influencer (ví dụ `SANCTUARY-DEMO`) thì vào **trang chủ** (`pages/home.html`). Nhập **mã admin** thì vào thẳng **trang quản trị** (`pages/admin.html`).
-3. **Trang chủ**: video hero, nút **Reviews** bên phải (popup đánh giá thật, lọc theo sao, slideshow ảnh), bấm "Collection X Is Out Now" hoặc **Shop** để cuộn xuống cửa hàng. Giữa trang có các đoạn video ngắn xen kẽ.
-4. **Cửa hàng** (dưới ảnh trang chủ): 3 khu Sanctuary (nam), Sanctuary Selene (nữ), Accessories, mỗi khu chia nhóm sản phẩm. Menu **Collections** bên trái và hai thẻ Men's/Women's Line để cuộn tới từng khu; đổi tiền theo vùng; bấm sản phẩm để xem popup (slideshow ảnh theo màu, chọn màu, size, gợi ý size, thêm vào giỏ).
+3. **Trang chủ**: video hero, nút **Reviews** bên trái (dưới nút Armory) (popup đánh giá thật, lọc theo sao, slideshow ảnh), bấm "Collection X Is Out Now" hoặc **Shop** để cuộn xuống cửa hàng. Giữa trang có các đoạn video ngắn xen kẽ.
+4. **Cửa hàng** (dưới ảnh trang chủ): 3 khu Sanctuary (nam), Sanctuary Selene (nữ), Accessories, mỗi khu chia nhóm sản phẩm. Menu **Armory** bên trái (bấm thì trượt ra từ mép màn hình, có lọc size/màu và sắp xếp giá) và hai thẻ Men's/Women's Line để cuộn tới từng khu; đổi tiền theo vùng; bấm sản phẩm để xem popup (slideshow ảnh theo màu, chọn màu, size, gợi ý size, thêm vào giỏ).
 5. **Tài khoản**: icon người trên header mở popup **Sign in / Create account**. Đăng nhập rồi thì vào trang **Account** (`pages/account.html`): sửa thông tin cá nhân, đổi mật khẩu, xem lịch sử đơn hàng và trạng thái đơn. Khách chưa đăng ký vẫn mua được (đơn khách vãng lai).
 6. **Cart**: sửa số lượng, mã giảm giá 10% của athlete, phí ship + thuế ước tính theo nước, form thanh toán có kiểm tra bằng JavaScript (tự điền nếu đã đăng nhập), mục gợi ý **You may also like**.
 7. **Info** (`pages/contact.html`): các tab Contact (form có kiểm tra), Shipping/Returns, Terms and Conditions, Terms of Service, Privacy Policy, Accessibility. Và **About** (câu chuyện thương hiệu).
-8. **Admin** (`pages/admin.html`): tổng quan doanh thu, đơn hàng (đổi trạng thái), sản phẩm (sửa giá, tồn kho, nổi bật, ẩn/hiện), khách hàng, tin nhắn liên hệ, mã athlete, sao lưu/khôi phục dữ liệu và dữ liệu mẫu để thuyết trình.
+8. **Admin** (`pages/admin.html`): tổng quan doanh thu, đơn hàng (đổi trạng thái), sản phẩm (sửa giá, tồn kho, nổi bật, ẩn/hiện), khách hàng, tin nhắn liên hệ, mã athlete (thêm, bật/tắt, xoá), sao lưu/khôi phục dữ liệu và dữ liệu mẫu để thuyết trình.
 
 ## 2. Công nghệ
 
@@ -73,14 +73,15 @@ Lưu ý quan trọng:
 │   ├── guard.js          # Chặn vào trang nếu chưa nhập mật khẩu (trang admin cần đúng vai trò admin)
 │   ├── countdown.js      # Đồng hồ đếm ngược + ngày ra mắt
 │   ├── reviews.js        # Đánh giá: lọc sao, hiện thêm, popup chi tiết
-│   ├── reviews-panel.js  # Nút Reviews bên phải: mở/đóng popup đánh giá
+│   ├── reviews-panel.js  # Nút Reviews bên trái (dưới nút Armory): mở/đóng popup đánh giá
 │   ├── slideshow.js      # Slideshow dùng chung (đánh giá, popup sản phẩm)
 │   ├── products.js       # Đọc products.json, áp thay đổi của admin, vẽ thẻ sản phẩm
-│   ├── shop.js           # Cửa hàng trên trang chủ: chia khu/nhóm, lọc size/màu, sắp xếp giá, menu Collections
+│   ├── shop.js           # Cửa hàng trên trang chủ: chia khu/nhóm, lọc size/màu, sắp xếp giá, menu Armory
 │   ├── product-popup.js  # Popup chi tiết sản phẩm (dùng ở trang chủ và giỏ hàng): màu, size XXS-XXL, bảng size, gợi ý size
 │   ├── product-reviews.js # Review trong popup sản phẩm: đúng sản phẩm, không có thì review mẫu cùng loại
 │   ├── home-ui.js        # Video hero, chữ mờ dần khi cuộn, nút bên cạnh trang chủ
 │   ├── currency.js       # Tỷ giá + định dạng tiền theo vùng
+│   ├── athletes.js       # Mã athlete: đọc access.json hoặc bản admin đã sửa (dùng ở cổng, giỏ hàng, admin)
 │   ├── storage.js        # Đọc/ghi localStorage an toàn, kiểm tra cấu trúc dữ liệu, ghi nhiều key cùng lúc
 │   ├── cart.js           # Giỏ hàng trong localStorage (không vượt tồn kho)
 │   ├── cart-page.js      # Trang giỏ hàng: tính tiền, mã giảm giá, đặt hàng, gợi ý sản phẩm
@@ -116,7 +117,8 @@ Lưu ý quan trọng:
 |---|---|---|
 | Sản phẩm, tồn kho | `data/products.json` | Sửa `stock` để đổi số hàng còn |
 | Đánh giá | `data/reviews.json` | Ảnh feedback đặt trong `assets/reviews/` |
-| Mã athlete / giảm giá | `data/access.json` | Thêm dòng mới là có mã mới |
+| Mã athlete / giảm giá | `data/access.json` | Danh sách gốc; thêm dòng mới là có mã mới |
+| Mã athlete admin đã sửa | `localStorage` khoá `sanctuary_athletes` | Admin → Athlete codes; có thì dùng thay `access.json`, nút Reset để quay về file |
 | Phí ship, thuế | `data/shipping.json` | **Ước tính**, không phải báo giá thật |
 | Giỏ hàng | `localStorage` khoá `sanctuary_cart` | |
 | Đơn hàng giả lập | `localStorage` khoá `sanctuary_orders` | Admin đổi trạng thái đơn, khách thấy ở trang Account |
@@ -146,7 +148,7 @@ Lưu ý quan trọng:
 - Cửa hàng trên trang chủ: khu/nhóm sản phẩm, **lọc theo size/màu, sắp xếp theo giá**, đổi tiền theo tỷ giá thật, popup chi tiết (size XXS–XXL, bảng size, gợi ý size, review có ảnh + lọc sao). **Ảnh sản phẩm thật** (WebP, 32 sản phẩm) đã có đủ.
 - Cart: mã giảm giá, ship/thuế ước tính, thanh toán có kiểm tra, gợi ý "You may also like".
 - **Đăng ký / đăng nhập** mô phỏng phía client, trang Account (sửa thông tin, đổi mật khẩu, lịch sử đơn).
-- **Trang admin**: tổng quan, đơn hàng (đổi trạng thái), sản phẩm (**thêm mới có ảnh**, sửa giá, tồn kho, nổi bật, ẩn/hiện, **xoá + khôi phục**), khách hàng, tin nhắn, mã athlete, **đặt ngày ra mắt**, sao lưu/khôi phục, dữ liệu mẫu.
+- **Trang admin**: tổng quan, đơn hàng (đổi trạng thái), sản phẩm (**thêm mới có ảnh**, sửa giá, tồn kho, nổi bật, ẩn/hiện, **xoá + khôi phục**), khách hàng, tin nhắn, **quản lý mã athlete** (thêm, bật/tắt, xoá, copy), **đặt ngày ra mắt**, sao lưu/khôi phục, dữ liệu mẫu.
 - Trang Info (Contact + các trang chính sách) và About.
 - **Ảnh lookbook và video đã nén** bằng `tools/compress_media.py`: 96 MB → 23 MB, gần như không thấy khác bản gốc (ảnh PSNR 45–48 dB, video SSIM ≥ 0.995).
 

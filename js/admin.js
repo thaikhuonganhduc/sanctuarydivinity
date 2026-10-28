@@ -8,14 +8,16 @@
 import { logout } from "./guard.js";
 import { loadProducts, createProductImage, OVERRIDES_KEY, CUSTOM_PRODUCTS_KEY, getProductOverrides, stockAfter, applyStock } from "./products.js";
 import { listUsers, addSampleUser } from "./auth.js";
-import { readList as readStored, writeJSON, writeAll, isObject, isValidOrder, isValidUser, isValidMessage, isValidProduct } from "./storage.js";
+import { readList as readStored, writeJSON, writeAll, isObject, isValidOrder, isValidUser, isValidMessage, isValidProduct, isValidAthlete } from "./storage.js";
+import { ATHLETES_KEY, loadAthletes, saveAthletes } from "./athletes.js";
+import { ADMIN_CODE_HASH } from "./config.js";
 import { getLaunchDate, setLaunchDate, resetLaunchDate, isLaunchOverridden, DEFAULT_LAUNCH, toVietnamInput, fromVietnamInput, formatLaunch } from "./countdown.js";
 import { rules, validateForm, liveValidate } from "./form-validate.js";
 import { SIZES } from "./size-finder.js";
 
-const KEYS = { orders: "sanctuary_orders", users: "sanctuary_users", messages: "sanctuary_messages", overrides: OVERRIDES_KEY, custom: CUSTOM_PRODUCTS_KEY };
+const KEYS = { orders: "sanctuary_orders", users: "sanctuary_users", messages: "sanctuary_messages", overrides: OVERRIDES_KEY, custom: CUSTOM_PRODUCTS_KEY, athletes: ATHLETES_KEY };
 // Luật kiểm tra cấu trúc của từng danh sách (dùng khi đọc localStorage và khi khôi phục file backup)
-const VALIDATORS = { [KEYS.orders]: isValidOrder, [KEYS.users]: isValidUser, [KEYS.messages]: isValidMessage, [KEYS.custom]: isValidProduct };
+const VALIDATORS = { [KEYS.orders]: isValidOrder, [KEYS.users]: isValidUser, [KEYS.messages]: isValidMessage, [KEYS.custom]: isValidProduct, [KEYS.athletes]: isValidAthlete };
 const SAVE_ERROR = "Could not save. Browser storage may be full.";
 const STATUSES = ["Processing", "Shipped", "Delivered", "Cancelled"];
 const LOW_STOCK = 10;
@@ -598,14 +600,142 @@ function renderMessages() {
 }
 
 // ---------- Athlete codes ----------
+// Thêm / bật-tắt / xoá mã. Mọi thay đổi lưu cả danh sách qua saveAthletes() (athletes.js);
+// trang cổng và giỏ hàng đọc cùng danh sách này nên áp dụng ngay.
+const CODE_PATTERN = /^[A-Z0-9-]{4,30}$/;
+
+// Băm SHA-256 (giống trang cổng) để so với mã admin mà không cần biết mã admin
+async function sha256(text) {
+  const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+const sameCode = (a, b) => a.toLowerCase() === b.toLowerCase();
+const activeCount = (list) => list.filter((a) => a.active).length;
+
+// Lưu danh sách mới; lỗi thì báo và giữ nguyên danh sách cũ trên trang
+function storeAthletes(list, message) {
+  if (!saveAthletes(list)) { toast(SAVE_ERROR); renderCodes(); return false; }
+  athletes = list;
+  renderCodes();
+  toast(message);
+  return true;
+}
+
+// Tắt / xoá mã đang bật cuối cùng thì khách không vào được web nữa: hỏi lại trước
+function confirmLastActive(list, code) {
+  const target = list.find((a) => sameCode(a.code, code));
+  if (!target || !target.active || activeCount(list) > 1) return true;
+  return confirm("This is the last active code. Customers will not be able to enter the store until another code is active. Continue?");
+}
+
+// Ghi mã ra bộ nhớ tạm để gửi cho athlete
+async function copyCode(code) {
+  try {
+    await navigator.clipboard.writeText(code);
+    toast("Copied " + code);
+  } catch (err) {
+    toast("Copy failed. Select the code and copy it by hand.");
+  }
+}
+
+// true nếu danh sách đang là bản admin đã sửa (lưu trong localStorage), false nếu đang dùng access.json
+const isCodeListEdited = () => localStorage.getItem(KEYS.athletes) !== null;
+
 function renderCodes() {
   const orders = readList(KEYS.orders);
-  const rows = athletes.map((a) => {
-    const used = orders.filter((o) => o.discountCode && o.discountCode.toLowerCase() === a.code.toLowerCase());
-    const sales = used.filter(countsForRevenue).reduce((s, o) => s + orderTotal(o), 0);
-    return [a.name, a.code, el("span", "badge " + (a.active ? "badge--delivered" : "badge--cancelled"), a.active ? "Active" : "Off"), String(used.length), money(sales)];
-  });
-  $("codes-table").replaceChildren(table(["Athlete", "Code", "Status", "Orders", "Sales"], rows, "No athlete codes in data/access.json."));
+  const q = $("code-search").value.trim().toLowerCase();
+  $("codes-reset").hidden = !isCodeListEdited();          // chưa sửa gì thì không cần nút Reset
+  const rows = athletes
+    .filter((a) => !q || a.name.toLowerCase().includes(q) || a.code.toLowerCase().includes(q))
+    .map((a) => {
+      const used = orders.filter((o) => o.discountCode && sameCode(o.discountCode, a.code));
+      const sales = used.filter(countsForRevenue).reduce((s, o) => s + orderTotal(o), 0);
+
+      // Bật/tắt: tắt thì mã không vào được web và không giảm giá nữa (đơn cũ vẫn giữ mã)
+      const active = el("input");
+      active.type = "checkbox"; active.checked = a.active;
+      active.setAttribute("aria-label", "Code " + a.code + " active");
+      active.addEventListener("change", () => {
+        if (!active.checked && !confirmLastActive(athletes, a.code)) { active.checked = true; return; }
+        const list = athletes.map((x) => (sameCode(x.code, a.code) ? { ...x, active: active.checked } : x));
+        storeAthletes(list, a.code + (active.checked ? " is active" : " is turned off"));
+      });
+
+      const actions = el("div", "code-actions");
+      const copy = el("button", "link-btn", "Copy");
+      copy.type = "button";
+      copy.setAttribute("aria-label", "Copy code " + a.code);
+      copy.addEventListener("click", () => copyCode(a.code));
+      const del = el("button", "link-btn link-btn--danger", "Delete");
+      del.type = "button";
+      del.setAttribute("aria-label", "Delete code " + a.code);
+      del.addEventListener("click", () => {
+        if (!confirm("Delete the code " + a.code + " (" + a.name + ")? Past orders keep it, but nobody can use it again.")) return;
+        if (!confirmLastActive(athletes, a.code)) return;
+        storeAthletes(athletes.filter((x) => !sameCode(x.code, a.code)), "Deleted " + a.code);
+      });
+      actions.append(copy, del);
+
+      return [a.name, el("span", "code-text", a.code), active, String(used.length), money(sales), actions];
+    });
+  const empty = athletes.length ? "No codes match." : "No athlete codes yet. Add one above.";
+  $("codes-table").replaceChildren(table(["Athlete", "Code", "Active", "Orders", "Sales", ""], rows, empty));
+}
+$("code-search").addEventListener("input", renderCodes);
+
+// Gợi ý mã từ tên: "Minh Trần" -> "SANCTUARY-MINHTRAN"; trùng thì thêm số 2, 3...
+function suggestCode(name) {
+  const base = "SANCTUARY-" + (name.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[đĐ]/g, "D")
+    .toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 16) || "ATHLETE");
+  let code = base;
+  for (let n = 2; athletes.some((a) => sameCode(a.code, code)); n++) code = base + n;
+  return code;
+}
+$("cf-suggest").addEventListener("click", () => {
+  $("cf-code").value = suggestCode($("cf-name").value);
+  $("error-cf-code").textContent = "";
+  $("cf-code").removeAttribute("aria-invalid");
+});
+
+const CODE_RULES = {
+  "cf-name": [rules.required, rules.minLength(2)],
+  "cf-code": [rules.required, (v) => CODE_PATTERN.test(v.trim().toUpperCase()) || "Use 4 to 30 letters, numbers or dashes.",
+    (v) => !athletes.some((a) => sameCode(a.code, v.trim())) || "This code already exists."]
+};
+liveValidate($("code-form"), CODE_RULES);
+
+$("code-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!validateForm($("code-form"), CODE_RULES)) return;
+  const code = $("cf-code").value.trim().toUpperCase();
+  // Không cho trùng mã admin: trang cổng thử mã admin trước, nên mã trùng sẽ đưa khách vào trang admin
+  if ((await sha256(code)) === ADMIN_CODE_HASH) {
+    $("error-cf-code").textContent = "This code is reserved. Choose another one.";
+    $("cf-code").setAttribute("aria-invalid", "true");
+    $("cf-code").focus();
+    return;
+  }
+  const athlete = { name: $("cf-name").value.trim().replace(/\s+/g, " "), code, active: $("cf-active").checked };
+  if (storeAthletes([...athletes, athlete], "Added " + code)) {
+    $("code-form").reset();
+    $("cf-name").focus();
+  }
+});
+
+// Bỏ mọi thay đổi, dùng lại danh sách trong data/access.json
+$("codes-reset").addEventListener("click", async () => {
+  if (!confirm("Go back to the codes in data/access.json? Codes added here will be removed.")) return;
+  localStorage.removeItem(KEYS.athletes);
+  await reloadAthletes();
+  renderCodes();
+  toast("Codes reset to access.json");
+});
+
+// Đọc lại danh sách mã (sau khi Reset, khôi phục backup, xoá dữ liệu)
+async function reloadAthletes() {
+  try { athletes = await loadAthletes("../data/access.json"); }
+  catch (err) { athletes = []; toast("Could not load data/access.json"); }
 }
 
 // ---------- Launch date ----------
@@ -659,6 +789,8 @@ $("backup-export").addEventListener("click", () => {
     [KEYS.overrides]: getProductOverrides(),
     [KEYS.custom]: readList(KEYS.custom)
   };
+  // Mã athlete chỉ xuất khi admin đã sửa (chưa sửa thì đang dùng access.json, không cần lưu)
+  if (isCodeListEdited()) data[KEYS.athletes] = readList(KEYS.athletes);
   const backup = { app: "sanctuary", version: 1, exportedAt: new Date().toISOString(), data };
   const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
   const link = el("a");
@@ -675,7 +807,7 @@ function checkBackup(backup) {
   if (!isObject(backup) || backup.app !== "sanctuary") throw new Error("Not a SANCTUARY backup file.");
   if (backup.version !== 1) throw new Error("This backup version is not supported.");
   if (!isObject(backup.data)) throw new Error("The file has no store data.");
-  [[KEYS.orders, "orders"], [KEYS.users, "customers"], [KEYS.messages, "messages"], [KEYS.custom, "added products"]].forEach(([key, label]) => {
+  [[KEYS.orders, "orders"], [KEYS.users, "customers"], [KEYS.messages, "messages"], [KEYS.custom, "added products"], [KEYS.athletes, "athlete codes"]].forEach(([key, label]) => {
     const list = backup.data[key];
     if (list !== undefined && !(Array.isArray(list) && list.every(VALIDATORS[key]))) {
       throw new Error("The " + label + " in this file are damaged.");
@@ -701,7 +833,7 @@ $("backup-import").addEventListener("change", (e) => {
       // Key không có trong file thì xoá (null), giống trạng thái lúc xuất file
       const entries = Object.values(KEYS).map((key) => [key, key in backup.data ? backup.data[key] : null]);
       if (!writeAll(entries)) throw new Error("Browser storage is full. Nothing was changed.");
-      await reloadProducts();
+      await Promise.all([reloadProducts(), reloadAthletes()]);
       updateCounts();
       $("backup-status").textContent = "Backup restored.";
     } catch (err) {
@@ -714,10 +846,10 @@ $("backup-import").addEventListener("change", (e) => {
 });
 
 $("backup-clear").addEventListener("click", async () => {
-  if (!confirm("Delete all orders, customers, messages, product changes and added products in this browser? This cannot be undone.")) return;
+  if (!confirm("Delete all orders, customers, messages, product changes, added products and code changes in this browser? This cannot be undone.")) return;
   Object.values(KEYS).forEach((key) => localStorage.removeItem(key));
   localStorage.removeItem("sanctuary_session");           // tài khoản đã xoá thì đăng xuất luôn
-  await reloadProducts();
+  await Promise.all([reloadProducts(), reloadAthletes()]);
   updateCounts();
   $("backup-status").textContent = "Store data cleared.";
 });
@@ -795,8 +927,8 @@ async function reloadProducts() {
 
 (async function init() {
   try {
-    const [, access] = await Promise.all([reloadProducts(), fetch("../data/access.json").then((r) => r.json())]);
-    athletes = access.influencers || [];
+    const [, list] = await Promise.all([reloadProducts(), loadAthletes("../data/access.json")]);
+    athletes = list;
   } catch (err) {
     console.error(err);
     toast("Could not load store data");

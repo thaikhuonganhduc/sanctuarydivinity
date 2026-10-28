@@ -10,6 +10,7 @@ import { updateCartCount } from "./header.js";
 import { initProductPopup } from "./product-popup.js";
 import { getCurrentUser, updateProfile } from "./auth.js";
 import { openAuth } from "./auth-ui.js";
+import { loadAthletes, findActiveCode } from "./athletes.js";
 
 const ORDERS_KEY = "sanctuary_orders";
 
@@ -19,7 +20,7 @@ const form = $("checkout-form");
 
 let products = {};
 let discount = null;        // { code, pct } khi đã áp mã athlete
-let athletes = [];          // danh sách athlete + mã lấy từ data/access.json
+let athletes = [];          // danh sách athlete + mã (data/access.json hoặc bản admin đã sửa, xem athletes.js)
 let shippingData = null;   // dữ liệu phí ship/thuế từ data/shipping.json
 let rates = { USD: 1 };
 let currency = getSavedCurrency();
@@ -329,7 +330,7 @@ discountForm.addEventListener("submit", (e) => {
     return;
   }
   const code = discountInput.value.trim();
-  const athlete = athletes.find((a) => a.active && a.code.toLowerCase() === code.toLowerCase());
+  const athlete = findActiveCode(athletes, code);
   if (!code) { discountMsg.textContent = "Enter a code first."; discountMsg.className = "discount__msg is-error"; return; }
   if (!athlete) { discountMsg.textContent = "This code is not valid."; discountMsg.className = "discount__msg is-error"; return; }
   discount = { code: athlete.code, pct: DISCOUNT_PCT, athlete: athlete.name };
@@ -374,13 +375,9 @@ window.addEventListener("auth-change", fillFromAccount);
 // Tải dữ liệu. Lỗi thì hiện thông báo lỗi + nút "Try again" (không giả làm "giỏ trống")
 function loadData() {
   $("cart-error").hidden = true;
-  const loadAccess = fetch("../data/access.json").then((r) => {
-    if (!r.ok) throw new Error("Cannot load access list");
-    return r.json();
-  });
-  Promise.all([loadProducts(), loadRates(), loadShipping(), loadAccess])
-    .then(([items, rateInfo, shipping, access]) => {
-      athletes = access.influencers || [];
+  Promise.all([loadProducts(), loadRates(), loadShipping(), loadAthletes("../data/access.json")])
+    .then(([items, rateInfo, shipping, athleteList]) => {
+      athletes = athleteList;
       shippingData = shipping;
       products = {};
       items.forEach((p) => { products[p.id] = p; });
