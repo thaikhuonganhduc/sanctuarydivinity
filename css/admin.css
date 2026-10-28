@@ -107,6 +107,32 @@
 .btn--danger:hover { background: #c8202b; border-color: #c8202b; color: #fff; }
 .link-btn { padding: 0; color: var(--color-text); text-decoration: underline; font-size: 0.8rem; }
 .link-btn:hover { color: var(--color-muted); }
+.link-btn--danger { color: #ff6b6b; }
+.link-btn--danger:hover { color: #ff9b9b; }
+/* Mục Launch date */
+.launch-form { display: flex; flex-direction: column; gap: var(--space-1); }
+.launch-form .input { color-scheme: dark; max-width: 260px; }
+.launch-form__actions { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+
+/* Form thêm sản phẩm (mục Products): 1 cột trên mobile, 2 cột từ 700px */
+.product-form[hidden] { display: none; }
+.product-form { max-width: 820px; }
+.product-form__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-1) var(--space-2); }
+@media (min-width: 700px) { .product-form__grid { grid-template-columns: 1fr 1fr; } .product-form__wide { grid-column: 1 / -1; } }
+.product-form .input { font-family: var(--admin-font); font-size: 0.9rem; padding: 0.55rem 0.75rem; color-scheme: dark; }
+.product-form textarea.input { resize: vertical; }
+.product-form__hex { height: 2.6rem; padding: 0.2rem; cursor: pointer; }
+.product-form fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.product-form__legend { margin-bottom: 0.4rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+.product-form__sizes { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.product-form__sizes label { display: flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.65rem; border: 1px solid var(--color-border); font-size: 0.8rem; cursor: pointer; }
+.product-form__sizes label:has(input:checked) { border-color: #fff; }
+.product-form__sizes input, .product-form__check input { accent-color: #fff; }
+.product-form__photo { display: flex; align-items: center; gap: var(--space-2); }
+.product-form__preview { flex: none; width: 64px; }
+.product-form__check { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; }
+.product-form__actions { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-2); }
+
 .admin-file { position: relative; display: inline-block; cursor: pointer; }
 .admin-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .admin-file:focus-within { outline: 2px solid #fff; outline-offset: 2px; }

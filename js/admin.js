@@ -1,21 +1,32 @@
 // Trang quản trị (chỉ vai trò admin vào được, xem guard.js).
 // Web không có backend nên mọi dữ liệu đọc/ghi ở localStorage của trình duyệt:
 //   sanctuary_orders (đơn hàng), sanctuary_users (khách), sanctuary_messages (tin nhắn),
-//   sanctuary_product_overrides (thay đổi giá/tồn kho/ẩn sản phẩm, xem products.js).
+//   sanctuary_product_overrides (thay đổi giá/tồn kho/ẩn/xoá sản phẩm, xem products.js),
+//   sanctuary_custom_products (sản phẩm admin thêm mới).
 // Sản phẩm gốc và mã athlete đọc từ file JSON bằng fetch.
 // An toàn: mọi chữ do người dùng nhập (tên, tin nhắn...) đều ghi bằng textContent, không dùng innerHTML.
 import { logout } from "./guard.js";
-import { loadProducts, createProductImage, OVERRIDES_KEY, getProductOverrides } from "./products.js";
+import { loadProducts, createProductImage, OVERRIDES_KEY, CUSTOM_PRODUCTS_KEY, getProductOverrides, stockAfter, applyStock } from "./products.js";
 import { listUsers, addSampleUser } from "./auth.js";
+import { readList as readStored, writeJSON, writeAll, isObject, isValidOrder, isValidUser, isValidMessage, isValidProduct } from "./storage.js";
+import { getLaunchDate, setLaunchDate, resetLaunchDate, isLaunchOverridden, DEFAULT_LAUNCH, toVietnamInput, fromVietnamInput, formatLaunch } from "./countdown.js";
+import { rules, validateForm, liveValidate } from "./form-validate.js";
+import { SIZES } from "./size-finder.js";
 
-const KEYS = { orders: "sanctuary_orders", users: "sanctuary_users", messages: "sanctuary_messages", overrides: OVERRIDES_KEY };
+const KEYS = { orders: "sanctuary_orders", users: "sanctuary_users", messages: "sanctuary_messages", overrides: OVERRIDES_KEY, custom: CUSTOM_PRODUCTS_KEY };
+// Luật kiểm tra cấu trúc của từng danh sách (dùng khi đọc localStorage và khi khôi phục file backup)
+const VALIDATORS = { [KEYS.orders]: isValidOrder, [KEYS.users]: isValidUser, [KEYS.messages]: isValidMessage, [KEYS.custom]: isValidProduct };
+const SAVE_ERROR = "Could not save. Browser storage may be full.";
 const STATUSES = ["Processing", "Shipped", "Delivered", "Cancelled"];
 const LOW_STOCK = 10;
 
 const $ = (id) => document.getElementById(id);
-let products = [];          // tất cả sản phẩm (kể cả đã ẩn), đã áp thay đổi của admin
-let productById = {};
+let products = [];          // tất cả sản phẩm (kể cả đã ẩn / đã xoá), đã áp thay đổi của admin
+let productById = {};       // giữ cả sản phẩm đã xoá để đơn hàng cũ vẫn hiện đúng tên
 let athletes = [];
+
+// Sản phẩm còn trong danh mục (chưa bị admin xoá)
+const listed = () => products.filter((p) => !p.deleted);
 
 // ---------- Tiện ích ----------
 function el(tag, className, text) {
@@ -24,11 +35,15 @@ function el(tag, className, text) {
   if (text !== undefined) node.textContent = text;
   return node;
 }
+// Bản ghi sai cấu trúc bị bỏ qua (xem storage.js), không làm lỗi trang admin
 function readList(key) {
-  try { return JSON.parse(localStorage.getItem(key)) || []; } catch (e) { return []; }
+  return readStored(key, VALIDATORS[key]);
 }
+// Trả về true nếu lưu được; lỗi thì báo bằng toast
 function writeList(key, list) {
-  localStorage.setItem(key, JSON.stringify(list));
+  if (writeJSON(key, list)) return true;
+  toast(SAVE_ERROR);
+  return false;
 }
 const money = (usd) => usd.toLocaleString("en-US", { style: "currency", currency: "USD" });
 const formatDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
@@ -81,7 +96,7 @@ const countsForRevenue = (o) => orderStatus(o) !== "Cancelled";
 const navLinks = document.querySelectorAll(".admin-nav a");
 const RENDERERS = {
   overview: renderOverview, orders: renderOrders, products: renderProducts,
-  customers: renderCustomers, messages: renderMessages, codes: renderCodes, backup: () => {}
+  customers: renderCustomers, messages: renderMessages, codes: renderCodes, launch: renderLaunch, backup: () => {}
 };
 function showPanel() {
   let id = location.hash.slice(1) || "overview";
@@ -103,7 +118,7 @@ window.addEventListener("popstate", showPanel);
 // Số nhỏ cạnh tên mục trong menu
 function updateCounts() {
   $("count-orders").textContent = readList(KEYS.orders).length || "";
-  $("count-products").textContent = products.length || "";
+  $("count-products").textContent = listed().length || "";
   $("count-customers").textContent = listUsers().length || "";
   const unread = readList(KEYS.messages).filter((m) => !m.read).length;
   $("count-messages").textContent = unread || "";
@@ -115,7 +130,7 @@ function renderOverview() {
   const valid = orders.filter(countsForRevenue);
   const revenue = valid.reduce((s, o) => s + orderTotal(o), 0);
   const unread = readList(KEYS.messages).filter((m) => !m.read).length;
-  const low = products.filter((p) => !p.hidden && p.stock <= LOW_STOCK);
+  const low = listed().filter((p) => !p.hidden && p.stock <= LOW_STOCK);
 
   const plural = (n, word) => n + " " + word + (n === 1 ? "" : "s");
   const guests = orders.filter((o) => !o.userEmail).length;
@@ -197,9 +212,23 @@ function renderOrders() {
     select.value = orderStatus(o);
     select.addEventListener("change", () => {
       const orders = readList(KEYS.orders);
-      orders[index].status = select.value;
-      writeList(KEYS.orders, orders);
-      toast(o.number + " marked " + select.value);
+      const order = orders[index];
+      const before = orderStatus(order);
+      const after = select.value;
+      // Tồn kho (chỉ với đơn đã trừ kho lúc đặt, xem cart-page.js):
+      // huỷ đơn -> cộng hàng lại vào kho; mở lại đơn đã huỷ -> trừ kho lần nữa
+      let sign = 0;
+      if (order.stockDeducted && before !== "Cancelled" && after === "Cancelled") sign = 1;
+      if (order.stockDeducted && before === "Cancelled" && after !== "Cancelled") sign = -1;
+
+      order.status = after;
+      const entries = [[KEYS.orders, orders]];
+      const change = sign ? stockAfter(productById, order.items, sign) : null;
+      if (change) entries.push([KEYS.overrides, change.overrides]);
+      // Ghi đơn + tồn kho cùng lúc; lỗi thì trả ô chọn về trạng thái cũ
+      if (!writeAll(entries)) { select.value = before; toast(SAVE_ERROR); return; }
+      if (change) applyStock(productById, change.stock);
+      toast(o.number + " marked " + after + (sign > 0 ? " · stock returned" : sign < 0 ? " · stock taken again" : ""));
       updateCounts();
     });
 
@@ -247,36 +276,74 @@ function renderOrders() {
 // ---------- Products ----------
 $("product-search").addEventListener("input", renderProducts);
 $("product-category").addEventListener("change", renderProducts);
+// Đưa về đúng products.json: bỏ mọi thay đổi và xoá luôn các sản phẩm admin đã thêm
 $("products-reset").addEventListener("click", async () => {
-  if (!confirm("Reset every product change back to products.json?")) return;
-  localStorage.removeItem(KEYS.overrides);
+  if (!confirm("Reset every product change back to products.json? Products you added will be removed too.")) return;
+  if (!writeAll([[KEYS.overrides, null], [KEYS.custom, null]])) { toast(SAVE_ERROR); return; }
   await reloadProducts();
   renderProducts();
+  updateCounts();
   toast("Product changes reset");
 });
 
-// Lưu 1 thay đổi của 1 sản phẩm (chỉ lưu phần khác với dữ liệu gốc)
+// Khôi phục mọi sản phẩm đã xoá (bỏ dấu deleted, giữ nguyên các thay đổi khác như giá, tồn kho)
+$("products-restore").addEventListener("click", async () => {
+  const overrides = getProductOverrides();
+  Object.keys(overrides).forEach((id) => {
+    if (!isObject(overrides[id])) return;
+    delete overrides[id].deleted;
+    if (Object.keys(overrides[id]).length === 0) delete overrides[id];
+  });
+  if (!writeJSON(KEYS.overrides, overrides)) { toast(SAVE_ERROR); return; }
+  await reloadProducts();
+  renderProducts();
+  updateCounts();
+  toast("Deleted products restored");
+});
+
+// Lưu 1 thay đổi của 1 sản phẩm (chỉ lưu phần khác với dữ liệu gốc). Trả về true nếu lưu được
 function saveOverride(product, field, value) {
   const overrides = getProductOverrides();
   overrides[product.id] = { ...(overrides[product.id] || {}), [field]: value };
-  localStorage.setItem(KEYS.overrides, JSON.stringify(overrides));
+  if (!writeJSON(KEYS.overrides, overrides)) {
+    toast(SAVE_ERROR);
+    renderProducts();                       // vẽ lại để ô nhập trở về giá trị cũ (chưa lưu được)
+    return false;
+  }
   product[field] = value;
   if (field === "stock") product.inStock = value > 0;
   toast("Saved: " + product.name);
+  return true;
+}
+
+// Xoá sản phẩm: chỉ đánh dấu deleted (không xoá hẳn) để đơn hàng cũ vẫn tra được tên, và bấm Restore là lấy lại.
+// Cửa hàng và giỏ hàng bỏ qua sản phẩm có deleted (xem loadProducts trong products.js).
+function deleteProduct(product) {
+  if (!confirm("Delete \"" + product.name + "\"? It disappears from the store and from shopping carts. You can bring it back with Restore deleted.")) return;
+  if (!saveOverride(product, "deleted", true)) return;
+  renderProducts();
+  updateCounts();
+  toast("Deleted: " + product.name);
 }
 
 function renderProducts() {
   const q = $("product-search").value.trim().toLowerCase();
   const cat = $("product-category").value;
   const overrides = getProductOverrides();
-  const rows = products
+
+  // Nút Restore chỉ hiện khi có sản phẩm đã xoá
+  const deletedCount = products.length - listed().length;
+  $("products-restore").hidden = deletedCount === 0;
+  $("products-restore").textContent = "Restore deleted (" + deletedCount + ")";
+
+  const rows = listed()
     .filter((p) => (!cat || p.category === cat) && (!q || p.name.toLowerCase().includes(q) || p.id.includes(q)))
     .map((p) => {
       const thumb = el("div", "admin-thumb");
       thumb.appendChild(createProductImage(p, p.colors[0]));
 
       const name = el("div");
-      name.append(el("p", "", p.name), el("p", "admin-sub", p.id + " · " + p.gender + (overrides[p.id] ? " · edited" : "")));
+      name.append(el("p", "", p.name), el("p", "admin-sub", p.id + " · " + p.gender + (p.custom ? " · added" : "") + (overrides[p.id] ? " · edited" : "")));
 
       // Giá: số dương, tối đa 2 chữ số thập phân
       const price = el("input", "input input--compact input--num");
@@ -309,10 +376,164 @@ function renderProducts() {
       visible.setAttribute("aria-label", "Show " + p.name + " in the store");
       visible.addEventListener("change", () => saveOverride(p, "hidden", !visible.checked));
 
-      return [thumb, name, p.category, price, stock, featured, visible];
+      const del = el("button", "link-btn link-btn--danger", "Delete");
+      del.type = "button";
+      del.setAttribute("aria-label", "Delete " + p.name);
+      del.addEventListener("click", () => deleteProduct(p));
+
+      return [thumb, name, p.category, price, stock, featured, visible, del];
     });
-  $("products-table").replaceChildren(table(["", "Product", "Category", "Price (USD)", "Stock", "Featured", "On sale"], rows, "No products match."));
+  $("products-table").replaceChildren(table(["", "Product", "Category", "Price (USD)", "Stock", "Featured", "On sale", ""], rows, "No products match."));
 }
+
+// ---------- Thêm sản phẩm ----------
+// Danh mục được chọn theo dòng sản phẩm, đúng với các nhóm mà cửa hàng chia (LINES trong shop.js),
+// để sản phẩm mới luôn có chỗ hiện trên trang shop
+const CATEGORIES = {
+  him: [["compression", "Compression"], ["hoodies", "Zip-ups and crewnecks"], ["oversize", "T-shirts"], ["tops", "Stringers and beaters"], ["bottoms", "Cargos, sweatpants and jeans"]],
+  her: [["hoodies", "Zip-ups"], ["tops", "Baby tees and sports bras"], ["bodysuits", "Bodysuits"], ["bottoms", "Leggings, shorts and sweatpants"]],
+  unisex: [["accessories", "Accessories"]]
+};
+const ONE_SIZE = "One size";
+const PHOTO_MAX_WIDTH = 800;               // bằng ảnh sản phẩm có sẵn; ảnh nhỏ thì localStorage mới chứa được
+const PHOTO_MAX_BYTES = 10 * 1024 * 1024;
+
+const productForm = $("product-form");
+const PRODUCT_RULES = {
+  "pf-name": [rules.required, rules.minLength(3)],
+  "pf-price": [(v) => Number(v) > 0 || "Enter a price above 0."],
+  "pf-stock": [(v) => (v.trim() !== "" && Number.isInteger(Number(v)) && Number(v) >= 0) || "Enter a whole number, 0 or more."],
+  "pf-color": [rules.required]
+};
+liveValidate(productForm, PRODUCT_RULES);
+let photoTask = null;                      // Promise trả về ảnh đã thu nhỏ (dạng data URL), null = chưa chọn ảnh
+
+// Ô chọn size: XXS → XXL và One size (cho phụ kiện), tạo bằng DOM
+[...SIZES, ONE_SIZE].forEach((size) => {
+  const label = el("label");
+  const box = el("input");
+  box.type = "checkbox"; box.name = "pf-size"; box.value = size;
+  label.append(box, document.createTextNode(size));
+  $("pf-sizes").appendChild(label);
+});
+
+// Đổi dòng sản phẩm: đổi danh sách danh mục và tick sẵn size hợp lý (quần áo: XXS-XXL, phụ kiện: One size)
+function fillCategories() {
+  const line = $("pf-line").value;
+  $("pf-category").replaceChildren(...CATEGORIES[line].map(([value, label]) => new Option(label, value)));
+  productForm.querySelectorAll("input[name='pf-size']").forEach((box) => {
+    box.checked = line === "unisex" ? box.value === ONE_SIZE : box.value !== ONE_SIZE;
+  });
+}
+$("pf-line").addEventListener("change", fillCategories);
+
+// Thu nhỏ ảnh trước khi lưu: FileReader đọc file -> vẽ lên canvas rộng tối đa 800px -> xuất WebP (trình duyệt
+// không hỗ trợ WebP thì xuất JPEG). Ảnh gốc từ điện thoại có thể vài MB, lưu thẳng sẽ làm đầy localStorage (~5 MB).
+function readPhoto(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener("error", () => reject(new Error("Could not read this file.")));
+    reader.addEventListener("load", () => {
+      const img = new Image();
+      img.addEventListener("error", () => reject(new Error("This file is not a readable image.")));
+      img.addEventListener("load", () => {
+        const scale = Math.min(1, PHOTO_MAX_WIDTH / img.width);
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+        let url = canvas.toDataURL("image/webp", 0.85);
+        if (!url.startsWith("data:image/webp")) url = canvas.toDataURL("image/jpeg", 0.85);
+        resolve(url);
+      });
+      img.src = reader.result;
+    });
+    reader.readAsDataURL(file);
+  });
+}
+
+$("pf-image").addEventListener("change", () => {
+  const file = $("pf-image").files[0];
+  const preview = $("pf-preview");
+  $("error-pf-image").textContent = "";
+  preview.hidden = true;
+  photoTask = null;
+  if (!file) return;
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size > PHOTO_MAX_BYTES) {
+    $("error-pf-image").textContent = "Choose a JPG, PNG or WebP photo up to 10 MB.";
+    $("pf-image").value = "";
+    return;
+  }
+  photoTask = readPhoto(file);
+  photoTask.then((url) => { preview.src = url; preview.hidden = false; })
+    .catch((err) => { $("error-pf-image").textContent = err.message; $("pf-image").value = ""; photoTask = null; });
+});
+
+function openProductForm(open) {
+  productForm.hidden = !open;
+  $("product-add").setAttribute("aria-expanded", String(open));
+  if (!open) return;
+  productForm.reset();
+  productForm.querySelectorAll(".form-error").forEach((p) => { p.textContent = ""; });
+  productForm.querySelectorAll("[aria-invalid]").forEach((i) => i.removeAttribute("aria-invalid"));
+  $("pf-preview").hidden = true;
+  photoTask = null;
+  fillCategories();
+  $("pf-name").focus();
+}
+$("product-add").addEventListener("click", () => openProductForm(productForm.hidden));
+$("pf-cancel").addEventListener("click", () => openProductForm(false));
+
+productForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  let ok = validateForm(productForm, PRODUCT_RULES);
+
+  // Không cho trùng tên với sản phẩm đang có
+  const name = $("pf-name").value.trim().replace(/\s+/g, " ");
+  if (ok && listed().some((p) => p.name.toLowerCase() === name.toLowerCase())) {
+    $("error-pf-name").textContent = "A product with this name already exists.";
+    $("pf-name").setAttribute("aria-invalid", "true");
+    $("pf-name").focus();
+    ok = false;
+  }
+  const sizes = [...productForm.querySelectorAll("input[name='pf-size']:checked")].map((box) => box.value);
+  $("error-pf-sizes").textContent = sizes.length ? "" : "Pick at least one size.";
+  if (!photoTask) $("error-pf-image").textContent = "Add a photo of the product.";
+  if (!ok || !sizes.length || !photoTask) return;
+
+  let photo;
+  try { photo = await photoTask; } catch (err) { return; }   // lỗi ảnh đã được báo dưới ô chọn ảnh
+
+  const stock = Number($("pf-stock").value);
+  const product = {
+    id: "c" + Date.now().toString(36),     // id riêng cho sản phẩm thêm mới (sản phẩm gốc là p01, p02...)
+    name,
+    category: $("pf-category").value,
+    gender: $("pf-line").value,
+    price: Math.round(Number($("pf-price").value) * 100) / 100,
+    currency: "USD",
+    colors: [{ name: $("pf-color").value.trim(), hex: $("pf-hex").value, images: [photo], available: true }],
+    sizes,
+    featured: $("pf-featured").checked,
+    inStock: stock > 0,
+    stock,
+    tag: "New",
+    specs: { material: "", weight: "", fit: "", care: "" },
+    description: "",
+    features: $("pf-features").value.split("\n").map((line) => line.trim()).filter(Boolean),
+    custom: true
+  };
+  if (!isValidProduct(product)) { toast("Some product details are missing."); return; }
+
+  const list = readList(KEYS.custom);
+  list.push(product);
+  if (!writeList(KEYS.custom, list)) return;          // thường do ảnh làm đầy localStorage
+  await reloadProducts();
+  openProductForm(false);
+  renderProducts();
+  updateCounts();
+  toast("Added: " + product.name);
+});
 
 // ---------- Customers ----------
 $("customer-search").addEventListener("input", renderCustomers);
@@ -356,7 +577,7 @@ function renderMessages() {
     readBtn.addEventListener("click", () => {
       const all = readList(KEYS.messages);
       all[index].read = !all[index].read;
-      writeList(KEYS.messages, all);
+      if (!writeList(KEYS.messages, all)) return;
       renderMessages();
       updateCounts();
     });
@@ -366,7 +587,7 @@ function renderMessages() {
       if (!confirm("Delete this message from " + m.name + "?")) return;
       const all = readList(KEYS.messages);
       all.splice(index, 1);
-      writeList(KEYS.messages, all);
+      if (!writeList(KEYS.messages, all)) return;
       renderMessages();
       updateCounts();
     });
@@ -387,14 +608,57 @@ function renderCodes() {
   $("codes-table").replaceChildren(table(["Athlete", "Code", "Status", "Orders", "Sales"], rows, "No athlete codes in data/access.json."));
 }
 
-// ---------- Backup ----------
-// Xuất: gom mọi key "sanctuary_..." trong localStorage thành 1 file JSON rồi tải về (Blob + thẻ <a download>)
-$("backup-export").addEventListener("click", () => {
-  const data = {};
-  Object.values(KEYS).forEach((key) => {
-    const raw = localStorage.getItem(key);
-    if (raw !== null) data[key] = JSON.parse(raw);
+// ---------- Launch date ----------
+// Ô chọn ngày giờ hiểu theo giờ Việt Nam (UTC+7); lưu bằng setLaunchDate() trong countdown.js
+function renderLaunch() {
+  const launch = getLaunchDate();
+  $("launch-input").value = toVietnamInput(launch);
+  $("launch-error").textContent = "";
+
+  // Còn bao lâu nữa tới ngày drop (hoặc đã qua)
+  const diff = launch - Date.now();
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const left = diff <= 0 ? "Launched (countdown shows 00)" : days + " days " + hours + " hours left";
+
+  const info = $("launch-info");
+  info.replaceChildren();
+  [["Drop time", formatLaunch(launch) + " (UTC+7)"], ["Source", isLaunchOverridden() ? "Set by admin" : "Default"],
+   ["Countdown", left], ["Default", formatLaunch(DEFAULT_LAUNCH)]].forEach(([k, v]) => {
+    info.append(el("dt", "", k), el("dd", "", v));
   });
+}
+
+$("launch-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const time = fromVietnamInput($("launch-input").value);
+  const year = time === null ? 0 : new Date(time).getUTCFullYear();
+  if (time === null || year < 2020 || year > 2100) {
+    $("launch-error").textContent = "Choose a valid date and time.";
+    return;
+  }
+  if (!setLaunchDate(time)) { toast(SAVE_ERROR); return; }
+  renderLaunch();
+  toast("Launch date saved");
+});
+
+$("launch-reset").addEventListener("click", () => {
+  if (!resetLaunchDate()) { toast(SAVE_ERROR); return; }
+  renderLaunch();
+  toast("Launch date reset to default");
+});
+
+// ---------- Backup ----------
+// Xuất: gom dữ liệu cửa hàng trong localStorage thành 1 file JSON rồi tải về (Blob + thẻ <a download>).
+// Đọc qua readList / getProductOverrides nên dữ liệu hỏng không làm lỗi nút xuất.
+$("backup-export").addEventListener("click", () => {
+  const data = {
+    [KEYS.orders]: readList(KEYS.orders),
+    [KEYS.users]: readList(KEYS.users),
+    [KEYS.messages]: readList(KEYS.messages),
+    [KEYS.overrides]: getProductOverrides(),
+    [KEYS.custom]: readList(KEYS.custom)
+  };
   const backup = { app: "sanctuary", version: 1, exportedAt: new Date().toISOString(), data };
   const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
   const link = el("a");
@@ -405,20 +669,38 @@ $("backup-export").addEventListener("click", () => {
   $("backup-status").textContent = "Backup downloaded.";
 });
 
-// Nhập: đọc file bằng FileReader, kiểm tra đúng định dạng rồi mới ghi đè
+// Kiểm tra file backup TRƯỚC khi ghi bất cứ thứ gì: đúng app, đúng phiên bản, từng phần dữ liệu đúng cấu trúc.
+// Sai ở đâu thì ném lỗi nói rõ phần đó, dữ liệu hiện tại giữ nguyên.
+function checkBackup(backup) {
+  if (!isObject(backup) || backup.app !== "sanctuary") throw new Error("Not a SANCTUARY backup file.");
+  if (backup.version !== 1) throw new Error("This backup version is not supported.");
+  if (!isObject(backup.data)) throw new Error("The file has no store data.");
+  [[KEYS.orders, "orders"], [KEYS.users, "customers"], [KEYS.messages, "messages"], [KEYS.custom, "added products"]].forEach(([key, label]) => {
+    const list = backup.data[key];
+    if (list !== undefined && !(Array.isArray(list) && list.every(VALIDATORS[key]))) {
+      throw new Error("The " + label + " in this file are damaged.");
+    }
+  });
+  const overrides = backup.data[KEYS.overrides];
+  if (overrides !== undefined && !(isObject(overrides) && Object.values(overrides).every(isObject))) {
+    throw new Error("The product changes in this file are damaged.");
+  }
+}
+
+// Nhập: đọc file bằng FileReader, kiểm tra toàn bộ rồi mới ghi đè (ghi cùng lúc, lỗi giữa chừng thì trả lại như cũ)
 $("backup-import").addEventListener("change", (e) => {
   const file = e.target.files[0];
   if (!file) return;
   const reader = new FileReader();
   reader.addEventListener("load", async () => {
     try {
-      const backup = JSON.parse(reader.result);
-      if (backup.app !== "sanctuary" || typeof backup.data !== "object") throw new Error("Not a SANCTUARY backup file.");
+      let backup;
+      try { backup = JSON.parse(reader.result); } catch (err) { throw new Error("The file is not valid JSON."); }
+      checkBackup(backup);
       if (!confirm("Replace the current store data with this backup from " + formatDate(backup.exportedAt) + "?")) return;
-      Object.values(KEYS).forEach((key) => {
-        if (key in backup.data) localStorage.setItem(key, JSON.stringify(backup.data[key]));
-        else localStorage.removeItem(key);
-      });
+      // Key không có trong file thì xoá (null), giống trạng thái lúc xuất file
+      const entries = Object.values(KEYS).map((key) => [key, key in backup.data ? backup.data[key] : null]);
+      if (!writeAll(entries)) throw new Error("Browser storage is full. Nothing was changed.");
       await reloadProducts();
       updateCounts();
       $("backup-status").textContent = "Backup restored.";
@@ -432,7 +714,7 @@ $("backup-import").addEventListener("change", (e) => {
 });
 
 $("backup-clear").addEventListener("click", async () => {
-  if (!confirm("Delete all orders, customers, messages and product changes in this browser? This cannot be undone.")) return;
+  if (!confirm("Delete all orders, customers, messages, product changes and added products in this browser? This cannot be undone.")) return;
   Object.values(KEYS).forEach((key) => localStorage.removeItem(key));
   localStorage.removeItem("sanctuary_session");           // tài khoản đã xoá thì đăng xuất luôn
   await reloadProducts();
@@ -440,7 +722,9 @@ $("backup-clear").addEventListener("click", async () => {
   $("backup-status").textContent = "Store data cleared.";
 });
 
-// Dữ liệu mẫu để thuyết trình: 3 khách, 8 đơn đủ trạng thái, 3 tin nhắn
+// Dữ liệu mẫu để thuyết trình: 3 khách, 8 đơn đủ trạng thái, 3 tin nhắn.
+// Bấm nhiều lần không tạo trùng: khách trùng email, đơn trùng số, tin nhắn trùng nội dung đều được bỏ qua.
+// Đơn mẫu không trừ kho (không có stockDeducted), nên huỷ đơn mẫu cũng không cộng kho.
 $("backup-sample").addEventListener("click", async () => {
   const people = [
     { name: "Minh Tran", email: "minh.tran@example.com", phone: "0903 456 789", address: "45 Le Loi Street", city: "Ho Chi Minh City", country: "Vietnam" },
@@ -448,21 +732,32 @@ $("backup-sample").addEventListener("click", async () => {
     { name: "Hana Sato", email: "hana.sato@example.com", phone: "+81 90 1234 5678", address: "2-11-3 Shibuya", city: "Tokyo", country: "Japan" }
   ];
   const day = 24 * 60 * 60 * 1000;
-  for (const [i, p] of people.entries()) {
-    await addSampleUser({ ...p, password: "Sanctuary1", createdAt: new Date(Date.now() - (40 - i * 10) * day).toISOString() });
+  let addedUsers = 0;
+  try {
+    for (const [i, p] of people.entries()) {
+      if (await addSampleUser({ ...p, password: "Sanctuary1", createdAt: new Date(Date.now() - (40 - i * 10) * day).toISOString() })) addedUsers++;
+    }
+  } catch (err) {
+    $("backup-status").textContent = err.message;
+    return;
   }
 
   // Đơn mẫu: chọn ngẫu nhiên sản phẩm đang bán
-  const forSale = products.filter((p) => !p.hidden);
+  const forSale = listed().filter((p) => !p.hidden);
   const pick = () => forSale[Math.floor(Math.random() * forSale.length)];
   const statuses = ["Delivered", "Delivered", "Shipped", "Shipped", "Processing", "Processing", "Processing", "Cancelled"];
   const orders = readList(KEYS.orders);
+  const existingNumbers = new Set(orders.map((o) => o.number));
+  let addedOrders = 0;
   statuses.forEach((status, i) => {
+    const number = "SD-DEMO" + (i + 1);
+    if (existingNumbers.has(number) || forSale.length === 0) return;   // đã có đơn số này thì bỏ qua
+    addedOrders++;
     const person = people[i % people.length];
     const items = [pick(), pick()].slice(0, 1 + (i % 2)).map((p) => ({ id: p.id, color: p.colors[0].name, size: p.sizes[Math.min(2, p.sizes.length - 1)], qty: 1 + (i % 3 === 0 ? 1 : 0) }));
     const subtotal = items.reduce((s, it) => s + productById[it.id].price * it.qty, 0);
     orders.push({
-      number: "SD-DEMO" + (i + 1), date: new Date(Date.now() - (14 - i * 1.5) * day).toISOString(), items, currency: "USD",
+      number, date: new Date(Date.now() - (14 - i * 1.5) * day).toISOString(), items, currency: "USD",
       customer: { ...person }, payment: i % 3 === 0 ? "paypal" : "card",
       discountCode: i === 2 && athletes[0] ? athletes[0].code : null,
       // tổng = giá hàng (đơn số 3 dùng mã athlete giảm 10%) + 24 USD phí ship ước tính
@@ -470,17 +765,24 @@ $("backup-sample").addEventListener("click", async () => {
       userEmail: i === 7 ? null : person.email         // 1 đơn khách vãng lai (không có tài khoản)
     });
   });
-  writeList(KEYS.orders, orders);
-
-  const messages = readList(KEYS.messages);
-  messages.push(
+  const sampleMessages = [
     { date: new Date(Date.now() - 3 * day).toISOString(), name: "Jordan Reyes", email: "jordan.reyes@example.com", topic: "Sizing help", message: "I'm 183 cm and 82 kg. Should I take M or L in the Doom Tech compression?" },
     { date: new Date(Date.now() - 1 * day).toISOString(), name: "Hana Sato", email: "hana.sato@example.com", topic: "Order and shipping", message: "Hi, my tracking has not updated for two days. Is my parcel still in Vietnam?" },
     { date: new Date().toISOString(), name: "Leo Martins", email: "leo.martins@example.com", topic: "Collaboration", message: "I run a powerlifting page with 40k followers and would love to work with SANCTUARY." }
-  );
-  writeList(KEYS.messages, messages);
+  ];
+  const messages = readList(KEYS.messages);
+  const newMessages = sampleMessages.filter((s) => !messages.some((m) => m.email === s.email && m.message === s.message));
+  messages.push(...newMessages);
+
+  if (!writeAll([[KEYS.orders, orders], [KEYS.messages, messages]])) {
+    $("backup-status").textContent = SAVE_ERROR;
+    return;
+  }
   updateCounts();
-  $("backup-status").textContent = "Sample data added: 3 customers, 8 orders, 3 messages.";
+  const plural = (n, word) => n + " " + word + (n === 1 ? "" : "s");
+  $("backup-status").textContent = addedUsers + addedOrders + newMessages.length === 0
+    ? "Sample data is already loaded."
+    : "Sample data added: " + plural(addedUsers, "customer") + ", " + plural(addedOrders, "order") + ", " + plural(newMessages.length, "message") + ".";
 });
 
 // ---------- Khởi động ----------
@@ -500,7 +802,7 @@ async function reloadProducts() {
     toast("Could not load store data");
   }
   // Danh mục cho bộ lọc sản phẩm
-  const cats = [...new Set(products.map((p) => p.category))].sort();
+  const cats = [...new Set(listed().map((p) => p.category))].sort();
   $("product-category").add(new Option("All categories", ""));
   cats.forEach((c) => $("product-category").add(new Option(c, c)));
   updateCounts();
