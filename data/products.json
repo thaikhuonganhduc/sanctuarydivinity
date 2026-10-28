@@ -74,10 +74,13 @@
         }
       ],
       "sizes": [
+        "XXS",
+        "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": true,
       "inStock": true,
@@ -133,10 +136,13 @@
         }
       ],
       "sizes": [
+        "XXS",
+        "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": true,
       "inStock": true,
@@ -258,11 +264,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": true,
       "inStock": true,
@@ -328,11 +336,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": true,
       "inStock": true,
@@ -378,11 +388,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": true,
       "inStock": true,
@@ -425,11 +437,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": true,
       "inStock": true,
@@ -490,7 +504,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": true,
       "inStock": true,
@@ -535,11 +550,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -584,11 +601,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -644,11 +663,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -754,11 +775,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -815,11 +838,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -931,11 +956,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1024,11 +1051,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1105,11 +1134,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1223,7 +1254,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1302,11 +1334,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1409,11 +1443,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1491,11 +1527,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1563,11 +1601,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1649,7 +1689,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1713,11 +1754,13 @@
         }
       ],
       "sizes": [
+        "XXS",
         "XS",
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1826,7 +1869,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -1933,7 +1977,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -2037,7 +2082,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -2141,7 +2187,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -2226,7 +2273,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -2333,7 +2381,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -2427,7 +2476,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,
@@ -2531,7 +2581,8 @@
         "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
       "featured": false,
       "inStock": true,

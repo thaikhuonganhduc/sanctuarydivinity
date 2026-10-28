@@ -1,12 +1,11 @@
 // Popup chi tiết sản phẩm (ảnh theo màu bên trái, thông tin + nút mua bên phải), dùng chung cho trang chủ và trang giỏ hàng.
 // initProductPopup nhận khung <dialog> và vài hàm của trang gọi nó, rồi trả về hàm openProduct(product).
-import { createProductImage } from "./products.js";
-import { addToCart } from "./cart.js";
+import { createProductImage, isColorAvailable, canBuy } from "./products.js";
+import { addToCart, getCart, qtyInCart } from "./cart.js";
 import { buildSlideshow } from "./slideshow.js";
-import { parseHeight, parseWeight, recommendSize, fitNote, loadSizeChart } from "./size-finder.js";
+import { parseHeight, parseWeight, recommendSize, fitNote, loadSizeChart, SIZES } from "./size-finder.js";
 import { formatPrice } from "./currency.js";
-
-const SIZES = ["XXS", "XS", "S", "M", "L", "XL"];
+import { buildProductReviews } from "./product-reviews.js";
 
 export function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -23,8 +22,9 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
 
   function openProduct(product) {
-    let color = product.colors[0];
+    let color = product.colors.find(isColorAvailable) || product.colors[0];   // mở sẵn màu đầu tiên còn bán
     let size = null;
+    const buyable = canBuy(product);
     detail.replaceChildren();
 
     // Bên trái: ảnh theo màu đang chọn
@@ -51,10 +51,16 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
     product.colors.forEach((c) => {
       const btn = el("button", "swatch-btn");
       btn.type = "button";
-      btn.style.background = c.hex;
+      btn.style.backgroundColor = c.hex;           // chỉ đặt màu nền, để CSS còn vẽ được gạch chéo cho màu ngừng bán
       btn.title = c.name;
       btn.setAttribute("aria-label", c.name);
       btn.setAttribute("aria-pressed", String(c === color));
+      // Màu đã ngừng bán: vẫn hiện để khách biết, nhưng làm mờ và không bấm được
+      if (!isColorAvailable(c)) {
+        btn.disabled = true;
+        btn.title = c.name + " (sold out)";
+        btn.setAttribute("aria-label", c.name + ", sold out");
+      }
       btn.addEventListener("click", () => {
         color = c;
         colorName.textContent = c.name;
@@ -64,7 +70,7 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
       colorRow.appendChild(btn);
     });
 
-    // Chọn size XXS -> XL
+    // Chọn size XXS -> XXL
     const sizeRow = el("div", "product-detail__options");
     const sizeList = product.sizes.length ? product.sizes : SIZES;
     sizeList.forEach((sz) => {
@@ -79,12 +85,17 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
       size = sz;
       message.textContent = "";
       sizeRow.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.textContent === sz)));
+      // Tô sáng dòng của size vừa chọn trong bảng size
+      sizeChart.querySelectorAll("tr[data-size]").forEach((tr) => tr.classList.toggle("is-selected", tr.dataset.size === sz));
     }
+
+    // ---- Bảng size (số liệu từ data/size-chart.json) ----
+    const sizeChart = buildSizeChart(product);
 
     // ---- Gợi ý size theo chiều cao + cân nặng ----
     const finder = buildSizeFinder(product, selectSize);
 
-    // Số lượng muốn mua (tối đa bằng số còn trong kho)
+    // Số lượng muốn mua: tối đa = số trong kho trừ đi số đã có trong giỏ (tính cả màu/size khác của sản phẩm này)
     let qty = 1;
     const qtyValue = el("span", "qty__value", "1");
     const minus = el("button", "qty__btn", "−");
@@ -92,11 +103,12 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
     minus.type = plus.type = "button";
     minus.setAttribute("aria-label", "Decrease quantity");
     plus.setAttribute("aria-label", "Increase quantity");
+    const maxQty = () => Math.max(1, product.stock - qtyInCart(getCart(), product.id));
     function setQty(n) {
-      qty = Math.min(Math.max(n, 1), product.stock);
+      qty = Math.min(Math.max(n, 1), maxQty());
       qtyValue.textContent = qty;
       minus.disabled = qty <= 1;
-      plus.disabled = qty >= product.stock;
+      plus.disabled = qty >= maxQty();
     }
     minus.addEventListener("click", () => setQty(qty - 1));
     plus.addEventListener("click", () => setQty(qty + 1));
@@ -106,7 +118,7 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
 
     // Dòng số hàng còn trong kho (con số tô đỏ)
     const stockLine = el("p", "product-detail__stock");
-    if (product.stock > 0) {
+    if (buyable) {
       stockLine.append(el("strong", "stock-number", String(product.stock)), " in stock");
     } else {
       stockLine.textContent = "Out of stock";
@@ -116,25 +128,34 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
     const addBtn = el("button", "btn", "Add to cart");
     const buyBtn = el("button", "btn btn--ghost", "Buy now");
     addBtn.type = buyBtn.type = "button";
-    function checkSize() {
-      if (!size) { message.textContent = "Please select a size."; return false; }
-      return true;
+
+    // Thử thêm vào giỏ, trả về: "ok" (đã thêm), "full" (giỏ đã có đủ số trong kho), "error" (chưa thêm được)
+    function tryAdd() {
+      if (!size) { message.textContent = "Please select a size."; return "error"; }
+      if (!isColorAvailable(color)) { message.textContent = "This color is sold out."; return "error"; }
+      const { added, saved } = addToCart(product.id, color.name, size, qty, product.stock);
+      if (!saved) { message.textContent = "We couldn't save your cart. Please try again."; return "error"; }
+      if (added === 0) {
+        message.textContent = "You already have all " + product.stock + " in your cart.";
+        return "full";
+      }
+      // Thêm được ít hơn số muốn mua (do giới hạn kho) thì báo cho khách biết
+      message.textContent = added < qty ? "Only " + added + " more could be added: that is all we have in stock." : "";
+      onAddToCart();
+      setQty(1);                                     // giỏ đổi -> số tối đa được mua thêm cũng đổi
+      return "ok";
     }
     addBtn.addEventListener("click", () => {
-      if (!checkSize()) return;
-      addToCart(product.id, color.name, size, qty);
-      onAddToCart();
+      if (tryAdd() !== "ok") return;
       addBtn.textContent = "Added ✓";
       setTimeout(() => { addBtn.textContent = "Add to cart"; }, 1500);
     });
+    // Mua ngay: giỏ đã đủ hàng ("full") thì vẫn sang thanh toán
     buyBtn.addEventListener("click", () => {
-      if (!checkSize()) return;
-      addToCart(product.id, color.name, size, qty);
-      onAddToCart();
-      onBuyNow();
+      if (tryAdd() !== "error") onBuyNow();
     });
     const actions = el("div", "product-detail__actions");
-    if (product.stock > 0) {
+    if (buyable) {
       actions.append(addBtn, buyBtn);
     } else {
       actions.appendChild(el("p", "product-card__tag", "Sold out"));
@@ -162,13 +183,86 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
     close.setAttribute("aria-label", "Close");
     close.addEventListener("click", () => dialog.close());
 
+    // Thứ tự: tên, giá -> chọn màu, size (bảng size, gợi ý size) -> số lượng, nút mua -> thông số -> mô tả -> review
     info.append(
-      el("h2", "glass__title", product.name), price, featureList,
-      colorLabel, colorRow, el("p", "product-detail__label", "Size"), sizeRow, finder,
-      ...(product.stock > 0 ? [el("p", "product-detail__label", "Quantity"), qtyRow] : []), stockLine, message, actions, specs
+      el("h2", "glass__title", product.name), price,
+      colorLabel, colorRow, el("p", "product-detail__label", "Size"), sizeRow, sizeChart, finder,
+      ...(buyable ? [el("p", "product-detail__label", "Quantity"), qtyRow] : []), stockLine, message, actions,
+      specs, featureList, buildProductReviews(product)
     );
     detail.append(media, info, close);
     dialog.showModal();
+  }
+
+  // Khối "Size chart": bảng số đo theo từng size, mở/đóng bằng thẻ <details>.
+  // Số liệu đọc từ data/size-chart.json (tính từ dữ liệu ANSUR II bằng tools/build_size_chart.py):
+  //   - Vòng ngực: khoảng của từng size (theo bảng size công bố của các hãng)
+  //   - Vòng eo, chiều cao, cân nặng: khoảng phổ biến (50% ở giữa) của những người thuộc size đó trong dữ liệu
+  function buildSizeChart(product) {
+    if (product.sizes.length === 1 && product.sizes[0] === "One size") return el("span");   // mũ, nón: không cần
+
+    const box = el("details", "size-finder size-chart");
+    const gender = product.gender === "her" ? "her" : "him";              // unisex dùng thang nam
+    box.appendChild(el("summary", "", "Size chart"));
+    const body = el("div", "size-chart__body");
+    body.appendChild(el("p", "cart-note", "Loading size chart..."));
+    box.appendChild(body);
+
+    // Khoảng số "a–b"; thiếu cận thì ghi "dưới b" / "a+"; không có số liệu thì "–"
+    const range = (pair) => (pair ? pair[0] + "–" + pair[1] : "–");
+    const chestRange = (row) => {
+      if (row.chestMinCm === null) return "< " + row.chestMaxCm;
+      if (row.chestMaxCm === null) return row.chestMinCm + "+";
+      return row.chestMinCm + "–" + row.chestMaxCm;
+    };
+
+    // Chỉ tải dữ liệu khi khách mở bảng lần đầu
+    let loaded = false;
+    box.addEventListener("toggle", async () => {
+      if (!box.open || loaded) return;
+      try {
+        const chart = await loadSizeChart();
+        const data = chart[gender];
+        loaded = true;
+
+        const table = el("table", "size-chart__table");
+        table.appendChild(el("caption", "visually-hidden", (gender === "her" ? "Women's" : "Men's") + " size chart in centimetres and kilograms"));
+        const headRow = el("tr");
+        ["Size", "Chest (cm)", "Waist (cm)", "Height (cm)", "Weight (kg)"].forEach((h) => {
+          const th = el("th", "", h);
+          th.scope = "col";
+          headRow.appendChild(th);
+        });
+        table.appendChild(el("thead")).appendChild(headRow);
+
+        const tbody = el("tbody");
+        data.table.filter((row) => product.sizes.includes(row.size)).forEach((row) => {
+          const tr = el("tr");
+          tr.dataset.size = row.size;
+          const th = el("th", "", row.size);
+          th.scope = "row";
+          tr.appendChild(th);
+          [chestRange(row), range(row.waistCm), range(row.heightCm), range(row.weightKg)].forEach((v) => tr.appendChild(el("td", "", v)));
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+
+        const wrap = el("div", "size-chart__scroll");                         // màn hình hẹp: bảng cuộn ngang
+        wrap.appendChild(table);
+        body.replaceChildren(
+          el("p", "size-chart__title", (gender === "her" ? "Women's" : "Men's") + " sizes"),
+          wrap,
+          el("p", "size-finder__source", "Chest ranges follow common apparel size charts. Waist, height and weight show the middle 50% of people in each size in the ANSUR II body survey (" +
+            data.sampleSize.toLocaleString("en-US") + " adults). \"–\" means too few people in the data to show a range.")
+        );
+        // Khách đã chọn size trước khi mở bảng: tô sáng luôn dòng đó
+        const pressed = box.closest(".review-detail__info")?.querySelector(".size-btn[aria-pressed='true']");
+        if (pressed) tbody.querySelector('tr[data-size="' + pressed.textContent + '"]')?.classList.add("is-selected");
+      } catch (err) {
+        body.replaceChildren(el("p", "form-error", "Size data is unavailable right now. Close and open the chart to try again."));
+      }
+    });
+    return box;
   }
 
   // Khối "Find your size": nhập chiều cao + cân nặng -> hiện size gợi ý (số to, màu đỏ)

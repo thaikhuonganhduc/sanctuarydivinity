@@ -1,9 +1,9 @@
 // Phần đánh giá của khách: đọc reviews.json bằng fetch,
 // hiện từng đợt (nút "Show more"), bấm vào thẻ thì mở popup chi tiết.
 import { buildSlideshow } from "./slideshow.js";
+import { createStars, createImage } from "./product-reviews.js";
 
 const PAGE_SIZE = 6;                       // mỗi lần hiện 6 đánh giá
-const IMAGE_EXTENSIONS = [".webp", ".jpg"]; // thử .webp (nhẹ) trước, không có thì thử .jpg
 
 const list = document.getElementById("review-list");
 const summary = document.getElementById("review-summary");
@@ -17,40 +17,8 @@ let filtered = [];   // các đánh giá đang hiển thị theo bộ lọc sao
 let shown = 0;
 
 // ---------- Hàm dùng chung ----------
-
-// Sao có phần lẻ: lớp sao xám bên dưới, lớp sao trắng bên trên cắt theo % điểm
-function createStars(rating) {
-  const wrap = document.createElement("span");
-  wrap.className = "stars";
-  wrap.setAttribute("aria-label", rating.toFixed(1) + " out of 5");
-  wrap.textContent = "★★★★★";
-  const fill = document.createElement("span");
-  fill.className = "stars__fill";
-  fill.style.width = (rating / 5) * 100 + "%";
-  fill.textContent = "★★★★★";
-  wrap.appendChild(fill);
-  return wrap;
-}
-
-// 1 ảnh feedback của khách: thử .webp -> .jpg -> khung chờ. base = đường dẫn không có đuôi file
-function createImage(base, alt, lazy) {
-  const img = document.createElement("img");
-  img.alt = alt;
-  img.loading = lazy ? "lazy" : "eager";
-  let tries = 0;
-  img.src = "../" + base + IMAGE_EXTENSIONS[tries];
-  img.addEventListener("error", () => {
-    tries++;
-    if (tries < IMAGE_EXTENSIONS.length) {
-      img.src = "../" + base + IMAGE_EXTENSIONS[tries];
-    } else {
-      const ph = document.createElement("span");
-      ph.textContent = "Photo soon";
-      img.replaceWith(ph);
-    }
-  });
-  return img;
-}
+// (createStars: vẽ sao có phần lẻ; createImage: ảnh feedback thử .webp -> .jpg.
+//  Hai hàm nằm ở product-reviews.js để popup sản phẩm dùng chung)
 
 // Khung ảnh của 1 đánh giá: 1 ảnh thì hiện ảnh, nhiều ảnh thì thành slideshow
 function createPhoto(review) {

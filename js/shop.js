@@ -1,7 +1,9 @@
 // Trang cửa hàng: đọc products.json (fetch), chia sản phẩm thành 3 khu (nam, nữ, phụ kiện) + các nhóm nhỏ, vẽ bằng DOM.
-import { loadProducts, renderGrid } from "./products.js";
+// Thanh lọc phía trên: lọc theo size, màu và sắp xếp theo giá, áp dụng cho cả 3 khu cùng lúc.
+import { loadProducts, renderGrid, isColorAvailable } from "./products.js";
 import { initProductPopup, el } from "./product-popup.js";
 import { REGIONS, loadRates, formatPrice, getSavedCurrency, saveCurrency } from "./currency.js";
+import { SIZES } from "./size-finder.js";
 
 const sections = document.querySelectorAll(".shop-section");
 const header = document.querySelector(".site-header");
@@ -13,10 +15,18 @@ const linesTab = document.getElementById("lines-tab");
 const currencySelect = document.getElementById("filter-currency");
 const dialog = document.getElementById("product-dialog");
 const detail = document.getElementById("product-detail");
+const sortSelect = document.getElementById("filter-sort");
+const sizeSelect = document.getElementById("filter-size");
+const colorSelect = document.getElementById("filter-color");
+const clearBtn = document.getElementById("filter-clear");
+const countLine = document.getElementById("shop-count");
+const filterNote = document.getElementById("shop-filter-note");
+const filterNoteText = document.getElementById("shop-filter-text");
 
 let products = [];
 let rates = { USD: 1 };
-const state = { currency: getSavedCurrency() };
+// sort: "featured" | "price-asc" | "price-desc"; size/color: "" = không lọc
+const state = { currency: getSavedCurrency(), sort: "featured", size: "", color: "" };
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // 3 khu sản phẩm. Mỗi khu chia thành các nhóm nhỏ: nhóm hiện thành tiêu đề + lưới trên trang,
@@ -46,16 +56,30 @@ const LINES = {
     match: (p) => p.category === "accessories",
     groups: [
       { id: "caps", title: "Tarnished Metallic Logo Caps", match: (p) => /\bcap\b/i.test(p.name) },
-      { id: "beanies", title: "Essential Embroidery Beanies", match: (p) => /\bbeanie\b/i.test(p.name) }
+      { id: "beanies", title: "Essential Embroidery Beanies", match: (p) => /\bbeanie\b/i.test(p.name) },
+      // Phụ kiện admin thêm mới mà không phải mũ (vd: găng tay, túi) vẫn có chỗ hiện
+      { id: "more", title: "More Accessories", match: (p) => !/\b(cap|beanie)\b/i.test(p.name) }
     ]
   }
 };
 
-const byFeatured = (a, b) => Number(b.featured) - Number(a.featured);
+// Các cách sắp xếp: món nổi bật trước / giá tăng dần / giá giảm dần
+const SORTS = {
+  "featured": (a, b) => Number(b.featured) - Number(a.featured),
+  "price-asc": (a, b) => a.price - b.price,
+  "price-desc": (a, b) => b.price - a.price
+};
 
-// Sản phẩm của 1 nhóm (món nổi bật xếp trước)
+// Sản phẩm có qua bộ lọc không: có bán size đã chọn, có màu đã chọn (màu đó còn bán)
+function passesFilters(p) {
+  if (state.size && !p.sizes.includes(state.size)) return false;
+  if (state.color && !p.colors.some((c) => c.name === state.color && isColorAvailable(c))) return false;
+  return true;
+}
+
+// Sản phẩm của 1 nhóm, đã lọc và sắp xếp
 function groupItems(line, group) {
-  return products.filter((p) => LINES[line].match(p) && group.match(p)).sort(byFeatured);
+  return products.filter((p) => LINES[line].match(p) && group.match(p) && passesFilters(p)).sort(SORTS[state.sort]);
 }
 
 // Dải video chèn giữa 2 nhóm sản phẩm (tỷ lệ 4:5, tự chạy khi cuộn tới, tắt tiếng, lặp lại).
@@ -88,12 +112,14 @@ function getBreakVideo(name, ratio) {
 // Vẽ cả 3 khu lên cùng 1 trang. animate = false khi chỉ đổi tiền tệ (không cần cho các thẻ hiện lại từ đầu)
 function renderSections(animate = true) {
   const format = (usd) => formatPrice(usd, state.currency, rates);
+  let total = 0;                                         // tổng số sản phẩm đang hiện (sau khi lọc)
   Object.keys(LINES).forEach((line) => {
     const wrap = document.getElementById("groups-" + line);
     wrap.replaceChildren();
     LINES[line].groups.forEach((group) => {
       const items = groupItems(line, group);
       if (items.length === 0) return;                    // nhóm trống thì không hiện
+      total += items.length;
       if (group.videoBefore) wrap.appendChild(getBreakVideo(group.videoBefore, group.videoRatio));   // video nằm ngay trên tiêu đề nhóm
       const block = document.createElement("div");
       block.className = "shop-group";
@@ -107,9 +133,21 @@ function renderSections(animate = true) {
       block.append(title, grid);
       wrap.appendChild(block);
     });
+    // Khu không còn nhóm nào (do bộ lọc) thì ẩn cả khu, kể cả tiêu đề
+    document.getElementById(line).hidden = wrap.children.length === 0;
   });
 
-  empty.hidden = products.length > 0;
+  const filtering = Boolean(state.size || state.color);
+  empty.textContent = filtering ? "No pieces match these filters." : "No pieces available yet.";
+  empty.hidden = total > 0;
+  countLine.textContent = filtering ? total + " of " + products.length + " pieces" : products.length + " pieces";
+  clearBtn.hidden = !filtering && state.sort === "featured";
+  // Bộ lọc nằm trong menu Collections (đóng lại là không thấy), nên khi đang lọc thì báo ngay trong cửa hàng
+  filterNote.hidden = !filtering;
+  if (filtering) {
+    const parts = [state.size && "Size " + state.size, state.color].filter(Boolean);
+    filterNoteText.textContent = "Showing " + total + " of " + products.length + " pieces · " + parts.join(" · ");
+  }
 
   // Hiệu ứng: các thẻ lần lượt hiện lên (trễ dần theo thứ tự, tối đa 12 thẻ đầu)
   if (!animate) return;
@@ -211,6 +249,35 @@ function buildMenuSubs() {
   });
 }
 
+// ---------- Thanh lọc ----------
+// Điền danh sách size (theo thứ tự XXS -> XXL) và màu (các màu còn bán, xếp A-Z) từ dữ liệu sản phẩm
+function fillFilters() {
+  const sizes = [...SIZES, "One size"].filter((s) => products.some((p) => p.sizes.includes(s)));
+  sizes.forEach((s) => sizeSelect.add(new Option(s, s)));
+  const colors = new Set();
+  products.forEach((p) => p.colors.filter(isColorAvailable).forEach((c) => colors.add(c.name)));
+  [...colors].sort().forEach((c) => colorSelect.add(new Option(c, c)));
+}
+
+// Lọc/sắp xếp xong thì vẽ lại cả 3 khu và menu Collections (mục con chỉ hiện nhóm còn sản phẩm)
+function applyFilters() {
+  state.sort = sortSelect.value;
+  state.size = sizeSelect.value;
+  state.color = colorSelect.value;
+  renderSections(true);
+  buildMenuSubs();
+}
+[sortSelect, sizeSelect, colorSelect].forEach((s) => s.addEventListener("change", applyFilters));
+// Bỏ lọc: nút "Clear" trong menu Collections và nút "Clear filters" trong cửa hàng dùng chung
+function clearFilters() {
+  sortSelect.value = "featured";
+  sizeSelect.value = "";
+  colorSelect.value = "";
+  applyFilters();
+}
+clearBtn.addEventListener("click", clearFilters);
+document.getElementById("filter-clear-page").addEventListener("click", clearFilters);
+
 currencySelect.addEventListener("change", () => {
   state.currency = currencySelect.value;
   saveCurrency(state.currency);   // nhớ lựa chọn cho các trang khác
@@ -223,6 +290,7 @@ async function init() {
     const [list, rateInfo] = await Promise.all([loadProducts(), loadRates()]);
     products = list;
     rates = rateInfo.rates;
+    fillFilters();
     renderSections(true);
     buildMenuSubs();
     markActive("sanctuary");

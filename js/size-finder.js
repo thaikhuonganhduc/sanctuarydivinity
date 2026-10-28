@@ -3,16 +3,22 @@
 //   vòng_ngực ≈ intercept + perKg * cân_nặng + perCm * chiều_cao
 // rồi tra vòng ngực vào bảng mốc của các hãng để ra size. Hệ số nằm trong data/size-chart.json.
 
-const SIZES = ["XXS", "XS", "S", "M", "L", "XL"];
+export const SIZES = ["XXS", "XS", "S", "M", "L", "XL", "XXL"];
 
 let chartPromise = null;
-// Đọc data/size-chart.json 1 lần rồi dùng lại (fetch)
+// Đọc data/size-chart.json 1 lần rồi dùng lại (fetch).
+// Tải lỗi thì xoá promise đã nhớ, để lần bấm "Calculate" sau được tải lại (không bị kẹt lỗi mãi).
 export function loadSizeChart() {
   if (!chartPromise) {
-    chartPromise = fetch("../data/size-chart.json").then((res) => {
-      if (!res.ok) throw new Error("Cannot load size chart");
-      return res.json();
-    });
+    chartPromise = fetch("../data/size-chart.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Cannot load size chart");
+        return res.json();
+      })
+      .catch((err) => {
+        chartPromise = null;
+        throw err;
+      });
   }
   return chartPromise;
 }
@@ -46,7 +52,7 @@ export function recommendSize({ chart, gender, heightCm, weightKg, category, ava
   const chest = g.intercept + g.perKg * weightKg + g.perCm * heightCm;   // vòng ngực dự đoán (cm)
 
   let index = g.chestLimitsCm.findIndex((limit) => chest < limit);
-  if (index === -1) index = SIZES.length - 1;                            // vượt mốc cuối -> XL
+  if (index === -1) index = SIZES.length - 1;                            // vượt mốc cuối -> XXL
 
   // Ngoài khoảng số liệu của bộ dữ liệu (P1-P99) thì kết quả kém tin cậy
   const outOfRange = heightCm < g.heightRangeCm[0] || heightCm > g.heightRangeCm[1] ||

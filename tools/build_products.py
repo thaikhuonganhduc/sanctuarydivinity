@@ -27,8 +27,8 @@ SRC = ROOT / "data" / "bd-products.json"
 REVIEWS = ROOT / "data" / "reviews.json"
 OUT = ROOT / "data" / "products.json"
 
-SIZES = ["XXS", "XS", "S", "M", "L", "XL"]
-SIZE_MAP = {"2XS": "XXS", "XS": "XS", "S": "S", "M": "M", "L": "L", "XL": "XL"}
+SIZES = ["XXS", "XS", "S", "M", "L", "XL", "XXL"]   # nhóm chọn bán đủ XXS -> XXL cho mọi sản phẩm quần áo
+SIZE_MAP = {"2XS": "XXS", "XXS": "XXS", "XS": "XS", "S": "S", "M": "M", "L": "L", "XL": "XL", "2XL": "XXL", "XXL": "XXL"}
 MAX_IMAGES = 4   # số ảnh giữ lại cho mỗi màu
 
 # type của shop gốc -> category của web
@@ -175,7 +175,11 @@ def main():
             })
 
         stock = fake_stock(name) if any_available else 0
-        sizes_list = [s for s in SIZES if s in sizes] or (["One size"] if category == "accessories" else SIZES)
+        # Phụ kiện (mũ, nón): giữ size của shop gốc hoặc "One size"; quần áo: bán đủ dải XXS -> XXL
+        if category == "accessories":
+            sizes_list = [s for s in SIZES if s in sizes] or ["One size"]
+        else:
+            sizes_list = SIZES
         out.append(OrderedDict([
             ("id", "p%02d" % i),
             ("name", name),

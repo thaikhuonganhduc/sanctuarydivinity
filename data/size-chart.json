@@ -7,7 +7,8 @@
     "S",
     "M",
     "L",
-    "XL"
+    "XL",
+    "XXL"
   ],
   "him": {
     "sampleSize": 4082,
@@ -20,10 +21,11 @@
       90,
       96,
       104,
-      112
+      112,
+      120
     ],
-    "exactSizePct": 71.5,
-    "withinOneSizePct": 99.9,
+    "exactSizePct": 68.0,
+    "withinOneSizePct": 99.7,
     "heightRangeCm": [
       160,
       193
@@ -31,6 +33,122 @@
     "weightRangeKg": [
       58,
       124
+    ],
+    "table": [
+      {
+        "size": "XXS",
+        "chestMinCm": null,
+        "chestMaxCm": 84,
+        "people": 6
+      },
+      {
+        "size": "XS",
+        "chestMinCm": 84,
+        "chestMaxCm": 90,
+        "people": 93,
+        "waistCm": [
+          72,
+          77
+        ],
+        "heightCm": [
+          167,
+          175
+        ],
+        "weightKg": [
+          57,
+          62
+        ]
+      },
+      {
+        "size": "S",
+        "chestMinCm": 90,
+        "chestMaxCm": 96,
+        "people": 431,
+        "waistCm": [
+          77,
+          83
+        ],
+        "heightCm": [
+          169,
+          178
+        ],
+        "weightKg": [
+          65,
+          71
+        ]
+      },
+      {
+        "size": "M",
+        "chestMinCm": 96,
+        "chestMaxCm": 104,
+        "people": 1229,
+        "waistCm": [
+          84,
+          91
+        ],
+        "heightCm": [
+          170,
+          179
+        ],
+        "weightKg": [
+          73,
+          81
+        ]
+      },
+      {
+        "size": "L",
+        "chestMinCm": 104,
+        "chestMaxCm": 112,
+        "people": 1332,
+        "waistCm": [
+          92,
+          100
+        ],
+        "heightCm": [
+          171,
+          180
+        ],
+        "weightKg": [
+          83,
+          92
+        ]
+      },
+      {
+        "size": "XL",
+        "chestMinCm": 112,
+        "chestMaxCm": 120,
+        "people": 744,
+        "waistCm": [
+          101,
+          109
+        ],
+        "heightCm": [
+          173,
+          182
+        ],
+        "weightKg": [
+          94,
+          104
+        ]
+      },
+      {
+        "size": "XXL",
+        "chestMinCm": 120,
+        "chestMaxCm": null,
+        "people": 247,
+        "waistCm": [
+          110,
+          118
+        ],
+        "heightCm": [
+          174,
+          184
+        ],
+        "weightKg": [
+          107,
+          120
+        ]
+      }
     ]
   },
   "her": {
@@ -44,10 +162,11 @@
       84,
       90,
       97,
-      104
+      104,
+      111
     ],
-    "exactSizePct": 56.1,
-    "withinOneSizePct": 97.7,
+    "exactSizePct": 53.7,
+    "withinOneSizePct": 97.1,
     "heightRangeCm": [
       148,
       178
@@ -55,6 +174,122 @@
     "weightRangeKg": [
       47,
       97
+    ],
+    "table": [
+      {
+        "size": "XXS",
+        "chestMinCm": null,
+        "chestMaxCm": 78,
+        "people": 13
+      },
+      {
+        "size": "XS",
+        "chestMinCm": 78,
+        "chestMaxCm": 84,
+        "people": 155,
+        "waistCm": [
+          70,
+          76
+        ],
+        "heightCm": [
+          155,
+          163
+        ],
+        "weightKg": [
+          50,
+          56
+        ]
+      },
+      {
+        "size": "S",
+        "chestMinCm": 84,
+        "chestMaxCm": 90,
+        "people": 424,
+        "waistCm": [
+          75,
+          82
+        ],
+        "heightCm": [
+          158,
+          165
+        ],
+        "weightKg": [
+          56,
+          63
+        ]
+      },
+      {
+        "size": "M",
+        "chestMinCm": 90,
+        "chestMaxCm": 97,
+        "people": 658,
+        "waistCm": [
+          81,
+          88
+        ],
+        "heightCm": [
+          159,
+          168
+        ],
+        "weightKg": [
+          62,
+          70
+        ]
+      },
+      {
+        "size": "L",
+        "chestMinCm": 97,
+        "chestMaxCm": 104,
+        "people": 472,
+        "waistCm": [
+          87,
+          96
+        ],
+        "heightCm": [
+          160,
+          168
+        ],
+        "weightKg": [
+          69,
+          78
+        ]
+      },
+      {
+        "size": "XL",
+        "chestMinCm": 104,
+        "chestMaxCm": 111,
+        "people": 192,
+        "waistCm": [
+          94,
+          104
+        ],
+        "heightCm": [
+          160,
+          169
+        ],
+        "weightKg": [
+          75,
+          86
+        ]
+      },
+      {
+        "size": "XXL",
+        "chestMinCm": 111,
+        "chestMaxCm": null,
+        "people": 72,
+        "waistCm": [
+          99,
+          111
+        ],
+        "heightCm": [
+          163,
+          170
+        ],
+        "weightKg": [
+          84,
+          95
+        ]
+      }
     ]
   }
 }

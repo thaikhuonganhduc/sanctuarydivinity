@@ -42,6 +42,13 @@
 .gate-corner__dialog[hidden] { display: none; }
 .gate-corner__dialog form { display: flex; flex-direction: column; gap: var(--space-1); }
 .gate-corner__label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+/* Gợi ý mật khẩu test nhanh ở cổng (bật/tắt bằng SHOW_DEMO_HINTS trong js/config.js) */
+.gate-demo { margin-top: var(--space-2); padding-top: var(--space-1); border-top: 1px dashed #333; display: flex; flex-direction: column; gap: 0.4rem; }
+.gate-demo[hidden] { display: none; }
+.gate-demo__title { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+.gate-demo__btn { text-align: left; padding: 0.45rem 0.6rem; border: 1px solid #333; font-size: 0.7rem; letter-spacing: 0.05em; word-break: break-all; transition: border-color 0.2s; }
+.gate-demo__btn:hover, .gate-demo__btn:focus-visible { border-color: var(--color-accent); }
+.gate-demo__btn strong { display: block; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); font-weight: normal; }
 
 @media (min-width: 768px) {
   .drop-intro__line { font-size: 1.4rem; }
@@ -212,6 +219,10 @@
 .shop-audience { margin-bottom: var(--space-3); }
 .shop-toolbar { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2); margin-bottom: var(--space-2); }
 .shop-toolbar .input { color-scheme: dark; background: #000; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; }
+.shop-section[hidden] { display: none; }              /* khu không còn sản phẩm nào sau khi lọc thì ẩn cả khu */
+/* Dòng "đang lọc" trong cửa hàng (bộ lọc thật nằm trong menu Collections) */
+.shop-filter-note { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-1); }
+.shop-filter-note[hidden] { display: none; }
 .shop-meta { color: var(--color-muted); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-3); }
 .product-grid { margin-bottom: var(--space-3); }
 .product-card__media { transition: border-color 0.25s; }
@@ -249,6 +260,8 @@
 .size-btn[aria-pressed="true"] { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
 .swatch-btn { width: 1.8rem; height: 1.8rem; border: 1px solid rgba(255, 255, 255, 0.4); }
 .swatch-btn[aria-pressed="true"] { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+/* Màu đã ngừng bán: mờ đi + gạch chéo, không bấm được */
+.swatch-btn:disabled { opacity: 0.35; cursor: not-allowed; background-image: linear-gradient(to top right, transparent calc(50% - 1px), #fff calc(50% - 1px), #fff calc(50% + 1px), transparent calc(50% + 1px)); }
 .product-detail__actions { display: flex; flex-wrap: wrap; gap: var(--space-1); margin: var(--space-1) 0; }
 .product-detail__actions .btn { flex: 1 1 8rem; text-align: center; padding-inline: 1rem; font-size: 0.85rem; }
 .review-detail .spec-list { margin-top: var(--space-1); }
@@ -405,6 +418,40 @@ body:has(.site-footer) > .site-footer { margin-top: auto; }
 .size-finder__size { font-size: 3.2rem; line-height: 1; color: #A81D23; }
 .size-finder__note, .size-finder__source { font-size: 0.75rem; line-height: 1.5; color: var(--color-muted); }
 
+/* Bảng size trong popup sản phẩm (dùng chung khung viền với .size-finder) */
+.size-chart__body { display: flex; flex-direction: column; gap: var(--space-1); }
+.size-chart__title { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.size-chart__scroll { overflow-x: auto; }
+.size-chart__table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: center; white-space: nowrap; }
+.size-chart__table th, .size-chart__table td { padding: 0.45rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.size-chart__table thead th { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); font-weight: normal; }
+.size-chart__table tbody th { letter-spacing: 0.1em; }
+.size-chart__table tr.is-selected { background: var(--color-accent); color: #000; }
+
+/* Review theo sản phẩm (dưới phần mô tả trong popup) */
+.product-reviews { display: flex; flex-direction: column; gap: var(--space-1); margin-top: var(--space-2); padding-top: var(--space-2); border-top: 1px solid rgba(255, 255, 255, 0.15); }
+.product-reviews__body { display: flex; flex-direction: column; gap: var(--space-1); align-items: flex-start; }
+.product-reviews__summary { margin-top: 0; }
+.product-reviews__list { list-style: none; display: flex; flex-direction: column; width: 100%; }
+.product-review { padding: var(--space-1) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.product-review .review-card__rating { margin-top: 0; font-size: 0.85rem; }
+.product-review__text { margin: 0.4rem 0; font-size: 0.85rem; line-height: 1.5; }
+.product-review__meta { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.product-review__product { font-size: 0.75rem; color: var(--color-muted); margin-top: 0.2rem; }
+.product-reviews .btn[hidden] { display: none; }
+/* Bộ lọc sao trong popup: dùng lại kiểu nút của bộ lọc trang chủ, nhưng nhỏ hơn và căn trái */
+.product-reviews__filter { justify-content: flex-start; margin-bottom: 0; gap: 0.4rem; }
+.product-reviews__filter button { padding: 0.35rem 0.6rem; font-size: 0.65rem; letter-spacing: 0.1em; }
+.product-reviews__filter button:disabled { opacity: 0.35; cursor: not-allowed; }
+/* Ảnh của review: hàng ảnh nhỏ + ảnh lớn khi bấm */
+.product-review__thumbs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.4rem 0; }
+.product-review__thumb { width: 64px; height: 64px; padding: 0; border: 1px solid rgba(255, 255, 255, 0.2); overflow: hidden; display: grid; place-items: center; font-size: 0.55rem; color: var(--color-muted); transition: border-color 0.2s; }
+.product-review__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.product-review__thumb:hover, .product-review__thumb[aria-pressed="true"] { border-color: var(--color-accent); }
+.product-review__big { margin-bottom: 0.4rem; }
+.product-review__big[hidden] { display: none; }
+.product-review__big img { width: 100%; max-height: 420px; object-fit: contain; background: rgba(255, 255, 255, 0.04); }
+
 /* ---- Slideshow ảnh review (người có nhiều ảnh) ---- */
 .slideshow { position: relative; display: block; }
 .slideshow__track { position: absolute; inset: 0; display: flex; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -516,6 +563,21 @@ body:has(.site-footer) > .site-footer { margin-top: auto; }
   animation: menu-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .lines-menu[hidden] { display: none; }
+/* Mở nhiều mục con + phần lọc có thể cao hơn màn hình: cho cuộn bên trong khung */
+.lines-menu { max-height: 92vh; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.35) transparent; }
+
+/* Phần lọc + sắp xếp nằm dưới 3 mục Collections */
+.lines-filters { display: flex; flex-direction: column; gap: 0.7rem; padding: 0.95rem 1.1rem 1.1rem; border-top: 1px solid #fff; }
+.lines-filters__title { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; }
+.lines-filters__field { display: flex; flex-direction: column; gap: 0.3rem; }
+.lines-filters__label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-muted); }
+.lines-filters .input { color-scheme: dark; background: #000; padding: 0.5rem 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem; }
+.lines-filters .input option { background: #000; color: #fff; }
+.lines-filters__foot { display: flex; justify-content: space-between; align-items: center; gap: var(--space-1); }
+.lines-filters__count { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); }
+.lines-filters .link-btn, .shop-filter-note .link-btn { padding: 0; color: var(--color-text); text-decoration: underline; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.lines-filters .link-btn:hover, .shop-filter-note .link-btn:hover { color: var(--color-muted); }
+.lines-filters .link-btn[hidden] { display: none; }
 .lines-menu.is-closing { animation: menu-out 0.25s cubic-bezier(0.55, 0, 1, 0.45) forwards; }
 /* Trượt ra từ nút: vừa dịch sang phải vừa mở dần từ trái sang */
 @keyframes menu-in {

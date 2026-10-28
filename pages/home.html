@@ -81,6 +81,12 @@
       </button>
     </div>
 
+    <!-- Đang lọc (bộ lọc nằm trong menu Collections bên trái): báo số sản phẩm đang hiện + nút bỏ lọc -->
+    <p id="shop-filter-note" class="shop-meta shop-filter-note" role="status" hidden>
+      <span id="shop-filter-text"></span>
+      <button type="button" id="filter-clear-page" class="link-btn">Clear filters</button>
+    </p>
+
     <!-- 3 khu hiển thị cùng lúc; mỗi khu là 1 điểm neo (id) để menu/thẻ cuộn tới. js/shop.js đổ các nhóm sản phẩm vào #groups-... -->
     <section id="sanctuary" class="shop-section" data-line="sanctuary" aria-labelledby="title-sanctuary">
       <h2 id="title-sanctuary" class="visually-hidden">Sanctuary</h2>
@@ -138,6 +144,31 @@
         <div class="line-sub"><div class="line-sub__inner"></div></div>
       </div>
     </nav>
+
+    <!-- Lọc + sắp xếp: áp dụng cho cả 3 khu cùng lúc (js/shop.js điền danh sách size/màu từ products.json) -->
+    <form id="shop-filters" class="lines-filters" aria-label="Filter and sort products">
+      <p class="lines-filters__title">Filter &amp; sort</p>
+      <label class="lines-filters__field">
+        <span class="lines-filters__label">Sort by</span>
+        <select id="filter-sort" class="input">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+        </select>
+      </label>
+      <label class="lines-filters__field">
+        <span class="lines-filters__label">Size</span>
+        <select id="filter-size" class="input"><option value="">All sizes</option></select>
+      </label>
+      <label class="lines-filters__field">
+        <span class="lines-filters__label">Color</span>
+        <select id="filter-color" class="input"><option value="">All colors</option></select>
+      </label>
+      <div class="lines-filters__foot">
+        <p id="shop-count" class="lines-filters__count" role="status"></p>
+        <button type="button" id="filter-clear" class="link-btn">Clear</button>
+      </div>
+    </form>
   </div>
 
   <!-- Nút dọc bên phải: bấm để mở popup Reviews -->

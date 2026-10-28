@@ -15,9 +15,11 @@ Chạy từ thư mục gốc dự án:
      => Dùng dữ liệu ANSUR II để học công thức:  vòng_ngực ≈ a + b * cân_nặng + c * chiều_cao
         (hồi quy tuyến tính bình phương tối thiểu, tính riêng cho nam và nữ).
   3. Web đưa chiều cao + cân nặng của khách vào công thức, ra vòng ngực dự đoán, rồi tra mốc để chọn size.
+  4. Bảng size trong popup sản phẩm: với mỗi size, lấy những người có vòng ngực THẬT nằm trong khoảng của size đó,
+     rồi ghi khoảng "phổ biến" (50% ở giữa, từ P25 đến P75) của vòng eo, chiều cao, cân nặng của nhóm người này.
 
 Đơn vị trong file ANSUR II: chiều dài tính bằng milimét, weightkg tính bằng 1/10 kg.
-Script chỉ đọc 3 cột cần thiết (stature, weightkg, chestcircumference).
+Script chỉ đọc 4 cột cần thiết (stature, weightkg, chestcircumference, waistcircumference).
 """
 import csv
 import json
@@ -28,17 +30,18 @@ ROOT = Path(__file__).resolve().parent.parent
 FILES = {"him": ROOT / "data" / "ANSUR_II_MALE_Public.csv", "her": ROOT / "data" / "ANSUR_II_FEMALE_Public.csv"}
 OUT = ROOT / "data" / "size-chart.json"
 
-SIZES = ["XXS", "XS", "S", "M", "L", "XL"]
-# Cận trên vòng ngực (cm) của XXS, XS, S, M, L; từ mốc cuối trở lên là XL.
-# Lấy theo các bảng size công bố: nam M ≈ 96-104, L ≈ 104-112; nữ lệch nhỏ hơn khoảng 6 cm.
+SIZES = ["XXS", "XS", "S", "M", "L", "XL", "XXL"]
+# Cận trên vòng ngực (cm) của XXS, XS, S, M, L, XL; từ mốc cuối trở lên là XXL.
+# Lấy theo các bảng size công bố: nam M ≈ 96-104, L ≈ 104-112, XL ≈ 112-120; nữ lệch nhỏ hơn khoảng 6-9 cm.
 CHEST_LIMITS = {
-    "him": [84, 90, 96, 104, 112],
-    "her": [78, 84, 90, 97, 104],
+    "him": [84, 90, 96, 104, 112, 120],
+    "her": [78, 84, 90, 97, 104, 111],
 }
+MIN_PEOPLE = 20   # size có ít hơn số người này trong dữ liệu thì không ghi số đo phổ biến (quá ít để tin)
 
 
 def load(path):
-    """Trả về danh sách (chiều cao cm, cân nặng kg, vòng ngực cm)."""
+    """Trả về danh sách (chiều cao cm, cân nặng kg, vòng ngực cm, vòng eo cm)."""
     rows = []
     with open(path, newline="", encoding="latin-1") as f:   # file ANSUR II mã hóa Latin-1 (có ký tự é...)
         for r in csv.DictReader(f):
@@ -46,10 +49,11 @@ def load(path):
                 height = float(r["stature"]) / 10            # mm -> cm
                 weight = float(r["weightkg"]) / 10           # 1/10 kg -> kg
                 chest = float(r["chestcircumference"]) / 10  # mm -> cm
+                waist = float(r["waistcircumference"]) / 10  # mm -> cm
             except (KeyError, ValueError):
                 continue
-            if height > 0 and weight > 0 and chest > 0:
-                rows.append((height, weight, chest))
+            if height > 0 and weight > 0 and chest > 0 and waist > 0:
+                rows.append((height, weight, chest, waist))
     return rows
 
 
@@ -76,7 +80,7 @@ def fit(rows):
     # Ma trận chuẩn: (XᵀX)·beta = Xᵀy với X = [1, weight, height]
     s = [[0.0] * 3 for _ in range(3)]
     t = [0.0] * 3
-    for h, w, c in rows:
+    for h, w, c, _ in rows:
         x = (1.0, w, h)
         for i in range(3):
             t[i] += x[i] * c
@@ -100,6 +104,25 @@ def size_index(chest, limits):
     return len(limits)
 
 
+def size_table(rows, limits):
+    """Mỗi size 1 dòng: khoảng vòng ngực + khoảng phổ biến (P25-P75) của vòng eo, chiều cao, cân nặng."""
+    table = []
+    for i, size in enumerate(SIZES):
+        group = [r for r in rows if size_index(r[2], limits) == i]   # người có vòng ngực thật thuộc size này
+        row = {
+            "size": size,
+            "chestMinCm": limits[i - 1] if i > 0 else None,         # None = không có cận dưới (size nhỏ nhất)
+            "chestMaxCm": limits[i] if i < len(limits) else None,   # None = không có cận trên (size lớn nhất)
+            "people": len(group),
+        }
+        if len(group) >= MIN_PEOPLE:
+            for key, col in (("waistCm", 3), ("heightCm", 0), ("weightKg", 1)):
+                values = [r[col] for r in group]
+                row[key] = [round(percentile(values, 0.25)), round(percentile(values, 0.75))]
+        table.append(row)
+    return table
+
+
 def main():
     result = {
         "source": "ANSUR II (U.S. Army Anthropometric Survey 2012), public data",
@@ -111,12 +134,12 @@ def main():
         rows = load(path)
         a, b, c = fit(rows)
 
-        errors = [(a + b * w + c * h) - chest for h, w, chest in rows]
+        errors = [(a + b * w + c * h) - chest for h, w, chest, _ in rows]
         rmse = math.sqrt(sum(e * e for e in errors) / len(errors))
         # Độ chính xác: bao nhiêu % người được gợi ý đúng size theo vòng ngực thật
         limits = CHEST_LIMITS[gender]
-        exact = sum(1 for h, w, chest in rows if size_index(a + b * w + c * h, limits) == size_index(chest, limits))
-        within_one = sum(1 for h, w, chest in rows
+        exact = sum(1 for h, w, chest, _ in rows if size_index(a + b * w + c * h, limits) == size_index(chest, limits))
+        within_one = sum(1 for h, w, chest, _ in rows
                          if abs(size_index(a + b * w + c * h, limits) - size_index(chest, limits)) <= 1)
 
         result[gender] = {
@@ -131,8 +154,12 @@ def main():
             # Khoảng chiều cao/cân nặng có trong dữ liệu (P1-P99) để cảnh báo khi khách nhập ngoài khoảng
             "heightRangeCm": [round(percentile([r[0] for r in rows], 0.01)), round(percentile([r[0] for r in rows], 0.99))],
             "weightRangeKg": [round(percentile([r[1] for r in rows], 0.01)), round(percentile([r[1] for r in rows], 0.99))],
+            # Bảng size hiện trong popup sản phẩm (js/product-popup.js)
+            "table": size_table(rows, limits),
         }
-        print(gender, {k: v for k, v in result[gender].items() if k != "chestLimitsCm"})
+        print(gender, {k: v for k, v in result[gender].items() if k not in ("chestLimitsCm", "table")})
+        for row in result[gender]["table"]:
+            print("   ", row)
 
     OUT.write_text(json.dumps(result, indent=2), encoding="utf-8")
     print("Wrote", OUT)
