@@ -15,3 +15,6 @@ __pycache__/
 
 # Video gốc nặng (chỉ giữ trên máy); web dùng các bản đã cắt (hero.mp4 10:16, break-*.mp4) trong assets/videos/
 assets/videos/video*.mp4
+
+# Ảnh lookbook + video gốc chưa nén (chỉ giữ trên máy); web dùng bản nén do tools/compress_media.py tạo
+assets/_source/
