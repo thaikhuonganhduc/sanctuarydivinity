@@ -1,4 +1,4 @@
-// Hành vi giao diện riêng của trang chủ: video hero và 2 nút bên cạnh (Reviews, Collections).
+// Hành vi giao diện riêng của trang chủ: video hero và 2 nút bên cạnh (Reviews, Armory).
 
 // ---------- Video hero ----------
 const video = document.querySelector(".hero-stage__video");
@@ -40,7 +40,7 @@ if (heroSection && heroOverlay) {
   updateOverlay();
 }
 
-// ---------- Nút Reviews / Collections ----------
+// ---------- Nút Reviews / Armory ----------
 // Ẩn lúc đầu; khi người dùng kéo xuống tới 2 thẻ Men's / Women's Line thì trượt ra (CSS: body.has-side-tabs).
 // Kéo ngược lên đầu trang thì ẩn lại.
 const audienceCards = document.getElementById("shop-audience");

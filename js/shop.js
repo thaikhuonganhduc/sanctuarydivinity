@@ -30,7 +30,7 @@ const state = { currency: getSavedCurrency(), sort: "featured", size: "", color:
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // 3 khu sản phẩm. Mỗi khu chia thành các nhóm nhỏ: nhóm hiện thành tiêu đề + lưới trên trang,
-// đồng thời thành mục con trong menu Collections (bấm vào thì cuộn tới nhóm đó).
+// đồng thời thành mục con trong menu Armory (bấm vào thì cuộn tới nhóm đó).
 const LINES = {
   sanctuary: {
     match: (p) => p.gender === "him" && p.category !== "accessories",
@@ -54,11 +54,9 @@ const LINES = {
   },
   accessories: {
     match: (p) => p.category === "accessories",
+    // Chỉ 1 nhóm: mọi phụ kiện (mũ, beanie, phụ kiện admin thêm mới) nằm chung 1 lưới
     groups: [
-      { id: "caps", title: "Tarnished Metallic Logo Caps", match: (p) => /\bcap\b/i.test(p.name) },
-      { id: "beanies", title: "Essential Embroidery Beanies", match: (p) => /\bbeanie\b/i.test(p.name) },
-      // Phụ kiện admin thêm mới mà không phải mũ (vd: găng tay, túi) vẫn có chỗ hiện
-      { id: "more", title: "More Accessories", match: (p) => !/\b(cap|beanie)\b/i.test(p.name) }
+      { id: "all", title: "Accessories", match: () => true }
     ]
   }
 };
@@ -142,7 +140,7 @@ function renderSections(animate = true) {
   empty.hidden = total > 0;
   countLine.textContent = filtering ? total + " of " + products.length + " pieces" : products.length + " pieces";
   clearBtn.hidden = !filtering && state.sort === "featured";
-  // Bộ lọc nằm trong menu Collections (đóng lại là không thấy), nên khi đang lọc thì báo ngay trong cửa hàng
+  // Bộ lọc nằm trong menu Armory (đóng lại là không thấy), nên khi đang lọc thì báo ngay trong cửa hàng
   filterNote.hidden = !filtering;
   if (filtering) {
     const parts = [state.size && "Size " + state.size, state.color].filter(Boolean);
@@ -171,7 +169,7 @@ function fillCurrencies() {
   currencySelect.value = state.currency;
 }
 
-// Đánh dấu khu đang xem: thẻ Men's/Women's Line, mục menu Collections và logo header (trắng <-> đỏ khi ở khu nữ)
+// Đánh dấu khu đang xem: thẻ Men's/Women's Line, mục menu Armory và logo header (trắng <-> đỏ khi ở khu nữ)
 function markActive(line) {
   lineCards.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.line === line)));
   lineItems.forEach((i) => i.classList.toggle("is-active", i.dataset.line === line));
@@ -190,15 +188,43 @@ function watchSections() {
 // 2 thẻ Men's / Women's Line: bấm để cuộn xuống khu tương ứng
 lineCards.forEach((c) => c.addEventListener("click", () => scrollToId(c.dataset.line)));
 
-// ---------- Menu Collections bên trái: khung nhỏ trượt ra cạnh nút ----------
+// ---------- Menu "Armory" bên trái: trượt ra từ mép màn hình ----------
+// Mở: nút Armory trượt vào mép rồi ẩn (class is-tucked), menu trượt ra. Thu gọn: ngược lại.
+const closeBtn = document.getElementById("lines-close");
+const reviewsTab = document.getElementById("reviews-tab");
+const TAB_GAP = 8;          // khoảng cách (px) giữa đáy menu và nút Reviews
+const EDGE = 16;            // chừa trống trên/dưới màn hình (px)
+
+// Menu đang mở: xếp menu + nút Reviews thành 1 khối dọc, căn giữa màn hình (menu trên, Reviews ngay dưới).
+// Chiều cao menu bị giới hạn để luôn còn chỗ cho nút Reviews; nội dung dài hơn thì cuộn trong menu.
+function placeArmory() {
+  if (menu.hidden) return;
+  const vh = window.innerHeight;
+  const tabH = reviewsTab.offsetHeight;
+  menu.style.maxHeight = Math.max(160, vh - tabH - TAB_GAP - EDGE * 2) + "px";
+  const menuH = menu.offsetHeight;
+  const top = Math.max(EDGE, (vh - (menuH + TAB_GAP + tabH)) / 2);   // mép trên của cả khối
+  menu.style.top = top + menuH / 2 + "px";                           // CSS dịch menu lên -50% chiều cao của nó
+  reviewsTab.style.setProperty("--reviews-top", top + menuH + TAB_GAP + "px");
+}
+// Menu đổi chiều cao (mở/đóng mục con) hoặc cửa sổ đổi kích thước thì tính lại vị trí
+if ("ResizeObserver" in window) new ResizeObserver(placeArmory).observe(menu);
+window.addEventListener("resize", placeArmory);
+
 function openMenu() {
   menu.classList.remove("is-closing");
   menu.hidden = false;
+  placeArmory();
+  linesTab.classList.add("is-tucked");
   linesTab.setAttribute("aria-expanded", "true");
+  closeBtn.focus({ preventScroll: true });              // người dùng bàn phím đứng ngay ở nút thu gọn
 }
-function closeMenu() {
+// returnFocus = true khi đóng bằng nút thu gọn / Esc: đưa focus về nút Armory vừa hiện lại
+function closeMenu(returnFocus = false) {
   if (menu.hidden) return;
+  linesTab.classList.remove("is-tucked");
   linesTab.setAttribute("aria-expanded", "false");
+  if (returnFocus) linesTab.focus({ preventScroll: true });
   if (reduceMotion) { menu.hidden = true; return; }
   menu.classList.add("is-closing");                      // chạy hiệu ứng thu vào rồi mới ẩn thật
 }
@@ -210,18 +236,21 @@ menu.addEventListener("animationend", (e) => {
   }
 });
 
-linesTab.addEventListener("click", () => (menu.hidden ? openMenu() : closeMenu()));
-// Bấm ra ngoài khung hoặc nhấn Esc thì đóng
+linesTab.addEventListener("click", openMenu);
+closeBtn.addEventListener("click", () => closeMenu(true));
+// Bấm ra ngoài khung hoặc nhấn Esc thì cũng thu gọn
 document.addEventListener("click", (e) => {
   if (!menu.hidden && !menu.contains(e.target) && !linesTab.contains(e.target)) closeMenu();
 });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hidden) closeMenu(true); });
 
 // Mục chính: bấm thì mở danh sách mục con (các mục khác tự thu lại) và cuộn xuống khu đó. Menu vẫn mở để chọn tiếp mục con.
 lineItems.forEach((item) => item.addEventListener("click", () => {
   const group = item.closest(".line-group");
+  // Khu chỉ có 1 nhóm: không có gì để chọn tiếp, cuộn tới rồi thu menu luôn (giống bấm mục con)
+  if (group.classList.contains("is-single")) { scrollToId(item.dataset.line); closeMenu(); return; }
   const willOpen = !group.classList.contains("is-open");
-  document.querySelectorAll("#lines-menu .line-group").forEach((g) => {
+  document.querySelectorAll("#lines-menu .line-group:not(.is-single)").forEach((g) => {
     g.classList.remove("is-open");
     g.querySelector(".line-item").setAttribute("aria-expanded", "false");
   });
@@ -235,8 +264,13 @@ lineItems.forEach((item) => item.addEventListener("click", () => {
 // Mục con (Compression, T-Shirts, ...): lấy từ các nhóm có sản phẩm; bấm thì cuộn tới nhóm và đóng menu
 function buildMenuSubs() {
   Object.keys(LINES).forEach((line) => {
-    const inner = document.querySelector('#lines-menu .line-group[data-line="' + line + '"] .line-sub__inner');
+    const lineGroup = document.querySelector('#lines-menu .line-group[data-line="' + line + '"]');
+    const inner = lineGroup.querySelector(".line-sub__inner");
     inner.replaceChildren();
+    // Khu chỉ có 1 nhóm (Accessories): không cần danh sách con, bấm mục chính là cuộn tới luôn (CSS ẩn dấu +)
+    const single = LINES[line].groups.length === 1;
+    lineGroup.classList.toggle("is-single", single);
+    if (single) { lineGroup.querySelector(".line-item").removeAttribute("aria-expanded"); return; }
     LINES[line].groups.forEach((group) => {
       if (groupItems(line, group).length === 0) return;
       const btn = document.createElement("button");
@@ -259,7 +293,7 @@ function fillFilters() {
   [...colors].sort().forEach((c) => colorSelect.add(new Option(c, c)));
 }
 
-// Lọc/sắp xếp xong thì vẽ lại cả 3 khu và menu Collections (mục con chỉ hiện nhóm còn sản phẩm)
+// Lọc/sắp xếp xong thì vẽ lại cả 3 khu và menu Armory (mục con chỉ hiện nhóm còn sản phẩm)
 function applyFilters() {
   state.sort = sortSelect.value;
   state.size = sizeSelect.value;
@@ -268,7 +302,7 @@ function applyFilters() {
   buildMenuSubs();
 }
 [sortSelect, sizeSelect, colorSelect].forEach((s) => s.addEventListener("change", applyFilters));
-// Bỏ lọc: nút "Clear" trong menu Collections và nút "Clear filters" trong cửa hàng dùng chung
+// Bỏ lọc: nút "Clear" trong menu Armory và nút "Clear filters" trong cửa hàng dùng chung
 function clearFilters() {
   sortSelect.value = "featured";
   sizeSelect.value = "";

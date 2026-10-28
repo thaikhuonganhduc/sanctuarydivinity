@@ -1,4 +1,4 @@
-// Nút "Reviews" bên phải trang chủ: bấm để mở popup chứa phần đánh giá, bấm × / Esc / ra ngoài để đóng.
+// Nút "Reviews" bên trái trang chủ (dưới nút Armory): bấm để mở popup chứa phần đánh giá, bấm × / Esc / ra ngoài để đóng.
 const tab = document.getElementById("reviews-tab");
 const panel = document.getElementById("reviews-panel");
 const closeBtn = document.getElementById("reviews-close");

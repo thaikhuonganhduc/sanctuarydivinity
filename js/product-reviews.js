@@ -52,20 +52,23 @@ function normalizeName(name) {
     .trim();
 }
 
-// Đoán loại sản phẩm từ tên trong review (cùng cách chia category với products.json)
-function guessCategory(name) {
+// Đoán loại sản phẩm từ tên trong review (cùng cách chia category với products.json).
+// Dùng chung với bộ lọc ở popup Reviews trang chủ (reviews.js)
+export function guessCategory(name) {
   const n = name.toLowerCase();
   if (/bodysuit/.test(n)) return "bodysuits";
   if (/compression|shrug/.test(n)) return "compression";
   if (/beanie|\bcap\b/.test(n)) return "accessories";
   if (/sweatpants|cargos|jeans|shorts|leggings|capri/.test(n)) return "bottoms";
   if (/hoodie|zip-up|jacket|crewneck/.test(n)) return "hoodies";
-  if (/stringer|beater|tank|bra|cut-off|baby tee/.test(n)) return "tops";
+  if (/stringer|beater|tank|bra|cut-off|baby tee|tube top|jersey/.test(n)) return "tops";
   if (/t-shirt|\btee\b/.test(n)) return "oversize";
   return null;
 }
 
-const guessGender = (name) => (/^wom[ae]n/i.test(name.trim()) ? "her" : "him");
+// Đồ nữ: tên bắt đầu bằng "Women's", hoặc là kiểu chỉ có ở dòng nữ (bodysuit, sports bra, legging...)
+const HER_ONLY = /maiden|bodysuit|tube top|capri|shrug|sports bra|leggings|baby tee/i;
+export const guessGender = (name) => (/^wom[ae]n/i.test(name.trim()) || HER_ONLY.test(name) ? "her" : "him");
 
 const CATEGORY_LABEL = {
   compression: "compression", bodysuits: "bodysuit", bottoms: "bottoms", hoodies: "hoodie and jacket",

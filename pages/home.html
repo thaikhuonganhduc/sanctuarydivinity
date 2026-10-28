@@ -69,7 +69,7 @@
     <!-- Cửa hàng: nằm dưới ảnh hero. Điểm neo #shop (nút Shop, dòng "Collection X Is Out Now" cuộn tới đây) -->
     <div id="shop" class="shop container">
 
-    <!-- Bấm thẻ để cuộn xuống khu tương ứng (đồng bộ với menu Collections bên trái) -->
+    <!-- Bấm thẻ để cuộn xuống khu tương ứng (đồng bộ với menu Armory bên trái) -->
     <div id="shop-audience" class="shop-audience" role="group" aria-label="Shop by">
       <button type="button" class="audience-card audience-card--him" data-line="sanctuary" aria-pressed="true">
         <img src="../assets/logo/logo-white.png" alt="" class="audience-card__logo">
@@ -81,7 +81,7 @@
       </button>
     </div>
 
-    <!-- Đang lọc (bộ lọc nằm trong menu Collections bên trái): báo số sản phẩm đang hiện + nút bỏ lọc -->
+    <!-- Đang lọc (bộ lọc nằm trong menu Armory bên trái): báo số sản phẩm đang hiện + nút bỏ lọc -->
     <p id="shop-filter-note" class="shop-meta shop-filter-note" role="status" hidden>
       <span id="shop-filter-text"></span>
       <button type="button" id="filter-clear-page" class="link-btn">Clear filters</button>
@@ -119,10 +119,19 @@
     </div>
   </footer>
 
-  <!-- Nút dọc bên trái: bấm để trượt ra khung nhỏ gồm 3 mục Sanctuary / Sanctuary Selene / Accessories -->
-  <button type="button" id="lines-tab" class="lines-tab" aria-controls="lines-menu" aria-expanded="false">Collections</button>
+  <!-- Nút dọc "Armory" bên trái: bấm thì nút ẩn đi, menu (3 dòng sản phẩm + lọc) trượt ra từ mép màn hình -->
+  <button type="button" id="lines-tab" class="lines-tab" aria-controls="lines-menu" aria-expanded="false" aria-label="Open the Armory: collections and filters">Armory</button>
 
   <div id="lines-menu" class="lines-menu" hidden>
+    <!-- Đầu menu: tên + nút thu gọn (thu gọn xong thì nút Armory hiện lại) -->
+    <div class="lines-menu__head">
+      <p class="lines-menu__title">The Armory</p>
+      <button type="button" id="lines-close" class="lines-menu__close" aria-label="Collapse the Armory menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" aria-hidden="true">
+          <path d="M12 6l-6 6 6 6M19 6l-6 6 6 6"/>
+        </svg>
+      </button>
+    </div>
     <nav class="lines-list" aria-label="Collections">
       <div class="line-group" data-line="sanctuary">
         <button type="button" class="line-item" data-line="sanctuary" aria-expanded="false" style="--n: 0">
@@ -171,7 +180,7 @@
     </form>
   </div>
 
-  <!-- Nút dọc bên phải: bấm để mở popup Reviews -->
+  <!-- Nút dọc bên trái, ngay dưới nút Armory: bấm để mở popup Reviews (menu Armory mở thì nút này dời ra cạnh menu, không ẩn) -->
   <button type="button" id="reviews-tab" class="reviews-tab" aria-haspopup="dialog">Reviews</button>
 
   <!-- Popup Reviews: giao diện đánh giá giữ nguyên, chỉ được đặt trong cửa sổ popup (dữ liệu trong data/reviews.json) -->
@@ -183,14 +192,11 @@
           <div class="container">
             <h2 id="reviews-title" class="section__title">Reviews</h2>
             <p id="review-summary" class="reviews__summary"></p>
-            <!-- Lọc theo số sao: 4.7 sao tính vào nhóm 4 sao (làm tròn xuống) -->
-            <div id="review-filter" class="review-filter" role="group" aria-label="Filter reviews by stars">
-              <button type="button" data-stars="all" aria-pressed="true">All</button>
-              <button type="button" data-stars="5" aria-pressed="false">5 ★</button>
-              <button type="button" data-stars="4" aria-pressed="false">4 ★</button>
-              <button type="button" data-stars="3" aria-pressed="false">3 ★</button>
-              <button type="button" data-stars="2" aria-pressed="false">2 ★</button>
-              <button type="button" data-stars="1" aria-pressed="false">1 ★</button>
+            <!-- 3 hàng lọc kết hợp với nhau: số sao, dòng (nam/nữ), loại sản phẩm. Các nút do reviews.js tạo bằng DOM -->
+            <div id="review-filters" class="review-filters">
+              <div class="review-filter" data-filter="stars" role="group" aria-label="Filter reviews by rating"></div>
+              <div class="review-filter" data-filter="line" role="group" aria-label="Filter reviews by line"></div>
+              <div class="review-filter" data-filter="type" role="group" aria-label="Filter reviews by product type"></div>
             </div>
             <div id="review-list" class="review-grid"></div>
             <div class="reviews__more">

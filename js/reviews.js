@@ -1,7 +1,7 @@
 // Phần đánh giá của khách: đọc reviews.json bằng fetch,
-// hiện từng đợt (nút "Show more"), bấm vào thẻ thì mở popup chi tiết.
+// lọc theo số sao / dòng nam-nữ / loại sản phẩm, hiện từng đợt (nút "Show more"), bấm vào thẻ thì mở popup chi tiết.
 import { buildSlideshow } from "./slideshow.js";
-import { createStars, createImage } from "./product-reviews.js";
+import { createStars, createImage, guessCategory, guessGender } from "./product-reviews.js";
 
 const PAGE_SIZE = 6;                       // mỗi lần hiện 6 đánh giá
 
@@ -10,11 +10,46 @@ const summary = document.getElementById("review-summary");
 const moreBtn = document.getElementById("review-more");
 const dialog = document.getElementById("review-dialog");
 const detail = document.getElementById("review-detail");
-const filterButtons = document.querySelectorAll("#review-filter button");
+const filterBox = document.getElementById("review-filters");
 
 let reviews = [];    // tất cả đánh giá
-let filtered = [];   // các đánh giá đang hiển thị theo bộ lọc sao
+let filtered = [];   // các đánh giá đang hiển thị theo bộ lọc
 let shown = 0;
+
+// ---------- Bộ lọc ----------
+// Loại sản phẩm (category trong products.json) -> nhóm hiện trên nút lọc
+const TYPE_OF = {
+  compression: "compression", tops: "tops", oversize: "tops", hoodies: "outerwear",
+  bottoms: "bottoms", bodysuits: "bodysuits", accessories: "accessories"
+};
+
+// Mỗi hàng lọc: nhãn, các lựa chọn [giá trị, chữ trên nút], và hàm kiểm tra 1 đánh giá có khớp lựa chọn không.
+// 1 người có thể đánh giá nhiều sản phẩm (entries): khớp nếu ÍT NHẤT 1 sản phẩm khớp.
+const FILTERS = {
+  stars: {
+    label: "Rating",
+    options: [["5", "5 ★"], ["4", "4 ★"], ["3", "3 ★"], ["2", "2 ★"], ["1", "1 ★"]],
+    test: (r, value) => Math.floor(r.rating) === Number(value)          // 4.7 sao tính vào nhóm 4 (làm tròn xuống)
+  },
+  line: {
+    label: "Line",
+    options: [["him", "Men's"], ["her", "Women's"]],
+    test: (r, value) => r.genders.has(value)
+  },
+  type: {
+    label: "Type",
+    options: [["compression", "Compression"], ["tops", "Tees & Tops"], ["outerwear", "Hoodies & Jackets"],
+              ["bottoms", "Bottoms"], ["bodysuits", "Bodysuits"], ["accessories", "Accessories"]],
+    test: (r, value) => r.types.has(value)
+  }
+};
+const state = { stars: "all", line: "all", type: "all" };     // "all" = không lọc hàng đó
+
+// Đánh giá có qua mọi bộ lọc không. skip: bỏ qua 1 hàng (dùng khi đếm số cho các nút của chính hàng đó)
+function passes(review, skip) {
+  return Object.keys(FILTERS).every((key) =>
+    key === skip || state[key] === "all" || FILTERS[key].test(review, state[key]));
+}
 
 // ---------- Hàm dùng chung ----------
 // (createStars: vẽ sao có phần lẻ; createImage: ảnh feedback thử .webp -> .jpg.
@@ -142,28 +177,57 @@ function showMore() {
   moreBtn.hidden = shown >= filtered.length; // hết đánh giá thì ẩn nút
 }
 
-// Nhóm sao của 1 đánh giá: làm tròn xuống (4.7 -> 4, 5.0 -> 5)
-const starGroup = (review) => Math.floor(review.rating);
+// Tạo các nút lọc bằng DOM: mỗi hàng = nhãn + nút "All" + các lựa chọn
+function buildFilters() {
+  Object.keys(FILTERS).forEach((key) => {
+    const row = filterBox.querySelector('[data-filter="' + key + '"]');
+    row.appendChild(el("span", "review-filter__label", FILTERS[key].label));
+    [["all", "All"], ...FILTERS[key].options].forEach(([value, text]) => {
+      const btn = el("button", "", text);
+      btn.type = "button";
+      btn.dataset.value = value;
+      btn.dataset.text = text;                 // chữ gốc, để ghép thêm số lượng "(12)"
+      btn.addEventListener("click", () => { state[key] = value; applyFilters(); });
+      row.appendChild(btn);
+    });
+  });
+}
 
-// Lọc theo sao: "all" hoặc "1".."5". Vẽ lại danh sách từ đầu.
-function applyFilter(value) {
-  filtered = value === "all" ? reviews : reviews.filter((r) => starGroup(r) === Number(value));
-  filterButtons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.stars === value)));
+// Cập nhật nút: nút đang chọn sáng lên; mỗi nút ghi số đánh giá sẽ còn lại nếu bấm nó
+// (tính theo các hàng lọc khác đang chọn), 0 thì làm mờ và không bấm được
+function updateFilterButtons() {
+  Object.keys(FILTERS).forEach((key) => {
+    const pool = reviews.filter((r) => passes(r, key));
+    filterBox.querySelectorAll('[data-filter="' + key + '"] button').forEach((btn) => {
+      const value = btn.dataset.value;
+      btn.setAttribute("aria-pressed", String(state[key] === value));
+      if (value === "all") return;
+      const count = pool.filter((r) => FILTERS[key].test(r, value)).length;
+      btn.textContent = btn.dataset.text + " (" + count + ")";
+      btn.disabled = count === 0 && state[key] !== value;
+    });
+  });
+}
+
+// Áp bộ lọc: vẽ lại danh sách từ đầu
+function applyFilters() {
+  filtered = reviews.filter((r) => passes(r));
+  updateFilterButtons();
   list.replaceChildren();
   shown = 0;
+  const active = Object.values(state).some((v) => v !== "all");
+  summary.textContent = summaryText(filtered) + (active ? " (filtered)" : "");
   if (filtered.length === 0) {
-    list.appendChild(el("p", "review-empty", "No reviews in this range yet."));
+    list.appendChild(el("p", "review-empty", "No reviews match these filters."));
   }
   showMore();
 }
 
-// Ghi số lượng đánh giá của từng nhóm sao lên nút, ví dụ "4 ★ (17)"
-function labelFilterButtons() {
-  filterButtons.forEach((b) => {
-    if (b.dataset.stars === "all") return;
-    const count = reviews.filter((r) => starGroup(r) === Number(b.dataset.stars)).length;
-    b.textContent = b.dataset.stars + " ★ (" + count + ")";
-  });
+// Dòng tóm tắt: điểm trung bình + số đánh giá (của nhóm đang xem)
+function summaryText(items) {
+  if (items.length === 0) return "0 reviews";
+  const avg = items.reduce((sum, r) => sum + r.rating, 0) / items.length;
+  return avg.toFixed(1) + " / 5 · " + items.length + " review" + (items.length === 1 ? "" : "s");
 }
 
 async function fetchJson(url) {
@@ -174,20 +238,22 @@ async function fetchJson(url) {
 
 fetchJson("../data/reviews.json")
   .then((reviewData) => {
-    reviews = reviewData.reviews;
+    // Đoán sẵn dòng (nam/nữ) và loại của các sản phẩm mà mỗi người đã đánh giá (từ tên sản phẩm), lưu dạng Set để lọc nhanh
+    reviews = reviewData.reviews.map((r) => ({
+      ...r,
+      genders: new Set(r.entries.map((e) => guessGender(e.product || ""))),
+      types: new Set(r.entries.map((e) => TYPE_OF[guessCategory(e.product || "")]).filter(Boolean))
+    }));
     // Chưa có đánh giá nào: chỉ báo "No reviews yet", ẩn bộ lọc và nút Show more
     if (reviews.length === 0) {
       summary.textContent = "No reviews yet.";
-      document.getElementById("review-filter").style.display = "none";
+      filterBox.hidden = true;
       moreBtn.hidden = true;
       return;
     }
-    const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
-    summary.textContent = avg.toFixed(1) + " / 5 · " + reviews.length + " reviews";
-    labelFilterButtons();
-    applyFilter("all");
+    buildFilters();
+    applyFilters();
   })
   .catch((err) => { list.textContent = "Unable to load reviews."; console.error(err); });
 
 moreBtn.addEventListener("click", showMore);
-filterButtons.forEach((b) => b.addEventListener("click", () => applyFilter(b.dataset.stars)));
