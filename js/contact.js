@@ -2,11 +2,34 @@
 // (web không có backend nên chưa gửi email thật; admin đọc danh sách này ở trang Admin).
 import { rules, validateForm, liveValidate } from "./form-validate.js";
 import { readList, writeJSON, isValidMessage } from "./storage.js";
+import { getCurrentUser } from "./auth.js";
 
 const MESSAGES_KEY = "sanctuary_messages";
 const form = document.getElementById("contact-form");
 const success = document.getElementById("contact-success");
 const errorBox = document.getElementById("contact-error");
+const messageBox = document.getElementById("ct-message");
+const counter = document.getElementById("ct-count");
+
+// Khách đã đăng nhập: điền sẵn tên + email từ tài khoản (vẫn sửa được)
+function prefill() {
+  const user = getCurrentUser();
+  if (!user) return;
+  const name = form.querySelector("#ct-name");
+  const email = form.querySelector("#ct-email");
+  if (!name.value) name.value = user.name;
+  if (!email.value) email.value = user.email;
+}
+prefill();
+window.addEventListener("auth-change", prefill);   // đăng nhập ngay trên trang này (icon tài khoản) thì điền luôn
+
+// Đếm ký tự của ô Message (tối đa 1000, đặt bằng maxlength trong HTML)
+function updateCount() {
+  counter.textContent = messageBox.value.length + " / " + messageBox.maxLength;
+}
+messageBox.addEventListener("input", updateCount);
+// Gõ tin mới thì ẩn dòng "Message sent" của lần gửi trước
+form.addEventListener("input", () => { success.hidden = true; });
 
 const ruleMap = {
   "ct-name": [rules.required, rules.minLength(2)],
@@ -37,5 +60,7 @@ form.addEventListener("submit", (e) => {
     return;
   }
   form.reset();
+  prefill();                                   // giữ lại tên + email của tài khoản cho lần gửi sau
+  updateCount();
   success.hidden = false;
 });

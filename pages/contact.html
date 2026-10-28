@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SANCTUARY | Contact</title>
+  <title>SANCTUARY | Info</title>
   <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="stylesheet" href="../css/reset.css">
@@ -59,13 +59,23 @@
         <section class="contact-info" aria-label="Contact details">
           <h2 class="glass__title">Reach the sanctuary</h2>
           <dl class="spec-list">
-            <div class="spec-row"><dt>Email</dt><dd>support@sanctuary.example</dd></div>
+            <div class="spec-row"><dt>Email</dt><dd><a href="mailto:support@sanctuary.example">support@sanctuary.example</a></dd></div>
             <div class="spec-row"><dt>Instagram</dt><dd>@sanctuary.divinity</dd></div>
             <div class="spec-row"><dt>Hours</dt><dd>Mon to Fri · 9:00 to 18:00</dd></div>
             <div class="spec-row"><dt>Studio</dt><dd>Ho Chi Minh City, Vietnam</dd></div>
             <div class="spec-row"><dt>Reply time</dt><dd>Within 48 hours</dd></div>
           </dl>
           <p class="cart-note">These details are sample data for a student project.</p>
+
+          <!-- Câu hỏi hay gặp: dẫn thẳng tới mục chính sách liên quan, khách tự tìm câu trả lời trước khi gửi tin -->
+          <h2 class="glass__title contact-quick__title">Quick answers</h2>
+          <ul class="contact-quick">
+            <li><a href="#shipping">How long does shipping take?</a></li>
+            <li><a href="#shipping">Can I return or exchange a piece?</a></li>
+            <li><a href="#terms">How do athlete codes work?</a></li>
+            <li><a href="#privacy">What do you do with my data?</a></li>
+            <li><a href="home.html#shop">Which size should I pick? <span class="contact-quick__note">Open a product and use Find your size</span></a></li>
+          </ul>
         </section>
 
         <!-- Form liên hệ: kiểm tra bằng JavaScript, lưu giả lập vào localStorage -->
@@ -87,8 +97,11 @@
                 <option>Something else</option>
               </select></div>
             <div class="field"><label for="ct-message">Message</label>
-              <textarea id="ct-message" class="input" rows="6"></textarea>
-              <p class="form-error" id="error-ct-message"></p></div>
+              <textarea id="ct-message" class="input" rows="6" maxlength="1000" aria-describedby="ct-count" placeholder="Include your order number if your message is about an order."></textarea>
+              <div class="field__foot">
+                <p class="form-error" id="error-ct-message"></p>
+                <p id="ct-count" class="field__count">0 / 1000</p>
+              </div></div>
             <p id="contact-error" class="form-error" role="alert"></p>
             <button type="submit" class="btn">Send</button>
             <p id="contact-success" class="contact-success" role="status" hidden>Message sent. We will reply within 48 hours.</p>
@@ -128,7 +141,7 @@
         <p>All sales are final. We do not accept returns or refunds for change of mind, color preference, or fit. Use the Find your size tool on each product page before you buy.</p>
         <p>The exception is a piece that arrives damaged, defective, or is not what you ordered. In that case:</p>
         <ul>
-          <li>Email us within 48 hours of delivery at support@sanctuary.example.</li>
+          <li>Email us within 48 hours of delivery at <a href="mailto:support@sanctuary.example">support@sanctuary.example</a>.</li>
           <li>Include your order number, clear photos of the piece, and a photo of the shipping label and packaging.</li>
           <li>Claims sent late or without photos cannot be approved.</li>
           <li>Approved claims are solved with an exchange for the same piece if it is in stock. If it is sold out, we issue store credit.</li>
@@ -148,7 +161,7 @@
         <h2 class="glass__title">Terms and Conditions</h2>
         <p class="info-doc__date">Last updated October 27, 2026</p>
         <h3>Agreement</h3>
-        <p>By browsing the SANCTUARY store, placing an order, or using an athlete code, you agree to these Terms and Conditions together with our Shipping/Returns, Privacy Policy and Terms of Service.</p>
+        <p>By browsing the SANCTUARY store, placing an order, or using an athlete code, you agree to these Terms and Conditions together with our <a href="#shipping">Shipping/Returns</a>, <a href="#privacy">Privacy Policy</a> and <a href="#tos">Terms of Service</a>.</p>
         <h3>Drops and availability</h3>
         <p>Collections are released in limited quantities. A piece in your cart is not reserved until the order is paid, and the number shown as in stock can change at any moment during a drop. We may limit quantities per customer.</p>
         <h3>Prices and errors</h3>
@@ -156,7 +169,7 @@
         <h3>Orders</h3>
         <p>Placing an order is an offer to buy. We accept it when the order ships, and we may refuse or cancel an order, for example for suspected fraud, stock errors, or misuse of drop rules.</p>
         <h3>Payment and taxes</h3>
-        <p>You authorize us to charge your chosen payment method for the items, shipping, and any taxes that apply. Duties for international orders are explained in Shipping/Returns.</p>
+        <p>You authorize us to charge your chosen payment method for the items, shipping, and any taxes that apply. Duties for international orders are explained in <a href="#shipping">Shipping/Returns</a>.</p>
         <h3>Athlete codes and promotions</h3>
         <ul>
           <li>An athlete code gives 10% off the price of your order.</li>
@@ -244,7 +257,7 @@
         <h3>Security</h3>
         <p>We use reasonable safeguards to protect your data. No method of storing or sending information online is completely secure, so we cannot promise absolute protection.</p>
         <h3>Your rights</h3>
-        <p>You can ask to see, correct, or delete the personal information we hold about you, or to stop marketing messages. Email support@sanctuary.example and we will reply within 30 days.</p>
+        <p>You can ask to see, correct, or delete the personal information we hold about you, or to stop marketing messages. Email <a href="mailto:support@sanctuary.example">support@sanctuary.example</a> and we will reply within 30 days.</p>
         <h3>Children</h3>
         <p>Our store is not meant for children under 13, and we do not knowingly collect their information. If you think a child has sent us data, please contact us and we will delete it.</p>
         <h3>International customers</h3>
@@ -252,7 +265,7 @@
         <h3>Changes to this policy</h3>
         <p>When we update this policy, we post the new version here with a new date.</p>
         <h3>Contact</h3>
-        <p>Questions about privacy: support@sanctuary.example · SANCTUARY Studio, Ho Chi Minh City, Vietnam.</p>
+        <p>Questions about privacy: <a href="mailto:support@sanctuary.example">support@sanctuary.example</a> · SANCTUARY Studio, Ho Chi Minh City, Vietnam.</p>
       </article>
     </section>
 
@@ -275,7 +288,7 @@
         <h3>Known limits</h3>
         <p>Our dark design uses light text on a black background, but some small decorative text, such as the red notes on the home page, has lower contrast. Background videos have no sound and carry no information that is not also in the text. We are working on these points.</p>
         <h3>Need help?</h3>
-        <p>If something on the site is hard to use, or you would like information in another format, email support@sanctuary.example with the page address and a description of the problem. We reply within 2 business days, and we can also take your order by email if the store is not working for you.</p>
+        <p>If something on the site is hard to use, or you would like information in another format, email <a href="mailto:support@sanctuary.example">support@sanctuary.example</a> with the page address and a description of the problem. We reply within 2 business days, and we can also take your order by email if the store is not working for you.</p>
       </article>
     </section>
   </main>
