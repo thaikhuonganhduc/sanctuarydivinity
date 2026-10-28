@@ -429,6 +429,12 @@ body:has(.site-footer) > .site-footer { margin-top: auto; }
 /* Bảng size trong popup sản phẩm (dùng chung khung viền với .size-finder) */
 .size-chart__body { display: flex; flex-direction: column; gap: var(--space-1); }
 .size-chart__title { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+/* Tiêu đề bảng + nút đổi đơn vị CM / KG <-> IN / LB nằm cùng 1 hàng */
+.size-chart__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.size-chart__units { display: flex; border: 1px solid rgba(255, 255, 255, 0.25); }
+.size-chart__unit { padding: 0.3rem 0.6rem; font-size: 0.62rem; letter-spacing: 0.12em; color: var(--color-muted); transition: background 0.2s, color 0.2s; }
+.size-chart__unit:hover { color: var(--color-text); }
+.size-chart__unit[aria-pressed="true"] { background: var(--color-accent); color: #000; }
 .size-chart__scroll { overflow-x: auto; }
 .size-chart__table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: center; white-space: nowrap; }
 .size-chart__table th, .size-chart__table td { padding: 0.45rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }

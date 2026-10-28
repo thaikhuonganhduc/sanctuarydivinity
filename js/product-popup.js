@@ -14,6 +14,29 @@ export function el(tag, className, text) {
   return node;
 }
 
+// ---------- Đơn vị của bảng size ----------
+// Số liệu gốc là cm/kg; chọn "IN / LB" thì đổi sang inch / pound, chiều cao ghi kiểu feet-inch (5'7").
+const CM_PER_INCH = 2.54;
+const LB_PER_KG = 2.20462;
+function feetInches(cm) {
+  const inches = Math.round(cm / CM_PER_INCH);
+  return Math.floor(inches / 12) + "'" + (inches % 12) + "\"";
+}
+const UNITS = {
+  metric: { button: "CM / KG", length: "cm", height: "cm", weight: "kg", caption: "centimetres and kilograms",
+            toLength: (cm) => cm, toHeight: (cm) => cm, toWeight: (kg) => kg },
+  imperial: { button: "IN / LB", length: "in", height: "ft", weight: "lb", caption: "inches and pounds",
+              toLength: (cm) => Math.round(cm / CM_PER_INCH), toHeight: feetInches, toWeight: (kg) => Math.round(kg * LB_PER_KG) }
+};
+// Nhớ đơn vị khách chọn (mở sản phẩm khác vẫn giữ); không đọc/ghi được localStorage thì dùng cm/kg
+const UNIT_KEY = "sanctuary_size_units";
+let sizeUnit = "metric";
+try { if (UNITS[localStorage.getItem(UNIT_KEY)]) sizeUnit = localStorage.getItem(UNIT_KEY); } catch (e) { /* bỏ qua */ }
+function setSizeUnit(unit) {
+  sizeUnit = unit;
+  try { localStorage.setItem(UNIT_KEY, unit); } catch (e) { /* bỏ qua: chỉ là tiện ích */ }
+}
+
 // getCurrency / getRates: lấy tiền tệ + tỷ giá đang dùng của trang
 // onAddToCart: chạy sau khi thêm món vào giỏ (trang giỏ hàng dùng để vẽ lại)
 // onBuyNow: chạy khi bấm Buy now (mặc định sang trang giỏ hàng; trang giỏ hàng thì chỉ đóng popup)
@@ -203,18 +226,50 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
 
     const box = el("details", "size-finder size-chart");
     const gender = product.gender === "her" ? "her" : "him";              // unisex dùng thang nam
+    const label = gender === "her" ? "Women's" : "Men's";
     box.appendChild(el("summary", "", "Size chart"));
     const body = el("div", "size-chart__body");
     body.appendChild(el("p", "cart-note", "Loading size chart..."));
     box.appendChild(body);
 
-    // Khoảng số "a–b"; thiếu cận thì ghi "dưới b" / "a+"; không có số liệu thì "–"
-    const range = (pair) => (pair ? pair[0] + "–" + pair[1] : "–");
-    const chestRange = (row) => {
-      if (row.chestMinCm === null) return "< " + row.chestMaxCm;
-      if (row.chestMaxCm === null) return row.chestMinCm + "+";
-      return row.chestMinCm + "–" + row.chestMaxCm;
+    // Khoảng số "a–b" sau khi đổi đơn vị (fmt); không có số liệu thì "–"
+    const range = (pair, fmt) => (pair ? fmt(pair[0]) + "–" + fmt(pair[1]) : "–");
+    // Vòng ngực: thiếu cận dưới thì "< b", thiếu cận trên thì "a+"
+    const chestRange = (row, fmt) => {
+      if (row.chestMinCm === null) return "< " + fmt(row.chestMaxCm);
+      if (row.chestMaxCm === null) return fmt(row.chestMinCm) + "+";
+      return fmt(row.chestMinCm) + "–" + fmt(row.chestMaxCm);
     };
+
+    // Vẽ bảng theo đơn vị đang chọn (vẽ lại mỗi lần bấm nút đổi đơn vị)
+    function fillTable(table, data) {
+      const u = UNITS[sizeUnit];
+      table.replaceChildren(el("caption", "visually-hidden", label + " size chart in " + u.caption));
+      const headRow = el("tr");
+      ["Size", "Chest (" + u.length + ")", "Waist (" + u.length + ")", "Height (" + u.height + ")", "Weight (" + u.weight + ")"].forEach((h) => {
+        const th = el("th", "", h);
+        th.scope = "col";
+        headRow.appendChild(th);
+      });
+      table.appendChild(el("thead")).appendChild(headRow);
+
+      const tbody = el("tbody");
+      data.table.filter((row) => product.sizes.includes(row.size)).forEach((row) => {
+        const tr = el("tr");
+        tr.dataset.size = row.size;
+        const th = el("th", "", row.size);
+        th.scope = "row";
+        tr.appendChild(th);
+        [chestRange(row, u.toLength), range(row.waistCm, u.toLength), range(row.heightCm, u.toHeight), range(row.weightKg, u.toWeight)]
+          .forEach((v) => tr.appendChild(el("td", "", v)));
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+
+      // Khách đã chọn size (trước khi mở bảng hoặc trước khi đổi đơn vị): tô sáng dòng đó
+      const pressed = box.closest(".review-detail__info")?.querySelector(".size-btn[aria-pressed='true']");
+      if (pressed) tbody.querySelector('tr[data-size="' + pressed.textContent + '"]')?.classList.add("is-selected");
+    }
 
     // Chỉ tải dữ liệu khi khách mở bảng lần đầu
     let loaded = false;
@@ -226,38 +281,34 @@ export function initProductPopup({ dialog, detail, getCurrency, getRates, onAddT
         loaded = true;
 
         const table = el("table", "size-chart__table");
-        table.appendChild(el("caption", "visually-hidden", (gender === "her" ? "Women's" : "Men's") + " size chart in centimetres and kilograms"));
-        const headRow = el("tr");
-        ["Size", "Chest (cm)", "Waist (cm)", "Height (cm)", "Weight (kg)"].forEach((h) => {
-          const th = el("th", "", h);
-          th.scope = "col";
-          headRow.appendChild(th);
-        });
-        table.appendChild(el("thead")).appendChild(headRow);
+        fillTable(table, data);
 
-        const tbody = el("tbody");
-        data.table.filter((row) => product.sizes.includes(row.size)).forEach((row) => {
-          const tr = el("tr");
-          tr.dataset.size = row.size;
-          const th = el("th", "", row.size);
-          th.scope = "row";
-          tr.appendChild(th);
-          [chestRange(row), range(row.waistCm), range(row.heightCm), range(row.weightKg)].forEach((v) => tr.appendChild(el("td", "", v)));
-          tbody.appendChild(tr);
+        // Nút đổi đơn vị: CM / KG <-> IN / LB
+        const unitGroup = el("div", "size-chart__units");
+        unitGroup.setAttribute("role", "group");
+        unitGroup.setAttribute("aria-label", "Units");
+        Object.keys(UNITS).forEach((key) => {
+          const btn = el("button", "size-chart__unit", UNITS[key].button);
+          btn.type = "button";
+          btn.setAttribute("aria-pressed", String(key === sizeUnit));
+          btn.addEventListener("click", () => {
+            setSizeUnit(key);
+            unitGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+            fillTable(table, data);
+          });
+          unitGroup.appendChild(btn);
         });
-        table.appendChild(tbody);
+        const head = el("div", "size-chart__head");
+        head.append(el("p", "size-chart__title", label + " sizes"), unitGroup);
 
         const wrap = el("div", "size-chart__scroll");                         // màn hình hẹp: bảng cuộn ngang
         wrap.appendChild(table);
         body.replaceChildren(
-          el("p", "size-chart__title", (gender === "her" ? "Women's" : "Men's") + " sizes"),
+          head,
           wrap,
           el("p", "size-finder__source", "Chest ranges follow common apparel size charts. Waist, height and weight show the middle 50% of people in each size in the ANSUR II body survey (" +
-            data.sampleSize.toLocaleString("en-US") + " adults). \"–\" means too few people in the data to show a range.")
+            data.sampleSize.toLocaleString("en-US") + " adults). \"–\" means too few people in the data to show a range. Inches and pounds are rounded from the metric values.")
         );
-        // Khách đã chọn size trước khi mở bảng: tô sáng luôn dòng đó
-        const pressed = box.closest(".review-detail__info")?.querySelector(".size-btn[aria-pressed='true']");
-        if (pressed) tbody.querySelector('tr[data-size="' + pressed.textContent + '"]')?.classList.add("is-selected");
       } catch (err) {
         body.replaceChildren(el("p", "form-error", "Size data is unavailable right now. Close and open the chart to try again."));
       }
