@@ -18,3 +18,6 @@ assets/videos/video*.mp4
 
 # Ảnh lookbook + video gốc chưa nén (chỉ giữ trên máy); web dùng bản nén do tools/compress_media.py tạo
 assets/_source/
+
+# Tài liệu QA nội bộ (chỉ giữ trên máy, không đưa lên GitHub)
+QA_Handover_Web_Project.xlsx
