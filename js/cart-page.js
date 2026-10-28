@@ -1,8 +1,9 @@
 // Trang giỏ hàng: đọc giỏ từ localStorage + products.json (fetch), vẽ danh sách bằng DOM,
 // sửa số lượng/xoá món, tính tiền, kiểm tra form thanh toán rồi lưu đơn hàng giả lập.
 import { loadShipping, calcCosts } from "./shipping.js";
-import { loadProducts, createProductImage, renderGrid } from "./products.js";
-import { getCart, saveCart } from "./cart.js";
+import { loadProducts, createProductImage, renderGrid, isColorAvailable, canBuy, stockAfter, applyStock, OVERRIDES_KEY } from "./products.js";
+import { getCart, saveCart, qtyInCart } from "./cart.js";
+import { readList, writeAll, isValidOrder } from "./storage.js";
 import { REGIONS, loadRates, formatPrice, getSavedCurrency, saveCurrency } from "./currency.js";
 import { rules, validateForm, liveValidate } from "./form-validate.js";
 import { updateCartCount } from "./header.js";
@@ -23,6 +24,7 @@ let shippingData = null;   // dữ liệu phí ship/thuế từ data/shipping.js
 let rates = { USD: 1 };
 let currency = getSavedCurrency();
 let lastTotalUsd = 0;        // tổng tiền (USD) lần tính gần nhất, lưu vào đơn hàng để trang Account hiện lại
+let loaded = false;          // đã tải xong dữ liệu sản phẩm chưa (chưa xong thì không được kiểm tra giỏ, kẻo xoá nhầm)
 
 const fmt = (usd) => formatPrice(usd, currency, rates);
 
@@ -33,15 +35,47 @@ function el(tag, className, text) {
   return node;
 }
 
+// ---------- Kiểm tra giỏ ----------
+// Giỏ "đã kiểm tra": chỉ giữ món còn bán (sản phẩm chưa bị ẩn, màu còn bán, còn hàng) và số lượng không vượt kho.
+// Giỏ này dùng CHUNG cho hiển thị, tính tiền và lưu đơn, nên số tiền khách thấy luôn khớp với đơn được lưu.
+// Trả về { cart, changed }: changed = true nếu phải bỏ bớt hoặc giảm món so với giỏ đang lưu.
+function checkedCart() {
+  const stored = getCart();
+  const used = {};                          // số đã xếp vào giỏ của từng sản phẩm (cộng mọi màu/size)
+  const cart = [];
+  stored.forEach((item) => {
+    const p = products[item.id];
+    const color = p && p.colors.find((c) => c.name === item.color);
+    if (!p || !color || !isColorAvailable(color)) return;
+    const qty = Math.min(item.qty, p.stock - (used[p.id] || 0));
+    if (qty <= 0) return;
+    used[p.id] = (used[p.id] || 0) + qty;
+    cart.push({ ...item, qty });
+  });
+  // Cùng số dòng nghĩa là không bỏ dòng nào, nên so số lượng theo đúng vị trí là được
+  const changed = cart.length !== stored.length || cart.some((item, k) => item.qty !== stored[k].qty);
+  return { cart, changed };
+}
+
+// Dòng thông báo phía trên giỏ hàng
+const notice = (text) => { $("cart-notice").textContent = text; };
+
 // ---------- Vẽ giỏ hàng ----------
+// Trả về kết quả checkedCart() để nút "Place order" dùng lại đúng giỏ vừa vẽ
 function render() {
-  const cart = getCart().filter((i) => products[i.id]);   // bỏ món không còn trong dữ liệu
+  if (!loaded) return { cart: [], changed: false };
+  const checked = checkedCart();
+  const { cart } = checked;
+  if (checked.changed) {
+    saveCart(cart);                          // lưu lại giỏ đã sửa, lần sau khỏi phải sửa nữa
+    notice("Some items in your cart were removed or reduced because they are no longer available in that amount.");
+  }
   const hasItems = cart.length > 0;
   $("cart-empty").hidden = hasItems || !$("order-done").hidden;
   $("cart-content").hidden = !hasItems;
   updateCartCount();
   renderSuggest(cart);
-  if (!hasItems) return;
+  if (!hasItems) return checked;
 
   list.replaceChildren();
   let subtotal = 0;
@@ -49,7 +83,9 @@ function render() {
   cart.forEach((item) => {
     const p = products[item.id];
     subtotal += p.price * item.qty;
-    const color = p.colors.find((c) => c.name === item.color) || p.colors[0];
+    const color = p.colors.find((c) => c.name === item.color);
+    // Dòng này được tối đa bao nhiêu: số trong kho trừ các dòng khác (màu/size khác) của cùng sản phẩm
+    const maxForLine = p.stock - qtyInCart(cart, p.id) + item.qty;
 
     const media = el("div", "product-card__media cart-item__media");
     media.appendChild(createProductImage(p, color));
@@ -60,7 +96,7 @@ function render() {
     minus.setAttribute("aria-label", "Decrease quantity");
     plus.setAttribute("aria-label", "Increase quantity");
     minus.disabled = item.qty <= 1;
-    plus.disabled = item.qty >= p.stock;             // không vượt quá số trong kho
+    plus.disabled = item.qty >= maxForLine;          // không vượt quá số trong kho
     minus.addEventListener("click", () => changeQty(item, item.qty - 1));
     plus.addEventListener("click", () => changeQty(item, item.qty + 1));
     const qty = el("div", "qty");
@@ -114,6 +150,7 @@ function render() {
   lastTotalUsd = subtotal - discountUsd + costs.shipping + costs.duty + costs.tax;
   $("sum-total").textContent = fmt(lastTotalUsd);
   $("shipping-note").textContent = "";
+  return checked;
 }
 
 function sameItem(a, b) { return a.id === b.id && a.color === b.color && a.size === b.size; }
@@ -121,13 +158,16 @@ function sameItem(a, b) { return a.id === b.id && a.color === b.color && a.size 
 function changeQty(item, qty) {
   const cart = getCart();
   const found = cart.find((i) => sameItem(i, item));
-  if (found) found.qty = Math.min(Math.max(qty, 1), products[item.id].stock);
-  saveCart(cart);
+  if (found) {
+    const max = products[item.id].stock - qtyInCart(cart, item.id) + found.qty;   // tính cả các dòng khác của sản phẩm
+    found.qty = Math.min(Math.max(qty, 1), max);
+  }
+  if (!saveCart(cart)) notice("We couldn't save your cart. Please try again.");
   render();
 }
 
 function removeItem(item) {
-  saveCart(getCart().filter((i) => !sameItem(i, item)));
+  if (!saveCart(getCart().filter((i) => !sameItem(i, item)))) notice("We couldn't save your cart. Please try again.");
   render();
 }
 
@@ -169,38 +209,57 @@ form.querySelectorAll('input[name="pay"]').forEach((radio) => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  const errorBox = $("checkout-error");
+  errorBox.textContent = "";
   const useCard = form.pay.value === "card";
   if (!validateForm(form, useCard ? { ...baseRules, ...cardRules } : baseRules)) return;
 
+  // Kiểm tra lại giỏ ngay lúc đặt (giỏ có thể vừa đổi ở tab khác). Có thay đổi thì dừng để khách xem lại tổng tiền mới.
+  const { cart, changed } = render();
+  if (cart.length === 0) return;
+  if (changed) {
+    errorBox.textContent = "Your cart was updated. Please check the new total and place your order again.";
+    return;
+  }
+
   const user = getCurrentUser();
-  // Lưu đơn hàng giả lập vào localStorage (sau này admin có thể xem)
   const number = "SD-" + Date.now().toString(36).toUpperCase();
   const order = {
-    number, date: new Date().toISOString(), items: getCart(), currency,
+    number, date: new Date().toISOString(), items: cart, currency,     // đúng giỏ đã dùng để tính tiền
     customer: { name: $("co-name").value.trim(), email: $("co-email").value.trim(),
       phone: $("co-phone").value.trim(), address: $("co-address").value.trim(),
       city: $("co-city").value.trim(), country: $("co-country").value },
     payment: form.pay.value,
     discountCode: discount ? discount.code : null,
     totalUsd: lastTotalUsd,
+    status: "Processing",
+    stockDeducted: true,                          // đơn này đã trừ kho -> admin huỷ đơn thì cộng lại (xem admin.js)
     userEmail: user ? user.email : null           // đang đăng nhập thì gắn đơn vào tài khoản (trang Account đọc lại)
   };
-  try {
-    const orders = JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];
-    orders.push(order);
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-  } catch (err) { console.warn("Cannot save order", err); }
 
-  // Tài khoản chưa có địa chỉ thì lưu luôn địa chỉ vừa nhập, lần sau khỏi gõ lại
+  // Lưu đơn + trừ kho cùng lúc: chỉ cần 1 trong 2 lỗi là không lưu gì, giữ nguyên giỏ và báo lỗi
+  const orders = readList(ORDERS_KEY, isValidOrder);
+  orders.push(order);
+  const { overrides, stock } = stockAfter(products, cart, -1);
+  if (!writeAll([[ORDERS_KEY, orders], [OVERRIDES_KEY, overrides]])) {
+    errorBox.textContent = "We couldn't save your order. Your cart is unchanged, please try again.";
+    return;
+  }
+  applyStock(products, stock);
+
+  // Tài khoản chưa có địa chỉ thì lưu luôn địa chỉ vừa nhập, lần sau khỏi gõ lại (lỗi ở bước này không ảnh hưởng đơn hàng)
   if (user) {
     const c = order.customer;
-    updateProfile({
-      phone: user.phone || c.phone, address: user.address || c.address,
-      city: user.city || c.city, country: user.country || c.country
-    });
+    try {
+      updateProfile({
+        phone: user.phone || c.phone, address: user.address || c.address,
+        city: user.city || c.city, country: user.country || c.country
+      });
+    } catch (err) { console.warn("Cannot update profile", err); }
   }
 
-  saveCart([]);                                  // xoá giỏ sau khi đặt
+  saveCart([]);                                  // đơn đã lưu xong mới xoá giỏ
+  notice("");
   $("order-number").textContent = number;
   $("order-email").textContent = order.customer.email;
   $("cart-content").hidden = true;
@@ -233,7 +292,7 @@ function updateSuggestButtons() {                      // hết đường lướ
   $("suggest-next").disabled = suggestTrack.scrollLeft + suggestTrack.clientWidth >= suggestTrack.scrollWidth - 2;
 }
 function renderSuggest(cart) {
-  if (!suggestOrder) suggestOrder = shuffle(Object.values(products).filter((p) => p.inStock));
+  if (!suggestOrder) suggestOrder = shuffle(Object.values(products).filter(canBuy));
   const inCart = new Set(cart.map((i) => i.id));
   const picks = suggestOrder.filter((p) => !inCart.has(p.id));
   $("cart-suggest").hidden = picks.length === 0;
@@ -312,13 +371,25 @@ function fillFromAccount() {
 $("checkout-signin-btn").addEventListener("click", () => openAuth("signin"));
 window.addEventListener("auth-change", fillFromAccount);
 
-Promise.all([loadProducts(), loadRates(), loadShipping(), fetch("../data/access.json").then((r) => r.json())])
-  .then(([items, rateInfo, shipping, access]) => {
-    athletes = access.influencers || [];
-    shippingData = shipping;
-    items.forEach((p) => { products[p.id] = p; });
-    rates = rateInfo.rates;
-    render();
-    fillFromAccount();
-  })
-  .catch((err) => { $("cart-empty").hidden = false; console.error(err); });
+// Tải dữ liệu. Lỗi thì hiện thông báo lỗi + nút "Try again" (không giả làm "giỏ trống")
+function loadData() {
+  $("cart-error").hidden = true;
+  const loadAccess = fetch("../data/access.json").then((r) => {
+    if (!r.ok) throw new Error("Cannot load access list");
+    return r.json();
+  });
+  Promise.all([loadProducts(), loadRates(), loadShipping(), loadAccess])
+    .then(([items, rateInfo, shipping, access]) => {
+      athletes = access.influencers || [];
+      shippingData = shipping;
+      products = {};
+      items.forEach((p) => { products[p.id] = p; });
+      rates = rateInfo.rates;
+      loaded = true;
+      render();
+      fillFromAccount();
+    })
+    .catch((err) => { $("cart-error").hidden = false; console.error(err); });
+}
+$("cart-retry").addEventListener("click", loadData);
+loadData();

@@ -5,6 +5,7 @@ import { openAuth } from "./auth-ui.js";
 import { rules, validateForm, liveValidate } from "./form-validate.js";
 import { loadProducts, createProductImage } from "./products.js";
 import { REGIONS, loadRates, formatPrice, getSavedCurrency } from "./currency.js";
+import { readList, isValidOrder } from "./storage.js";
 
 const ORDERS_KEY = "sanctuary_orders";
 const $ = (id) => document.getElementById(id);
@@ -42,7 +43,7 @@ function render() {
 // ---------- Lịch sử đơn hàng ----------
 function renderOrders(user) {
   let orders = [];
-  try { orders = JSON.parse(localStorage.getItem(ORDERS_KEY)) || []; } catch (e) { /* bỏ qua */ }
+  orders = readList(ORDERS_KEY, isValidOrder);      // đơn sai cấu trúc bị bỏ qua, không làm lỗi trang
   orders = orders.filter((o) => o.userEmail === user.email).reverse();     // đơn mới nhất lên đầu
 
   const list = $("order-list");
@@ -96,10 +97,15 @@ profileForm.addEventListener("submit", (e) => {
   e.preventDefault();
   $("profile-saved").hidden = true;
   if (!validateForm(profileForm, profileRules)) return;
-  updateProfile({
-    name: $("pf-name").value, phone: $("pf-phone").value, address: $("pf-address").value,
-    city: $("pf-city").value, country: $("pf-country").value
-  });
+  try {
+    updateProfile({
+      name: $("pf-name").value, phone: $("pf-phone").value, address: $("pf-address").value,
+      city: $("pf-city").value, country: $("pf-country").value
+    });
+  } catch (err) {
+    alert(err.message);                                       // lưu lỗi: báo và giữ nguyên nội dung đang sửa
+    return;
+  }
   render();
   window.dispatchEvent(new CustomEvent("auth-change"));      // cập nhật tên trên icon tài khoản
   $("profile-saved").hidden = false;

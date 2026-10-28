@@ -5,7 +5,13 @@
 export const rules = {
   required: (v) => v.trim() !== "" || "This field is required.",
   email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || "Enter a valid email address.",
-  phone: (v) => /^\+?[\d\s-]{8,15}$/.test(v.trim()) || "Enter a valid phone number.",
+  // SĐT: chỉ gồm chữ số, khoảng trắng, dấu "-" (có thể có "+" ở đầu) và phải có 8-15 CHỮ SỐ
+  // (đếm chữ số riêng, để chuỗi toàn dấu "--------" không lọt qua)
+  phone: (v) => {
+    const text = v.trim();
+    const digits = text.replace(/\D/g, "").length;
+    return (/^\+?[\d\s-]+$/.test(text) && digits >= 8 && digits <= 15) || "Enter a valid phone number.";
+  },
   minLength: (n) => (v) => v.trim().length >= n || "Please enter at least " + n + " characters.",
   // Số thẻ: 13-19 chữ số và đúng thuật toán Luhn
   card: (v) => {

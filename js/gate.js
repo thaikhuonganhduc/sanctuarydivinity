@@ -1,7 +1,7 @@
 // Xử lý cổng nhập mật khẩu:
 //  - Mã admin (so hash)  -> vai trò admin
 //  - Mật khẩu influencer (đọc từ data/access.json bằng fetch) -> vai trò customer
-import { ADMIN_CODE_HASH, ROLE_KEY, PAGES } from "./config.js";
+import { ADMIN_CODE_HASH, ROLE_KEY, PAGES, SHOW_DEMO_HINTS, DEMO_ADMIN_CODE } from "./config.js";
 
 import { startCountdown, showLaunchDate } from "./countdown.js";
 
@@ -43,6 +43,35 @@ async function loadInfluencerCodes() {
   const data = await res.json();
   return data.influencers.filter((i) => i.active);
 }
+
+// ---------- Gợi ý mật khẩu để test nhanh ----------
+// Hiện 2 nút "Customer" / "Admin": bấm là điền mật khẩu vào ô rồi gửi form luôn.
+// Mã customer lấy từ data/access.json (mã đầu tiên đang bật), mã admin lấy từ config.js.
+async function showDemoHints() {
+  const box = document.getElementById("gate-demo");
+  const hints = [["Admin", DEMO_ADMIN_CODE]];
+  try {
+    const first = (await loadInfluencerCodes())[0];
+    if (first) hints.unshift(["Customer", first.code]);
+  } catch (err) { console.warn("Demo hint: cannot load customer code", err); }
+
+  box.appendChild(Object.assign(document.createElement("p"), { className: "gate-demo__title", textContent: "Test logins (click to enter)" }));
+  hints.forEach(([role, code]) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "gate-demo__btn";
+    const name = document.createElement("strong");
+    name.textContent = role;
+    btn.append(name, " " + code);
+    btn.addEventListener("click", () => {
+      input.value = code;
+      form.requestSubmit();
+    });
+    box.appendChild(btn);
+  });
+  box.hidden = false;
+}
+if (SHOW_DEMO_HINTS) showDemoHints();
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();

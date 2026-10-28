@@ -21,6 +21,10 @@ export function updateCartCount() {
   link.textContent = total > 0 ? "Cart (" + total + ")" : "Cart";
 }
 updateCartCount();
+// Giỏ đổi (thêm từ popup sản phẩm, sửa ở trang Cart...) thì cập nhật số ngay, không cần tải lại trang
+window.addEventListener("cart-change", updateCartCount);
+// Giỏ đổi ở tab khác của cùng trình duyệt: sự kiện "storage" chỉ báo cho các tab còn lại
+window.addEventListener("storage", (e) => { if (e.key === "sanctuary_cart") updateCartCount(); });
 initAccountUI();   // icon tài khoản + popup đăng nhập (js/auth-ui.js)
 
 // Nút Exit (trang chủ): xoá vai trò đã đăng nhập rồi quay về trang nhập mật khẩu

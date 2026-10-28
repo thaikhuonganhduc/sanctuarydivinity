@@ -1,33 +1,80 @@
 // Đọc data/products.json bằng fetch (AJAX) và vẽ sản phẩm bằng DOM.
 // File này là module: shop.js import các hàm bên dưới để dùng.
+import { readMap, readList, isValidProduct } from "./storage.js";
 
-// Thay đổi của admin (giá, tồn kho, nổi bật, ẩn) lưu trong localStorage, đè lên dữ liệu gốc của products.json.
+// Thay đổi của admin (giá, tồn kho, nổi bật, ẩn, xoá) lưu trong localStorage, đè lên dữ liệu gốc của products.json.
 // Web tĩnh không ghi được vào file JSON, nên đây là cách mô phỏng "cập nhật sản phẩm" phía trình duyệt.
 export const OVERRIDES_KEY = "sanctuary_product_overrides";
+// Sản phẩm admin thêm mới (trang Admin → Products → Add product), nối vào sau danh sách của products.json
+export const CUSTOM_PRODUCTS_KEY = "sanctuary_custom_products";
 
 export function getProductOverrides() {
-  try { return JSON.parse(localStorage.getItem(OVERRIDES_KEY)) || {}; } catch (e) { return {}; }
+  return readMap(OVERRIDES_KEY);
 }
 
-// includeHidden: trang admin và lịch sử đơn cần cả sản phẩm đã ẩn; cửa hàng thì không
+export function getCustomProducts() {
+  return readList(CUSTOM_PRODUCTS_KEY, isValidProduct);
+}
+
+// Đường dẫn ảnh: ảnh trong thư mục assets cần thêm "../" (trang nằm trong pages/);
+// ảnh admin tải lên được lưu thẳng dạng "data:image/..." nên dùng nguyên
+export const imageUrl = (path) => (path.startsWith("data:") ? path : "../" + path);
+
+// Màu còn bán không (products.json đánh dấu "available": false cho màu đã ngừng bán)
+export const isColorAvailable = (color) => color.available !== false;
+
+// Mua được không: còn hàng trong kho và còn ít nhất 1 màu đang bán
+export const canBuy = (product) => product.stock > 0 && product.colors.some(isColorAvailable);
+
+// ---------- Tồn kho mô phỏng ----------
+// Quy tắc: đặt hàng thì trừ kho (sign = -1); admin huỷ đơn thì cộng lại (sign = +1).
+// Làm 2 bước để nơi gọi ghi đơn hàng + tồn kho cùng lúc (xem writeAll trong storage.js):
+//   1. stockAfter(): tính tồn kho mới, CHƯA ghi gì
+//   2. ghi xong thì applyStock(): cập nhật sản phẩm đang hiện trên trang
+
+// productsById: { id: sản phẩm } đang dùng trên trang; items: các món của đơn { id, qty }
+// Trả về { overrides: bản overrides mới để ghi vào localStorage, stock: { id: số tồn mới } }
+export function stockAfter(productsById, items, sign) {
+  // Gộp số lượng theo sản phẩm (1 sản phẩm có thể nằm ở nhiều dòng: khác màu/size)
+  const totals = {};
+  items.forEach((i) => { if (productsById[i.id]) totals[i.id] = (totals[i.id] || 0) + i.qty; });
+
+  const overrides = getProductOverrides();
+  const stock = {};
+  Object.keys(totals).forEach((id) => {
+    stock[id] = Math.max(0, productsById[id].stock + sign * totals[id]);   // không để kho âm
+    overrides[id] = { ...(overrides[id] || {}), stock: stock[id] };
+  });
+  return { overrides, stock };
+}
+
+export function applyStock(productsById, stock) {
+  Object.keys(stock).forEach((id) => {
+    productsById[id].stock = stock[id];
+    productsById[id].inStock = stock[id] > 0;
+  });
+}
+
+// includeHidden: trang admin và lịch sử đơn cần cả sản phẩm đã ẩn / đã xoá (để đơn cũ vẫn hiện đúng tên);
+// cửa hàng và giỏ hàng thì bỏ cả 2 loại này
 export async function loadProducts({ includeHidden = false } = {}) {
   const res = await fetch("../data/products.json");
   if (!res.ok) throw new Error("Cannot load products");
   const data = await res.json();
   const overrides = getProductOverrides();
-  return data.products
+  return [...data.products, ...getCustomProducts()]
     .map((p) => {
       const merged = { ...p, ...(overrides[p.id] || {}) };
       merged.inStock = merged.stock > 0;          // tồn kho đổi thì trạng thái còn hàng đổi theo
       return merged;
     })
-    .filter((p) => includeHidden || !p.hidden);
+    .filter((p) => includeHidden || (!p.hidden && !p.deleted));
 }
 
 // Ảnh sản phẩm theo màu; chưa có ảnh thật thì hiện khung chờ ghi tên mẫu thay vì ảnh lỗi
 export function createProductImage(product, color, index = 0) {
   const img = document.createElement("img");
-  img.src = "../" + color.images[index];
+  img.src = imageUrl(color.images[index] || "");
   img.alt = product.name + " - " + color.name + (color.images.length > 1 ? " (" + (index + 1) + "/" + color.images.length + ")" : "");
   img.loading = "lazy";
   img.addEventListener("error", () => {
@@ -63,7 +110,7 @@ export function createCard(product, formatPrice = (usd) => "$" + usd.toFixed(2),
   if (firstColor.images.length > 1) {
     const hover = document.createElement("img");
     hover.className = "product-card__hover";
-    hover.src = "../" + firstColor.images[1];
+    hover.src = imageUrl(firstColor.images[1]);
     hover.alt = "";
     hover.loading = "lazy";
     hover.addEventListener("error", () => hover.remove());   // ảnh lỗi thì bỏ, không ảnh hưởng ảnh chính

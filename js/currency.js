@@ -1,5 +1,7 @@
 // Quy đổi tiền: giá gốc trong products.json là USD. Tỷ giá lấy bằng fetch từ API miễn phí
 // (open.er-api.com, không cần key). Lưu cache 1 giờ trong localStorage; nếu mất mạng thì dùng tỷ giá dự phòng.
+import { isObject } from "./storage.js";
+
 const API_URL = "https://open.er-api.com/v6/latest/USD";
 const CACHE_KEY = "sanctuary_rates";
 const CURRENCY_KEY = "sanctuary_currency";
@@ -34,7 +36,8 @@ const FALLBACK_RATES = {
 export async function loadRates() {
   try {
     const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
-    if (cached && Date.now() - cached.time < CACHE_MS) {
+    // Chỉ dùng cache đúng cấu trúc { time: số, rates: { mã: tỷ giá } }
+    if (isObject(cached) && typeof cached.time === "number" && isObject(cached.rates) && Date.now() - cached.time < CACHE_MS) {
       return { rates: cached.rates, live: true, updated: new Date(cached.time) };
     }
   } catch (e) { /* cache hỏng thì bỏ qua */ }

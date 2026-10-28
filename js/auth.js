@@ -4,14 +4,18 @@
 //  - Người đang đăng nhập lưu email trong localStorage (key "sanctuary_session") để tắt trình duyệt mở lại vẫn còn đăng nhập.
 // Lưu ý khi vấn đáp: web tĩnh nên ai mở F12 cũng xem được localStorage; đây là mô phỏng để học, web thật phải có server.
 
+import { readList, writeJSON, isValidUser } from "./storage.js";
+
 const USERS_KEY = "sanctuary_users";
 const SESSION_KEY = "sanctuary_session";
 
+// Tài khoản sai cấu trúc (dữ liệu hỏng / sửa tay) bị bỏ qua
 function readUsers() {
-  try { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; } catch (e) { return []; }
+  return readList(USERS_KEY, isValidUser);
 }
+// Lưu lỗi thì ném lỗi có câu thông báo dễ hiểu, để popup / trang Account hiện cho người dùng
 function writeUsers(users) {
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  if (!writeJSON(USERS_KEY, users)) throw new Error("We couldn't save your account. Please try again.");
 }
 
 // Băm chuỗi bằng SHA-256 (Web Crypto API), trả về chuỗi hex

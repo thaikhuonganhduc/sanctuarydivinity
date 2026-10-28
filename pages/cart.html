@@ -30,11 +30,19 @@
 
   <main class="page container">
     <h1 class="page-title">Cart</h1>
+    <!-- Thông báo khi giỏ bị sửa (món hết hàng / ngừng bán bị bỏ bớt), do js/cart-page.js điền -->
+    <p id="cart-notice" class="cart-note" role="status"></p>
 
     <!-- Giỏ trống -->
     <section id="cart-empty" class="cart-empty" hidden>
       <p>Your cart is empty.</p>
       <a href="home.html#shop" class="btn btn--small">Continue shopping</a>
+    </section>
+
+    <!-- Tải dữ liệu lỗi (khác với giỏ trống): cho thử lại -->
+    <section id="cart-error" class="cart-empty" role="alert" hidden>
+      <p>We couldn't load your cart. Check your connection and try again.</p>
+      <button type="button" id="cart-retry" class="btn btn--small">Try again</button>
     </section>
 
     <!-- Có hàng: danh sách bên trái, tóm tắt + thanh toán bên phải -->
@@ -124,6 +132,7 @@
             </div>
           </div>
 
+          <p id="checkout-error" class="form-error" role="alert"></p>
           <button type="submit" class="btn">Place order</button>
           <p class="cart-note">Demo checkout: no real payment is taken.</p>
         </form>
