@@ -93,7 +93,8 @@ export function createCard(product, formatPrice = (usd) => "$" + usd.toFixed(2),
   card.className = "product-card";
   card.tabIndex = 0;                         // cho phép bấm bằng bàn phím
   card.setAttribute("role", "button");
-  card.setAttribute("aria-label", "View " + product.name);
+  // Không đặt aria-label: tên đọc cho trình đọc màn hình lấy từ nội dung thẻ (tên, giá), nên luôn khớp chữ hiển thị
+  // (chuẩn WCAG 2.5.3 "Label in Name"; trước đây "View <tên>" bị Lighthouse báo không khớp).
   if (onOpen) {
     card.addEventListener("click", () => onOpen(product));
     card.addEventListener("keydown", (e) => {

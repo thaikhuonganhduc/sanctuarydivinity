@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your SANCTUARY cart and checkout, with shipping, duties and taxes estimated for your country. Student project, not a real store.">
   <title>SANCTUARY | Cart</title>
   <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -34,16 +35,16 @@
     <p id="cart-notice" class="cart-note" role="status"></p>
 
     <!-- Giỏ trống -->
-    <section id="cart-empty" class="cart-empty" hidden>
+    <div id="cart-empty" class="cart-empty" hidden>
       <p>Your cart is empty.</p>
       <a href="home.html#shop" class="btn btn--small">Continue shopping</a>
-    </section>
+    </div>
 
     <!-- Tải dữ liệu lỗi (khác với giỏ trống): cho thử lại -->
-    <section id="cart-error" class="cart-empty" role="alert" hidden>
+    <div id="cart-error" class="cart-empty" role="alert" hidden>
       <p>We couldn't load your cart. Check your connection and try again.</p>
       <button type="button" id="cart-retry" class="btn btn--small">Try again</button>
-    </section>
+    </div>
 
     <!-- Có hàng: danh sách bên trái, tóm tắt + thanh toán bên phải -->
     <div id="cart-content" class="cart-layout" hidden>
@@ -99,7 +100,7 @@
             <input id="co-phone" class="input" type="tel" autocomplete="tel">
             <p class="form-error" id="error-co-phone"></p></div>
           <div class="field"><label for="co-address">Address</label>
-            <input id="co-address" class="input" type="text" autocomplete="street-address">
+            <input id="co-address" class="input" type="text" autocomplete="address-line1">
             <p class="form-error" id="error-co-address"></p></div>
           <div class="field"><label for="co-city">City</label>
             <input id="co-city" class="input" type="text" autocomplete="address-level2">
@@ -114,9 +115,9 @@
             <label><input type="radio" name="pay" value="applepay"> Apple Pay</label>
             <label><input type="radio" name="pay" value="googlepay"> Google Pay</label>
           </fieldset>
-          <p class="pay-brands" aria-label="Accepted cards">
+          <div class="pay-brands" role="group" aria-label="Accepted cards">
             <span data-brand="visa">Visa</span><span data-brand="mastercard">Mastercard</span><span data-brand="amex">Amex</span><span data-brand="jcb">JCB</span>
-          </p>
+          </div>
 
           <div id="card-fields" class="form">
             <div class="field"><label for="co-card">Card number</label>

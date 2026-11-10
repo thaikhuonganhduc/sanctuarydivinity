@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SANCTUARY: luxury gym wear released in limited drops. Enter with your athlete code to shop Collection X. Student project, not a real store.">
   <title>SANCTUARY | Coming Soon</title>
   <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -34,7 +35,10 @@
 
   <!-- Đồng hồ đếm ngược ở giữa trang -->
   <main class="gate-main">
-    <div id="countdown" class="countdown" aria-label="Time until the drop">
+    <!-- Không dùng aria-label trên div (W3C báo lỗi; Lighthouse báo nhãn không khớp chữ hiển thị):
+         thay bằng 1 dòng chữ ẩn chỉ dành cho trình đọc màn hình -->
+    <p class="visually-hidden">Time until the drop:</p>
+    <div id="countdown" class="countdown">
       <div class="countdown__item"><span data-unit="days">00</span><small>Days</small></div>
       <div class="countdown__item"><span data-unit="hours">00</span><small>Hours</small></div>
       <div class="countdown__item"><span data-unit="mins">00</span><small>Mins</small></div>
@@ -47,18 +51,20 @@
       <p class="drop-intro__meta">COLLECTION X <span aria-hidden="true">·</span> <span id="launch-date">00/00/00</span></p>
     </section>
 
-    <!-- Dải ảnh lookbook: xếp dọc theo số thứ tự home-01 -> home-11 (không có 06) -->
+    <!-- Dải ảnh lookbook: xếp dọc theo số thứ tự home-01 -> home-11 (không có 06).
+         width/height = kích thước thật của ảnh: trình duyệt giữ sẵn chỗ đúng tỉ lệ trước khi ảnh tải xong,
+         nên trang không bị xô lệch (giảm chỉ số CLS của Lighthouse). CSS vẫn co ảnh theo màn hình (height: auto). -->
     <section class="lookbook" aria-label="Lookbook">
-      <img src="assets/images/home-01.webp" alt="Lookbook 01" loading="lazy">
-      <img src="assets/images/home-02.webp" alt="Lookbook 02" loading="lazy">
-      <img src="assets/images/home-03.webp" alt="Lookbook 03" loading="lazy">
-      <img src="assets/images/home-04.webp" alt="Lookbook 04" loading="lazy">
-      <img src="assets/images/home-05.webp" alt="Lookbook 05" loading="lazy">
-      <img src="assets/images/home-07.webp" alt="Lookbook 07" loading="lazy">
-      <img src="assets/images/home-08.webp" alt="Lookbook 08" loading="lazy">
-      <img src="assets/images/home-09.webp" alt="Lookbook 09" loading="lazy">
-      <img src="assets/images/home-10.webp" alt="Lookbook 10" loading="lazy">
-      <img src="assets/images/home-11.webp" alt="Lookbook 11" loading="lazy">
+      <img src="assets/images/home-01.webp" width="1440" height="1771" alt="Lookbook 01" loading="lazy">
+      <img src="assets/images/home-02.webp" width="1440" height="1029" alt="Lookbook 02" loading="lazy">
+      <img src="assets/images/home-03.webp" width="1440" height="1749" alt="Lookbook 03" loading="lazy">
+      <img src="assets/images/home-04.webp" width="1440" height="1749" alt="Lookbook 04" loading="lazy">
+      <img src="assets/images/home-05.webp" width="1440" height="1749" alt="Lookbook 05" loading="lazy">
+      <img src="assets/images/home-07.webp" width="1440" height="1749" alt="Lookbook 07" loading="lazy">
+      <img src="assets/images/home-08.webp" width="1440" height="1749" alt="Lookbook 08" loading="lazy">
+      <img src="assets/images/home-09.webp" width="1440" height="1749" alt="Lookbook 09" loading="lazy">
+      <img src="assets/images/home-10.webp" width="1440" height="1749" alt="Lookbook 10" loading="lazy">
+      <img src="assets/images/home-11.webp" width="1440" height="1749" alt="Lookbook 11" loading="lazy">
     </section>
   </main>
 

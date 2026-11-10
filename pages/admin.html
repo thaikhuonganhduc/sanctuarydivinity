@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SANCTUARY store admin: orders, products, customers, messages, athlete codes and backups. Student project.">
   <title>SANCTUARY | Admin</title>
   <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -132,7 +133,8 @@
             <div class="field product-form__wide">
               <label for="pf-image">Photo (JPG, PNG or WebP, up to 10 MB)</label>
               <div class="product-form__photo">
-                <div class="admin-thumb product-form__preview"><img id="pf-preview" alt="" hidden></div>
+                <!-- src giữ chỗ: ảnh GIF trong suốt 1x1 (W3C bắt buộc img có src); js/admin.js thay src khi chọn ảnh -->
+                <div class="admin-thumb product-form__preview"><img id="pf-preview" alt="" hidden src="data:image/gif;base64,R0lGODlhAQABAAAAACw="></div>
                 <input id="pf-image" class="input" type="file" accept="image/jpeg,image/png,image/webp">
               </div>
               <p class="form-error" id="error-pf-image"></p>
