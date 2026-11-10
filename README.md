@@ -23,12 +23,14 @@ Luồng người dùng:
 ## 2. Công nghệ
 
 - **HTML5 semantic, CSS3, JavaScript thuần** (ES modules), không dùng framework.
-- Dữ liệu lưu bằng **JSON**, đọc bằng `fetch` (AJAX), vẽ giao diện bằng **DOM**.
+- Dữ liệu lưu bằng **JSON** (đọc bằng `fetch`) và **XML** (`data/shipping.xml`, đọc bằng AJAX `XMLHttpRequest` + `responseXML`), vẽ giao diện bằng **DOM**.
+- **LESS**: `css/less/components.less` (biến, nesting, mixin) biên dịch ra `css/components.css` bằng `npm install` rồi `npm run build:css`. Web chỉ nhúng file `.css`; Node chỉ dùng lúc biên dịch.
+- **iframe**: bản đồ Google Maps (địa chỉ UEL) ở tab Contact.
 - Không có backend. Trạng thái (giỏ hàng, vai trò, tài khoản, đơn hàng, tin nhắn, thay đổi của admin) lưu bằng `localStorage` / `sessionStorage`.
 - **Web Crypto API** (`crypto.subtle`): băm SHA-256 mã admin và mật khẩu tài khoản (có salt ngẫu nhiên), không lưu mật khẩu chữ thô.
 - **API ngoài:** [open.er-api.com](https://open.er-api.com) để lấy tỷ giá (không cần key). Mất mạng thì dùng tỷ giá dự phòng trong `js/currency.js`.
 - **Font:** Angel Wish (file `assets/fonts/Angel wish.ttf`) cho tiêu đề, Times New Roman cho phần còn lại.
-- Triển khai dự kiến: GitHub → Vercel.
+- Triển khai: GitHub → Vercel, địa chỉ **https://sanctuarydivinity.vercel.app**.
 
 ## 3. Cách chạy trên máy
 
@@ -64,7 +66,8 @@ Lưu ý quan trọng:
 ├── css/
 │   ├── reset.css         # Reset mặc định của trình duyệt
 │   ├── base.css          # Biến màu, font, kiểu chữ cơ bản
-│   ├── components.css    # Nút, ô nhập, select dùng lại nhiều trang
+│   ├── less/components.less # Nguồn LESS của components.css (sửa ở đây rồi npm run build:css)
+│   ├── components.css    # Nút, ô nhập, select dùng lại nhiều trang (file sinh ra từ LESS, không sửa tay)
 │   ├── pages.css         # Giao diện từng trang
 │   └── admin.css         # Giao diện riêng của trang admin
 ├── js/
@@ -99,7 +102,7 @@ Lưu ý quan trọng:
 │   ├── products.json     # 32 sản phẩm thật (crawl, tạo bằng `tools/build_products.py`): giá USD, màu, size, tồn kho `stock` giả lập
 │   ├── reviews.json      # 157 đánh giá thật (crawl, gộp theo người, tạo bằng `tools/build_reviews.py`): có nhiều ảnh thì hiện slideshow
 │   ├── access.json       # Mã athlete: vừa để vào web, vừa là mã giảm giá 10%
-│   ├── shipping.json     # Phí ship, thuế, thuế nhập khẩu theo nước (ước tính)
+│   ├── shipping.xml      # Phí ship, thuế theo nước (ước tính), dạng XML, đọc bằng XMLHttpRequest
 │   ├── size-chart.json   # Hệ số gợi ý size + bảng size (ngực, eo, cao, nặng theo size), tính từ ANSUR II bằng tools/build_size_chart.py
 │   ├── bd-products.json  # Dữ liệu thô crawl sản phẩm (đầu vào của build_products.py)
 │   ├── bd-reviews.json   # Dữ liệu thô crawl đánh giá (đầu vào của build_reviews.py)
@@ -108,7 +111,10 @@ Lưu ý quan trọng:
 │                         # assets/_source/ = ảnh lookbook + video gốc chưa nén (chỉ trên máy, không đưa lên Git)
 ├── tools/                # Script Python: crawl dữ liệu, tạo products.json và reviews.json, tạo bảng size, đổi ảnh sang WebP,
 │                         # compress_media.py: nén ảnh lookbook (WebP q94) + video (H.264 CRF 20)
-└── docs/                 # Kế hoạch, phân công, báo cáo, slides, kịch bản thuyết trình (hiện còn trống)
+│                         # diagram_*.py: sinh sơ đồ draw.io; woocommerce/: bản cài thử WooCommerce (xem README trong đó)
+└── docs/
+    ├── diagrams/         # Sơ đồ draw.io (Use case, ERD, DFD, BPMN, lưu đồ, kiến trúc) + ảnh PNG
+    └── report/           # Báo cáo Word/PDF, script dựng báo cáo, ảnh chụp màn hình, số liệu đo (data/)
 ```
 
 ## 5. Dữ liệu nằm ở đâu?
@@ -119,7 +125,7 @@ Lưu ý quan trọng:
 | Đánh giá | `data/reviews.json` | Ảnh feedback đặt trong `assets/reviews/` |
 | Mã athlete / giảm giá | `data/access.json` | Danh sách gốc; thêm dòng mới là có mã mới |
 | Mã athlete admin đã sửa | `localStorage` khoá `sanctuary_athletes` | Admin → Athlete codes; có thì dùng thay `access.json`, nút Reset để quay về file |
-| Phí ship, thuế | `data/shipping.json` | **Ước tính**, không phải báo giá thật |
+| Phí ship, thuế | `data/shipping.xml` (XML, đọc bằng AJAX `XMLHttpRequest`) | **Ước tính**, không phải báo giá thật |
 | Giỏ hàng | `localStorage` khoá `sanctuary_cart` | |
 | Đơn hàng giả lập | `localStorage` khoá `sanctuary_orders` | Admin đổi trạng thái đơn, khách thấy ở trang Account |
 | Tin nhắn liên hệ | `localStorage` khoá `sanctuary_messages` | Admin xem, đánh dấu đã đọc, xoá |
@@ -151,11 +157,16 @@ Lưu ý quan trọng:
 - **Trang admin**: tổng quan, đơn hàng (đổi trạng thái), sản phẩm (**thêm mới có ảnh**, sửa giá, tồn kho, nổi bật, ẩn/hiện, **xoá + khôi phục**), khách hàng, tin nhắn, **quản lý mã athlete** (thêm, bật/tắt, xoá, copy), **đặt ngày ra mắt**, sao lưu/khôi phục, dữ liệu mẫu.
 - Trang Info (Contact + các trang chính sách) và About.
 - **Ảnh lookbook và video đã nén** bằng `tools/compress_media.py`: 96 MB → 23 MB, gần như không thấy khác bản gốc (ảnh PSNR 45–48 dB, video SSIM ≥ 0.995).
+- **XML + AJAX** (`data/shipping.xml` đọc bằng `XMLHttpRequest`), **LESS** (`css/less/components.less`), **iframe** bản đồ UEL ở tab Contact.
+- **Bản cài thử WooCommerce** (`tools/woocommerce/`), sơ đồ phân tích thiết kế (`docs/diagrams/`).
+- **Báo cáo** theo outline của giảng viên: `docs/report/BaoCao_DoAn_SANCTUARY.docx` (dựng lại: `python docs/report/build_report.py` rồi chạy `docs/report/finalize_report.ps1` để Word cập nhật mục lục; thêm `-Pdf` nếu muốn xuất PDF).
+- **Chất lượng (đo 11/11/2026 trên Vercel):** W3C Nu Html Checker 0 lỗi ở 7 trang; Lighthouse Accessibility và SEO 100, hiệu năng desktop 99–100; trang cổng hết xô lệch bố cục (CLS 0). Số liệu chi tiết trong `docs/report/data/`.
 
 **Chưa có / còn lại:**
 
-- Tài liệu trong `docs/`: kế hoạch, bảng phân công, báo cáo, slides, kịch bản thuyết trình (thư mục đang trống).
-- **Đổi mã admin** trong `js/config.js` trước khi nộp bài (hiện vẫn là mã tạm ghi trong comment của file).
+- Slides và kịch bản thuyết trình.
+- Trên điện thoại: trang chủ (video) và About (ảnh lớn) tải còn chậm; hai tab Armory/Reviews che một phần tên sản phẩm (xem mục 5.5.3 của báo cáo).
+- **Đổi mã admin** trong `js/config.js` và đặt `SHOW_DEMO_HINTS = false` trước khi nộp bài (hiện vẫn là mã tạm ghi trong comment của file).
 
 ## 8. Lưu ý về bảo mật
 

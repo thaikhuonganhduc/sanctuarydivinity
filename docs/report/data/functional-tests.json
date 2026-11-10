@@ -1,0 +1,330 @@
+[
+ {
+  "id": "TC01",
+  "group": "Cổng",
+  "name": "Nhập sai mã ở cổng",
+  "expected": "Hiện thông báo lỗi, không chuyển trang",
+  "actual": "Thông báo: \"Incorrect password.\", vẫn ở /index.html",
+  "ok": true
+ },
+ {
+  "id": "TC02",
+  "group": "Cổng",
+  "name": "Nhập đúng mã athlete SANCTUARY-DEMO",
+  "expected": "Vào trang chủ, vai trò customer",
+  "actual": "URL /pages/home.html, role = customer",
+  "ok": true
+ },
+ {
+  "id": "TC03",
+  "group": "Cổng",
+  "name": "Nhập mã admin",
+  "expected": "Vào thẳng trang quản trị, vai trò admin",
+  "actual": "URL /pages/admin.html, role = admin",
+  "ok": true
+ },
+ {
+  "id": "TC04",
+  "group": "Cổng",
+  "name": "Mở thẳng trang chủ khi chưa nhập mã",
+  "expected": "Bị đưa về trang cổng",
+  "actual": "Trang cuối: /",
+  "ok": true
+ },
+ {
+  "id": "TC05",
+  "group": "Cổng",
+  "name": "Khách (customer) mở trang admin",
+  "expected": "Bị chặn, đưa về trang cổng",
+  "actual": "Trang cuối: /pages/home.html",
+  "ok": true
+ },
+ {
+  "id": "TC06",
+  "group": "Sản phẩm",
+  "name": "Tải danh sách sản phẩm từ products.json",
+  "expected": "Hiện đủ 32 thẻ sản phẩm",
+  "actual": "32 thẻ sản phẩm",
+  "ok": true
+ },
+ {
+  "id": "TC07",
+  "group": "Sản phẩm",
+  "name": "Lọc theo màu Void Black",
+  "expected": "Chỉ còn các sản phẩm có màu Void Black đang bán",
+  "actual": "22 thẻ hiển thị, dữ liệu có 22 sản phẩm có màu Void Black còn bán (1 sản phẩm có màu này nhưng đã ngừng bán)",
+  "ok": true
+ },
+ {
+  "id": "TC08",
+  "group": "Sản phẩm",
+  "name": "Sắp xếp giá tăng dần",
+  "expected": "Giá trong mỗi nhóm không giảm",
+  "actual": "11 nhóm sản phẩm, 0 nhóm sai thứ tự",
+  "ok": true
+ },
+ {
+  "id": "TC09",
+  "group": "Sản phẩm",
+  "name": "Đổi tiền tệ sang VND",
+  "expected": "Giá hiển thị theo định dạng VND",
+  "actual": "Giá thẻ đầu tiên: ₫1,812,466",
+  "ok": true
+ },
+ {
+  "id": "TC10",
+  "group": "Sản phẩm",
+  "name": "Bấm thẻ sản phẩm",
+  "expected": "Mở popup chi tiết",
+  "actual": "dialog.open = true",
+  "ok": true
+ },
+ {
+  "id": "TC11",
+  "group": "Sản phẩm",
+  "name": "Đổi màu trong popup",
+  "expected": "Ảnh chính đổi theo màu",
+  "actual": "Ảnh: doom-tech--short-sleeve-compression-nightmare-mens-oct-coll-2026/01.webp → doom-tech--short-sleeve-compression-nocturne-mens-oct-coll-2026/01.webp",
+  "ok": true
+ },
+ {
+  "id": "TC12",
+  "group": "Sản phẩm",
+  "name": "Thêm vào giỏ khi chưa chọn size",
+  "expected": "Báo \"Please select a size.\"",
+  "actual": "Thông báo: \"Please select a size.\"",
+  "ok": true
+ },
+ {
+  "id": "TC13",
+  "group": "Sản phẩm",
+  "name": "Chọn size rồi thêm vào giỏ",
+  "expected": "Giỏ trong localStorage có 1 món, huy hiệu giỏ hiện 1",
+  "actual": "Giỏ: [{\"id\":\"p04\",\"color\":\"Nocturne\",\"size\":\"XXS\",\"qty\":1}], huy hiệu = 1",
+  "ok": true
+ },
+ {
+  "id": "TC14",
+  "group": "Sản phẩm",
+  "name": "Gợi ý size: cao 178 cm, nặng 75 kg",
+  "expected": "Trả về một size cụ thể",
+  "actual": "Kết quả: \"Your sizeMSecond-skin fit: if you are between sizes, size up for comfort.Based on ANSUR II\"",
+  "ok": true
+ },
+ {
+  "id": "TC15",
+  "group": "Sản phẩm",
+  "name": "Gợi ý size với chiều cao vô lý (20 cm)",
+  "expected": "Báo lỗi nhập liệu, không gợi ý size",
+  "actual": "Lỗi: \"Enter a height like 5'11\" or 180 cm, and a weight like 165 lbs or 75 kg.\"",
+  "ok": true
+ },
+ {
+  "id": "TC16",
+  "group": "Sản phẩm",
+  "name": "Mở popup đánh giá, lọc 5 sao",
+  "expected": "Chỉ còn đánh giá 5 sao",
+  "actual": "Hiển thị 6 thẻ, điểm các thẻ: 5, 5, 5, 5, 5, 5; thẻ dưới 5 sao: 0",
+  "ok": true
+ },
+ {
+  "id": "TC17",
+  "group": "Giỏ hàng",
+  "name": "Hiển thị giỏ và tạm tính",
+  "expected": "2 dòng, tạm tính = 71 + 40 = $111.00",
+  "actual": "2 dòng, tạm tính $111.00",
+  "ok": true
+ },
+ {
+  "id": "TC18",
+  "group": "Giỏ hàng",
+  "name": "Bấm + ở dòng đầu",
+  "expected": "Số lượng 2, tạm tính $182.00",
+  "actual": "qty = 2, tạm tính $182.00",
+  "ok": true
+ },
+ {
+  "id": "TC19",
+  "group": "Giỏ hàng",
+  "name": "Đổi nước nhận hàng (đọc data/shipping.xml)",
+  "expected": "Phí ship và thuế đổi theo nước",
+  "actual": "Vietnam: ship ₫134,020 (VAT (8%)); United States: ship $39.00",
+  "ok": true
+ },
+ {
+  "id": "TC20",
+  "group": "Giỏ hàng",
+  "name": "Nhập mã giảm giá sai",
+  "expected": "Báo mã không hợp lệ, không giảm",
+  "actual": "Thông báo: \"This code is not valid.\", dòng giảm giá ẩn = true",
+  "ok": true
+ },
+ {
+  "id": "TC21",
+  "group": "Giỏ hàng",
+  "name": "Nhập mã giảm giá SANCTUARY-DEMO",
+  "expected": "Giảm 10% tạm tính",
+  "actual": "Giảm 18.20 trên tạm tính 182.00",
+  "ok": true
+ },
+ {
+  "id": "TC22",
+  "group": "Thanh toán",
+  "name": "Bấm Place order khi để trống form",
+  "expected": "Hiện lỗi dưới các ô bắt buộc, không tạo đơn",
+  "actual": "8 ô báo lỗi, ví dụ: \"This field is required.\"; số đơn = 0",
+  "ok": true
+ },
+ {
+  "id": "TC23",
+  "group": "Thanh toán",
+  "name": "Email sai định dạng, số thẻ sai (không qua Luhn)",
+  "expected": "Báo lỗi đúng ô email và ô thẻ",
+  "actual": "Email: \"Enter a valid email address.\"; Thẻ: \"Enter a valid card number.\"",
+  "ok": true
+ },
+ {
+  "id": "TC24",
+  "group": "Thanh toán",
+  "name": "Thẻ hết hạn (01/20)",
+  "expected": "Báo lỗi ở ô ngày hết hạn",
+  "actual": "Lỗi: \"This card has expired.\"",
+  "ok": true
+ },
+ {
+  "id": "TC25",
+  "group": "Thanh toán",
+  "name": "Đặt hàng với thông tin hợp lệ",
+  "expected": "Hiện mã đơn, lưu đơn Processing, xoá giỏ, trừ tồn kho",
+  "actual": "Mã đơn SD-MWBATD2B, trạng thái Processing, tổng undefined, giỏ còn 0 món, tồn kho p04 sau đặt: 70",
+  "ok": true
+ },
+ {
+  "id": "TC26",
+  "group": "Liên hệ",
+  "name": "Gửi form liên hệ trống",
+  "expected": "Báo lỗi ô tên, email, nội dung",
+  "actual": "3 lỗi: This field is required. | This field is required. | This field is required.",
+  "ok": true
+ },
+ {
+  "id": "TC27",
+  "group": "Liên hệ",
+  "name": "Gửi form liên hệ hợp lệ",
+  "expected": "Hiện \"Message sent\", tin nhắn lưu vào localStorage",
+  "actual": "Thông báo hiện = true, số tin nhắn lưu = 1",
+  "ok": true
+ },
+ {
+  "id": "TC28",
+  "group": "Liên hệ",
+  "name": "Bản đồ iframe Google Maps",
+  "expected": "iframe có kích thước, trỏ tới google.com/maps",
+  "actual": "Kích thước 525×393 px",
+  "ok": true
+ },
+ {
+  "id": "TC29",
+  "group": "Tài khoản",
+  "name": "Đăng ký với mật khẩu nhập lại không khớp",
+  "expected": "Báo lỗi ô xác nhận mật khẩu",
+  "actual": "Lỗi: \"Passwords do not match.\"",
+  "ok": true
+ },
+ {
+  "id": "TC30",
+  "group": "Tài khoản",
+  "name": "Đăng ký hợp lệ",
+  "expected": "Tạo tài khoản, chỉ lưu hash + salt, tự đăng nhập",
+  "actual": "session = giabao@example.com, mật khẩu chữ thô có trong dữ liệu = false",
+  "ok": true
+ },
+ {
+  "id": "TC31",
+  "group": "Tài khoản",
+  "name": "Đăng xuất rồi đăng nhập sai mật khẩu",
+  "expected": "Báo sai thông tin đăng nhập",
+  "actual": "Thông báo: \"Incorrect email or password.\"",
+  "ok": true
+ },
+ {
+  "id": "TC32",
+  "group": "Tài khoản",
+  "name": "Đăng nhập đúng, xem lịch sử đơn",
+  "expected": "Trang Account hiện tên và đơn hàng của email này",
+  "actual": "Email giabao@example.com, ô họ tên = true, có đơn SD-TEST01 = true",
+  "ok": true
+ },
+ {
+  "id": "TC33",
+  "group": "Quản trị",
+  "name": "Thêm dữ liệu mẫu (Backup → Add sample data)",
+  "expected": "3 khách, 8 đơn, 3 tin nhắn",
+  "actual": "8 đơn, 3 khách, 3 tin nhắn",
+  "ok": true
+ },
+ {
+  "id": "TC34",
+  "group": "Quản trị",
+  "name": "Đổi trạng thái đơn đầu tiên sang Shipped",
+  "expected": "Trạng thái lưu lại sau khi tải lại trang",
+  "actual": "Sau tải lại: Shipped",
+  "ok": true
+ },
+ {
+  "id": "TC35",
+  "group": "Quản trị",
+  "name": "Sửa tồn kho sản phẩm đầu tiên thành 5",
+  "expected": "Trang chủ hiện còn 5 món",
+  "actual": "Ô \"Stock of Tarnished Metallic Logo Cap\", dữ liệu ghi đè: {\"p01\":{\"stock\":5}}",
+  "ok": true
+ },
+ {
+  "id": "TC36",
+  "group": "Quản trị",
+  "name": "Thêm sản phẩm mới thiếu tên và giá",
+  "expected": "Báo lỗi ô tên và ô giá",
+  "actual": "Tên: \"This field is required.\"; Giá: \"Enter a price above 0.\"",
+  "ok": true
+ },
+ {
+  "id": "TC37",
+  "group": "Quản trị",
+  "name": "Thêm mã athlete mới rồi dùng nó ở cổng",
+  "expected": "Mã mới vào được trang chủ",
+  "actual": "Trang cuối: /pages/home.html",
+  "ok": true
+ },
+ {
+  "id": "TC38",
+  "group": "Quản trị",
+  "name": "Tải file sao lưu (Download backup)",
+  "expected": "Tải về file JSON chứa đơn hàng",
+  "actual": "File sanctuary-backup-2026-11-10.json, các khoá: sanctuary_orders, sanctuary_users, sanctuary_messages, sanctuary_product_overrides, sanctuary_custom_products, sanctuary",
+  "ok": true
+ },
+ {
+  "id": "TC39",
+  "group": "Responsive",
+  "name": "Trang chủ trên điện thoại 390 px",
+  "expected": "Không bị cuộn ngang, số cột lưới phù hợp",
+  "actual": "Bề rộng trang 390 / màn hình 390 px, lưới 2 cột",
+  "ok": true
+ },
+ {
+  "id": "TC40",
+  "group": "Responsive",
+  "name": "Trang chủ trên máy tính bảng 820 px",
+  "expected": "Không bị cuộn ngang, số cột lưới phù hợp",
+  "actual": "Bề rộng trang 820 / màn hình 820 px, lưới 3 cột",
+  "ok": true
+ },
+ {
+  "id": "TC41",
+  "group": "Responsive",
+  "name": "Trang chủ trên máy tính 1440 px",
+  "expected": "Không bị cuộn ngang, số cột lưới phù hợp",
+  "actual": "Bề rộng trang 1440 / màn hình 1440 px, lưới 4 cột",
+  "ok": true
+ }
+]

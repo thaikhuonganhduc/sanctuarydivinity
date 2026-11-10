@@ -1,0 +1,216 @@
+[
+ {
+  "mode": "mobile",
+  "name": "Gate",
+  "url": "https://sanctuarydivinity.vercel.app/password",
+  "performance": 66,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 91,
+  "FCP": "0.9 s",
+  "LCP": "5.1 s",
+  "TBT": "0 ms",
+  "CLS": "0.3",
+  "SI": "0.9 s",
+  "weight": "Total size was 3,470 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:18:59.690Z"
+ },
+ {
+  "mode": "mobile",
+  "name": "Home",
+  "url": "https://sanctuarydivinity.vercel.app/pages/home.html",
+  "performance": 79,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "1.1 s",
+  "LCP": "5.7 s",
+  "TBT": "0 ms",
+  "CLS": "0.023",
+  "SI": "2.1 s",
+  "weight": "Total size was 8,691 KiB",
+  "failedA11y": [
+   "Elements with visible text labels do not have matching accessible names."
+  ],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:06.371Z"
+ },
+ {
+  "mode": "mobile",
+  "name": "Cart",
+  "url": "https://sanctuarydivinity.vercel.app/pages/cart.html",
+  "performance": 96,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "0.9 s",
+  "LCP": "2.7 s",
+  "TBT": "0 ms",
+  "CLS": "0",
+  "SI": "0.9 s",
+  "weight": "Total size was 483 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:16.207Z"
+ },
+ {
+  "mode": "mobile",
+  "name": "Info",
+  "url": "https://sanctuarydivinity.vercel.app/pages/contact.html",
+  "performance": 95,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "1.0 s",
+  "LCP": "2.9 s",
+  "TBT": "0 ms",
+  "CLS": "0.001",
+  "SI": "1.0 s",
+  "weight": "Total size was 449 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:22.973Z"
+ },
+ {
+  "mode": "mobile",
+  "name": "About",
+  "url": "https://sanctuarydivinity.vercel.app/pages/about.html",
+  "performance": 82,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "0.9 s",
+  "LCP": "5.0 s",
+  "TBT": "0 ms",
+  "CLS": "0.001",
+  "SI": "0.9 s",
+  "weight": "Total size was 1,260 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:29.378Z"
+ },
+ {
+  "mode": "desktop",
+  "name": "Gate",
+  "url": "https://sanctuarydivinity.vercel.app/password",
+  "performance": 60,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 91,
+  "FCP": "0.3 s",
+  "LCP": "3.0 s",
+  "TBT": "0 ms",
+  "CLS": "0.664",
+  "SI": "0.3 s",
+  "weight": "Total size was 3,473 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:35.805Z"
+ },
+ {
+  "mode": "desktop",
+  "name": "Home",
+  "url": "https://sanctuarydivinity.vercel.app/pages/home.html",
+  "performance": 98,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "0.3 s",
+  "LCP": "1.0 s",
+  "TBT": "0 ms",
+  "CLS": "0.007",
+  "SI": "0.9 s",
+  "weight": "Total size was 8,015 KiB",
+  "failedA11y": [
+   "Elements with visible text labels do not have matching accessible names."
+  ],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:42.494Z"
+ },
+ {
+  "mode": "desktop",
+  "name": "Cart",
+  "url": "https://sanctuarydivinity.vercel.app/pages/cart.html",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "0.3 s",
+  "LCP": "0.6 s",
+  "TBT": "0 ms",
+  "CLS": "0",
+  "SI": "0.3 s",
+  "weight": "Total size was 485 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:51.694Z"
+ },
+ {
+  "mode": "desktop",
+  "name": "Info",
+  "url": "https://sanctuarydivinity.vercel.app/pages/contact.html",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "0.3 s",
+  "LCP": "0.6 s",
+  "TBT": "0 ms",
+  "CLS": "0",
+  "SI": "0.3 s",
+  "weight": "Total size was 451 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:19:58.699Z"
+ },
+ {
+  "mode": "desktop",
+  "name": "About",
+  "url": "https://sanctuarydivinity.vercel.app/pages/about.html",
+  "performance": 99,
+  "accessibility": 100,
+  "bestPractices": 96,
+  "seo": 91,
+  "FCP": "0.3 s",
+  "LCP": "1.0 s",
+  "TBT": "0 ms",
+  "CLS": "0.002",
+  "SI": "0.3 s",
+  "weight": "Total size was 1,262 KiB",
+  "failedA11y": [],
+  "failedSeo": [
+   "Document does not have a meta description"
+  ],
+  "lighthouse": "13.5.0",
+  "fetchTime": "2026-11-10T20:20:05.001Z"
+ }
+]
