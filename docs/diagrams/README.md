@@ -20,6 +20,14 @@ Lưu ý: chạy lại script sẽ **ghi đè** những chỉnh sửa đã làm t
 | `02-erd.drawio` | Sơ đồ quan hệ thực thể (ERD): mô hình dữ liệu logic, 18 thực thể |
 | `03-dfd.drawio` | Sơ đồ luồng dữ liệu (DFD): trang 1 mức ngữ cảnh, trang 2 mức 0 |
 | `04-bpmn.drawio` | Sơ đồ quy trình nghiệp vụ (BPMN): mỗi quy trình 1 trang |
+| `05-flowchart.drawio` | Lưu đồ giải thuật (5 trang): kiểm tra mã cổng, gợi ý size, tính tổng tiền, đặt hàng, thuật toán Luhn (`tools/diagram_flowchart.py`) |
+| `06-architecture.drawio` | Kiến trúc client/server và sơ đồ trang (sitemap) (`tools/diagram_architecture.py`) |
+
+Ảnh PNG của mọi trang sơ đồ nằm trong `png/` (xuất bằng draw.io desktop, tỉ lệ 2x):
+
+```
+"%LOCALAPPDATA%\Programs\draw.io\draw.io.exe" -x -f png -s 2 -b 20 -p 1 -o png/05-flowchart-p1.png 05-flowchart.drawio
+```
 
 ---
 
@@ -160,7 +168,7 @@ Cả website là **1 tiến trình (số 0)**, trao đổi dữ liệu với 3 t
 | D1 | Sản phẩm | `data/products.json` (gốc, chỉ đọc) + `sanctuary_product_overrides` + `sanctuary_custom_products` |
 | D2 | Đánh giá | `data/reviews.json` |
 | D3 | Mã athlete | `data/access.json` hoặc `sanctuary_athletes` (khi admin đã sửa) |
-| D4 | Phí ship, thuế | `data/shipping.json` |
+| D4 | Phí ship, thuế | `data/shipping.xml` |
 | D5 | Bảng size | `data/size-chart.json` |
 | D6 | Giỏ hàng | `sanctuary_cart` |
 | D7 | Đơn hàng | `sanctuary_orders` |
