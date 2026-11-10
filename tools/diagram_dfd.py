@@ -64,7 +64,7 @@ for i, (key, label) in enumerate([
     ("D5", "D5 | Bảng size (size-chart.json)"),
     ("D1", "D1 | Sản phẩm\n(products.json, overrides, custom)"),
     ("D6", "D6 | Giỏ hàng (sanctuary_cart)"),
-    ("D4", "D4 | Phí ship, thuế (shipping.json)"),
+    ("D4", "D4 | Phí ship, thuế (shipping.xml)"),
     ("D7", "D7 | Đơn hàng (sanctuary_orders)"),
     ("D8", "D8 | Tài khoản\n(sanctuary_users, session)"),
     ("D9", "D9 | Tin nhắn (sanctuary_messages)"),

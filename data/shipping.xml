@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Phí vận chuyển, thuế nhập khẩu và VAT/GST (ước tính) theo nước nhận.
+     Đọc bằng AJAX (XMLHttpRequest + responseXML) trong js/shipping.js.
+     Cấu trúc: <shipping> gồm <packaging>, <categories>, <zones>, <countries>. -->
+<shipping origin="Ho Chi Minh City, Vietnam">
+  <note>Estimated values for a student project (origin: Ho Chi Minh City, Vietnam). Real carrier quotes, VAT/GST and duties change often. See docs for sources.</note>
+  <!-- Khối lượng bao bì cộng thêm cho mỗi đơn (kg) -->
+  <packaging kg="0.15"/>
+  <!-- Khối lượng ước tính của 1 món theo loại sản phẩm (kg) -->
+  <categories>
+    <category id="hoodies" kg="0.85"/>
+    <category id="oversize" kg="0.4"/>
+    <category id="compression" kg="0.25"/>
+    <category id="bodysuits" kg="0.3"/>
+    <category id="bikinis" kg="0.12"/>
+    <category id="bottoms" kg="0.45"/>
+    <category id="accessories" kg="0.4"/>
+    <category id="tops" kg="0.22"/>
+  </categories>
+  <!-- Vùng giao hàng: phí gốc (USD) + phí mỗi kg (USD) -->
+  <zones>
+    <zone id="domestic" base="3" perKg="1.5"/>
+    <zone id="asia" base="12" perKg="5"/>
+    <zone id="oceania" base="18" perKg="7"/>
+    <zone id="europe" base="22" perKg="9"/>
+    <zone id="northAmerica" base="24" perKg="10"/>
+    <zone id="southAmerica" base="28" perKg="12"/>
+  </zones>
+  <!-- Mỗi nước: thuộc vùng nào, tên thuế, % thuế, % thuế nhập khẩu, thuế cố định mỗi món (USD) -->
+  <countries>
+    <country name="United States" zone="northAmerica">
+      <tax label="Sales tax">0</tax>
+      <duty pct="15" perItemUsd="0"/>
+    </country>
+    <country name="European Union" zone="europe">
+      <tax label="VAT">21</tax>
+      <duty pct="0" perItemUsd="3.3"/>
+    </country>
+    <country name="United Kingdom" zone="europe">
+      <tax label="VAT">20</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="Vietnam" zone="domestic">
+      <tax label="VAT">8</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="Japan" zone="asia">
+      <tax label="Consumption tax">10</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="South Korea" zone="asia">
+      <tax label="VAT">10</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="China" zone="asia">
+      <tax label="VAT">13</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="Australia" zone="oceania">
+      <tax label="GST">10</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="Canada" zone="northAmerica">
+      <tax label="GST">5</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="Singapore" zone="asia">
+      <tax label="GST">9</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="Thailand" zone="asia">
+      <tax label="VAT">7</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="India" zone="asia">
+      <tax label="GST">18</tax>
+      <duty pct="20" perItemUsd="0"/>
+    </country>
+    <country name="Switzerland" zone="europe">
+      <tax label="VAT">8.1</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+    <country name="Brazil" zone="southAmerica">
+      <tax label="ICMS">17</tax>
+      <duty pct="20" perItemUsd="0"/>
+    </country>
+    <country name="Mexico" zone="northAmerica">
+      <tax label="IVA">16</tax>
+      <duty pct="0" perItemUsd="0"/>
+    </country>
+  </countries>
+</shipping>

@@ -62,11 +62,11 @@ chart = entity("SIZE_CHART_ROW", "size-chart.json (tính từ ANSUR II)", [
     "weight_kg (P25-P75)", "people (số người trong mẫu)"], 1740, 250)
 
 # ---------- Phí ship, thuế ----------
-zone = entity("SHIPPING_ZONE", "shipping.json: zones", [
+zone = entity("SHIPPING_ZONE", "shipping.xml: zones", [
     "<u>PK</u> zone_id", "base_usd", "per_kg_usd"], 40, 720)
-country = entity("COUNTRY", "shipping.json: countries", [
+country = entity("COUNTRY", "shipping.xml: countries", [
     "<u>PK</u> country_name", "FK zone_id", "tax_label (VAT, GST...)", "tax_pct", "duty_pct", "duty_per_item_usd"], 380, 720)
-category = entity("CATEGORY_WEIGHT", "shipping.json: categoryKg", [
+category = entity("CATEGORY_WEIGHT", "shipping.xml: categoryKg", [
     "<u>PK</u> category", "weight_kg"], 1060, 720)
 
 # ---------- Đánh giá, liên hệ ----------
