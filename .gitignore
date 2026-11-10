@@ -24,3 +24,12 @@ QA_Handover_Web_Project.xlsx
 
 # Báo cáo mẫu của nhóm khác (chỉ để tham khảo, không đưa lên GitHub)
 Báo cáo đồ án cuối kỳ Phát triển web - nhóm 2-đã nén.pdf
+
+# Thư viện Node (chỉ dùng để biên dịch LESS: npm install rồi npm run build:css)
+node_modules/
+
+# Ảnh thu nhỏ tạm do docs/report/build_report.py tạo khi dựng báo cáo
+docs/report/img/_fit/
+docs/report/img/composite/
+# File khoá tạm của Word
+~$*

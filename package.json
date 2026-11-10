@@ -1,0 +1,11 @@
+{
+  "name": "sanctuary",
+  "private": true,
+  "description": "SANCTUARY: đồ án môn Phát triển Web kinh doanh (BIE5030). Web tĩnh, file này chỉ để biên dịch LESS.",
+  "scripts": {
+    "build:css": "lessc css/less/components.less css/components.css"
+  },
+  "devDependencies": {
+    "less": "4.2.0"
+  }
+}

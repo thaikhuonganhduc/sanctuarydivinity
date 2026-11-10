@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Components: nút, ô nhập, thông báo dùng lại nhiều trang.
+   ĐÂY LÀ FILE NGUỒN LESS. Trình duyệt không đọc được LESS, nên phải biên dịch ra CSS:
+       npm run build:css      (hoặc: npx -p less@4.2.0 lessc css/less/components.less css/components.css)
+   Web chỉ nhúng file kết quả css/components.css. Đừng sửa tay file .css đó, sửa ở đây rồi biên dịch lại.
+   Các tính năng LESS dùng trong file: biến (@...), lồng selector (&), mixin có tham số.
+   Comment khối (gạch chéo + dấu sao) được giữ lại trong file CSS; comment hai gạch chéo chỉ có trong file LESS.
+   ========================================================================== */
+
+// ---- Biến LESS: chỉ tồn tại lúc biên dịch (khác biến CSS --color-... trong base.css tồn tại lúc chạy) ----
+@btn-border-color: #333;        // viền xám đậm, giống nút "Enter using password"
+@btn-bg: #000;
+@btn-border-width: 3px;
+@ease-time: 0.2s;
+@field-gap: 0.4rem;
+
+// ---- Mixin: một nhóm thuộc tính đặt tên để dùng lại (giống hàm) ----
+// Hiệu ứng đổi màu mượt cho các thuộc tính truyền vào
+.smooth(@props) {
+  transition: @props;
+}
+// Kiểu chữ nhãn nhỏ in hoa; tham số @spacing có giá trị mặc định
+.label-text(@size: 0.75rem; @spacing: 0.1em) {
+  font-size: @size;
+  letter-spacing: @spacing;
+  text-transform: uppercase;
+}
+
+/* Nút bấm dùng chung */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border: @btn-border-width solid @btn-border-color;  /* viền xám đậm, nền đen như nút "Enter using password" */
+  background: @btn-bg;
+  color: var(--color-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-wide);
+  font-size: 1rem;
+  .smooth(background @ease-time, color @ease-time, border-color @ease-time;);
+
+  // "&" = chính selector cha, nên "&:hover" biên dịch thành ".btn:hover"
+  &:hover { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
+  &--ghost { background: transparent; }       // -> .btn--ghost (đặt tên kiểu BEM)
+  &[hidden] {
+    /* .btn đặt display riêng nên phải ghi rõ, không thì thuộc tính hidden không có tác dụng */
+    display: none;
+  }
+  &--small {
+    padding: 0.5rem 1rem;
+    .label-text(0.8rem; 0.2em);
+  }
+}
+
+/* Ô nhập liệu và nhãn */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: @field-gap;
+
+  label {                                      // -> .field label
+    .label-text();
+    color: var(--color-muted);
+  }
+}
+.input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+
+  &:focus { outline: none; border-color: var(--color-accent); }
+}
+
+.form-error { color: var(--color-error); font-size: 0.85rem; min-height: 1.25rem; }
+
+/* Mọi ô chọn (select) trên web: danh sách xổ xuống nền đen, chữ trắng để luôn đọc được */
+select {
+  color-scheme: dark;
+
+  option, optgroup { background: @btn-bg; color: #fff; }   // -> select option, select optgroup
+}
