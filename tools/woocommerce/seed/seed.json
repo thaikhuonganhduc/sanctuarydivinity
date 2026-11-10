@@ -1,0 +1,316 @@
+{
+ "products": [
+  {
+   "sku": "SAN-P04",
+   "name": "Doom Tech™ Spider-Corpse Short Sleeve Compression",
+   "price": 71.0,
+   "category": "Compression",
+   "line": "Sanctuary (Men)",
+   "colors": [
+    "Nightmare",
+    "Nocturne",
+    "Amethyst",
+    "Divine White",
+    "Pumpkin",
+    "Clark/Carnage",
+    "Widow",
+    "Midnight"
+   ],
+   "description": "<ul><li>Spider-Corpse jacquard: intertwined threads form the spider, meticulously crafted into the garment, never printed on</li><li>Signature Doom Tech™ performance fabric, 260 GSM (grams per square meter), heavyweight yet breathable</li><li>Raised 3D Venom texture silicone print you can feel</li><li>High-stretch, second-skin compression with a contoured fit, true to size</li><li>Custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "High-stretch, second-skin compression with a contoured fit, true to size",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 72,
+   "image": "p04.jpg"
+  },
+  {
+   "sku": "SAN-P05",
+   "name": "Elegant Lightweight Oversized Tee",
+   "price": 60.0,
+   "category": "Oversized Tees",
+   "line": "Sanctuary (Men)",
+   "colors": [
+    "Divine White",
+    "Heavenly Pink",
+    "Void Black"
+   ],
+   "description": "<ul><li>Pairs with the 937 Embroidery Oversized Uncuffed Luxury Sweatpants</li><li>Luxurious 95% cotton, 5% spandex, 180 GSM (grams per square meter), lightweight with natural stretch</li><li>Industry-leading Oversized Comfort fit, cut relaxed for effortless, everyday wear</li><li>Soft, breathable jersey made for warmer days and layering</li><li>Original SANCTUARY art, silk screen printed 5x on the chest, back and sleeves for lifetime durability</li><li>Premium mock-neck collar</li><li>Double-needle stitching and custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "Pairs with the 937 Embroidery Oversized Uncuffed Luxury Sweatpants",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 70,
+   "image": "p05.jpg"
+  },
+  {
+   "sku": "SAN-P11",
+   "name": "Greek God Aesthetics Bodybuilding Stringer",
+   "price": 50.0,
+   "category": "Stringers & Tops",
+   "line": "Sanctuary (Men)",
+   "colors": [
+    "Divine White",
+    "Void Black"
+   ],
+   "description": "<ul><li>Luxurious 95% cotton, 5% spandex jersey, 160 GSM (grams per square meter)</li><li>The perfect stringer, made for training: deep-cut armholes, rounded hem, no nip-slips, true to size</li><li>Embroidered SANCTUARY GGA logo</li><li>Double-needle stitching and custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 112,
+   "image": "p11.jpg"
+  },
+  {
+   "sku": "SAN-P14",
+   "name": "Vengeance Embroidery Oversized Crewneck",
+   "price": 115.0,
+   "category": "Hoodies & Crewnecks",
+   "line": "Sanctuary (Men)",
+   "colors": [
+    "Porcelain",
+    "Shadow"
+   ],
+   "description": "<ul><li>Luxurious 100% Heavyweight cotton French terry, 380 GSM (grams per square meter)</li><li>Original SANCTUARY artwork, fully embroidered on the chest, sleeves and back</li><li>Over 2 million stitches of dense, raised embroidery</li><li>Industry-leading Oversized Comfort fit</li><li>Premium mock-neck collar in cotton-spandex rib that holds its shape</li><li>Double-needle stitching for lasting structure</li><li>Custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "Industry-leading Oversized Comfort fit",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 36,
+   "image": "p14.jpg"
+  },
+  {
+   "sku": "SAN-P16",
+   "name": "Death-Script Oversized Uncuffed Cargos",
+   "price": 95.0,
+   "category": "Bottoms",
+   "line": "Sanctuary (Men)",
+   "colors": [
+    "Vintage",
+    "Darkness",
+    "Dusk",
+    "Nightmare",
+    "Void Black"
+   ],
+   "description": "<ul><li>Luxurious 100% Heavyweight cotton French terry, 380 GSM (grams per square meter)</li><li>Original SANCTUARY art, silk screen printed 5x and embroidered for lifetime durability</li><li>Custom Shadow Blade silver accessory with a subtle hint of rhinestones</li><li>Industry-leading Oversized Tarnished fit with uncuffed leg hems</li><li>Double-needle stitching and custom woven SANCTUARY label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "Industry-leading Oversized Tarnished fit with uncuffed leg hems",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 115,
+   "image": "p16.jpg"
+  },
+  {
+   "sku": "SAN-P20",
+   "name": "Immortality Oversized Zip-Up Hoodie",
+   "price": 110.0,
+   "category": "Hoodies & Crewnecks",
+   "line": "Sanctuary (Men)",
+   "colors": [
+    "Divine White",
+    "Heavenly Red",
+    "Dusk",
+    "Glow In The Dark",
+    "Nightmare",
+    "Void Black"
+   ],
+   "description": "<ul><li>Luxurious 100% Heavyweight cotton French terry, 380 GSM (grams per square meter)</li><li>Original SANCTUARY art, silk screen printed 5x on the sleeves, back and hood for lifetime durability, with the back design stretching shoulder to shoulder</li><li>Custom metal hardware: molded Shadow Blade charm zipper puller and silver Omega SANCTUARY emblem at the wrist</li><li>Ghost hood with no drawstrings for a clean silhouette</li><li>Industry-leading Oversized Comfort fit</li><li>Double-needle stitching and custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "Industry-leading Oversized Comfort fit",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 48,
+   "image": "p20.jpg"
+  },
+  {
+   "sku": "SAN-P23",
+   "name": "Mercenary Tactical Oversized Full-Zip Hoodie",
+   "price": 150.0,
+   "category": "Hoodies & Crewnecks",
+   "line": "Sanctuary (Men)",
+   "colors": [
+    "Bonesaw",
+    "Ghost",
+    "Vintage"
+   ],
+   "description": "<ul><li>The Tactical Set: pairs with the Tactical Oversized Uncuffed Cargos</li><li>Tactical Oversized Full-Zip Hoodie</li><li>Our most designed garment to date</li><li>Luxurious 100% Heavyweight cotton French terry, 510 GSM (grams per square meter), the heaviest in the collection</li><li>Hood with a built-in turtleneck for an extra layer when it's cold</li><li>Oversized 3D cargo pockets with zippers, as functional as they are intricate</li><li>Custom two-way zipper with custom SANCTUARY zipper puller</li><li>Extra-long, luxurious drawstrings</li><li>All hardware custom and handcrafted</li><li>Vintage garment wash, so no two pieces are exactly alike</li><li>Embroidered SANCTUARY logo on the chest</li><li>Industry-leading Oversized Comfort fit</li><li>Double-needle stitching for lasting structure</li><li>Custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li><li>Complete the Tactical Set</li><li>The matching Tactical Oversized Uncuffed Cargos: 510 GSM French terry, custom paneling throughout, embroidery, metal eyelets, uncuffed but hemmed.</li></ul>",
+   "short": "The Tactical Set: pairs with the Tactical Oversized Uncuffed Cargos",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 6,
+   "image": "p23.jpg"
+  },
+  {
+   "sku": "SAN-P12",
+   "name": "Essential Embroidery Cuff Beanie",
+   "price": 40.0,
+   "category": "Accessories",
+   "line": "Accessories",
+   "colors": [
+    "Heavenly Pink",
+    "Void Black"
+   ],
+   "description": "<ul><li>Premium ribbed knit</li><li>Embroidered SANCTUARY logo</li><li>Cuffed fit, one size fits all</li></ul>",
+   "short": "Cuffed fit, one size fits all",
+   "sizes": [
+    "One size"
+   ],
+   "stock": 70,
+   "image": "p12.jpg"
+  },
+  {
+   "sku": "SAN-P25",
+   "name": "Infernal Faux Fur Lined Zip-Up",
+   "price": 125.0,
+   "category": "Hoodies & Crewnecks",
+   "line": "Sanctuary Selene (Women)",
+   "colors": [
+    "Vintage Washed",
+    "Blossom Pink",
+    "Divine White",
+    "Nightmare",
+    "Glow In The Dark",
+    "Void Black"
+   ],
+   "description": "<ul><li>Pairs with the Immortal Tarnished Fit Sweatpants</li><li>Luxurious 88% cotton, 12% spandex lightly ribbed stretch jersey, 270 GSM (grams per square meter)</li><li>Vintage garment wash, so no two pieces are exactly alike</li><li>Detachable faux-fur hood</li><li>Custom molded metal Spider charm zipper puller and metallic rivets at the wrists</li><li>Original SANCTUARY Red art, silk screen printed 5x on the chest, sleeves and back for lifetime durability</li><li>Fitted silhouette with a slightly cropped length, true to size</li><li>Double-needle stitching and custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "Pairs with the Immortal Tarnished Fit Sweatpants",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 104,
+   "image": "p25.jpg"
+  },
+  {
+   "sku": "SAN-P26",
+   "name": "Covenant Fitted Baby Tee",
+   "price": 55.0,
+   "category": "Stringers & Tops",
+   "line": "Sanctuary Selene (Women)",
+   "colors": [
+    "Blossom Pink",
+    "Glow In The Dark",
+    "Vintage",
+    "Nightmare",
+    "Divine White",
+    "Void Black"
+   ],
+   "description": "<ul><li>Pairs with the Immortal Tarnished Fit Sweatpants</li><li>Luxurious 90% cotton, 10% spandex stretch jersey, 220 GSM (grams per square meter)</li><li>Fitted crop with a crew neck, cap sleeves, a clean hem and an accentuated waist, true to size</li><li>Original SANCTUARY art, silk screen printed 5x on the front, back and sleeves for lifetime durability</li><li>Double-needle stitching and custom woven SANCTUARY neck label with authenticity marker</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "Pairs with the Immortal Tarnished Fit Sweatpants",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 65,
+   "image": "p26.jpg"
+  },
+  {
+   "sku": "SAN-P28",
+   "name": "Void Tech™ Eternal Decay Open Back Bodysuit",
+   "price": 75.0,
+   "category": "Bodysuits",
+   "line": "Sanctuary Selene (Women)",
+   "colors": [
+    "Darkness",
+    "Divine White",
+    "Nightmare",
+    "Glow In The Dark",
+    "Blossom Pink",
+    "Void Black"
+   ],
+   "description": "<ul><li>Signature Void Tech™ performance fabric, 230 GSM (grams per square meter)</li><li>One-piece bodysuit with a scoop neckline, short sleeves and a single open-back cutout, a complete look on its own</li><li>Shorts-length legs with sculpting seam lines for a figure-flattering silhouette</li><li>Built-in bra with an elastic support band and removable pads</li><li>Accentuated waist with a subtle V-back seam</li><li>Full SANCTUARY Red designs on the front, sides and back, silk screen printed 5x for lifetime durability</li><li>High-stretch, second-skin compression with a seamless front, true to size</li><li>Custom woven SANCTUARY label with authenticity marker on the inside side seam</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "High-stretch, second-skin compression with a seamless front, true to size",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 35,
+   "image": "p28.jpg"
+  },
+  {
+   "sku": "SAN-P31",
+   "name": "Void Tech™ Divine Ruin Leggings",
+   "price": 70.0,
+   "category": "Bottoms",
+   "line": "Sanctuary Selene (Women)",
+   "colors": [
+    "Divine White",
+    "Blossom Pink",
+    "Glow In The Dark",
+    "Nightmare",
+    "Void Black"
+   ],
+   "description": "<ul><li>Pairs with the Death Veil Sports Bra</li><li>Signature Void Tech™ performance fabric, 280 GSM (grams per square meter)</li><li>Original SANCTUARY art on both hips, running down toward the knee, silk screen printed 5x for lifetime durability</li><li>High-rise, accentuated waist with a sculpting scrunch back</li><li>High-stretch, second-skin compression with a seamless, ankle-length fit, true to size</li><li>Pre-shrunk for minimal shrinkage and fading, so the fit you buy is the fit you keep</li></ul>",
+   "short": "High-stretch, second-skin compression with a seamless, ankle-length fit, true to size",
+   "sizes": [
+    "XXS",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+   ],
+   "stock": 64,
+   "image": "p31.jpg"
+  }
+ ]
+}

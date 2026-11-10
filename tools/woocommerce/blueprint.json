@@ -1,0 +1,41 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "SANCTUARY on WooCommerce",
+    "author": "SANCTUARY team (UEL, BIE5030)",
+    "description": "Bản cài thử WooCommerce cho Chương VII (mã nguồn mở) của đồ án. Student project, not a real store."
+  },
+  "landingPage": "/wp-admin/admin.php?page=wc-admin",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "features": { "networking": true },
+  "steps": [
+    { "step": "login", "username": "admin", "password": "password" },
+    {
+      "step": "installPlugin",
+      "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" },
+      "options": { "activate": true }
+    },
+    {
+      "step": "installTheme",
+      "themeData": { "resource": "wordpress.org/themes", "slug": "storefront" },
+      "options": { "activate": true }
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "SANCTUARY",
+        "blogdescription": "Luxury gym wear. Student project, not a real store.",
+        "timezone_string": "Asia/Ho_Chi_Minh",
+        "woocommerce_store_address": "669 Do Muoi Street",
+        "woocommerce_store_city": "Ho Chi Minh City",
+        "woocommerce_default_country": "VN",
+        "woocommerce_currency": "USD",
+        "woocommerce_onboarding_profile": { "skipped": true },
+        "woocommerce_task_list_hidden": "yes",
+        "woocommerce_show_marketplace_suggestions": "no",
+        "woocommerce_coming_soon": "no",
+        "woocommerce_calc_taxes": "yes"
+      }
+    }
+  ]
+}
