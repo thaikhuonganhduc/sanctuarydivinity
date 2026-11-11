@@ -51,27 +51,47 @@
     gate: byPrefix("D01"), shop: byPrefix("D02"), cart: byPrefix("D04"), account: byPrefix("D05"),
     about: byPrefix("D06"), contact: byPrefix("D07 "), admin: byPrefix("D08 "),
   };
-  const M = { cart: byPrefix("M04") };
+  const M = { gate: byPrefix("M01"), shop: byPrefix("M02"), cart: byPrefix("M04"),
+    info: byPrefix("M05"), about: byPrefix("M06"), account: byPrefix("M07") };
 
-  // ---------- 1. Nhận diện 12 frame mới chụp (5 tab chính sách + 7 mục Admin) ----------
+  // ---------- 1. Nhận diện frame mới chụp: 5 tab chính sách + 7 mục Admin (desktop), Info/About/Account (mobile) ----------
   const POLICY = { "Shipping/Returns": "shipping", "Terms and Conditions": "terms", "Terms of Service": "tos",
     "Privacy Policy": "privacy", "Accessibility": "accessibility" };
   const ADMIN = { "Orders": "orders", "Products": "products", "Customers": "customers", "Messages": "messages",
     "Athlete codes": "codes", "Launch date": "launch", "Backup": "backup" };
+  const MOBILE = { "Info": "info", "About": "about", "Account": "account" };   // tiêu đề h1 của trang
   const P = {}, A = {};
   const known = /^(D\d|M\d|T\d|Label|Toast)/;
-  for (const f of frames()) {
-    if (known.test(f.name) && !/^D0[78]\./.test(f.name)) continue;
-    // Tiêu đề của tab đang mở = chữ trùng tên tab, không nằm trong link/nút, cỡ chữ lớn nhất
+  // Tiêu đề của trang/tab đang mở = chữ nằm trong bảng, không thuộc link/nút, cỡ chữ lớn nhất
+  function titleOf(f, table) {
     let best = null;
     for (const t of f.findAll((n) => n.type === "TEXT")) {
       const s = clean(t.characters);
-      if (!(s in POLICY || s in ADMIN) || insideLink(t, f)) continue;
+      if (!(s in table) || insideLink(t, f)) continue;
       const size = typeof t.fontSize === "number" ? t.fontSize : 0;
       if (!best || size > best.size) best = { s, size };
     }
-    if (!best) continue;
-    if (best.s in POLICY) P[POLICY[best.s]] = f; else A[ADMIN[best.s]] = f;
+    return best && best.s;
+  }
+  for (const f of frames()) {
+    if (known.test(f.name) && !/^D0[78]\./.test(f.name)) continue;
+    if (f.width < 600) {                                  // khung mobile (390px)
+      const s = titleOf(f, MOBILE);
+      if (s && !M[MOBILE[s]]) M[MOBILE[s]] = f;
+      continue;
+    }
+    const s = titleOf(f, { ...POLICY, ...ADMIN });
+    if (!s) continue;
+    if (s in POLICY) P[POLICY[s]] = f; else A[ADMIN[s]] = f;
+  }
+  // Mobile: đặt tên M05-M07 và xếp tiếp hàng ngang sau M04 (cách nhau 510px như các khung mobile cũ)
+  if (M.cart) {
+    [["info", "M05 · Info"], ["about", "M06 · About"], ["account", "M07 · Account"]].forEach(([key, name], i) => {
+      const f = M[key];
+      if (!f) return;
+      if (f.name !== name) { f.name = name; log.renamed.push(name); }
+      f.x = M.cart.x + (i + 1) * 510; f.y = M.cart.y;
+    });
   }
   // Đặt tên + xếp các frame mới thành cột ngay dưới trang gốc
   function arrange(base, map, order, prefix, titles) {
@@ -94,7 +114,9 @@
   await figma.loadFontAsync({ family: "Tinos", style: "Bold" });
   const C = { surface: { r: 0.078, g: 0.078, b: 0.078 }, border: { r: 0.165, g: 0.165, b: 0.165 },
     text: { r: 0.949, g: 0.949, b: 0.949 }, muted: { r: 0.541, g: 0.541, b: 0.541 } };
-  const rightEdge = Math.max(...page.children.map((n) => n.x + n.width));
+  // Cột popup luôn nằm bên phải mọi frame khác (không tính chính các popup)
+  const isToast = (n) => n.name === "Toast / Success" || /^T0\d/.test(n.name) || n.name === "Label · POPUP";
+  const rightEdge = Math.max(...page.children.filter((n) => !isToast(n)).map((n) => n.x + n.width));
 
   let comp = page.findOne((n) => n.type === "COMPONENT" && n.name === "Toast / Success");
   let pTitle, pBody;
@@ -143,14 +165,14 @@
     pBody = comp.addComponentProperty("Body", "TEXT", "Body");
     title.componentPropertyReferences = { characters: pTitle };
     body.componentPropertyReferences = { characters: pBody };
-    comp.x = rightEdge + 200;
-    comp.y = 200;
     log.created.push(comp.name);
   } else {
     const defs = comp.componentPropertyDefinitions;
     pTitle = Object.keys(defs).find((k) => k.startsWith("Title"));
     pBody = Object.keys(defs).find((k) => k.startsWith("Body"));
   }
+  comp.x = rightEdge + 200;   // mỗi lần chạy đều dời cột popup ra sau frame cuối cùng để không đè lên frame mới
+  comp.y = 200;
 
   const TOASTS = [
     ["T01 · Toast · Order placed", "Order placed", "Thank you. Your order number is SD-MHX2K9. A confirmation would be sent to your email."],
@@ -170,10 +192,10 @@
       inst.setProperties({ [pTitle]: title, [pBody]: body });
       fr.appendChild(inst);
       fr.resize(inst.width, inst.height);
-      fr.x = comp.x;
-      fr.y = ty;
       log.created.push(name);
     }
+    fr.x = comp.x;
+    fr.y = ty;
     ty = fr.y + fr.height + 60;
     // Hiện 2.5 giây rồi tự đóng popup
     await fr.setReactionsAsync([{ trigger: { type: "AFTER_TIMEOUT", timeout: 2.5 }, actions: [{ type: "CLOSE" }] }]);
@@ -222,12 +244,23 @@
   await wire(D.account, [[is("Button", "Sign in"), tSignin, "overlay"], [is("Button", "Create account"), tCreated, "overlay"]]);
   await wire(M.cart, [[is("Button", "Place order"), tOrder, "overlay"], [is("Button", "Sign in"), tSignin, "overlay"]]);
 
+  // Mobile: header Info / About / Sign in dẫn sang 3 khung mobile mới (cùng khổ 390px, không nhảy sang desktop)
+  const mobileHeader = [
+    [is("Link", "Info"), M.info], [is("Link", "About"), M.about],
+    [nameStarts("Link - SANCTUARY home"), M.shop], [nameStarts("Link - Sign in"), M.account],
+    [nameStarts("Link - Cart"), M.cart], [is("Button", "Exit"), M.gate],
+  ];
+  for (const f of [M.shop, M.cart, M.info, M.about, M.account]) await wire(f, mobileHeader);
+  await wire(M.info, [[starts("Link", "Which size should I pick"), M.shop], [is("Button", "Send"), tSent, "overlay"]]);
+  await wire(M.account, [[is("Button", "Sign in"), tSignin, "overlay"], [is("Button", "Create account"), tCreated, "overlay"]]);
+
   // Thêm điểm bắt đầu "Admin flow" để xem riêng luồng quản trị
   if (D.admin && !page.flowStartingPoints.some((p) => p.nodeId === D.admin.id)) {
     page.flowStartingPoints = [...page.flowStartingPoints, { nodeId: D.admin.id, name: "Admin flow" }];
   }
 
-  const msg = `Đã nối ${log.linked} link · tab chính sách: ${Object.keys(P).length}/5 · mục Admin: ${Object.keys(A).length}/7 · tạo mới: ${log.created.length}`;
+  const mobileFound = ["info", "about", "account"].filter((k) => M[k]).length;
+  const msg = `Đã nối ${log.linked} link · tab chính sách: ${Object.keys(P).length}/5 · mục Admin: ${Object.keys(A).length}/7 · mobile mới: ${mobileFound}/3 · tạo mới: ${log.created.length}`;
   console.log(msg, log);
   figma.closePlugin(msg);
 })().catch((e) => figma.closePlugin("Lỗi: " + e.message));
