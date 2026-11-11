@@ -10,6 +10,7 @@ import { updateCartCount } from "./header.js";
 import { initProductPopup } from "./product-popup.js";
 import { getCurrentUser, updateProfile } from "./auth.js";
 import { openAuth } from "./auth-ui.js";
+import { showToast } from "./toast.js";
 import { loadAthletes, findActiveCode } from "./athletes.js";
 
 const ORDERS_KEY = "sanctuary_orders";
@@ -267,6 +268,7 @@ form.addEventListener("submit", (e) => {
   $("order-done").hidden = false;
   updateCartCount();
   window.scrollTo({ top: 0 });
+  showToast("Order placed", "Thank you. Your order number is " + number + ".");   // popup tự ẩn sau 2.5 giây
 });
 
 // ---------- Gợi ý "You may also like": mọi sản phẩm chưa có trong giỏ, xếp ngẫu nhiên, lướt ngang bằng 2 nút ----------

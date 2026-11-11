@@ -3,6 +3,7 @@
 import { rules, validateForm, liveValidate } from "./form-validate.js";
 import { readList, writeJSON, isValidMessage } from "./storage.js";
 import { getCurrentUser } from "./auth.js";
+import { showToast } from "./toast.js";
 
 const MESSAGES_KEY = "sanctuary_messages";
 const form = document.getElementById("contact-form");
@@ -63,4 +64,5 @@ form.addEventListener("submit", (e) => {
   prefill();                                   // giữ lại tên + email của tài khoản cho lần gửi sau
   updateCount();
   success.hidden = false;
+  showToast("Message sent", "We will reply within 48 hours.");   // popup tự ẩn sau 2.5 giây
 });

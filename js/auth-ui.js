@@ -4,6 +4,7 @@
 // Đăng nhập/đăng xuất xong sẽ phát sự kiện "auth-change" để trang đang mở tự cập nhật (vd: Checkout tự điền thông tin).
 import { register, login, getCurrentUser } from "./auth.js";
 import { rules, validateForm, liveValidate } from "./form-validate.js";
+import { showToast } from "./toast.js";
 
 let dialog = null;
 let accountLink = null;
@@ -99,8 +100,9 @@ function buildDialog() {
     message.textContent = "";
     if (!validateForm(signinForm, signinRules)) return;
     try {
-      await login(signinForm.querySelector("#si-email").value, signinForm.querySelector("#si-password").value);
+      const user = await login(signinForm.querySelector("#si-email").value, signinForm.querySelector("#si-password").value);
       onSignedIn();
+      showToast("Signed in", "Welcome back, " + user.name + ".");
     } catch (err) {
       message.textContent = err.message;
     }
@@ -123,12 +125,13 @@ function buildDialog() {
     message.textContent = "";
     if (!validateForm(registerForm, registerRules)) return;
     try {
-      await register({
+      const user = await register({
         name: registerForm.querySelector("#ru-name").value,
         email: registerForm.querySelector("#ru-email").value,
         password: password.value
       });
       onSignedIn();
+      showToast("Account created", "Welcome, " + user.name + ". You are now signed in.");
     } catch (err) {
       message.textContent = err.message;
     }
