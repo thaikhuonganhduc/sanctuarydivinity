@@ -252,8 +252,10 @@ def build(R, ctx):
 
     R.h3("7.13. Giao diện trên thiết bị di động và máy tính bảng")
     R.p("Trên điện thoại 390 px, logo ở giữa, menu gọn lại, lưới sản phẩm 2 cột, popup sản phẩm xếp ảnh trên thông tin dưới, giỏ "
-        "hàng và form xếp một cột (" + R.next_fig() + ", " + R.next_fig(2) + "). Trên máy tính bảng 820 px, lưới có 3 cột (" +
-        R.next_fig(3) + "). Ở mọi độ rộng, trang không bị cuộn ngang.")
+        "hàng và form xếp một cột (" + R.next_fig() + ", " + R.next_fig(2) + "). Trang About, trang Account và popup thông báo "
+        "thành công cũng co theo màn hình; popup rộng gần hết chiều ngang, chừa lề 16 px hai bên (" + R.next_fig(3) + "). Trên "
+        "máy tính bảng 820 px, lưới có 3 cột (" + R.next_fig(4) + "). Ở mọi độ rộng, trang không bị cuộn ngang.")
     R.figure(ctx["comp"] / "mobile-1.png", "Giao diện điện thoại: trang cổng, trang chủ, cửa hàng", width=16)
     R.figure(ctx["comp"] / "mobile-2.png", "Giao diện điện thoại: chi tiết sản phẩm, giỏ hàng, trang Info", width=16)
+    R.figure(ctx["comp"] / "mobile-3.png", "Giao diện điện thoại: trang About, trang Account, popup “Message sent”", width=16)
     R.figure(W / "46-t-shop.png", "Giao diện máy tính bảng: lưới sản phẩm 3 cột", height=14)

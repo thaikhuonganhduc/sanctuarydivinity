@@ -37,6 +37,7 @@ def make_composites():
     w, c = IMG / "web", IMG / "composite"
     side_by_side([w / "40-m-gate.png", w / "41-m-home.png", w / "42-m-shop.png"], c / "mobile-1.png")
     side_by_side([w / "43-m-product.png", w / "44-m-cart.png", w / "45-m-contact.png"], c / "mobile-2.png")
+    side_by_side([w / "47-m-about.png", w / "48-m-account.png", w / "74-toast-mobile.png"], c / "mobile-3.png")
     # Bảng màu thương hiệu (vẽ từ biến màu trong css/base.css)
     from PIL import ImageDraw, ImageFont
     colors = [("#000000", "Đen tuyền\n#000000\nnền chính"), ("#141414", "Than\n#141414\nnền khối"),
