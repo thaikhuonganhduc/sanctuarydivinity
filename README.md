@@ -159,7 +159,7 @@ Lưu ý quan trọng:
 - **Ảnh lookbook và video đã nén** bằng `tools/compress_media.py`: 96 MB → 23 MB, gần như không thấy khác bản gốc (ảnh PSNR 45–48 dB, video SSIM ≥ 0.995).
 - **XML + AJAX** (`data/shipping.xml` đọc bằng `XMLHttpRequest`), **LESS** (`css/less/components.less`), **iframe** bản đồ UEL ở tab Contact.
 - **Bản cài thử WooCommerce** (`tools/woocommerce/`), sơ đồ phân tích thiết kế (`docs/diagrams/`).
-- **Báo cáo** theo outline của giảng viên: `docs/report/BaoCao_DoAn_SANCTUARY.docx` (dựng lại: `python docs/report/build_report.py` rồi chạy `docs/report/finalize_report.ps1` để Word cập nhật mục lục; thêm `-Pdf` nếu muốn xuất PDF).
+- **Báo cáo** theo outline của giảng viên: `docs/report/BaoCao_DoAn_SANCTUARY_v3.docx` (dựng lại: `python docs/report/build_report.py` rồi chạy `docs/report/finalize_report.ps1` để Word cập nhật mục lục; thêm `-Pdf` nếu muốn xuất PDF).
 - **Chất lượng (đo 11/11/2026 trên Vercel):** W3C Nu Html Checker 0 lỗi ở 7 trang; Lighthouse Accessibility và SEO 100, hiệu năng desktop 99–100; trang cổng hết xô lệch bố cục (CLS 0). Số liệu chi tiết trong `docs/report/data/`.
 
 **Chưa có / còn lại:**

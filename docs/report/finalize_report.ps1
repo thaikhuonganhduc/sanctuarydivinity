@@ -1,15 +1,18 @@
 # Mở báo cáo bằng Microsoft Word, cập nhật mục lục + danh mục hình/bảng, lưu lại và xuất PDF.
 # Chạy (PowerShell): powershell -ExecutionPolicy Bypass -File docs\report\finalize_report.ps1 [-Pdf]
-param([switch]$Pdf)
+param([switch]$Pdf, [string]$Name = "BaoCao_DoAn_SANCTUARY_v3.docx")
 $ErrorActionPreference = "Stop"
-$docx = Join-Path $PSScriptRoot "BaoCao_DoAn_SANCTUARY.docx"
-$pdfPath = Join-Path $PSScriptRoot "BaoCao_DoAn_SANCTUARY.pdf"
-# File khoá "~$..." còn sót (Word bị tắt ngang) làm Word mở file ở chế độ chỉ đọc -> xoá trước
-$lock = Join-Path $PSScriptRoot ("~$" + (Split-Path $docx -Leaf).Substring(2))
-if (Test-Path -LiteralPath $lock) { Remove-Item -LiteralPath $lock -Force }
+$docx = Join-Path $PSScriptRoot $Name
+$pdfPath = [System.IO.Path]::ChangeExtension($docx, ".pdf")
+# Có file khoá "~$..." nghĩa là file đang mở trong Word: dừng lại, không động vào file người dùng đang mở
+$lock = Join-Path $PSScriptRoot ("~$" + $Name.Substring(2))
+if (Test-Path -LiteralPath $lock) { throw "File $Name dang mo trong Word. Hay dong file roi chay lai." }
 $word = New-Object -ComObject Word.Application
-$word.Visible = $false
+# Nếu người dùng đang mở Word, COM có thể dùng chung tiến trình đó: khi ấy KHÔNG ẩn cửa sổ, KHÔNG tắt Word
+$shared = $word.Documents.Count -gt 0
+if (-not $shared) { $word.Visible = $false }
 $word.DisplayAlerts = 0
+$doc = $null
 try {
     # Open(file, ConfirmConversions=false, ReadOnly=false, AddToRecentFiles=false)
     $doc = $word.Documents.Open($docx, $false, $false, $false)
@@ -35,8 +38,10 @@ try {
         Write-Output "Exported PDF"
     }
     $doc.Close([ref]0)
+    $doc = $null
     Write-Output "Saved: $docx"
     if ($Pdf) { Write-Output "PDF:   $pdfPath" }
 } finally {
-    $word.Quit()
+    if ($doc -ne $null) { $doc.Close([ref]0) }               # chỉ đóng đúng file báo cáo
+    if (-not $shared -and $word.Documents.Count -eq 0) { $word.Quit() }
 }
